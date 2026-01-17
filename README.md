@@ -10,18 +10,15 @@
 
 ## Manual Installation
 
+Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
+
 1. Clone the `bashrc.d` folder in the folder corresponding to your environment to `~` and rename it `.bashrc.d`.
 2. Move the `bashrc.sh` out to `~` and rename it to `.bashrc`.
 3. Run `source ~/.bashrc`.
 
 ## Script Installation
 
-Prerequisites:
-- `wget` is required, which can be installed via:
-  - Non-root user: `sudo apt update && sudo apt install wget -y`
-  - Root: `apt update && apt install wget -y`
-  - Termux (not inside Proot): `pkg update && pkg install wget -y`
-- Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
+Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
 
 Scripts:
 <ul>
@@ -30,6 +27,8 @@ Scripts:
 rm -f .bashrc
 rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
+sudo apt update
+sudo apt install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -48,6 +47,8 @@ source ~/.bashrc
 rm -f .bashrc
 rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
+apt update
+apt install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -65,6 +66,8 @@ source ~/.bashrc
 rm -f .bashrc
 rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
+pkg update
+pkg install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
