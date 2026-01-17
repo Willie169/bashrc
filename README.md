@@ -8,19 +8,27 @@
 - [**Ubuntu/Debian ARM proot**](ubuntu-debian-arm-proot): designed for proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - [**Termux**](termux): designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
-## Installation
+## Manual Installation
 
 1. Clone the `bashrc.d` folder in the folder corresponding to your environment to `~` and rename it `.bashrc.d`.
 2. Move the `bashrc.sh` out to `~` and rename it to `.bashrc`.
 3. Run `source ~/.bashrc`.
 
-Or with scripts:
+## Script Installation
 
+Prerequisites:
+- `wget` is required, which can be installed via:
+  - Non-root user: `sudo apt update && sudo apt install wget -y`
+  - Root: `apt update && apt install wget -y`
+  - Termux (not inside proot-distro): `pkg update && pkg install wget -y`
+- Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
+
+Scripts:
 <ul>
 <li><strong>Ubuntu AMD</strong>:
-<pre><code>
-cd ~
-rm .bashrc
+<pre><code>cd ~
+rm -f .bashrc
+rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
@@ -33,6 +41,6 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc.sh -O ~/.bashrc
-source ~/.bashrc</code></pre>
-</li>
+source ~/.bashrc
+</code></pre></li>
 </ul>
