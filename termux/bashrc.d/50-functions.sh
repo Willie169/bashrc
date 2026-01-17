@@ -1067,38 +1067,38 @@ cpaic() {
 }
 
 mvoc() {
-    mv "$1" "/storage/emulated/0/Download"
+    mv "$1" "/storage/emulated/0/Download/"
 }
 
 cpoc() {
-    cp "$1" "/storage/emulated/0/Download"
+    cp "$1" "/storage/emulated/0/Download/"
 }
 
 cproc() {
-    cp -r "$1" "/storage/emulated/0/Download"
+    cp -r "$1" "/storage/emulated/0/Download/"
 }
 
 mvip() {
-    mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
 }
 
 cpip() {
-    cp "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
 }
 
 cprip() {
-    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
 }
 
 mvaip() {
-    mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
-    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
     rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
 }
 
 cpaip() {
-    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
-    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
     rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
 }
 
