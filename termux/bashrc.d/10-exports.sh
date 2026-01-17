@@ -1,0 +1,22 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+export TMPDIR="/data/data/com.termux/files/usr/tmp"
+export PREFIX="/data/data/com.termux/files/usr"
+export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:$PREFIX/include"
+export NVM_DIR="$HOME/.nvm"
+export JAVA_HOME="$PREFIX/lib/jvm/java-17-openjdk"
+export CLASSPATH="$CLASSPATH:$PREFIX/local/java/antlr-4.13.2-complete.jar:$PREFIX/local/java/plantuml.jar"
+export GOPROXY='direct'
+export GOROOT="$PREFIX/local/go"
+export GOPATH="$HOME/go:$GOPATH"
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
+export ANDROID_NDK_HOME="$HOME/Android/Sdk/ndk/android-ndk-r29"
+export ANDROID_NDK_TOOLCHAINS="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-aarch64"
+export PATH="$PATH:/bin:/sbin:$PREFIX/bin:$PREFIX/sbin:$PREFIX/local/bin:$PREFIX/local/sbin:$HOME/.local/bin:$HOME/.local/sbin:$GOPATH/bin:$GOROOT/bin:$HOME/.cargo/bin:$JAVA_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_NDK_HOME:$ANDROID_NDK_TOOLCHAINS/bin"
+export PLANTUML_JAR="$PREFIX/local/java/plantuml.jar"
+export PGDATA="$PREFIX/var/lib/postgresql"
+export PDROOTFS="$PREFIX/var/lib/proot-distro/installed-rootfs"
+export EMU="/storage/emulated/0"
+export DOW="/storage/emulated/0/Download"
+export DOC="/storage/emulated/0/Documents"
