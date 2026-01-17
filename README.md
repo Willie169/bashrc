@@ -4,8 +4,8 @@
 
 ## Supported Environments
 
-- [**Ubuntu AMD**](ubuntu-amd): designed for my [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu) repo.
-- [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
+- [**Ubuntu AMD64**](ubuntu-amd): designed for Ubuntu derivatives for my [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu) repo.
+- [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for Ubuntu/Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - [**Termux**](termux): designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
 ## Manual Installation
@@ -22,7 +22,7 @@ Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
 
 Scripts:
 <ul>
-<li><strong>Ubuntu AMD</strong>:
+<li><strong>Ubuntu AMD64</strong>:
 <pre><code>cd ~
 rm -f .bashrc
 rm -f ~/.bashrc.d
@@ -42,7 +42,7 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc.sh -O ~/.bashrc
 source ~/.bashrc
 </code></pre></li>
-<li><strong>Ubuntu/Debian ARM Proot</strong>:
+<li><strong>Ubuntu/Debian ARM64 Proot</strong>:
 <pre><code>cd ~
 rm -f .bashrc
 rm -f ~/.bashrc.d
