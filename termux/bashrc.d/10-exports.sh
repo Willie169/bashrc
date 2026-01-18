@@ -5,6 +5,7 @@ export PREFIX="/data/data/com.termux/files/usr"
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:$PREFIX/include"
 export NVM_DIR="$HOME/.nvm"
 export JAVA_HOME="$PREFIX/lib/jvm/java-21-openjdk"
+export JAVAROOT="$PREFIX/local/java"
 export CLASSPATH="$CLASSPATH:$PREFIX/local/java/antlr-4.13.2-complete.jar:$PREFIX/local/java/plantuml.jar"
 export GOPROXY='direct'
 export GOROOT="$PREFIX/local/go"
