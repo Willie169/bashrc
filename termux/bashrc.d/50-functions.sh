@@ -781,8 +781,12 @@ zip_single() {
 }
 
 bzip2_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -832,8 +836,12 @@ bzip2_split() {
 }
 
 gzip_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -883,8 +891,12 @@ gzip_split() {
 }
 
 xz_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -934,8 +946,12 @@ xz_split() {
 }
 
 tar_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -983,8 +999,12 @@ tar_split() {
 }
 
 zip_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -1031,315 +1051,475 @@ zip_split() {
 }
 
 dfssh() {
-    ssh "$1"@"$2" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
+  ssh "$1"@"$2" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
 }
 
 dfsftp() {
-    sftp "$1"@"$2"
-}
-
-mvic() {
-    mv "/storage/emulated/0/Download/$1" .
-}
-
-cpic() {
-    cp "/storage/emulated/0/Download/$1" .
-}
-
-cpric() {
-    cp -r "/storage/emulated/0/Download/$1" .
-}
-
-mvir() {
-    mv "/storage/emulated/0/Download/$1" "$2"
-}
-
-cpir() {
-    cp "/storage/emulated/0/Download/$1" "$2"
-}
-
-cprir() {
-    cp -r "/storage/emulated/0/Download/$1" "$2"
-}
-
-mvaic() {
-    mv "/storage/emulated/0/Download/$1" .
-    cp -r "$1"/* .
-    rm -r "$1"
-}
-
-cpaic() {
-    cp -r "/storage/emulated/0/Download/$1" .
-    cp -r "$1"/* .
-    rm -r "$1"
-}
-
-mvoc() {
-    mv "$1" "/storage/emulated/0/Download/"
-}
-
-cpoc() {
-    cp "$1" "/storage/emulated/0/Download/"
-}
-
-cproc() {
-    cp -r "$1" "/storage/emulated/0/Download/"
-}
-
-mvip() {
-    mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-}
-
-cpip() {
-    cp "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-}
-
-cprip() {
-    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-}
-
-mvaip() {
-    mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-    rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
-}
-
-cpaip() {
-    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
-    rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
-}
-
-mvop() {
-    mv "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
-}
-
-cpop() {
-    cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
-}
-
-cprop() {
-    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
-}
-
-mvipt() {
-    mvip termux "$1"
-}
-
-cpipt() {
-    cpip termux "$1"
-}
-
-cpript() {
-    cprip termux "$1"
-}
-
-mvaipt() {
-    mvaip termux "$1"
-}
-
-cpaipt() {
-    cpaip termux "$1"
-}
-
-mvopt() {
-    mvop termux "$1"
-}
-
-cpopt() {
-    cpop termux "$1"
-}
-
-cpropt() {
-    cprop termux "$1"
-}
-
-mvipu() {
-    mvip ubuntu "$1"
-}
-
-cpipu() {
-    cpip ubuntu "$1"
-}
-
-cpripu() {
-    cprip ubuntu "$1"
-}
-
-mvaipu() {
-    mvaip ubuntu "$1"
-}
-
-cpaipu() {
-    cpaip ubuntu "$1"
-}
-
-mvopu() {
-    mvop ubuntu "$1"
-}
-
-cpopu() {
-    cpop ubuntu "$1"
-}
-
-cpropu() {
-    cprop ubuntu "$1"
-}
-
-mvipd() {
-    mvip debian "$1"
-}
-
-cpipd() {
-    cpip debian "$1"
-}
-
-cpripd() {
-    cprip debian "$1"
-}
-
-mvaipd() {
-    mvaip debian "$1"
-}
-
-cpaipd() {
-    cpaip debian "$1"
-}
-
-mvopd() {
-    mvop debian "$1"
-}
-
-cpopd() {
-    cpop debian "$1"
-}
-
-cpropd() {
-    cprop debian "$1"
-}
-
-mvipub() {
-    mvip ubuntubox "$1"
-}
-
-cpipub() {
-    cpip ubuntubox "$1"
-}
-
-cpripub() {
-    cprip ubuntubox "$1"
-}
-
-mvaipub() {
-    mvaip ubuntubox "$1"
-}
-
-cpaipub() {
-    cpaip ubuntubox "$1"
-}
-
-mvopub() {
-    mvop ubuntubox "$1"
-}
-
-cpopub() {
-    cpop ubuntubox "$1"
-}
-
-cpropub() {
-    cprop ubuntubox "$1"
-}
-
-mvipdb() {
-    mvip debianbox "$1"
-}
-
-cpipdb() {
-    cpip debianbox "$1"
-}
-
-cpripdb() {
-    cprip debianbox "$1"
-}
-
-mvaipdb() {
-    mvaip debianbox "$1"
-}
-
-cpaipdb() {
-    cpaip debianbox "$1"
-}
-
-mvopdb() {
-    mvop debianbox "$1"
-}
-
-cpopdb() {
-    cpop debianbox "$1"
-}
-
-cpropdb() {
-    cprop debianbox "$1"
-}
-
-rmmva() {
-    rm -rf *
-    mvaic "$1"
-}
-
-rmcpa() {
-    rm -rf *
-    cpaic "$1"
-}
-
-grmmva() {
-    grm *
-    mvaic "$1"
-}
-
-grmcpa() {
-    grm *
-    cpaic "$1"
-}
-
-mvagcp() {
-    mvaic "$1"
-    gacp "$2"
-}
-
-cpagcp() {
-    cpaic "$1"
-    gacp "$2"
-}
-
-rmmvagcp() {
-    rm -rf *
-    mvaic "$1"
-    gacp "$2"
-}
-
-rmcpagcp() {
-    rm -rf *
-    cpaic "$1"
-    gacp "$2"
-}
-
-grmmvagcp() {
-    grm *
-    mvaic "$1"
-    gacp "$2"
-}
-
-grmcpagcp() {
-    grm *
-    cpaic "$1"
-    gacp "$2"
+  sftp "$1"@"$2"
 }
 
 pdssh() {
-    ssh -p 2022 root@"$1" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
+  ssh -p 2022 root@"$1" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
 }
 
 pdsftp() {
-    sftp -p 2022 root@"$1"
+  sftp -p 2022 root@"$1"
+}
+
+mvic() {
+  mv "/storage/emulated/0/Download/$1" .
+}
+
+cpic() {
+  cp "/storage/emulated/0/Download/$1" .
+}
+
+cpric() {
+  cp -r "/storage/emulated/0/Download/$1" .
+}
+
+mvir() {
+  mv "/storage/emulated/0/Download/$1" "$2"
+}
+
+cpir() {
+  cp "/storage/emulated/0/Download/$1" "$2"
+}
+
+cprir() {
+  cp -r "/storage/emulated/0/Download/$1" "$2"
+}
+
+mvaic() {
+  mv "/storage/emulated/0/Download/$1" .
+  cp -r "$1"/* .
+  rm -r "$1"
+}
+
+cpaic() {
+  cp -r "/storage/emulated/0/Download/$1" .
+  cp -r "$1"/* .
+  rm -r "$1"
+}
+
+mvoc() {
+  mv "$1" "/storage/emulated/0/Download/"
+}
+
+cpoc() {
+  cp "$1" "/storage/emulated/0/Download/"
+}
+
+cproc() {
+  cp -r "$1" "/storage/emulated/0/Download/"
+}
+
+mvip() {
+  mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+}
+
+cpip() {
+  cp "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+}
+
+cprip() {
+  cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+}
+
+mvaip() {
+  mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+cpaip() {
+  cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+mvop() {
+  mv "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
+}
+
+cpop() {
+  cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
+}
+
+cprop() {
+  cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
+}
+
+mvipt() {
+  if [ -n $TERMUX ]; then
+    mvip $TERMUX "$1"
+  else
+    mvip termux "$1"
+  fi
+}
+
+cpipt() {
+  if [ -n $TERMUX ]; then
+    cpip $TERMUX "$1"
+  else
+    cpip termux "$1"
+  fi
+}
+
+cpript() {
+  if [ -n $TERMUX ]; then
+    cprip $TERMUX "$1"
+  else
+    cprip termux "$1"
+  fi
+}
+
+mvaipt() {
+  if [ -n $TERMUX ]; then
+    mvaip $TERMUX "$1"
+  else
+    mvaip termux "$1"
+  fi
+}
+
+cpaipt() {
+  if [ -n $TERMUX ]; then
+    cpaip $TERMUX "$1"
+  else
+    cpaip termux "$1"
+  fi
+}
+
+mvopt() {
+  if [ -n $TERMUX ]; then
+    mvop $TERMUX "$1"
+  else
+    mvop termux "$1"
+  fi
+}
+
+cpopt() {
+  if [ -n $TERMUX ]; then
+    cpop $TERMUX "$1"
+  else
+    cpop termux "$1"
+  fi
+}
+
+cpropt() {
+  if [ -n $TERMUX ]; then
+    cprop $TERMUX "$1"
+  else
+    cprop termux "$1"
+  fi
+}
+
+mvipt() {
+  if [ -n $UBUNTU ]; then
+    mvip $UBUNTU "$1"
+  else
+    mvip ubuntu "$1"
+  fi
+}
+
+cpipt() {
+  if [ -n $UBUNTU ]; then
+    cpip $UBUNTU "$1"
+  else
+    cpip ubuntu "$1"
+  fi
+}
+
+cpript() {
+  if [ -n $UBUNTU ]; then
+    cprip $UBUNTU "$1"
+  else
+    cprip ubuntu "$1"
+  fi
+}
+
+mvaipt() {
+  if [ -n $UBUNTU ]; then
+    mvaip $UBUNTU "$1"
+  else
+    mvaip ubuntu "$1"
+  fi
+}
+
+cpaipt() {
+  if [ -n $UBUNTU ]; then
+    cpaip $UBUNTU "$1"
+  else
+    cpaip ubuntu "$1"
+  fi
+}
+
+mvopt() {
+  if [ -n $UBUNTU ]; then
+    mvop $UBUNTU "$1"
+  else
+    mvop ubuntu "$1"
+  fi
+}
+
+cpopt() {
+  if [ -n $UBUNTU ]; then
+    cpop $UBUNTU "$1"
+  else
+    cpop ubuntu "$1"
+  fi
+}
+
+cpropt() {
+  if [ -n $UBUNTU ]; then
+    cprop $UBUNTU "$1"
+  else
+    cprop ubuntu "$1"
+  fi
+}
+
+mvipt() {
+  if [ -n $DEBIAN ]; then
+    mvip $DEBIAN "$1"
+  else
+    mvip debian "$1"
+  fi
+}
+
+cpipt() {
+  if [ -n $DEBIAN ]; then
+    cpip $DEBIAN "$1"
+  else
+    cpip debian "$1"
+  fi
+}
+
+cpript() {
+  if [ -n $DEBIAN ]; then
+    cprip $DEBIAN "$1"
+  else
+    cprip debian "$1"
+  fi
+}
+
+mvaipt() {
+  if [ -n $DEBIAN ]; then
+    mvaip $DEBIAN "$1"
+  else
+    mvaip debian "$1"
+  fi
+}
+
+cpaipt() {
+  if [ -n $DEBIAN ]; then
+    cpaip $DEBIAN "$1"
+  else
+    cpaip debian "$1"
+  fi
+}
+
+mvopt() {
+  if [ -n $DEBIAN ]; then
+    mvop $DEBIAN "$1"
+  else
+    mvop debian "$1"
+  fi
+}
+
+cpopt() {
+  if [ -n $DEBIAN ]; then
+    cpop $DEBIAN "$1"
+  else
+    cpop debian "$1"
+  fi
+}
+
+cpropt() {
+  if [ -n $DEBIAN ]; then
+    cprop $DEBIAN "$1"
+  else
+    cprop debian "$1"
+  fi
+}
+
+mvipt() {
+  if [ -n $UBUNTUBOX ]; then
+    mvip $UBUNTUBOX "$1"
+  else
+    mvip ubuntubox "$1"
+  fi
+}
+
+cpipt() {
+  if [ -n $UBUNTUBOX ]; then
+    cpip $UBUNTUBOX "$1"
+  else
+    cpip ubuntubox "$1"
+  fi
+}
+
+cpript() {
+  if [ -n $UBUNTUBOX ]; then
+    cprip $UBUNTUBOX "$1"
+  else
+    cprip ubuntubox "$1"
+  fi
+}
+
+mvaipt() {
+  if [ -n $UBUNTUBOX ]; then
+    mvaip $UBUNTUBOX "$1"
+  else
+    mvaip ubuntubox "$1"
+  fi
+}
+
+cpaipt() {
+  if [ -n $UBUNTUBOX ]; then
+    cpaip $UBUNTUBOX "$1"
+  else
+    cpaip ubuntubox "$1"
+  fi
+}
+
+mvopt() {
+  if [ -n $UBUNTUBOX ]; then
+    mvop $UBUNTUBOX "$1"
+  else
+    mvop ubuntubox "$1"
+  fi
+}
+
+cpopt() {
+  if [ -n $UBUNTUBOX ]; then
+    cpop $UBUNTUBOX "$1"
+  else
+    cpop ubuntubox "$1"
+  fi
+}
+
+cpropt() {
+  if [ -n $UBUNTUBOX ]; then
+    cprop $UBUNTUBOX "$1"
+  else
+    cprop ubuntubox "$1"
+  fi
+}
+
+mvipt() {
+  if [ -n $DEBIANBOX ]; then
+    mvip $DEBIANBOX "$1"
+  else
+    mvip debianbox "$1"
+  fi
+}
+
+cpipt() {
+  if [ -n $DEBIANBOX ]; then
+    cpip $DEBIANBOX "$1"
+  else
+    cpip debianbox "$1"
+  fi
+}
+
+cpript() {
+  if [ -n $DEBIANBOX ]; then
+    cprip $DEBIANBOX "$1"
+  else
+    cprip debianbox "$1"
+  fi
+}
+
+mvaipt() {
+  if [ -n $DEBIANBOX ]; then
+    mvaip $DEBIANBOX "$1"
+  else
+    mvaip debianbox "$1"
+  fi
+}
+
+cpaipt() {
+  if [ -n $DEBIANBOX ]; then
+    cpaip $DEBIANBOX "$1"
+  else
+    cpaip debianbox "$1"
+  fi
+}
+
+mvopt() {
+  if [ -n $DEBIANBOX ]; then
+    mvop $DEBIANBOX "$1"
+  else
+    mvop debianbox "$1"
+  fi
+}
+
+cpopt() {
+  if [ -n $DEBIANBOX ]; then
+    cpop $DEBIANBOX "$1"
+  else
+    cpop debianbox "$1"
+  fi
+}
+
+cpropt() {
+  if [ -n $DEBIANBOX ]; then
+    cprop $DEBIANBOX "$1"
+  else
+    cprop debianbox "$1"
+  fi
+}
+
+rmmva() {
+  rm -rf *
+  mvaic "$1"
+}
+
+rmcpa() {
+  rm -rf *
+  cpaic "$1"
+}
+
+grmmva() {
+  grm *
+  mvaic "$1"
+}
+
+grmcpa() {
+  grm *
+  cpaic "$1"
+}
+
+mvagcp() {
+  mvaic "$1"
+  gacp "$2"
+}
+
+cpagcp() {
+  cpaic "$1"
+  gacp "$2"
+}
+
+rmmvagcp() {
+  rm -rf *
+  mvaic "$1"
+  gacp "$2"
+}
+
+rmcpagcp() {
+  rm -rf *
+  cpaic "$1"
+  gacp "$2"
+}
+
+grmmvagcp() {
+  grm *
+  mvaic "$1"
+  gacp "$2"
+}
+
+grmcpagcp() {
+  grm *
+  cpaic "$1"
+  gacp "$2"
 }

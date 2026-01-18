@@ -781,8 +781,12 @@ zip_single() {
 }
 
 bzip2_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -832,8 +836,12 @@ bzip2_split() {
 }
 
 gzip_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -883,8 +891,12 @@ gzip_split() {
 }
 
 xz_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -934,8 +946,12 @@ xz_split() {
 }
 
 tar_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -983,8 +999,12 @@ tar_split() {
 }
 
 zip_split() {
-  local bytes="4000M"
-  [ -z "$SPLIT_SIZE" ] || bytes="$SPLIT_SIZE"
+  local bytes
+  if [ -n "$SPLIT_SIZE" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
 
   while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -1031,11 +1051,11 @@ zip_split() {
 }
 
 dfssh() {
-    ssh "$1"@"$2" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
+  ssh "$1"@"$2" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
 }
 
 dfsftp() {
-    sftp "$1"@"$2"
+  sftp "$1"@"$2"
 }
 
 updatetex() {
