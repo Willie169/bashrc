@@ -7,6 +7,7 @@
 - [**Ubuntu AMD64**](ubuntu-amd): designed for Ubuntu derivatives for my [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu) repo.
 - [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for Ubuntu/Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - [**Termux**](termux): designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
+- [**Termux**](termux): designed for Termux proot-distro for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
 ## Manual Installation
 
@@ -23,12 +24,12 @@ Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
 Scripts:
 <ul>
 <li><strong>Ubuntu AMD64</strong>:
-<pre><code>cd ~
+<pre><code>sudo apt update
+sudo apt install wget -y
+cd ~
 rm -f .bashrc
 rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
-sudo apt update
-sudo apt install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -43,12 +44,12 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d
 source ~/.bashrc
 </code></pre></li>
 <li><strong>Ubuntu/Debian ARM64 Proot</strong>:
-<pre><code>cd ~
+<pre><code>apt update
+apt install wget -y
+cd ~
 rm -f .bashrc
 rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
-apt update
-apt install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -62,12 +63,12 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-p
 source ~/.bashrc
 </code></pre></li>
 <li><strong>Termux</strong>:
-<pre><code>cd ~
+<pre><code>pkg update
+pkg install wget -y
+cd ~
 rm -f .bashrc
 rm -f ~/.bashrc.d
 mkdir ~/.bashrc.d
-pkg update
-pkg install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -78,6 +79,25 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
+source ~/.bashrc
+</code></pre></li>
+<li><strong>Termux Proot</strong>:
+<pre><code>pkg update
+pkg install wget -y
+cd ~
+rm -f .bashrc
+rm -f ~/.bashrc.d
+mkdir ~/.bashrc.d
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux-proot/bashrc.d/bashrc.sh -O ~/.bashrc
 source ~/.bashrc
 </code></pre></li>
 </ul>

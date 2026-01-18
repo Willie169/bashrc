@@ -1030,6 +1030,14 @@ zip_split() {
   rm -f "$2.zip"
 }
 
+dfssh() {
+    ssh "$1"@"$2" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
+}
+
+dfsftp() {
+    sftp "$1"@"$2"
+}
+
 updatetex() {
   (
   cd /usr/share/LaTeX-ToolKit
