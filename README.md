@@ -27,8 +27,8 @@ Scripts:
 sudo apt install wget -y
 cd ~
 rm -f .bashrc
-rm -f ~/.bashrc.d
-mkdir ~/.bashrc.d
+rm -rf .bashrc.d
+mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -47,8 +47,8 @@ source ~/.bashrc
 apt install wget -y
 cd ~
 rm -f .bashrc
-rm -f ~/.bashrc.d
-mkdir ~/.bashrc.d
+rm -rf .bashrc.d
+mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -65,12 +65,18 @@ source ~/.bashrc
 <pre><code>pkg update
 pkg install wget -y
 cd ~
+[ -r ".bashrc.d/11-proot.sh" ] && mkdir .bashrc.d.tmp && cp .bashrc.d/11-proot.sh .bashrc.d.tmp/11-proot.sh
 rm -f .bashrc
-rm -f ~/.bashrc.d
-mkdir ~/.bashrc.d
+rm -rf .bashrc.d
+mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/11-proot.sh
+if [ -r ".bashrc.d.tmp/11-proot.sh" ]; then
+  cp .bashrc.d.tmp/11-proot.sh .bashrc.d/
+  rm -r .bashrc.d.tmp
+else
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/11-proot.sh
+fi
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
