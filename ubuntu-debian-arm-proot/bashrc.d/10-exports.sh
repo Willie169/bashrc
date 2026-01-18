@@ -1,7 +1,6 @@
 #!/bin/bash
 
 export TMPDIR="/tmp"
-export PREFIX="/usr"
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include"
 export NVM_DIR="$HOME/.nvm"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
