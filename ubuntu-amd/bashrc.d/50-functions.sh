@@ -1070,9 +1070,9 @@ updatetex() {
 updatevimrc() {
   (
   cd /opt/vim_runtime
-  git reset --hard
-  git clean -d - -f orce
-  git pull - -r ebase
-  python3 update_plugins.py
+  sudo git reset --hard
+  sudo git clean -d --force
+  sudo git pull --rebase
+  sudo python3 update_plugins.py
   )
 }

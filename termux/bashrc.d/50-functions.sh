@@ -1066,6 +1066,16 @@ pdsftp() {
   sftp -p 2022 root@"$1"
 }
 
+updatevimrc() {
+  (
+  cd ~/.vim_runtime
+  git reset --hard
+  git clean -d --force
+  git pull --rebase
+  python3 update_plugins.py
+  )
+}
+  
 mvic() {
   mv "/storage/emulated/0/Download/$1" .
 }

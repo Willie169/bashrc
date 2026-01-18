@@ -1079,8 +1079,8 @@ updatevimrc() {
   (
   cd /opt/vim_runtime
   git reset --hard
-  git clean -d - -f orce
-  git pull - -r ebase
+  git clean -d --force
+  git pull --rebase
   python3 update_plugins.py
   )
 }
