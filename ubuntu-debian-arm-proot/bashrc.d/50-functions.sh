@@ -1,15 +1,14 @@
 #!/bin/bash
 
 __git_repo_reminder() {
-  local repo_root
-  repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
-  if [ -n "$repo_root" ]; then
-    if [ "$__LAST_REPO_ROOT" != "$repo_root" ]; then
+  REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [ -n "$REPO_ROOT" ]; then
+    if [ "$__LAST_REPO_ROOT" != "$REPO_ROOT" ]; then
       if [ -n "$__LAST_REPO_ROOT" ]; then
         echo "Leaving Git repository: consider running 'git push'"
       fi
       echo "Entered Git repository: consider running 'git pull'"
-      __LAST_REPO_ROOT="$repo_root"
+      __LAST_REPO_ROOT="$REPO_ROOT"
     fi
   else
     if [ -n "$__LAST_REPO_ROOT" ]; then
