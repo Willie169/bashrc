@@ -1059,6 +1059,7 @@ dfsftp() {
 
 updatetex() {
   (
+  sudo /usr/local/texlive/2025/bin/x86_64-linux/tlmgr update --all --self --reinstall-forcibly-removed
   cd /usr/share/LaTeX-ToolKit
   sudo git pull
   cd ~/texmf/tex/latex/physics-patch

@@ -1067,6 +1067,7 @@ pdsftp() {
 
 updatetex() {
   (
+  /usr/local/texlive/2025/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
   cd /usr/share/LaTeX-ToolKit
   git pull
   cd ~/texmf/tex/latex/physics-patch
