@@ -15,3 +15,4 @@ export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
 export PULSE_SERVER='127.0.0.1'
 export DLFLAGS='-A -C'
+source /etc/os-release

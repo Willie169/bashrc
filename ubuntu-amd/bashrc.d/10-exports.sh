@@ -26,3 +26,4 @@ else
   echo "$VERSION_ID"
 fi
 )
+source /etc/os-release
