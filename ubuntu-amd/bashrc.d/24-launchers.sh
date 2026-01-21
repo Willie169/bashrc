@@ -1,5 +1,6 @@
 #!/bin/bash
 
+alias joplin-desktop='$HOME/.joplin/Joplin.Appimage --no-sandbox'
 alias bottles='flatpak run com.usebottles.bottles'
 alias bottles-cli='flatpak run --command=bottles-cli com.usebottles.bottles'
 alias handbrake='flatpak run fr.handbrake.ghb'
