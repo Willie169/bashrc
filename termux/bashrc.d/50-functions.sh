@@ -1223,7 +1223,7 @@ cpropt() {
   fi
 }
 
-mvipt() {
+mvipu() {
   if [ -n $UBUNTU ]; then
     mvip $UBUNTU "$1"
   else
@@ -1231,7 +1231,7 @@ mvipt() {
   fi
 }
 
-cpipt() {
+cpipu() {
   if [ -n $UBUNTU ]; then
     cpip $UBUNTU "$1"
   else
@@ -1239,7 +1239,7 @@ cpipt() {
   fi
 }
 
-cpript() {
+cpripu() {
   if [ -n $UBUNTU ]; then
     cprip $UBUNTU "$1"
   else
@@ -1247,7 +1247,7 @@ cpript() {
   fi
 }
 
-mvaipt() {
+mvaipu() {
   if [ -n $UBUNTU ]; then
     mvaip $UBUNTU "$1"
   else
@@ -1255,7 +1255,7 @@ mvaipt() {
   fi
 }
 
-cpaipt() {
+cpaipu() {
   if [ -n $UBUNTU ]; then
     cpaip $UBUNTU "$1"
   else
@@ -1263,7 +1263,7 @@ cpaipt() {
   fi
 }
 
-mvopt() {
+mvopu() {
   if [ -n $UBUNTU ]; then
     mvop $UBUNTU "$1"
   else
@@ -1271,7 +1271,7 @@ mvopt() {
   fi
 }
 
-cpopt() {
+cpopu() {
   if [ -n $UBUNTU ]; then
     cpop $UBUNTU "$1"
   else
@@ -1279,7 +1279,7 @@ cpopt() {
   fi
 }
 
-cpropt() {
+cpropu() {
   if [ -n $UBUNTU ]; then
     cprop $UBUNTU "$1"
   else
@@ -1287,7 +1287,7 @@ cpropt() {
   fi
 }
 
-mvipt() {
+mvipd() {
   if [ -n $DEBIAN ]; then
     mvip $DEBIAN "$1"
   else
@@ -1295,7 +1295,7 @@ mvipt() {
   fi
 }
 
-cpipt() {
+cpipd() {
   if [ -n $DEBIAN ]; then
     cpip $DEBIAN "$1"
   else
@@ -1303,7 +1303,7 @@ cpipt() {
   fi
 }
 
-cpript() {
+cpripd() {
   if [ -n $DEBIAN ]; then
     cprip $DEBIAN "$1"
   else
@@ -1311,7 +1311,7 @@ cpript() {
   fi
 }
 
-mvaipt() {
+mvaipd() {
   if [ -n $DEBIAN ]; then
     mvaip $DEBIAN "$1"
   else
@@ -1319,7 +1319,7 @@ mvaipt() {
   fi
 }
 
-cpaipt() {
+cpaipd() {
   if [ -n $DEBIAN ]; then
     cpaip $DEBIAN "$1"
   else
@@ -1327,7 +1327,7 @@ cpaipt() {
   fi
 }
 
-mvopt() {
+mvopd() {
   if [ -n $DEBIAN ]; then
     mvop $DEBIAN "$1"
   else
@@ -1335,7 +1335,7 @@ mvopt() {
   fi
 }
 
-cpopt() {
+cpopd() {
   if [ -n $DEBIAN ]; then
     cpop $DEBIAN "$1"
   else
@@ -1343,7 +1343,7 @@ cpopt() {
   fi
 }
 
-cpropt() {
+cpropd() {
   if [ -n $DEBIAN ]; then
     cprop $DEBIAN "$1"
   else
@@ -1351,7 +1351,7 @@ cpropt() {
   fi
 }
 
-mvipt() {
+mvipub() {
   if [ -n $UBUNTUBOX ]; then
     mvip $UBUNTUBOX "$1"
   else
@@ -1359,7 +1359,7 @@ mvipt() {
   fi
 }
 
-cpipt() {
+cpipub() {
   if [ -n $UBUNTUBOX ]; then
     cpip $UBUNTUBOX "$1"
   else
@@ -1367,7 +1367,7 @@ cpipt() {
   fi
 }
 
-cpript() {
+cpripub() {
   if [ -n $UBUNTUBOX ]; then
     cprip $UBUNTUBOX "$1"
   else
@@ -1375,7 +1375,7 @@ cpript() {
   fi
 }
 
-mvaipt() {
+mvaipub() {
   if [ -n $UBUNTUBOX ]; then
     mvaip $UBUNTUBOX "$1"
   else
@@ -1383,7 +1383,7 @@ mvaipt() {
   fi
 }
 
-cpaipt() {
+cpaipub() {
   if [ -n $UBUNTUBOX ]; then
     cpaip $UBUNTUBOX "$1"
   else
@@ -1391,7 +1391,7 @@ cpaipt() {
   fi
 }
 
-mvopt() {
+mvopub() {
   if [ -n $UBUNTUBOX ]; then
     mvop $UBUNTUBOX "$1"
   else
@@ -1399,7 +1399,7 @@ mvopt() {
   fi
 }
 
-cpopt() {
+cpopub() {
   if [ -n $UBUNTUBOX ]; then
     cpop $UBUNTUBOX "$1"
   else
@@ -1407,7 +1407,7 @@ cpopt() {
   fi
 }
 
-cpropt() {
+cpropub() {
   if [ -n $UBUNTUBOX ]; then
     cprop $UBUNTUBOX "$1"
   else
@@ -1415,7 +1415,7 @@ cpropt() {
   fi
 }
 
-mvipt() {
+mvipdb() {
   if [ -n $DEBIANBOX ]; then
     mvip $DEBIANBOX "$1"
   else
@@ -1423,7 +1423,7 @@ mvipt() {
   fi
 }
 
-cpipt() {
+cpipdb() {
   if [ -n $DEBIANBOX ]; then
     cpip $DEBIANBOX "$1"
   else
@@ -1431,7 +1431,7 @@ cpipt() {
   fi
 }
 
-cpript() {
+cpripdb() {
   if [ -n $DEBIANBOX ]; then
     cprip $DEBIANBOX "$1"
   else
@@ -1439,7 +1439,7 @@ cpript() {
   fi
 }
 
-mvaipt() {
+mvaipdb() {
   if [ -n $DEBIANBOX ]; then
     mvaip $DEBIANBOX "$1"
   else
@@ -1447,7 +1447,7 @@ mvaipt() {
   fi
 }
 
-cpaipt() {
+cpaipdb() {
   if [ -n $DEBIANBOX ]; then
     cpaip $DEBIANBOX "$1"
   else
@@ -1455,7 +1455,7 @@ cpaipt() {
   fi
 }
 
-mvopt() {
+mvopdb() {
   if [ -n $DEBIANBOX ]; then
     mvop $DEBIANBOX "$1"
   else
@@ -1463,7 +1463,7 @@ mvopt() {
   fi
 }
 
-cpopt() {
+cpopdb() {
   if [ -n $DEBIANBOX ]; then
     cpop $DEBIANBOX "$1"
   else
@@ -1471,7 +1471,7 @@ cpopt() {
   fi
 }
 
-cpropt() {
+cpropdb() {
   if [ -n $DEBIANBOX ]; then
     cprop $DEBIANBOX "$1"
   else
