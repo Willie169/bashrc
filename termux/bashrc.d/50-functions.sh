@@ -1479,6 +1479,358 @@ cpropdb() {
   fi
 }
 
+cpyp() {
+  cp "./$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+}
+
+cpryp() {
+  cp -r "./$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+}
+
+mvayp() {
+  mv "./$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+cpayp() {
+  cp -r "./$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
+  rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+mvup() {
+  mv "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "./"
+}
+
+cpup() {
+  cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "./"
+}
+
+cprup() {
+  cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "./"
+}
+
+mvypt() {
+  if [ -n $TERMUX ]; then
+    mvyp $TERMUX "$1"
+  else
+    mvyp termux "$1"
+  fi
+}
+
+cpypt() {
+  if [ -n $TERMUX ]; then
+    cpyp $TERMUX "$1"
+  else
+    cpyp termux "$1"
+  fi
+}
+
+cprypt() {
+  if [ -n $TERMUX ]; then
+    cpryp $TERMUX "$1"
+  else
+    cpryp termux "$1"
+  fi
+}
+
+mvaypt() {
+  if [ -n $TERMUX ]; then
+    mvayp $TERMUX "$1"
+  else
+    mvayp termux "$1"
+  fi
+}
+
+cpaypt() {
+  if [ -n $TERMUX ]; then
+    cpayp $TERMUX "$1"
+  else
+    cpayp termux "$1"
+  fi
+}
+
+mvupt() {
+  if [ -n $TERMUX ]; then
+    mvup $TERMUX "$1"
+  else
+    mvup termux "$1"
+  fi
+}
+
+cpupt() {
+  if [ -n $TERMUX ]; then
+    cpup $TERMUX "$1"
+  else
+    cpup termux "$1"
+  fi
+}
+
+cprupt() {
+  if [ -n $TERMUX ]; then
+    cprup $TERMUX "$1"
+  else
+    cprup termux "$1"
+  fi
+}
+
+mvypu() {
+  if [ -n $UBUNTU ]; then
+    mvyp $UBUNTU "$1"
+  else
+    mvyp ubuntu "$1"
+  fi
+}
+
+cpypu() {
+  if [ -n $UBUNTU ]; then
+    cpyp $UBUNTU "$1"
+  else
+    cpyp ubuntu "$1"
+  fi
+}
+
+cprypu() {
+  if [ -n $UBUNTU ]; then
+    cpryp $UBUNTU "$1"
+  else
+    cpryp ubuntu "$1"
+  fi
+}
+
+mvaypu() {
+  if [ -n $UBUNTU ]; then
+    mvayp $UBUNTU "$1"
+  else
+    mvayp ubuntu "$1"
+  fi
+}
+
+cpaypu() {
+  if [ -n $UBUNTU ]; then
+    cpayp $UBUNTU "$1"
+  else
+    cpayp ubuntu "$1"
+  fi
+}
+
+mvupu() {
+  if [ -n $UBUNTU ]; then
+    mvup $UBUNTU "$1"
+  else
+    mvup ubuntu "$1"
+  fi
+}
+
+cpupu() {
+  if [ -n $UBUNTU ]; then
+    cpup $UBUNTU "$1"
+  else
+    cpup ubuntu "$1"
+  fi
+}
+
+cprupu() {
+  if [ -n $UBUNTU ]; then
+    cprup $UBUNTU "$1"
+  else
+    cprup ubuntu "$1"
+  fi
+}
+
+mvypd() {
+  if [ -n $DEBIAN ]; then
+    mvyp $DEBIAN "$1"
+  else
+    mvyp debian "$1"
+  fi
+}
+
+cpypd() {
+  if [ -n $DEBIAN ]; then
+    cpyp $DEBIAN "$1"
+  else
+    cpyp debian "$1"
+  fi
+}
+
+cprypd() {
+  if [ -n $DEBIAN ]; then
+    cpryp $DEBIAN "$1"
+  else
+    cpryp debian "$1"
+  fi
+}
+
+mvaypd() {
+  if [ -n $DEBIAN ]; then
+    mvayp $DEBIAN "$1"
+  else
+    mvayp debian "$1"
+  fi
+}
+
+cpaypd() {
+  if [ -n $DEBIAN ]; then
+    cpayp $DEBIAN "$1"
+  else
+    cpayp debian "$1"
+  fi
+}
+
+mvupd() {
+  if [ -n $DEBIAN ]; then
+    mvup $DEBIAN "$1"
+  else
+    mvup debian "$1"
+  fi
+}
+
+cpupd() {
+  if [ -n $DEBIAN ]; then
+    cpup $DEBIAN "$1"
+  else
+    cpup debian "$1"
+  fi
+}
+
+cprupd() {
+  if [ -n $DEBIAN ]; then
+    cprup $DEBIAN "$1"
+  else
+    cprup debian "$1"
+  fi
+}
+
+mvypub() {
+  if [ -n $UBUNTUBOX ]; then
+    mvyp $UBUNTUBOX "$1"
+  else
+    mvyp ubuntubox "$1"
+  fi
+}
+
+cpypub() {
+  if [ -n $UBUNTUBOX ]; then
+    cpyp $UBUNTUBOX "$1"
+  else
+    cpyp ubuntubox "$1"
+  fi
+}
+
+cprypub() {
+  if [ -n $UBUNTUBOX ]; then
+    cpryp $UBUNTUBOX "$1"
+  else
+    cpryp ubuntubox "$1"
+  fi
+}
+
+mvaypub() {
+  if [ -n $UBUNTUBOX ]; then
+    mvayp $UBUNTUBOX "$1"
+  else
+    mvayp ubuntubox "$1"
+  fi
+}
+
+cpaypub() {
+  if [ -n $UBUNTUBOX ]; then
+    cpayp $UBUNTUBOX "$1"
+  else
+    cpayp ubuntubox "$1"
+  fi
+}
+
+mvupub() {
+  if [ -n $UBUNTUBOX ]; then
+    mvup $UBUNTUBOX "$1"
+  else
+    mvup ubuntubox "$1"
+  fi
+}
+
+cpupub() {
+  if [ -n $UBUNTUBOX ]; then
+    cpup $UBUNTUBOX "$1"
+  else
+    cpup ubuntubox "$1"
+  fi
+}
+
+cprupub() {
+  if [ -n $UBUNTUBOX ]; then
+    cprup $UBUNTUBOX "$1"
+  else
+    cprup ubuntubox "$1"
+  fi
+}
+
+mvypdb() {
+  if [ -n $DEBIANBOX ]; then
+    mvyp $DEBIANBOX "$1"
+  else
+    mvyp debianbox "$1"
+  fi
+}
+
+cpypdb() {
+  if [ -n $DEBIANBOX ]; then
+    cpyp $DEBIANBOX "$1"
+  else
+    cpyp debianbox "$1"
+  fi
+}
+
+cprypdb() {
+  if [ -n $DEBIANBOX ]; then
+    cpryp $DEBIANBOX "$1"
+  else
+    cpryp debianbox "$1"
+  fi
+}
+
+mvaypdb() {
+  if [ -n $DEBIANBOX ]; then
+    mvayp $DEBIANBOX "$1"
+  else
+    mvayp debianbox "$1"
+  fi
+}
+
+cpaypdb() {
+  if [ -n $DEBIANBOX ]; then
+    cpayp $DEBIANBOX "$1"
+  else
+    cpayp debianbox "$1"
+  fi
+}
+
+mvupdb() {
+  if [ -n $DEBIANBOX ]; then
+    mvup $DEBIANBOX "$1"
+  else
+    mvup debianbox "$1"
+  fi
+}
+
+cpupdb() {
+  if [ -n $DEBIANBOX ]; then
+    cpup $DEBIANBOX "$1"
+  else
+    cpup debianbox "$1"
+  fi
+}
+
+cprupdb() {
+  if [ -n $DEBIANBOX ]; then
+    cprup $DEBIANBOX "$1"
+  else
+    cprup debianbox "$1"
+  fi
+}
+
 rmmva() {
   rm -rf *
   mvaic "$1"
