@@ -88,3 +88,9 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bas
 source ~/.bashrc
 </code></pre></li>
 </ul>
+
+## Update
+
+```
+updatebashrc
+```
