@@ -19,6 +19,7 @@ export PLANTUML_JAR="/usr/local/java/plantuml.jar"
 export BOTTLES="$HOME/.var/app/com.usebottles.bottles/data/bottles"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
+export AIDER_EDITOR=vim
 export UBUNTU_VERSION_ID=$(
 if grep -q '^NAME="Linux Mint"' /etc/os-release; then
   inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
