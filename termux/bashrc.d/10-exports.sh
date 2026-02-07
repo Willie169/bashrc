@@ -1,7 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 export TMPDIR="$PREFIX/tmp"
-export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:$PREFIX/include"
 export JAVA_HOME="$PREFIX/lib/jvm/java-21-openjdk"
 export JAVAROOT="$PREFIX/local/java"
 export CLASSPATH="$CLASSPATH:$PREFIX/local/java/antlr-4.13.2-complete.jar:$PREFIX/local/java/plantuml.jar"

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 export TMPDIR="/tmp"
-export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
 export JAVAROOT="/usr/local/java"
 export CLASSPATH="$CLASSPATH:/usr/local/java/antlr-4.13.2-complete.jar:/usr/local/java/plantuml.jar"
