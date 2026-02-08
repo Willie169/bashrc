@@ -36,7 +36,7 @@
   },
   "ui": {
     "comment-font-size": 0,
-    "estimate-command": "$HOME/KataGo/cpp/katago gtp -model $HOME/kata-models/kata1-b6c96-s175395328-d26788732.txt.gz -config $HOME/KataGo/cpp/configs/analysis_example.cfg",
+    "estimate-command": "$HOME/KataGo/cpp/katago analysis -model $HOME/kata-models/kata1-b6c96-s175395328-d26788732.txt.gz -config $HOME/KataGo/cpp/configs/analysis_example.cfg",
     "my-byoyomo-times": 2,
     "my-byoyomo-seconds": 4,
     "shadow-size": 85,
