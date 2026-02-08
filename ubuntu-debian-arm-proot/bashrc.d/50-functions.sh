@@ -1065,7 +1065,7 @@ pdsftp() {
   sftp -p 2022 root@"$1"
 }
 
-updatetex() {
+update_latex() {
   (
   /usr/local/texlive/2025/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
   cd /usr/share/LaTeX-ToolKit
@@ -1075,7 +1075,7 @@ updatetex() {
   )
 }
 
-updatevimrc() {
+update_vimrc() {
   (
   cd /opt/vim_runtime
   git reset --hard
@@ -1085,7 +1085,7 @@ updatevimrc() {
   )
 }
 
-updatebashrc() {
+update_bashrc() {
   (
   cd ~
   rm -f .bashrc
@@ -1102,5 +1102,13 @@ updatebashrc() {
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc.sh -O ~/.bashrc
   source ~/.bashrc
+  )
+}
+
+update_lizzieyzy_config() {
+  (
+  mkdir -p ~/.lizzieyzy
+  rm ~/.lizzieyzy/config.txt
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/lizzieyzy/config.txt -O ~/.lizzieyzy/config.txt
   )
 }

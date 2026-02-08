@@ -92,5 +92,5 @@ source ~/.bashrc
 ## Update
 
 ```
-updatebashrc
+update_bashrc
 ```

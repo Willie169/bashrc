@@ -1057,7 +1057,7 @@ dfsftp() {
   sftp "$1"@"$2"
 }
 
-updatetex() {
+update_latex() {
   (
   sudo /usr/local/texlive/2025/bin/x86_64-linux/tlmgr update --all --self --reinstall-forcibly-removed
   cd /usr/share/LaTeX-ToolKit
@@ -1067,7 +1067,7 @@ updatetex() {
   )
 }
 
-updatevimrc() {
+update_vimrc() {
   (
   cd /opt/vim_runtime
   sudo git reset --hard
@@ -1077,11 +1077,7 @@ updatevimrc() {
   )
 }
 
-updatejoplin() {
-  (wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash)
-}
-
-updatebashrc() {
+update_bashrc() {
   (
   cd ~
   rm -f .bashrc
@@ -1100,4 +1096,17 @@ updatebashrc() {
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc.sh -O ~/.bashrc
   source ~/.bashrc
   )
+}
+
+update_lizzieyzy_config() {
+  (
+  mkdir -p ~/.lizzieyzy
+  rm ~/.lizzieyzy/config.txt
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/lizzieyzy/config.txt -O ~/.lizzieyzy/config.txt
+  sed -i "s|\$HOME|$HOME|g" ~/.lizzieyzy/config.txt
+  )
+}
+
+update_joplin() {
+  (wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash)
 }
