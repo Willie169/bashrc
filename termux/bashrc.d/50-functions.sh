@@ -1065,16 +1065,6 @@ pdsftp() {
   sftp -p 2022 root@"$1"
 }
 
-updatevimrc() {
-  (
-  cd ~/.vim_runtime
-  git reset --hard
-  git clean -d --force
-  git pull --rebase
-  python3 update_plugins.py
-  )
-}
-
 mvic() {
   mv "/storage/emulated/0/Download/$1" .
 }
@@ -1885,7 +1875,17 @@ grmcpagcp() {
   gacp "$2"
 }
 
-updatebashrc() {
+update_vimrc() {
+  (
+  cd ~/.vim_runtime
+  git reset --hard
+  git clean -d --force
+  git pull --rebase
+  python3 update_plugins.py
+  )
+}
+
+update_bashrc() {
   (
   cd ~
   [ -r ".bashrc.d/11-proot.sh" ] && mkdir .bashrc.d.tmp && cp .bashrc.d/11-proot.sh .bashrc.d.tmp/11-proot.sh
