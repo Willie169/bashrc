@@ -1109,7 +1109,8 @@ update_lizzieyzy_config() {
   mkdir -p $HOME/.lizzieyzy
   rm $HOME/.lizzieyzy/config.txt
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.lizzieyzy/config.txt
-  bash -c 'eval < "$HOME/.lizzieyzy/config.txt"' > $HOME/.lizzieyzy/config.txt
+  envsubst < $HOME/.lizzieyzy/config.txt > $HOME/.lizzieyzy/config.txt
+  sed -e "s|\$(nproc)|$(nproc)|g" $HOME/.lizzieyzy/config.txt > $HOME/.lizzieyzy/config.txt
   )
 }
 
