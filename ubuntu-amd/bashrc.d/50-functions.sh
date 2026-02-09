@@ -1103,7 +1103,7 @@ update_lizzieyzy_config() {
   mkdir -p ~/.lizzieyzy
   rm ~/.lizzieyzy/config.txt
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O ~/.lizzieyzy/config.txt
-  sed -i "s|\$HOME|$HOME|g" ~/.lizzieyzy/config.txt
+  bash -c 'eval "cat << $(cat ~/.lizzieyzy/config.txt)"' > ~/.lizzieyzy/config.txt
   )
 }
 
