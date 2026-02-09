@@ -1103,7 +1103,9 @@ update_lizzieyzy_config() {
   mkdir -p ~/.lizzieyzy
   rm ~/.lizzieyzy/config.txt
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O ~/.lizzieyzy/config.txt
-  bash -c 'eval "echo $(cat ~/.lizzieyzy/config.txt)"' > ~/.lizzieyzy/config.txt
+  bash -c 'eval "cat <<EOF
+$(<~/.lizzieyzy/config.txt)
+EOF"' > ~/.lizzieyzy/config.txt
   )
 }
 
