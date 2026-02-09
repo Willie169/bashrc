@@ -1099,12 +1099,10 @@ update_bashrc() {
 
 update_lizzieyzy_config() {
   (
-  mkdir -p ~/.lizzieyzy
-  rm ~/.lizzieyzy/config.txt
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O ~/.lizzieyzy/config.txt
-  bash -c 'eval "cat <<EOF
-$(<~/.lizzieyzy/config.txt)
-EOF"' > ~/.lizzieyzy/config.txt
+  mkdir -p $HOME/.lizzieyzy
+  rm $HOME/.lizzieyzy/config.txt
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.lizzieyzy/config.txt
+  bash -c 'eval < "$HOME/.lizzieyzy/config.txt"' > $HOME/.lizzieyzy/config.txt
   )
 }
 
