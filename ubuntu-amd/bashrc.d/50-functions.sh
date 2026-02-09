@@ -1095,11 +1095,6 @@ update_bashrc() {
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc.sh -O ~/.bashrc
   )
-  if [ -d "$HOME/.bashrc.d"  ];  then
-    for f in "$HOME/.bashrc.d/"*; do
-      [ -r "$f"  ] && source "$f"
-    done
-  fi
 }
 
 update_lizzieyzy_config() {

@@ -93,4 +93,6 @@ source ~/.bashrc
 
 ```
 update_bashrc
+source ~/.bashrc
 ```
+
