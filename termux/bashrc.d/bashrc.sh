@@ -7,7 +7,7 @@ esac
 
 if [ -d "$HOME/.bashrc.d"  ];  then
   for f in "$HOME/.bashrc.d/"*; do
-    [ -r "$f"  ] && . "$f"
+    [ -r "$f"  ] && source "$f"
   done
 fi
 
