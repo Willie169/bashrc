@@ -1114,3 +1114,12 @@ update_lizzieyzy_config() {
   )
 }
 
+update_cutechess_config() {
+  (
+  mkdir -p $HOME/.config/cutechess
+  rm $HOME/.config/cutechess/engines.json
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O $HOME/.config/cutechess/engines.json.tmp
+  sed -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/cutechess/engines.json.tmp > $HOME/.config/cutechess/engines.json
+  rm $HOME/.config/cutechess/engines.json.tmp
+  )
+}

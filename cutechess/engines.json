@@ -1,0 +1,225 @@
+[
+	{
+		"command" : "$HOME/Fairy-Stockfish/src/stockfish",
+		"name" : "Fairy-Stockfish",
+		"options" : [
+			{
+				"alias" : "",
+				"default" : "",
+				"name" : "Debug Log File",
+				"type" : "text",
+				"value" : ""
+			},
+			{
+				"alias" : "",
+				"default" : 1,
+				"max" : 512,
+				"min" : 1,
+				"name" : "Threads",
+				"type" : "spin",
+				"value" : $(nproc)
+			},
+			{
+				"alias" : "",
+				"default" : 16,
+				"max" : 33554432,
+				"min" : 1,
+				"name" : "Hash",
+				"type" : "spin",
+				"value" : 16
+			},
+			{
+				"name" : "Clear Hash",
+				"type" : "button"
+			},
+			{
+				"alias" : "",
+				"default" : 1,
+				"max" : 500,
+				"min" : 1,
+				"name" : "MultiPV",
+				"type" : "spin",
+				"value" : 1
+			},
+			{
+				"alias" : "",
+				"default" : 20,
+				"max" : 20,
+				"min" : -20,
+				"name" : "Skill Level",
+				"type" : "spin",
+				"value" : 20
+			},
+			{
+				"alias" : "",
+				"default" : 10,
+				"max" : 5000,
+				"min" : 0,
+				"name" : "Move Overhead",
+				"type" : "spin",
+				"value" : 10
+			},
+			{
+				"alias" : "",
+				"default" : 100,
+				"max" : 1000,
+				"min" : 10,
+				"name" : "Slow Mover",
+				"type" : "spin",
+				"value" : 100
+			},
+			{
+				"alias" : "",
+				"default" : 0,
+				"max" : 10000,
+				"min" : 0,
+				"name" : "nodestime",
+				"type" : "spin",
+				"value" : 0
+			},
+			{
+				"alias" : "",
+				"default" : false,
+				"name" : "UCI_LimitStrength",
+				"type" : "check",
+				"value" : false
+			},
+			{
+				"alias" : "",
+				"default" : 1350,
+				"max" : 2850,
+				"min" : 500,
+				"name" : "UCI_Elo",
+				"type" : "spin",
+				"value" : 1350
+			},
+			{
+				"alias" : "",
+				"default" : "<empty>",
+				"name" : "SyzygyPath",
+				"type" : "text",
+				"value" : "<empty>"
+			},
+			{
+				"alias" : "",
+				"default" : 1,
+				"max" : 100,
+				"min" : 1,
+				"name" : "SyzygyProbeDepth",
+				"type" : "spin",
+				"value" : 1
+			},
+			{
+				"alias" : "",
+				"default" : true,
+				"name" : "Syzygy50MoveRule",
+				"type" : "check",
+				"value" : true
+			},
+			{
+				"alias" : "",
+				"default" : 7,
+				"max" : 7,
+				"min" : 0,
+				"name" : "SyzygyProbeLimit",
+				"type" : "spin",
+				"value" : 7
+			},
+			{
+				"alias" : "",
+				"default" : true,
+				"name" : "Use NNUE",
+				"type" : "check",
+				"value" : true
+			},
+			{
+				"alias" : "",
+				"default" : "nn-3475407dc199.nnue",
+				"name" : "EvalFile",
+				"type" : "text",
+				"value" : "nn-3475407dc199.nnue"
+			},
+			{
+				"alias" : "",
+				"default" : false,
+				"name" : "TsumeMode",
+				"type" : "check",
+				"value" : false
+			},
+			{
+				"alias" : "",
+				"default" : "<empty>",
+				"name" : "VariantPath",
+				"type" : "text",
+				"value" : "<empty>"
+			},
+			{
+				"alias" : "",
+				"default" : true,
+				"name" : "usemillisec",
+				"type" : "check",
+				"value" : true
+			}
+		],
+		"protocol" : "uci",
+		"stderrFile" : "",
+		"timeoutScaleFactor" : 1,
+		"variants" : [
+			"standard",
+			"fischerandom",
+			"3check",
+			"5check",
+			"ai-wok",
+			"almost",
+			"amazon",
+			"antichess",
+			"asean",
+			"atomic",
+			"berolina",
+			"cambodian",
+			"capablanca",
+			"caparandom",
+			"chancellor",
+			"chessgi",
+			"chigorin",
+			"codrus",
+			"coregal",
+			"courier",
+			"crazyhouse",
+			"dobutsu",
+			"embassy",
+			"euroshogi",
+			"extinction",
+			"giveaway",
+			"gothic",
+			"grand",
+			"gustav3",
+			"hoppelpoppel",
+			"horde",
+			"janus",
+			"jesonmor",
+			"judkins",
+			"karouk",
+			"kinglet",
+			"kingofthehill",
+			"knightmate",
+			"loop",
+			"losalamos",
+			"losers",
+			"makruk",
+			"minishogi",
+			"modern",
+			"newzealand",
+			"placement",
+			"pocketknight",
+			"racingkings",
+			"seirawan",
+			"shatranj",
+			"shogi",
+			"sittuyin",
+			"suicide",
+			"threekings"
+		],
+		"workingDirectory" : ""
+	}
+]
