@@ -26,8 +26,8 @@ Scripts:
 <pre><code>sudo apt update
 sudo apt install wget -y
 cd ~
-rm -f .bashrc
-rm -rf .bashrc.d
+rm -f .bashrc 2>/dev/null || true
+rm -rf .bashrc.d 2>/dev/null || true
 mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
@@ -46,8 +46,8 @@ source ~/.bashrc
 <pre><code>apt update
 apt install wget -y
 cd ~
-rm -f .bashrc
-rm -rf .bashrc.d
+rm -f .bashrc 2>/dev/null || true
+rm -rf .bashrc.d 2>/dev/null || true
 mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
@@ -66,14 +66,14 @@ source ~/.bashrc
 pkg install wget -y
 cd ~
 [ -r ".bashrc.d/11-proot.sh" ] && mkdir .bashrc.d.tmp && cp .bashrc.d/11-proot.sh .bashrc.d.tmp/11-proot.sh
-rm -f .bashrc
-rm -rf .bashrc.d
+rm -f .bashrc 2>/dev/null || true
+rm -rf .bashrc.d 2>/dev/null || true
 mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 if [ -r ".bashrc.d.tmp/11-proot.sh" ]; then
   cp .bashrc.d.tmp/11-proot.sh .bashrc.d/
-  rm -r .bashrc.d.tmp
+  rm -r .bashrc.d.tmp 2>/dev/null || true
 else
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/11-proot.sh
 fi

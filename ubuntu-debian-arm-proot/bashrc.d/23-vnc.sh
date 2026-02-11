@@ -21,10 +21,10 @@ vncclean() {
   fi
 
   if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
-    rm -f "$TMPDIR/.X${1}-lock"
-    rm -f "$TMPDIR/.X11-unix/.X${1}"
+    rm -f "$TMPDIR/.X${1}-lock" 2>/dev/null || true
+    rm -f "$TMPDIR/.X11-unix/.X${1}" 2>/dev/null || true
   else
-    rm -f "/tmp/.X${1}-lock"
-    rm -f "/tmp/.X11-unix/.X${1}"
+    rm -f "/tmp/.X${1}-lock" 2>/dev/null || true
+    rm -f "/tmp/.X11-unix/.X${1}" 2>/dev/null || true
   fi
 }

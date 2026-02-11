@@ -1080,8 +1080,8 @@ update_vimrc() {
 update_bashrc() {
   (
   cd ~
-  rm -f .bashrc
-  rm -rf .bashrc.d
+  rm -f .bashrc 2>/dev/null || true
+  rm -rf .bashrc.d 2>/dev/null || true
   mkdir .bashrc.d
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
@@ -1100,7 +1100,7 @@ update_bashrc() {
 update_lizzieyzy_config() {
   (
   mkdir -p $HOME/.lizzieyzy
-  rm $HOME/.lizzieyzy/config.txt
+  rm $HOME/.lizzieyzy/config.txt 2>/dev/null || true
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.lizzieyzy/config.txt.tmp
   sed -e "s|\$((\$(nproc)/2))|$(($(nproc)/2))|g" -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.lizzieyzy/config.txt.tmp > $HOME/.lizzieyzy/config.txt
   rm $HOME/.lizzieyzy/config.txt.tmp
@@ -1110,7 +1110,7 @@ update_lizzieyzy_config() {
 update_cutechess_config() {
   (
   mkdir -p $HOME/.config/cutechess
-  rm $HOME/.config/cutechess/engines.json
+  rm $HOME/.config/cutechess/engines.json 2>/dev/null || true
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O $HOME/.config/cutechess/engines.json.tmp
   sed -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/cutechess/engines.json.tmp > $HOME/.config/cutechess/engines.json
   rm $HOME/.config/cutechess/engines.json.tmp
@@ -1120,7 +1120,7 @@ update_cutechess_config() {
 update_sylvan_config() {
   (
   mkdir -p $HOME/.config/EterCyber
-  rm $HOME/.config/EterCyber/engines.json
+  rm $HOME/.config/EterCyber/engines.json 2>/dev/null || true
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/Sylvan/engines.json -O $HOME/.config/EterCyber/engines.json.tmp
   sed -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/EterCyber/engines.json.tmp > $HOME/.config/EterCyber/engines.json
   rm $HOME/.config/EterCyber/engines.json.tmp
