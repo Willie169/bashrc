@@ -1124,7 +1124,7 @@ update_cutechess_config() {
   )
 }
 
-update_Sylvan_config() {
+update_sylvan_config() {
   (
   mkdir -p $HOME/.config/EterCyber
   rm $HOME/.config/EterCyber/engines.json
