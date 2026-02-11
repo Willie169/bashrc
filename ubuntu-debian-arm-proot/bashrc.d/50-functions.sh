@@ -1123,3 +1123,13 @@ update_cutechess_config() {
   rm $HOME/.config/cutechess/engines.json.tmp
   )
 }
+
+update_Sylvan_config() {
+  (
+  mkdir -p $HOME/.config/EterCyber
+  rm $HOME/.config/EterCyber/engines.json
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/Sylvan/engines.json -O $HOME/.config/EterCyber/engines.json.tmp
+  sed -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/EterCyber/engines.json.tmp > $HOME/.config/EterCyber/engines.json
+  rm $HOME/.config/EterCyber/engines.json.tmp
+  )
+}
