@@ -20,3 +20,5 @@ export NVM_DIR="$HOME/.nvm"
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
+
+command -v ollama >/dev/null 2>&1 && (ollama serve >/dev/null 2>&1 &) || true
