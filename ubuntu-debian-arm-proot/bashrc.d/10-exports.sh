@@ -14,6 +14,7 @@ export PLANTUML_JAR="/usr/local/java/plantuml.jar"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
 export AIDER_EDITOR=vim
+export OLLAMA_API_BASE=http://127.0.0.1:11434
 export PULSE_SERVER='127.0.0.1'
 export DLFLAGS='-A -C'
 source /etc/os-release
