@@ -1149,6 +1149,26 @@ cprop() {
   cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2" "/storage/emulated/0/Download/"
 }
 
+rmp() {
+  rm "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+rmrp() {
+  rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+rmrfp() {
+  rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+mkdirp() {
+  mkdir "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+mkdirpp() {
+  mkdir -p "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
 mvipt() {
   if [ -n $TERMUX ]; then
     mvip $TERMUX "$1"
@@ -1210,6 +1230,46 @@ cpropt() {
     cprop $TERMUX "$1"
   else
     cprop termux "$1"
+  fi
+}
+
+rmpt() {
+  if [ -n $TERMUX ]; then
+    rmp $TERMUX "$1"
+  else
+    rmp termux "$1"
+  fi
+}
+
+rmrpt() {
+  if [ -n $TERMUX ]; then
+    rmrp $TERMUX "$1"
+  else
+    rmrp termux "$1"
+  fi
+}
+
+rmrfpt() {
+  if [ -n $TERMUX ]; then
+    rmp $TERMUX "$1"
+  else
+    rmp termux "$1"
+  fi
+}
+
+mkdirpt() {
+  if [ -n $TERMUX ]; then
+    mkdirp $TERMUX "$1"
+  else
+    mkdirp termux "$1"
+  fi
+}
+
+mkdirppt() {
+  if [ -n $TERMUX ]; then
+    mkdirpp $TERMUX "$1"
+  else
+    mkdirpp termux "$1"
   fi
 }
 
@@ -1277,6 +1337,46 @@ cpropu() {
   fi
 }
 
+rmpu() {
+  if [ -n $UBUNTU ]; then
+    rmp $UBUNTU "$1"
+  else
+    rmp ubuntu "$1"
+  fi
+}
+
+rmrpu() {
+  if [ -n $UBUNTU ]; then
+    rmrp $UBUNTU "$1"
+  else
+    rmrp ubuntu "$1"
+  fi
+}
+
+rmrfpu() {
+  if [ -n $UBUNTU ]; then
+    rmp $UBUNTU "$1"
+  else
+    rmp ubuntu "$1"
+  fi
+}
+
+mkdirpu() {
+  if [ -n $UBUNTU ]; then
+    mkdirp $UBUNTU "$1"
+  else
+    mkdirp ubuntu "$1"
+  fi
+}
+
+mkdirppu() {
+  if [ -n $UBUNTU ]; then
+    mkdirpp $UBUNTU "$1"
+  else
+    mkdirpp ubuntu "$1"
+  fi
+}
+
 mvipd() {
   if [ -n $DEBIAN ]; then
     mvip $DEBIAN "$1"
@@ -1338,6 +1438,46 @@ cpropd() {
     cprop $DEBIAN "$1"
   else
     cprop debian "$1"
+  fi
+}
+
+rmpd() {
+  if [ -n $DEBIAN ]; then
+    rmp $DEBIAN "$1"
+  else
+    rmp debian "$1"
+  fi
+}
+
+rmrpd() {
+  if [ -n $DEBIAN ]; then
+    rmrp $DEBIAN "$1"
+  else
+    rmrp debian "$1"
+  fi
+}
+
+rmrfpd() {
+  if [ -n $DEBIAN ]; then
+    rmp $DEBIAN "$1"
+  else
+    rmp debian "$1"
+  fi
+}
+
+mkdirpd() {
+  if [ -n $DEBIAN ]; then
+    mkdirp $DEBIAN "$1"
+  else
+    mkdirp debian "$1"
+  fi
+}
+
+mkdirppd() {
+  if [ -n $DEBIAN ]; then
+    mkdirpp $DEBIAN "$1"
+  else
+    mkdirpp debian "$1"
   fi
 }
 
@@ -1405,6 +1545,46 @@ cpropub() {
   fi
 }
 
+rmpub() {
+  if [ -n $UBUNTUBOX ]; then
+    rmp $UBUNTUBOX "$1"
+  else
+    rmp ubuntubox "$1"
+  fi
+}
+
+rmrpub() {
+  if [ -n $UBUNTUBOX ]; then
+    rmrp $UBUNTUBOX "$1"
+  else
+    rmrp ubuntubox "$1"
+  fi
+}
+
+rmrfpub() {
+  if [ -n $UBUNTUBOX ]; then
+    rmp $UBUNTUBOX "$1"
+  else
+    rmp ubuntubox "$1"
+  fi
+}
+
+mkdirpub() {
+  if [ -n $UBUNTUBOX ]; then
+    mkdirp $UBUNTUBOX "$1"
+  else
+    mkdirp ubuntubox "$1"
+  fi
+}
+
+mkdirppub() {
+  if [ -n $UBUNTUBOX ]; then
+    mkdirpp $UBUNTUBOX "$1"
+  else
+    mkdirpp ubuntubox "$1"
+  fi
+}
+
 mvipdb() {
   if [ -n $DEBIANBOX ]; then
     mvip $DEBIANBOX "$1"
@@ -1466,6 +1646,46 @@ cpropdb() {
     cprop $DEBIANBOX "$1"
   else
     cprop debianbox "$1"
+  fi
+}
+
+rmpdb() {
+  if [ -n $DEBIANBOX ]; then
+    rmp $DEBIANBOX "$1"
+  else
+    rmp debianbox "$1"
+  fi
+}
+
+rmrpdb() {
+  if [ -n $DEBIANBOX ]; then
+    rmrp $DEBIANBOX "$1"
+  else
+    rmrp debianbox "$1"
+  fi
+}
+
+rmrfpdb() {
+  if [ -n $DEBIANBOX ]; then
+    rmp $DEBIANBOX "$1"
+  else
+    rmp debianbox "$1"
+  fi
+}
+
+mkdirpdb() {
+  if [ -n $DEBIANBOX ]; then
+    mkdirp $DEBIANBOX "$1"
+  else
+    mkdirp debianbox "$1"
+  fi
+}
+
+mkdirppdb() {
+  if [ -n $DEBIANBOX ]; then
+    mkdirpp $DEBIANBOX "$1"
+  else
+    mkdirpp debianbox "$1"
   fi
 }
 
