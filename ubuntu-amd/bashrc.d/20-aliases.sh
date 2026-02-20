@@ -10,4 +10,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias src='source'
 alias httpp='http-server -p'
 alias open-notebook='(cd ~/.open-notebook && docker compose up -d)'
+alias open-notebook-down='(cd ~/.open-notebook && docker compose down)'
 alias binance='/opt/Binance/binance --no-sandbox'
