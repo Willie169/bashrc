@@ -13,6 +13,7 @@ export ANTLR_JAR="/usr/local/java/antlr-4.13.2-complete.jar"
 export PLANTUML_JAR="/usr/local/java/plantuml.jar"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
+export OLLAMA_HOST=0.0.0.0
 export AIDER_EDITOR=vim
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 export PULSE_SERVER='127.0.0.1'
