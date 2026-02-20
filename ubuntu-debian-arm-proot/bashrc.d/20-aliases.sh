@@ -10,3 +10,4 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias src='source'
 alias httpp='http-server -p'
 alias sshd='/usr/sbin/sshd'
+alias udocker='udocker --allow-root'
