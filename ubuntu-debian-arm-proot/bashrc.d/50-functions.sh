@@ -1133,3 +1133,25 @@ update_sylvan_config() {
   rm $HOME/.config/EterCyber/engines.json.tmp
   )
 }
+
+open-notebook() {
+  (
+  cd ~/.open-notebook || return
+  udocker run surrealdb start --log info --user root --pass root rocksdb:/mydata/mydatabase.db 2>/dev/null &
+  SURREAL_PID=$!
+  echo $SURREAL_PID > surrealdb.pid
+  sleep 5
+  udocker run open-notebook 2>/dev/null &
+  NOTEBOOK_PID=$!
+  echo $NOTEBOOK_PID > open-notebook.pid
+  )
+}
+
+open-notebook-down() {
+  (
+  cd ~/.open-notebook || return
+  [ -f surrealdb.pid ] && kill $(cat surrealdb.pid) 2>/dev/null
+  [ -f open-notebook.pid ] && kill $(cat open-notebook.pid) 2>/dev/null  
+  rm -f surrealdb.pid open-notebook.pid
+  )
+}
