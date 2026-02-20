@@ -10,5 +10,3 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias src='source'
 alias httpp='http-server -p'
 alias sshd='/usr/sbin/sshd'
-alias open-notebook='(cd ~/.open-notebook && udocker --allow-root compose up -d)'
-alias open-notebook-down='(cd ~/.open-notebook && udocker --allow-root compose down)'
