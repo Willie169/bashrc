@@ -1077,7 +1077,7 @@ update_latex() {
 
 update_vimrc() {
   (
-  cd /opt/vim_runtime
+  cd ~/.vim_runtime
   git reset --hard
   git clean -d --force
   git pull --rebase
