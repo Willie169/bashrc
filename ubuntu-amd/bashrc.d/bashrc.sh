@@ -18,5 +18,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
-source "${HOME}/conda/etc/profile.d/conda.sh"
-source "${HOME}/conda/etc/profile.d/mamba.sh"
+source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
+source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
