@@ -7,6 +7,8 @@ def lr(x):
 
 op = ["mv", "cp", "cp -r"]
 opStr = ["mv", "cp", "cpr"]
+aop = ["mv", "cp -r"]
+aopStr = ["mv", "cp"]
 iop = ["mv", "cpr"]
 iopStr = ["mv", "cp"]
 remote = ["$DOW", "$DOC", "$SCR", "$EMU"]
@@ -15,8 +17,8 @@ local = [".", "~", ".."]
 localStr = ["c", "h", "b"]
 tlocal = ["\"$1\"", "\"$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root\""]
 tlocalStr = ["r", "p"]
-pop = ["mvi", "mvo", "cpi", "cpo", "cpri", "cpro", "mvai", "cpai"]
-pup = ["mvy", "mvu", "cpy", "cpu", "cpry", "cpru", "mvay", "cpay"]
+pop = ["mvi", "mvo", "cpi", "cpo", "cpri", "cpro", "mvia", "cpia", "mvai", "cpai"]
+pup = ["mvy", "mvu", "cpy", "cpu", "cpry", "cpru", "mvya", "cpya", "mvay", "cpay"]
 npop = ["rmp", "rmrp", "rmrf", "mkdir", "mkdirp"]
 proot = ["termux", "ubuntu", "debian", "ubuntubox", "debianbox"]
 prootStr = ["t", "u", "d", "ub", "db"]
@@ -26,11 +28,16 @@ for i in lr(op):
         for k in lr(local):
             f.write(opStr[i] + "i" + remoteStr[j] + localStr[k] + "() {\n  " + op[i] + " -- \"" + remote[j] + "\"/\"$1\" " + local[k] + "/\n}\n\n")
             f.write(opStr[i] + "o" + remoteStr[j] + localStr[k] + "() {\n  " + op[i] + " -- " + local[k] + "/\"$1\" \"" + remote[j] + "\"/\n}\n\n")
-            f.write(opStr[i] + "ia" + remoteStr[j] + localStr[k] + "() {\n  (\n  cd " + local[k] + "\n  LOCAL=$(pwd)\n  cd "  + remote[j] + "\n  for f in *; do\n    " + op[i] + " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
         for k in lr(tlocal):
              f.write(opStr[i] + "i" + remoteStr[j] + tlocalStr[k] + "() {\n  " + op[i] + " -- \"" + remote[j] + "\"/\"$2\" " + tlocal[k] + "/\n}\n\n")
              f.write(opStr[i] + "o" + remoteStr[j] + tlocalStr[k] + "() {\n  " + op[i] + " -- " + tlocal[k] + "/\"$2\" \"" + remote[j] + "\"/\n}\n\n")
-             f.write(opStr[i] + "ia" + remoteStr[j] + tlocalStr[k] + "() {\n  (\n  cd " + tlocal[k] + "\n  tlocal=$(pwd)\n  cd "  + remote[j] + "\n  for f in *; do\n    " + op[i] + " -- \"$f\" \"$tlocal\"/\n  done\n  )\n}\n\n")
+
+for i in lr(aop):
+    for j in lr(remote):
+        for k in lr(local):
+            f.write(aopStr[i] + "ia" + remoteStr[j] + localStr[k] + "() {\n  (\n  cd " + local[k] + "\n  LOCAL=$(pwd)\n  cd "  + remote[j] + "\n  for f in *; do\n    " + aop[i] + " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
+        for k in lr(tlocal):
+             f.write(aopStr[i] + "ia" + remoteStr[j] + tlocalStr[k] + "() {\n  (\n  cd " + tlocal[k] + "\n  tlocal=$(pwd)\n  cd "  + remote[j] + "\n  for f in *; do\n    " + aop[i] + " -- \"$f\" \"$tlocal\"/\n  done\n  )\n}\n\n")
 
 for i in lr(iop):
     for j in lr(remote):
@@ -43,8 +50,12 @@ for i in lr(op):
     for j in lr(local):
         for k in lr(tlocal):
             f.write(opStr[i] + "y" + localStr[j] + tlocalStr[k] + "() {\n  " + op[i] + " -- \"$2\" " + tlocal[k] + "/\n}\n\n")
-            f.write(opStr[i] + "ya" + localStr[j] + tlocalStr[k] + "() {\n  (\n  cd " + tlocal[k] + "\n  LOCAL=$(pwd)\n  cd "  + local[j] + "\n  for f in *; do\n    " + op[i] + " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
             f.write(opStr[i] + "u" + localStr[j] + tlocalStr[k] + "() {\n  " + op[i] + " -- " + tlocal[k] + "/\"$2\"\n}\n\n")
+
+for i in lr(aop):
+    for j in lr(local):
+        for k in lr(tlocal):
+            f.write(aopStr[i] + "ya" + localStr[j] + tlocalStr[k] + "() {\n  (\n  cd " + tlocal[k] + "\n  LOCAL=$(pwd)\n  cd "  + local[j] + "\n  for f in *; do\n    " + aop[i] + " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
 
 f.write("""rmp() {
   rm -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
