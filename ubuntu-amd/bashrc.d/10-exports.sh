@@ -20,6 +20,7 @@ export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
 export AIDER_EDITOR=vim
 export OLLAMA_API_BASE=http://127.0.0.1:11434
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
 export UBUNTU_VERSION_ID=$(
 if grep -q '^NAME="Linux Mint"' /etc/os-release; then
   inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
