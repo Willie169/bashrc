@@ -1,545 +1,725 @@
 mvic() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- "$f" ./
   done
 }
 
 mvoc() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- ./"$f" 
   done
 }
 
 mvih() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- "$f" ~/
   done
 }
 
 mvoh() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- ~/"$f" 
   done
 }
 
 mvib() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- "$f" ../
   done
 }
 
 mvob() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- ../"$f" 
   done
 }
 
 mvidc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- "$f" ./
   done
 }
 
 mvodc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- ./"$f" 
   done
 }
 
 mvidh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- "$f" ~/
   done
 }
 
 mvodh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- ~/"$f" 
   done
 }
 
 mvidb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- "$f" ../
   done
 }
 
 mvodb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- ../"$f" 
   done
 }
 
 mvisc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- "$f" ./
   done
 }
 
 mvosc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- ./"$f" 
   done
 }
 
 mvish() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- "$f" ~/
   done
 }
 
 mvosh() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- ~/"$f" 
   done
 }
 
 mvisb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- "$f" ../
   done
 }
 
 mvosb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
+    mv -- ../"$f" 
+  done
+}
+
+mviec() {
+  for f in "$EMU/$1"; do
+    mv -- "$f" ./
+  done
+}
+
+mvoec() {
+  for f in "$EMU/$1"; do
+    mv -- ./"$f" 
+  done
+}
+
+mvieh() {
+  for f in "$EMU/$1"; do
+    mv -- "$f" ~/
+  done
+}
+
+mvoeh() {
+  for f in "$EMU/$1"; do
+    mv -- ~/"$f" 
+  done
+}
+
+mvieb() {
+  for f in "$EMU/$1"; do
+    mv -- "$f" ../
+  done
+}
+
+mvoeb() {
+  for f in "$EMU/$1"; do
     mv -- ../"$f" 
   done
 }
 
 cpic() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -- "$f" ./
   done
 }
 
 cpoc() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -- ./"$f" 
   done
 }
 
 cpih() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -- "$f" ~/
   done
 }
 
 cpoh() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -- ~/"$f" 
   done
 }
 
 cpib() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -- "$f" ../
   done
 }
 
 cpob() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -- ../"$f" 
   done
 }
 
 cpidc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -- "$f" ./
   done
 }
 
 cpodc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -- ./"$f" 
   done
 }
 
 cpidh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -- "$f" ~/
   done
 }
 
 cpodh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -- ~/"$f" 
   done
 }
 
 cpidb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -- "$f" ../
   done
 }
 
 cpodb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -- ../"$f" 
   done
 }
 
 cpisc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -- "$f" ./
   done
 }
 
 cposc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -- ./"$f" 
   done
 }
 
 cpish() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -- "$f" ~/
   done
 }
 
 cposh() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -- ~/"$f" 
   done
 }
 
 cpisb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -- "$f" ../
   done
 }
 
 cposb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
+    cp -- ../"$f" 
+  done
+}
+
+cpiec() {
+  for f in "$EMU/$1"; do
+    cp -- "$f" ./
+  done
+}
+
+cpoec() {
+  for f in "$EMU/$1"; do
+    cp -- ./"$f" 
+  done
+}
+
+cpieh() {
+  for f in "$EMU/$1"; do
+    cp -- "$f" ~/
+  done
+}
+
+cpoeh() {
+  for f in "$EMU/$1"; do
+    cp -- ~/"$f" 
+  done
+}
+
+cpieb() {
+  for f in "$EMU/$1"; do
+    cp -- "$f" ../
+  done
+}
+
+cpoeb() {
+  for f in "$EMU/$1"; do
     cp -- ../"$f" 
   done
 }
 
 cpric() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- "$f" ./
   done
 }
 
 cproc() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- ./"$f" 
   done
 }
 
 cprih() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- "$f" ~/
   done
 }
 
 cproh() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- ~/"$f" 
   done
 }
 
 cprib() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- "$f" ../
   done
 }
 
 cprob() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- ../"$f" 
   done
 }
 
 cpridc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- "$f" ./
   done
 }
 
 cprodc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- ./"$f" 
   done
 }
 
 cpridh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- "$f" ~/
   done
 }
 
 cprodh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- ~/"$f" 
   done
 }
 
 cpridb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- "$f" ../
   done
 }
 
 cprodb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- ../"$f" 
   done
 }
 
 cprisc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- "$f" ./
   done
 }
 
 cprosc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- ./"$f" 
   done
 }
 
 cprish() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- "$f" ~/
   done
 }
 
 cprosh() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- ~/"$f" 
   done
 }
 
 cprisb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- "$f" ../
   done
 }
 
 cprosb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
+    cp -r -- ../"$f" 
+  done
+}
+
+cpriec() {
+  for f in "$EMU/$1"; do
+    cp -r -- "$f" ./
+  done
+}
+
+cproec() {
+  for f in "$EMU/$1"; do
+    cp -r -- ./"$f" 
+  done
+}
+
+cprieh() {
+  for f in "$EMU/$1"; do
+    cp -r -- "$f" ~/
+  done
+}
+
+cproeh() {
+  for f in "$EMU/$1"; do
+    cp -r -- ~/"$f" 
+  done
+}
+
+cprieb() {
+  for f in "$EMU/$1"; do
+    cp -r -- "$f" ../
+  done
+}
+
+cproeb() {
+  for f in "$EMU/$1"; do
     cp -r -- ../"$f" 
   done
 }
 
 mvir() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     mv -- "$f" "$1"/
   done
 }
 
 mvor() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     mv -- "$1"/"$f" 
   done
 }
 
 mvip() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 mvop() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 mvidr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     mv -- "$f" "$1"/
   done
 }
 
 mvodr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     mv -- "$1"/"$f" 
   done
 }
 
 mvidp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 mvodp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 mvisr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     mv -- "$f" "$1"/
   done
 }
 
 mvosr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     mv -- "$1"/"$f" 
   done
 }
 
 mvisp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 mvosp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
+    mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
+  done
+}
+
+mvier() {
+  for f in "$EMU/$2"; do
+    mv -- "$f" "$1"/
+  done
+}
+
+mvoer() {
+  for f in "$EMU/$2"; do
+    mv -- "$1"/"$f" 
+  done
+}
+
+mviep() {
+  for f in "$EMU/$2"; do
+    mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  done
+}
+
+mvoep() {
+  for f in "$EMU/$2"; do
     mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 cpir() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -- "$f" "$1"/
   done
 }
 
 cpor() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -- "$1"/"$f" 
   done
 }
 
 cpip() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 cpop() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 cpidr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -- "$f" "$1"/
   done
 }
 
 cpodr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -- "$1"/"$f" 
   done
 }
 
 cpidp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 cpodp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 cpisr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -- "$f" "$1"/
   done
 }
 
 cposr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -- "$1"/"$f" 
   done
 }
 
 cpisp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 cposp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
+    cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
+  done
+}
+
+cpier() {
+  for f in "$EMU/$2"; do
+    cp -- "$f" "$1"/
+  done
+}
+
+cpoer() {
+  for f in "$EMU/$2"; do
+    cp -- "$1"/"$f" 
+  done
+}
+
+cpiep() {
+  for f in "$EMU/$2"; do
+    cp -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  done
+}
+
+cpoep() {
+  for f in "$EMU/$2"; do
     cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 cprir() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -r -- "$f" "$1"/
   done
 }
 
 cpror() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -r -- "$1"/"$f" 
   done
 }
 
 cprip() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 cprop() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 cpridr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -r -- "$f" "$1"/
   done
 }
 
 cprodr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -r -- "$1"/"$f" 
   done
 }
 
 cpridp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 cprodp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 cprisr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -r -- "$f" "$1"/
   done
 }
 
 cprosr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -r -- "$1"/"$f" 
   done
 }
 
 cprisp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
   done
 }
 
 cprosp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
+    cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
+  done
+}
+
+cprier() {
+  for f in "$EMU/$2"; do
+    cp -r -- "$f" "$1"/
+  done
+}
+
+cproer() {
+  for f in "$EMU/$2"; do
+    cp -r -- "$1"/"$f" 
+  done
+}
+
+cpriep() {
+  for f in "$EMU/$2"; do
+    cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  done
+}
+
+cproep() {
+  for f in "$EMU/$2"; do
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f" 
   done
 }
 
 mvaic() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- "$f" ./
     cp -r -- ./"$f"/* ./
     rm -r -- ./"$f"
@@ -547,7 +727,7 @@ mvaic() {
 }
 
 mvaih() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- "$f" ~/
     cp -r -- ~/"$f"/* ~/
     rm -r -- ~/"$f"
@@ -555,7 +735,7 @@ mvaih() {
 }
 
 mvaib() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     mv -- "$f" ../
     cp -r -- ../"$f"/* ../
     rm -r -- ../"$f"
@@ -563,7 +743,7 @@ mvaib() {
 }
 
 mvaidc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- "$f" ./
     cp -r -- ./"$f"/* ./
     rm -r -- ./"$f"
@@ -571,7 +751,7 @@ mvaidc() {
 }
 
 mvaidh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- "$f" ~/
     cp -r -- ~/"$f"/* ~/
     rm -r -- ~/"$f"
@@ -579,7 +759,7 @@ mvaidh() {
 }
 
 mvaidb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     mv -- "$f" ../
     cp -r -- ../"$f"/* ../
     rm -r -- ../"$f"
@@ -587,7 +767,7 @@ mvaidb() {
 }
 
 mvaisc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- "$f" ./
     cp -r -- ./"$f"/* ./
     rm -r -- ./"$f"
@@ -595,7 +775,7 @@ mvaisc() {
 }
 
 mvaish() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     mv -- "$f" ~/
     cp -r -- ~/"$f"/* ~/
     rm -r -- ~/"$f"
@@ -603,7 +783,31 @@ mvaish() {
 }
 
 mvaisb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
+    mv -- "$f" ../
+    cp -r -- ../"$f"/* ../
+    rm -r -- ../"$f"
+  done
+}
+
+mvaiec() {
+  for f in "$EMU/$1"; do
+    mv -- "$f" ./
+    cp -r -- ./"$f"/* ./
+    rm -r -- ./"$f"
+  done
+}
+
+mvaieh() {
+  for f in "$EMU/$1"; do
+    mv -- "$f" ~/
+    cp -r -- ~/"$f"/* ~/
+    rm -r -- ~/"$f"
+  done
+}
+
+mvaieb() {
+  for f in "$EMU/$1"; do
     mv -- "$f" ../
     cp -r -- ../"$f"/* ../
     rm -r -- ../"$f"
@@ -611,7 +815,7 @@ mvaisb() {
 }
 
 cpaic() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- "$f" ./
     cp -r -- ./"$f"/* ./
     rm -r -- ./"$f"
@@ -619,7 +823,7 @@ cpaic() {
 }
 
 cpaih() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- "$f" ~/
     cp -r -- ~/"$f"/* ~/
     rm -r -- ~/"$f"
@@ -627,7 +831,7 @@ cpaih() {
 }
 
 cpaib() {
-  for f in "/storage/emulated/0/Download/$1"; do
+  for f in "$DOW/$1"; do
     cp -r -- "$f" ../
     cp -r -- ../"$f"/* ../
     rm -r -- ../"$f"
@@ -635,7 +839,7 @@ cpaib() {
 }
 
 cpaidc() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- "$f" ./
     cp -r -- ./"$f"/* ./
     rm -r -- ./"$f"
@@ -643,7 +847,7 @@ cpaidc() {
 }
 
 cpaidh() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- "$f" ~/
     cp -r -- ~/"$f"/* ~/
     rm -r -- ~/"$f"
@@ -651,7 +855,7 @@ cpaidh() {
 }
 
 cpaidb() {
-  for f in "/storage/emulated/0/Documents/$1"; do
+  for f in "$DOC/$1"; do
     cp -r -- "$f" ../
     cp -r -- ../"$f"/* ../
     rm -r -- ../"$f"
@@ -659,7 +863,7 @@ cpaidb() {
 }
 
 cpaisc() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- "$f" ./
     cp -r -- ./"$f"/* ./
     rm -r -- ./"$f"
@@ -667,7 +871,7 @@ cpaisc() {
 }
 
 cpaish() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
     cp -r -- "$f" ~/
     cp -r -- ~/"$f"/* ~/
     rm -r -- ~/"$f"
@@ -675,7 +879,31 @@ cpaish() {
 }
 
 cpaisb() {
-  for f in "/storage/emulated/0/Scripts/$1"; do
+  for f in "$SCR/$1"; do
+    cp -r -- "$f" ../
+    cp -r -- ../"$f"/* ../
+    rm -r -- ../"$f"
+  done
+}
+
+cpaiec() {
+  for f in "$EMU/$1"; do
+    cp -r -- "$f" ./
+    cp -r -- ./"$f"/* ./
+    rm -r -- ./"$f"
+  done
+}
+
+cpaieh() {
+  for f in "$EMU/$1"; do
+    cp -r -- "$f" ~/
+    cp -r -- ~/"$f"/* ~/
+    rm -r -- ~/"$f"
+  done
+}
+
+cpaieb() {
+  for f in "$EMU/$1"; do
     cp -r -- "$f" ../
     cp -r -- ../"$f"/* ../
     rm -r -- ../"$f"
@@ -683,7 +911,7 @@ cpaisb() {
 }
 
 mvair() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     mv -- "$f" "$1"/
     cp -r -- "$1"/"$f"/* "$1"/
     rm -r -- "$1"/"$f"
@@ -691,7 +919,7 @@ mvair() {
 }
 
 mvaip() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
@@ -699,7 +927,7 @@ mvaip() {
 }
 
 mvaidr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     mv -- "$f" "$1"/
     cp -r -- "$1"/"$f"/* "$1"/
     rm -r -- "$1"/"$f"
@@ -707,7 +935,7 @@ mvaidr() {
 }
 
 mvaidp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
@@ -715,7 +943,7 @@ mvaidp() {
 }
 
 mvaisr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     mv -- "$f" "$1"/
     cp -r -- "$1"/"$f"/* "$1"/
     rm -r -- "$1"/"$f"
@@ -723,7 +951,23 @@ mvaisr() {
 }
 
 mvaisp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
+    mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+    cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+    rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
+  done
+}
+
+mvaier() {
+  for f in "$EMU/$2"; do
+    mv -- "$f" "$1"/
+    cp -r -- "$1"/"$f"/* "$1"/
+    rm -r -- "$1"/"$f"
+  done
+}
+
+mvaiep() {
+  for f in "$EMU/$2"; do
     mv -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
@@ -731,7 +975,7 @@ mvaisp() {
 }
 
 cpair() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -r -- "$f" "$1"/
     cp -r -- "$1"/"$f"/* "$1"/
     rm -r -- "$1"/"$f"
@@ -739,7 +983,7 @@ cpair() {
 }
 
 cpaip() {
-  for f in "/storage/emulated/0/Download/$2"; do
+  for f in "$DOW/$2"; do
     cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
@@ -747,7 +991,7 @@ cpaip() {
 }
 
 cpaidr() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -r -- "$f" "$1"/
     cp -r -- "$1"/"$f"/* "$1"/
     rm -r -- "$1"/"$f"
@@ -755,7 +999,7 @@ cpaidr() {
 }
 
 cpaidp() {
-  for f in "/storage/emulated/0/Documents/$2"; do
+  for f in "$DOC/$2"; do
     cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
@@ -763,7 +1007,7 @@ cpaidp() {
 }
 
 cpaisr() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
     cp -r -- "$f" "$1"/
     cp -r -- "$1"/"$f"/* "$1"/
     rm -r -- "$1"/"$f"
@@ -771,7 +1015,23 @@ cpaisr() {
 }
 
 cpaisp() {
-  for f in "/storage/emulated/0/Scripts/$2"; do
+  for f in "$SCR/$2"; do
+    cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+    cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+    rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
+  done
+}
+
+cpaier() {
+  for f in "$EMU/$2"; do
+    cp -r -- "$f" "$1"/
+    cp -r -- "$1"/"$f"/* "$1"/
+    rm -r -- "$1"/"$f"
+  done
+}
+
+cpaiep() {
+  for f in "$EMU/$2"; do
     cp -r -- "$f" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"/* "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
     rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$f"
@@ -1229,6 +1489,46 @@ mvispdb(){
   fi
 }
 
+mviept(){
+  if [ -n "$TERMUX" ]; then
+    mviep "$TERMUX" "$1"
+  else
+    mviep "termux" "$1"
+  fi
+}
+
+mviepu(){
+  if [ -n "$UBUNTU" ]; then
+    mviep "$UBUNTU" "$1"
+  else
+    mviep "ubuntu" "$1"
+  fi
+}
+
+mviepd(){
+  if [ -n "$DEBIAN" ]; then
+    mviep "$DEBIAN" "$1"
+  else
+    mviep "debian" "$1"
+  fi
+}
+
+mviepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    mviep "$UBUNTUBOX" "$1"
+  else
+    mviep "ubuntubox" "$1"
+  fi
+}
+
+mviepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    mviep "$DEBIANBOX" "$1"
+  else
+    mviep "debianbox" "$1"
+  fi
+}
+
 mvopt(){
   if [ -n "$TERMUX" ]; then
     mvop "$TERMUX" "$1"
@@ -1346,6 +1646,46 @@ mvospdb(){
     mvosp "$DEBIANBOX" "$1"
   else
     mvosp "debianbox" "$1"
+  fi
+}
+
+mvoept(){
+  if [ -n "$TERMUX" ]; then
+    mvoep "$TERMUX" "$1"
+  else
+    mvoep "termux" "$1"
+  fi
+}
+
+mvoepu(){
+  if [ -n "$UBUNTU" ]; then
+    mvoep "$UBUNTU" "$1"
+  else
+    mvoep "ubuntu" "$1"
+  fi
+}
+
+mvoepd(){
+  if [ -n "$DEBIAN" ]; then
+    mvoep "$DEBIAN" "$1"
+  else
+    mvoep "debian" "$1"
+  fi
+}
+
+mvoepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    mvoep "$UBUNTUBOX" "$1"
+  else
+    mvoep "ubuntubox" "$1"
+  fi
+}
+
+mvoepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    mvoep "$DEBIANBOX" "$1"
+  else
+    mvoep "debianbox" "$1"
   fi
 }
 
@@ -1469,6 +1809,46 @@ cpispdb(){
   fi
 }
 
+cpiept(){
+  if [ -n "$TERMUX" ]; then
+    cpiep "$TERMUX" "$1"
+  else
+    cpiep "termux" "$1"
+  fi
+}
+
+cpiepu(){
+  if [ -n "$UBUNTU" ]; then
+    cpiep "$UBUNTU" "$1"
+  else
+    cpiep "ubuntu" "$1"
+  fi
+}
+
+cpiepd(){
+  if [ -n "$DEBIAN" ]; then
+    cpiep "$DEBIAN" "$1"
+  else
+    cpiep "debian" "$1"
+  fi
+}
+
+cpiepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    cpiep "$UBUNTUBOX" "$1"
+  else
+    cpiep "ubuntubox" "$1"
+  fi
+}
+
+cpiepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    cpiep "$DEBIANBOX" "$1"
+  else
+    cpiep "debianbox" "$1"
+  fi
+}
+
 cpopt(){
   if [ -n "$TERMUX" ]; then
     cpop "$TERMUX" "$1"
@@ -1586,6 +1966,46 @@ cpospdb(){
     cposp "$DEBIANBOX" "$1"
   else
     cposp "debianbox" "$1"
+  fi
+}
+
+cpoept(){
+  if [ -n "$TERMUX" ]; then
+    cpoep "$TERMUX" "$1"
+  else
+    cpoep "termux" "$1"
+  fi
+}
+
+cpoepu(){
+  if [ -n "$UBUNTU" ]; then
+    cpoep "$UBUNTU" "$1"
+  else
+    cpoep "ubuntu" "$1"
+  fi
+}
+
+cpoepd(){
+  if [ -n "$DEBIAN" ]; then
+    cpoep "$DEBIAN" "$1"
+  else
+    cpoep "debian" "$1"
+  fi
+}
+
+cpoepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    cpoep "$UBUNTUBOX" "$1"
+  else
+    cpoep "ubuntubox" "$1"
+  fi
+}
+
+cpoepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    cpoep "$DEBIANBOX" "$1"
+  else
+    cpoep "debianbox" "$1"
   fi
 }
 
@@ -1709,6 +2129,46 @@ cprispdb(){
   fi
 }
 
+cpriept(){
+  if [ -n "$TERMUX" ]; then
+    cpriep "$TERMUX" "$1"
+  else
+    cpriep "termux" "$1"
+  fi
+}
+
+cpriepu(){
+  if [ -n "$UBUNTU" ]; then
+    cpriep "$UBUNTU" "$1"
+  else
+    cpriep "ubuntu" "$1"
+  fi
+}
+
+cpriepd(){
+  if [ -n "$DEBIAN" ]; then
+    cpriep "$DEBIAN" "$1"
+  else
+    cpriep "debian" "$1"
+  fi
+}
+
+cpriepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    cpriep "$UBUNTUBOX" "$1"
+  else
+    cpriep "ubuntubox" "$1"
+  fi
+}
+
+cpriepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    cpriep "$DEBIANBOX" "$1"
+  else
+    cpriep "debianbox" "$1"
+  fi
+}
+
 cpropt(){
   if [ -n "$TERMUX" ]; then
     cprop "$TERMUX" "$1"
@@ -1826,6 +2286,46 @@ cprospdb(){
     cprosp "$DEBIANBOX" "$1"
   else
     cprosp "debianbox" "$1"
+  fi
+}
+
+cproept(){
+  if [ -n "$TERMUX" ]; then
+    cproep "$TERMUX" "$1"
+  else
+    cproep "termux" "$1"
+  fi
+}
+
+cproepu(){
+  if [ -n "$UBUNTU" ]; then
+    cproep "$UBUNTU" "$1"
+  else
+    cproep "ubuntu" "$1"
+  fi
+}
+
+cproepd(){
+  if [ -n "$DEBIAN" ]; then
+    cproep "$DEBIAN" "$1"
+  else
+    cproep "debian" "$1"
+  fi
+}
+
+cproepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    cproep "$UBUNTUBOX" "$1"
+  else
+    cproep "ubuntubox" "$1"
+  fi
+}
+
+cproepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    cproep "$DEBIANBOX" "$1"
+  else
+    cproep "debianbox" "$1"
   fi
 }
 
@@ -1949,6 +2449,46 @@ mvaispdb(){
   fi
 }
 
+mvaiept(){
+  if [ -n "$TERMUX" ]; then
+    mvaiep "$TERMUX" "$1"
+  else
+    mvaiep "termux" "$1"
+  fi
+}
+
+mvaiepu(){
+  if [ -n "$UBUNTU" ]; then
+    mvaiep "$UBUNTU" "$1"
+  else
+    mvaiep "ubuntu" "$1"
+  fi
+}
+
+mvaiepd(){
+  if [ -n "$DEBIAN" ]; then
+    mvaiep "$DEBIAN" "$1"
+  else
+    mvaiep "debian" "$1"
+  fi
+}
+
+mvaiepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    mvaiep "$UBUNTUBOX" "$1"
+  else
+    mvaiep "ubuntubox" "$1"
+  fi
+}
+
+mvaiepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    mvaiep "$DEBIANBOX" "$1"
+  else
+    mvaiep "debianbox" "$1"
+  fi
+}
+
 cpaipt(){
   if [ -n "$TERMUX" ]; then
     cpaip "$TERMUX" "$1"
@@ -2066,6 +2606,46 @@ cpaispdb(){
     cpaisp "$DEBIANBOX" "$1"
   else
     cpaisp "debianbox" "$1"
+  fi
+}
+
+cpaiept(){
+  if [ -n "$TERMUX" ]; then
+    cpaiep "$TERMUX" "$1"
+  else
+    cpaiep "termux" "$1"
+  fi
+}
+
+cpaiepu(){
+  if [ -n "$UBUNTU" ]; then
+    cpaiep "$UBUNTU" "$1"
+  else
+    cpaiep "ubuntu" "$1"
+  fi
+}
+
+cpaiepd(){
+  if [ -n "$DEBIAN" ]; then
+    cpaiep "$DEBIAN" "$1"
+  else
+    cpaiep "debian" "$1"
+  fi
+}
+
+cpaiepub(){
+  if [ -n "$UBUNTUBOX" ]; then
+    cpaiep "$UBUNTUBOX" "$1"
+  else
+    cpaiep "ubuntubox" "$1"
+  fi
+}
+
+cpaiepdb(){
+  if [ -n "$DEBIANBOX" ]; then
+    cpaiep "$DEBIANBOX" "$1"
+  else
+    cpaiep "debianbox" "$1"
   fi
 }
 
@@ -3254,7 +3834,94 @@ mviagcp() {
   gacp "$1"
 }
 
-cpiogcp() {
+cpiagcp() {
   cpric "*"
+  gacp "$1"
+}
+mvadgcp() {
+  mvadic "$1"
+  gacp "$2"
+}
+
+cpadgcp() {
+  cpadic "$1"
+  gacp "$2"
+}
+
+mvidgcp() {
+  mvidc "$1"
+  gacp "$2"
+}
+
+cpidgcp() {
+  cpridc "$1"
+  gacp "$2"
+}
+
+mviadgcp() {
+  mvidc "*"
+  gacp "$1"
+}
+
+cpiadgcp() {
+  cpridc "*"
+  gacp "$1"
+}
+mvasgcp() {
+  mvasic "$1"
+  gacp "$2"
+}
+
+cpasgcp() {
+  cpasic "$1"
+  gacp "$2"
+}
+
+mvisgcp() {
+  mvisc "$1"
+  gacp "$2"
+}
+
+cpisgcp() {
+  cprisc "$1"
+  gacp "$2"
+}
+
+mviasgcp() {
+  mvisc "*"
+  gacp "$1"
+}
+
+cpiasgcp() {
+  cprisc "*"
+  gacp "$1"
+}
+mvaegcp() {
+  mvaeic "$1"
+  gacp "$2"
+}
+
+cpaegcp() {
+  cpaeic "$1"
+  gacp "$2"
+}
+
+mviegcp() {
+  mviec "$1"
+  gacp "$2"
+}
+
+cpiegcp() {
+  cpriec "$1"
+  gacp "$2"
+}
+
+mviaegcp() {
+  mviec "*"
+  gacp "$1"
+}
+
+cpiaegcp() {
+  cpriec "*"
   gacp "$1"
 }

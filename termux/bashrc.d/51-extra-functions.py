@@ -9,8 +9,8 @@ op = ["mv", "cp", "cp -r"]
 opStr = ["mv", "cp", "cpr"]
 iop = ["mv", "cp -r"]
 iopStr = ["mv", "cp"]
-remote = ["/storage/emulated/0/Download/", "/storage/emulated/0/Documents/", "/storage/emulated/0/Scripts/"]
-remoteStr = ["", "d", "s"]
+remote = ["$DOW/", "$DOC/", "$SCR/", "$EMU/"]
+remoteStr = ["", "d", "s", "e"]
 local = [".", "~", ".."]
 localStr = ["c", "h", "b"]
 tlocal = ["\"$1\"", "\"$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root\""]
@@ -89,35 +89,38 @@ for i in lr(pup):
         for k in lr(proot):
             f.write(pup[i] + remoteStr[j] + "p" + prootStr[k] + "(){\n  if [ -n \"$" + proot[k].upper() + "\" ]; then\n    " + pup[i] + localStr[j] + "p \"$" + proot[k].upper() + "\" \"$1\"\n  else\n    " + pup[i] + localStr[j] + "p \"" + proot[k] + "\" \"$1\"\n  fi\n}\n\n")
 
-f.write("""mvagcp() {
-  mvaic "$1"
+gacp = """mvaAgcp() {
+  mvaAic "$1"
   gacp "$2"
 }
 
-cpagcp() {
-  cpaic "$1"
+cpaAgcp() {
+  cpaAic "$1"
   gacp "$2"
 }
 
-mvigcp() {
-  mvic "$1"
+mviAgcp() {
+  mviAc "$1"
   gacp "$2"
 }
 
-cpigcp() {
-  cpric "$1"
+cpiAgcp() {
+  cpriAc "$1"
   gacp "$2"
 }
 
-mviagcp() {
-  mvic "*"
+mviaAgcp() {
+  mviAc "*"
   gacp "$1"
 }
 
-cpiogcp() {
-  cpric "*"
+cpiaAgcp() {
+  cpriAc "*"
   gacp "$1"
 }
-""")
+"""
+
+for i in remoteStr:
+    f.write(gacp.replace("A", i))
 
 f.close()
