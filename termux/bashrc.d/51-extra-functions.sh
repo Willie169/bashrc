@@ -3173,83 +3173,83 @@ cpaiepdb(){
   fi
 }
 
-rmppt(){
+rmpt(){
   if [ -n "$TERMUX" ]; then
-    rmpp "$TERMUX" "$1"
+    rmp "$TERMUX" "$1"
   else
-    rmpp "termux" "$1"
+    rmp "termux" "$1"
   fi
 }
 
-rmppu(){
+rmpu(){
   if [ -n "$UBUNTU" ]; then
-    rmpp "$UBUNTU" "$1"
+    rmp "$UBUNTU" "$1"
   else
-    rmpp "ubuntu" "$1"
+    rmp "ubuntu" "$1"
   fi
 }
 
-rmppd(){
+rmpd(){
   if [ -n "$DEBIAN" ]; then
-    rmpp "$DEBIAN" "$1"
+    rmp "$DEBIAN" "$1"
   else
-    rmpp "debian" "$1"
+    rmp "debian" "$1"
   fi
 }
 
-rmppub(){
+rmpub(){
   if [ -n "$UBUNTUBOX" ]; then
-    rmpp "$UBUNTUBOX" "$1"
+    rmp "$UBUNTUBOX" "$1"
   else
-    rmpp "ubuntubox" "$1"
+    rmp "ubuntubox" "$1"
   fi
 }
 
-rmppdb(){
+rmpdb(){
   if [ -n "$DEBIANBOX" ]; then
-    rmpp "$DEBIANBOX" "$1"
+    rmp "$DEBIANBOX" "$1"
   else
-    rmpp "debianbox" "$1"
+    rmp "debianbox" "$1"
   fi
 }
 
-rmrppt(){
+rmrpt(){
   if [ -n "$TERMUX" ]; then
-    rmrpp "$TERMUX" "$1"
+    rmrp "$TERMUX" "$1"
   else
-    rmrpp "termux" "$1"
+    rmrp "termux" "$1"
   fi
 }
 
-rmrppu(){
+rmrpu(){
   if [ -n "$UBUNTU" ]; then
-    rmrpp "$UBUNTU" "$1"
+    rmrp "$UBUNTU" "$1"
   else
-    rmrpp "ubuntu" "$1"
+    rmrp "ubuntu" "$1"
   fi
 }
 
-rmrppd(){
+rmrpd(){
   if [ -n "$DEBIAN" ]; then
-    rmrpp "$DEBIAN" "$1"
+    rmrp "$DEBIAN" "$1"
   else
-    rmrpp "debian" "$1"
+    rmrp "debian" "$1"
   fi
 }
 
-rmrppub(){
+rmrpub(){
   if [ -n "$UBUNTUBOX" ]; then
-    rmrpp "$UBUNTUBOX" "$1"
+    rmrp "$UBUNTUBOX" "$1"
   else
-    rmrpp "ubuntubox" "$1"
+    rmrp "ubuntubox" "$1"
   fi
 }
 
-rmrppdb(){
+rmrpdb(){
   if [ -n "$DEBIANBOX" ]; then
-    rmrpp "$DEBIANBOX" "$1"
+    rmrp "$DEBIANBOX" "$1"
   else
-    rmrpp "debianbox" "$1"
+    rmrp "debianbox" "$1"
   fi
 }
 

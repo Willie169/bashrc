@@ -19,7 +19,7 @@ tlocal = ["\"$1\"", "\"$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root\""]
 tlocalStr = ["r", "p"]
 pop = ["mvi", "mvo", "cpi", "cpo", "cpri", "cpro", "mvia", "cpia", "mvai", "cpai"]
 pup = ["mvy", "mvu", "cpy", "cpu", "cpry", "cpru", "mvya", "cpya", "mvay", "cpay"]
-npop = ["rmp", "rmrp", "rmrf", "mkdir", "mkdirp"]
+npop = ["rm", "rmr", "rmrf", "mkdir", "mkdirp"]
 proot = ["termux", "ubuntu", "debian", "ubuntubox", "debianbox"]
 prootStr = ["t", "u", "d", "ub", "db"]
 
