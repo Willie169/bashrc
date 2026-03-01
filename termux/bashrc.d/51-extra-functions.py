@@ -102,12 +102,12 @@ cpiAgcp() {
 }
 
 mviaAgcp() {
-  mviAc "*"
+  mviaAc
   gacp "$1"
 }
 
 cpiaAgcp() {
-  cpriAc "*"
+  cpriaAc "*"
   gacp "$1"
 }
 """

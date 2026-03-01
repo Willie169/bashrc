@@ -4320,12 +4320,12 @@ cpigcp() {
 }
 
 mviagcp() {
-  mvic "*"
+  mviac
   gacp "$1"
 }
 
 cpiagcp() {
-  cpric "*"
+  cpriac "*"
   gacp "$1"
 }
 mvadgcp() {
@@ -4349,12 +4349,12 @@ cpidgcp() {
 }
 
 mviadgcp() {
-  mvidc "*"
+  mviadc
   gacp "$1"
 }
 
 cpiadgcp() {
-  cpridc "*"
+  cpriadc "*"
   gacp "$1"
 }
 mvasgcp() {
@@ -4378,12 +4378,12 @@ cpisgcp() {
 }
 
 mviasgcp() {
-  mvisc "*"
+  mviasc
   gacp "$1"
 }
 
 cpiasgcp() {
-  cprisc "*"
+  cpriasc "*"
   gacp "$1"
 }
 mvaegcp() {
@@ -4407,11 +4407,11 @@ cpiegcp() {
 }
 
 mviaegcp() {
-  mviec "*"
+  mviaec
   gacp "$1"
 }
 
 cpiaegcp() {
-  cpriec "*"
+  cpriaec "*"
   gacp "$1"
 }
