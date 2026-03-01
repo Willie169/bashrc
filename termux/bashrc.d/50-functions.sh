@@ -1113,6 +1113,102 @@ cproc() {
   cp -r "$1" "/storage/emulated/0/Download/"
 }
 
+mvidc() {
+  mv "/storage/emulated/0/Documents/$1" .
+}
+
+cpidc() {
+  cp "/storage/emulated/0/Documents/$1" .
+}
+
+cpridc() {
+  cp -r "/storage/emulated/0/Documents/$1" .
+}
+
+mvidr() {
+  mv "/storage/emulated/0/Documents/$1" "$2"
+}
+
+cpidr() {
+  cp "/storage/emulated/0/Documents/$1" "$2"
+}
+
+cpridr() {
+  cp -r "/storage/emulated/0/Documents/$1" "$2"
+}
+
+mvaidc() {
+  mv "/storage/emulated/0/Documents/$1" .
+  cp -r "$1"/* .
+  rm -r "$1"
+}
+
+cpaidc() {
+  cp -r "/storage/emulated/0/Documents/$1" .
+  cp -r "$1"/* .
+  rm -r "$1"
+}
+
+mvodc() {
+  mv "$1" "/storage/emulated/0/Documents/"
+}
+
+cpodc() {
+  cp "$1" "/storage/emulated/0/Documents/"
+}
+
+cprodc() {
+  cp -r "$1" "/storage/emulated/0/Documents/"
+}
+
+mvisc() {
+  mv "/storage/emulated/0/Scripts/$1" .
+}
+
+cpisc() {
+  cp "/storage/emulated/0/Scripts/$1" .
+}
+
+cprisc() {
+  cp -r "/storage/emulated/0/Scripts/$1" .
+}
+
+mvisr() {
+  mv "/storage/emulated/0/Scripts/$1" "$2"
+}
+
+cpisr() {
+  cp "/storage/emulated/0/Scripts/$1" "$2"
+}
+
+cprisr() {
+  cp -r "/storage/emulated/0/Scripts/$1" "$2"
+}
+
+mvaisc() {
+  mv "/storage/emulated/0/Scripts/$1" .
+  cp -r "$1"/* .
+  rm -r "$1"
+}
+
+cpaisc() {
+  cp -r "/storage/emulated/0/Scripts/$1" .
+  cp -r "$1"/* .
+  rm -r "$1"
+}
+
+mvosc() {
+  mv "$1" "/storage/emulated/0/Scripts/"
+}
+
+cposc() {
+  cp "$1" "/storage/emulated/0/Scripts/"
+}
+
+cprosc() {
+  cp -r "$1" "/storage/emulated/0/Scripts/"
+}
+
 mvip() {
   mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/"
 }
@@ -2051,6 +2147,56 @@ rmcpa() {
   cpaic "$1"
 }
 
+rmmvia() {
+  rm -rf *
+  mvic *
+}
+
+rmcpia() {
+  rm -rf *
+  cpric *
+}
+
+rmmvda() {
+  rm -rf *
+  mvaidc "$1"
+}
+
+rmcpda() {
+  rm -rf *
+  cpaidc "$1"
+}
+
+rmmvida() {
+  rm -rf *
+  mvidc *
+}
+
+rmcpida() {
+  rm -rf *
+  cpridc *
+}
+
+rmmvsa() {
+  rm -rf *
+  mvaisc "$1"
+}
+
+rmcpsa() {
+  rm -rf *
+  cpaisc "$1"
+}
+
+rmmvisa() {
+  rm -rf *
+  mvisc *
+}
+
+rmcpisa() {
+  rm -rf *
+  cprisc *
+}
+
 grmmva() {
   grm *
   mvaic "$1"
@@ -2061,6 +2207,56 @@ grmcpa() {
   cpaic "$1"
 }
 
+grmmvia() {
+  grm *
+  mvic *
+}
+
+grmcpia() {
+  grm *
+  cpric *
+}
+
+grmmvda() {
+  grm *
+  mvaidc "$1"
+}
+
+grmcpda() {
+  grm *
+  cpaidc "$1"
+}
+
+grmmvida() {
+  grm *
+  mvidc *
+}
+
+grmcpida() {
+  grm *
+  cpridc *
+}
+
+grmmvsa() {
+  grm *
+  mvaisc "$1"
+}
+
+grmcpsa() {
+  grm *
+  cpaisc "$1"
+}
+
+grmmvisa() {
+  grm *
+  mvisc *
+}
+
+grmcpisa() {
+  grm *
+  cprisc *
+}
+
 mvagcp() {
   mvaic "$1"
   gacp "$2"
@@ -2069,6 +2265,56 @@ mvagcp() {
 cpagcp() {
   cpaic "$1"
   gacp "$2"
+}
+
+mviagcp() {
+  mvic *
+  gacp "$1"
+}
+
+cpiagcp() {
+  cpric *
+  gacp "$1"
+}
+
+mvdagcp() {
+  mvaidc "$1"
+  gacp "$2"
+}
+
+cpdagcp() {
+  cpaidc "$1"
+  gacp "$2"
+}
+
+mvidagcp() {
+  mvidc *
+  gacp "$1"
+}
+
+cpidagcp() {
+  cpridc *
+  gacp "$1"
+}
+
+mvsagcp() {
+  mvaisc "$1"
+  gacp "$2"
+}
+
+cpsagcp() {
+  cpaisc "$1"
+  gacp "$2"
+}
+
+mvisagcp() {
+  mvisc *
+  gacp "$1"
+}
+
+cpisagcp() {
+  cprisc *
+  gacp "$1"
 }
 
 rmmvagcp() {
@@ -2083,6 +2329,67 @@ rmcpagcp() {
   gacp "$2"
 }
 
+rmmviagcp() {
+  rm -rf *
+  mvic *
+  gacp "$1"
+}
+
+rmcpiagcp() {
+  rm -rf *
+  cpric *
+  gacp "$1"
+}
+
+rmmvdagcp() {
+  rm -rf *
+  mvaidc "$1"
+  gacp "$2"
+}
+
+rmcpdagcp() {
+  rm -rf *
+  cpaidc "$1"
+  gacp "$2"
+}
+
+rmmvidagcp() {
+  rm -rf *
+  mvidc *
+  gacp "$1"
+}
+
+rmcpidagcp() {
+  rm -rf *
+  cpridc *
+  gacp "$1"
+}
+
+rmmvsagcp() {
+  rm -rf *
+  mvaisc "$1"
+  gacp "$2"
+}
+
+rmcpsagcp() {
+  rm -rf *
+  cpaisc "$1"
+  gacp "$2"
+}
+
+rmmvisagcp() {
+  rm -rf *
+  mvisc *
+  gacp "$1"
+}
+
+rmcpisagcp() {
+  rm -rf *
+  cprisc *
+  gacp "$1"
+}
+
+
 grmmvagcp() {
   grm *
   mvaic "$1"
@@ -2093,6 +2400,66 @@ grmcpagcp() {
   grm *
   cpaic "$1"
   gacp "$2"
+}
+
+grmmviagcp() {
+  grm *
+  mvic *
+  gacp "$1"
+}
+
+grmcpiagcp() {
+  grm *
+  cpric *
+  gacp "$1"
+}
+
+grmmvdagcp() {
+  grm *
+  mvaidc "$1"
+  gacp "$2"
+}
+
+grmcpdagcp() {
+  grm *
+  cpaidc "$1"
+  gacp "$2"
+}
+
+grmmvidagcp() {
+  grm *
+  mvidc *
+  gacp "$1"
+}
+
+grmcpidagcp() {
+  grm *
+  cpridc *
+  gacp "$1"
+}
+
+grmmvsagcp() {
+  grm *
+  mvaisc "$1"
+  gacp "$2"
+}
+
+grmcpsagcp() {
+  grm *
+  cpaisc "$1"
+  gacp "$2"
+}
+
+grmmvisagcp() {
+  grm *
+  mvisc *
+  gacp "$1"
+}
+
+grmcpisagcp() {
+  grm *
+  cprisc *
+  gacp "$1"
 }
 
 update_vimrc() {
