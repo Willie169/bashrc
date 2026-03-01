@@ -83,6 +83,7 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/51-extra-functions.sh -O ~/.bashrc.d/51-extra-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
 source ~/.bashrc
