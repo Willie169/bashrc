@@ -1,7 +1,16 @@
 #!/bin/bash
 
+alias vncn='vncserver -noxstartup'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
+
+dis() {
+  export DISPLAY="$1"
+}
+
+undis() {
+  unset DISPLAY
+}
 
 vnc() {
     export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
@@ -10,7 +19,7 @@ vnc() {
 xfce() {
   unset DBUS_SESSION_BUS_ADDRESS
   unset SESSION_MANAGER
-  dbus-launch --exit-with-session startxfce4 &
+  dbus-launch --exit-with-session xfce4-session &
 }
 
 xdgset() {

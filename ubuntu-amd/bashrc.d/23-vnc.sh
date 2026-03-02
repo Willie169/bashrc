@@ -1,7 +1,16 @@
 #!/bin/bash
 
+alias vncn='vncserver -noxstartup'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
+
+dis() {
+  export DISPLAY="$1"
+}
+
+undis() {
+  unset DISPLAY
+}
 
 vnc() {
     export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
@@ -15,7 +24,9 @@ xdgset() {
   fi
   mkdir -p $XDG_RUNTIME_DIR
   chmod 700 $XDG_RUNTIME_DIR
-  export DISPLAY="$1"
+  if [ $# -ne 0 ]; then
+    export DISPLAY="$1"
+  fi
 }
 
 vncclean() {
