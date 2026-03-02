@@ -23,3 +23,5 @@ export DOC="/storage/emulated/0/Documents"
 export SCR="/storage/emulated/0/Scripts"
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export GALLIUM_DRIVER=zink
+export MESA_GL_VERSION_OVERRIDE=4.3

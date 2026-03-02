@@ -8,9 +8,10 @@ xdgset() {
   if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
     export XDG_RUNTIME_DIR="$TMPDIR/runtime-root"
   else
-    export XDG_RUNTIME_DIR="/tmp/runtime-root"
+    export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
   fi
   mkdir -p $XDG_RUNTIME_DIR
+  chmod 700 $XDG_RUNTIME_DIR
   export DISPLAY="$1"
 }
 

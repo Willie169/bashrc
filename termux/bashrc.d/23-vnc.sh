@@ -3,6 +3,7 @@
 alias vnc='vncserver'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
+alias xfce='xfce4-session &'
 
 xdgset() {
   if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
@@ -11,6 +12,7 @@ xdgset() {
     export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
   fi
   mkdir -p $XDG_RUNTIME_DIR
+  chmod 700 $XDG_RUNTIME_DIR
   export DISPLAY="$1"
 }
 
