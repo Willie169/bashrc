@@ -23,8 +23,10 @@ vncclean() {
   if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
     rm -f "$TMPDIR/.X${1}-lock" 2>/dev/null || true
     rm -f "$TMPDIR/.X11-unix/.X${1}" 2>/dev/null || true
+    rm -f "$TMPDIR/.X11-unix/X${1}" 2>/dev/null || true
   else
     rm -f "/data/data/com.termux/files/usr/tmp/.X${1}-lock" 2>/dev/null || true
     rm -f "/data/data/com.termux/files/usr/tmp/.X11-unix/.X${1}" 2>/dev/null || true
+    rm -f "/data/data/com.termux/files/usr/tmp/.X11-unix/X${1}" 2>/dev/null || true
   fi
 }
