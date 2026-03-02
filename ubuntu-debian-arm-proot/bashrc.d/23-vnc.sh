@@ -1,8 +1,17 @@
 #!/bin/bash
 
-alias vnc='vncserver'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
+
+vnc() {
+    export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
+}
+
+xfce() {
+  unset DBUS_SESSION_BUS_ADDRESS
+  unset SESSION_MANAGER
+  dbus-launch --exit-with-session startxfce4 &
+}
 
 xdgset() {
   if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
@@ -12,7 +21,9 @@ xdgset() {
   fi
   mkdir -p $XDG_RUNTIME_DIR
   chmod 700 $XDG_RUNTIME_DIR
-  export DISPLAY="$1"
+  if [ $# -ne 0 ]; then
+    export DISPLAY="$1"
+  fi
 }
 
 vncclean() {

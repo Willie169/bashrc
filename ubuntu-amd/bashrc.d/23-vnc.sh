@@ -1,8 +1,11 @@
 #!/bin/bash
 
-alias vnc='vncserver'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
+
+vnc() {
+    export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
+}
 
 xdgset() {
   if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
