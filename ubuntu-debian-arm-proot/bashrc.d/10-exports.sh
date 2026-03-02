@@ -19,6 +19,6 @@ export AIDER_EDITOR="$VISUAL"
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 export PULSE_SERVER='127.0.0.1'
 export GALLIUM_DRIVER=virpipe
-export MESA_GL_VERSION_OVERRIDE=4.0
+export MESA_GL_VERSION_OVERRIDE=4.3
 export DLFLAGS='-A -C'
 source /etc/os-release
