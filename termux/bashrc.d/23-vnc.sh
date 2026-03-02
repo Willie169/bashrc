@@ -1,8 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-alias vncn='vncserver -noxstartup'
-alias vnck='vncserver -kill'
-alias vncl='vncserver -list'
 alias xfce='xfce4-session &'
 
 dis() {
@@ -11,10 +8,6 @@ dis() {
 
 undis() {
   unset DISPLAY
-}
-
-vnc() {
-    export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
 }
 
 xdgset() {
@@ -30,7 +23,7 @@ xdgset() {
   fi
 }
 
-vncclean() {
+xclean() {
   if [ $# -ne 1 ] || ! [[ $1 =~ ^[0-9]+$ ]]; then
     echo "Usage: vncclean <display_number>" >&2
     return 1

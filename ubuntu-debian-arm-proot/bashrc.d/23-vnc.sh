@@ -1,9 +1,5 @@
 #!/bin/bash
 
-alias vncn='vncserver -noxstartup'
-alias vnck='vncserver -kill'
-alias vncl='vncserver -list'
-
 dis() {
   export DISPLAY="$1"
 }
@@ -12,13 +8,11 @@ undis() {
   unset DISPLAY
 }
 
-vnc() {
-    export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
-}
-
 xfce() {
   unset DBUS_SESSION_BUS_ADDRESS
   unset SESSION_MANAGER
+  export GALLIUM_DRIVER=zink
+  export MESA_GL_VERSION_OVERRIDE=4.3
   dbus-launch --exit-with-session xfce4-session &
 }
 
@@ -35,7 +29,7 @@ xdgset() {
   fi
 }
 
-vncclean() {
+xclean() {
   if [ $# -ne 1 ] || ! [[ $1 =~ ^[0-9]+$ ]]; then
     echo "Usage: vncclean <display_number>" >&2
     return 1

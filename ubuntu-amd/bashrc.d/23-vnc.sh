@@ -29,7 +29,7 @@ xdgset() {
   fi
 }
 
-vncclean() {
+xclean() {
   if [ $# -ne 1 ] || ! [[ $1 =~ ^[0-9]+$ ]]; then
     echo "Usage: vncclean <display_number>" >&2
     return 1
