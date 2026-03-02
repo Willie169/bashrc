@@ -20,3 +20,5 @@ export EMU="/storage/emulated/0"
 export DOW="/storage/emulated/0/Download"
 export DOC="/storage/emulated/0/Documents"
 export SCR="/storage/emulated/0/Scripts"
+export VISUAL=vim
+export EDITOR="$VISUAL"
