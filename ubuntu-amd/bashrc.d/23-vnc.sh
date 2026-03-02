@@ -1,5 +1,6 @@
 #!/bin/bash
 
+alias vnc='vncserver'
 alias vncn='vncserver -noxstartup'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
@@ -12,7 +13,7 @@ undis() {
   unset DISPLAY
 }
 
-vnc() {
+vncd() {
     export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
 }
 
