@@ -22,3 +22,4 @@ source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 
 command -v ollama >/dev/null 2>&1 && (ollama serve >/dev/null 2>&1 &) || true
+command -v open-webui >/dev/null 2>&1 && (DATA_DIR=~/.open-webui open-webui serve >/dev/null 2>&1 &) || true
