@@ -1054,19 +1054,93 @@ zip_split() {
 }
 
 dfssh() {
-  ssh "$1"@"$2" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
-}
-
-dfsftp() {
-  sftp "$1"@"$2"
+  local forwards=(
+    -L 3000:localhost:3000
+    -L 3300:localhost:3300
+    -L 5500:localhost:5000
+    -L 5901:localhost:5901
+    -L 5902:localhost:5902
+    -L 8080:localhost:8080
+    -L 11434:localhost:11434
+  )
+  if (( $# == 1 )); then
+    ssh root@"$1" "${forwards[@]}"
+  elif (( $# == 2 )); then
+    ssh "$1"@"$2" "${forwards[@]}"
+  elif (( $# >= 3 )); then
+    local user="$1"
+    local host="$2"
+    local port="$3"
+    shift 3
+    ssh "$user"@"$host" -p "$port" "${forwards[@]}" "$@"
+  else
+    echo "Usage:"
+    echo "  dfssh host"
+    echo "  dfssh user host"
+    echo "  dfssh user host port [extra ssh args...]"
+    return 1
+  fi
 }
 
 pdssh() {
-  ssh -p 2022 root@"$1" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
+  local forwards=(
+    -L 3000:localhost:3000
+    -L 3300:localhost:3300
+    -L 5500:localhost:5000
+    -L 5901:localhost:5901
+    -L 5902:localhost:5902
+    -L 8080:localhost:8080
+    -L 11434:localhost:11434
+  )
+  if (( $# == 1 )); then
+    ssh root@"$1" -p 2022 "${forwards[@]}"
+  elif (( $# >= 2 )); then
+    local user="$1"
+    local host="$2"
+    shift 2
+    ssh "$user"@"$host" -p 2022 "${forwards[@]}" "$@"
+  else
+    echo "Usage:"
+    echo "  pdssh host"
+    echo "  pdssh user host [extra ssh args...]"
+    return 1
+  fi
+}
+
+dfsftp() {
+  if (( $# == 1 )); then
+    sftp root@"$1"
+  elif (( $# == 2 )); then
+    ssh "$1"@"$2"
+  elif (( $# >= 3 )); then
+    local user="$1"
+    local host="$2"
+    local port="$3"
+    shift 3
+    ssh "$user"@"$host" -p "$port" "$@"
+  else
+    echo "Usage:"
+    echo "  dfsftp host"
+    echo "  dfsftp user host"
+    echo "  dfsftp user host port [extra ssh args...]"
+    return 1
+  fi
 }
 
 pdsftp() {
-  sftp -p 2022 root@"$1"
+  if (( $# == 1 )); then
+    sftp root@"$1" -p 2022
+  elif (( $# >= 2 )); then
+    local user="$1"
+    local host="$2"
+    shift 2
+    ssh "$user"@"$host" -p 2022 "$@"
+  else
+    echo "Usage:"
+    echo "  pdsftp host"
+    echo "  pdsftp user host [extra ssh args...]"
+    return 1
+  fi
 }
 
 update_vimrc() {
