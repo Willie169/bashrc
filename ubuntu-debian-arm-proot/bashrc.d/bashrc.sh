@@ -21,5 +21,12 @@ export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 
-command -v ollama >/dev/null 2>&1 && (ollama serve >/dev/null 2>&1 &) || true
-command -v open-webui >/dev/null 2>&1 && (DATA_DIR=~/.open-webui open-webui serve >/dev/null 2>&1 &) || true
+mkdir -p ~/.bashrc.pid
+
+if [ ! -f ~/.bashrc.pid/ollama.pid ] || ! kill -0 $(cat ~/.bashrc.pid/ollama.pid) 2>/dev/null; then
+    command -v ollama >/dev/null 2>&1 && (ollama serve >/dev/null 2>&1 & echo $! > ~/.bashrc.pid/ollama.pid)
+fi
+
+if [ ! -f ~/.bashrc.pid/open-webui.pid ] || ! kill -0 $(cat ~/.bashrc.pid/open-webui.pid) 2>/dev/null; then
+    command -v open-webui >/dev/null 2>&1 && (DATA_DIR=~/.open-webui open-webui serve >/dev/null 2>&1 & echo $! > ~/.bashrc.pid/open-webui.pid)
+fi
