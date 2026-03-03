@@ -1058,8 +1058,11 @@ dfssh() {
     -L 3000:localhost:3000
     -L 3300:localhost:3300
     -L 5500:localhost:5000
+    -L 5900:localhost:5900
     -L 5901:localhost:5901
     -L 5902:localhost:5902
+    -L 5903:localhost:5903
+    -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 11434:localhost:11434
   )
@@ -1087,8 +1090,11 @@ pdssh() {
     -L 3000:localhost:3000
     -L 3300:localhost:3300
     -L 5500:localhost:5000
+    -L 5900:localhost:5900
     -L 5901:localhost:5901
     -L 5902:localhost:5902
+    -L 5903:localhost:5903
+    -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 11434:localhost:11434
   )
