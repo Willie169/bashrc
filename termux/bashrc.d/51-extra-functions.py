@@ -1,7 +1,7 @@
 # 51-extra-functions.py
 
 f = open("51-extra-functions.sh", "w")
- 
+
 def lr(x):
     return range(0, len(x))
 
@@ -118,7 +118,7 @@ mviaAgcp() {
 }
 
 cpiaAgcp() {
-  cpriaAc "*"
+  cpiaAc "*"
   gacp "$1"
 }
 """

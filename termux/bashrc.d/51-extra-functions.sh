@@ -4599,7 +4599,7 @@ mviagcp() {
 }
 
 cpiagcp() {
-  cpriac "*"
+  cpiac "*"
   gacp "$1"
 }
 mvadgcp() {
@@ -4628,7 +4628,7 @@ mviadgcp() {
 }
 
 cpiadgcp() {
-  cpriadc "*"
+  cpiadc "*"
   gacp "$1"
 }
 mvasgcp() {
@@ -4657,7 +4657,7 @@ mviasgcp() {
 }
 
 cpiasgcp() {
-  cpriasc "*"
+  cpiasc "*"
   gacp "$1"
 }
 mvaegcp() {
@@ -4686,6 +4686,6 @@ mviaegcp() {
 }
 
 cpiaegcp() {
-  cpriaec "*"
+  cpiaec "*"
   gacp "$1"
 }
