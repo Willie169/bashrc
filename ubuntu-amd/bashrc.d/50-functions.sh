@@ -1066,7 +1066,7 @@ dfssh() {
     -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 11434:localhost:11434
-    -L 18789:localhost: 18789 
+    -L 18789:localhost: 18789
   )
   if (( $# == 1 )); then
     ssh root@"$1" "${forwards[@]}"
@@ -1089,7 +1089,7 @@ dfssh() {
 
 cfssh() {
   local forwards=(
-    -L 18789:localhost: 18789 
+    -L 18789:localhost: 18789
   )
   if (( $# == 1 )); then
     ssh "$1"@localhost "${forwards[@]}"
@@ -1123,7 +1123,7 @@ pdssh() {
     -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 11434:localhost:11434
-    -L 18789:localhost: 18789 
+    -L 18789:localhost: 18789
   )
   if (( $# == 1 )); then
     ssh root@"$1" -p 2022 "${forwards[@]}"
@@ -1299,6 +1299,50 @@ update_sylvan_config() {
 
 update_joplin() {
   (wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash)
+}
+
+myqemu_install() {
+  local iso="$1"
+  local drive="$2"
+  local addr="$3"
+  shift 2
+  qemu-system-x86_64 \
+    -enable-kvm \
+    -cpu host \
+    -m 4G \
+    -smp $(nproc) \
+    -boot d \
+    -cdrom "$iso" \
+    -drive file="$drive",format=qcow2,if=virtio \
+    -netdev user,id=n1,net="$addr"/24,hostfwd=tcp::2222-:22 \
+    -device virtio-net-pci,netdev=n1 \
+    -display sdl,gl=on \
+    -vga virtio \
+    -device virtio-serial \
+    -device virtserialport \
+    -soundhw hda \
+    -vnc :2 "$@"
+}
+
+myqemu_run() {
+  local drive="$1"
+  local addr="$2"
+  shift 2
+  qemu-system-x86_64 \
+    -enable-kvm \
+    -cpu host \
+    -m 4G \
+    -smp $(nproc) \
+    -boot c \
+    -drive file="$drive",format=qcow2,if=virtio \
+    -netdev user,id=n1,net="$addr"/24,hostfwd=tcp::2222-:22 \
+    -device virtio-net-pci,netdev=n1 \
+    -display sdl,gl=on \
+    -vga virtio \
+    -device virtio-serial \
+    -device virtserialport \
+    -soundhw hda \
+    -vnc :2 "$@"
 }
 
 rvs() {
