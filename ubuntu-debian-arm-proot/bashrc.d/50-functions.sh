@@ -1154,13 +1154,13 @@ dfsftp() {
   if (( $# == 1 )); then
     sftp root@"$1"
   elif (( $# == 2 )); then
-    ssh "$1"@"$2"
+    sftp "$1"@"$2"
   elif (( $# >= 3 )); then
     local user="$1"
     local host="$2"
     local port="$3"
     shift 3
-    ssh "$user"@"$host" -p "$port" "$@"
+    sftp -P "$port" "$user"@"$host" "$@"
   else
     echo "Usage:"
     echo "  dfsftp host"
@@ -1174,13 +1174,13 @@ cfsftp() {
   if (( $# == 1 )); then
     sftp "$1"@localhost
   elif (( $# == 2 )); then
-    ssh "$1"@"$2"
+    sftp "$1"@"$2"
   elif (( $# >= 3 )); then
     local user="$1"
     local host="$2"
     local port="$3"
     shift 3
-    ssh "$user"@"$host" -p "$port" "$@"
+    sftp -P "$port" "$user"@"$host" "$@"
   else
     echo "Usage:"
     echo "  cfsftp user"
@@ -1192,12 +1192,12 @@ cfsftp() {
 
 pdsftp() {
   if (( $# == 1 )); then
-    sftp root@"$1" -p 2022
+    sftp -P 2022 root@"$1"
   elif (( $# >= 2 )); then
     local user="$1"
     local host="$2"
     shift 2
-    ssh "$user"@"$host" -p 2022 "$@"
+    sftp -P 2022 "$user"@"$host" "$@"
   else
     echo "Usage:"
     echo "  pdsftp host"
@@ -1208,12 +1208,12 @@ pdsftp() {
 
 pcsftp() {
   if (( $# == 1 )); then
-    sftp "$1"@localhost -p 2222
+    sftp -P 2222 "$1"@localhost
   elif (( $# >= 2 )); then
     local user="$1"
     local host="$2"
     shift 2
-    sftp "$user"@"$host" -p 2222 "$@"
+    sftp -P 2222 "$user"@"$host" "$@"
   else
     echo "Usage:"
     echo "  pcsftp user"
