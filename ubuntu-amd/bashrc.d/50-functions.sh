@@ -1066,7 +1066,7 @@ dfssh() {
     -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 11434:localhost:11434
-    -L 18789:localhost: 18789
+    -L 18789:localhost:18789
   )
   if (( $# == 1 )); then
     ssh root@"$1" "${forwards[@]}"
@@ -1089,7 +1089,7 @@ dfssh() {
 
 cfssh() {
   local forwards=(
-    -L 18789:localhost: 18789
+    -L 18789:localhost:18789
   )
   if (( $# == 1 )); then
     ssh "$1"@localhost "${forwards[@]}"
@@ -1123,7 +1123,7 @@ pdssh() {
     -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 11434:localhost:11434
-    -L 18789:localhost: 18789
+    -L 18789:localhost:18789
   )
   if (( $# == 1 )); then
     ssh root@"$1" -p 2022 "${forwards[@]}"
