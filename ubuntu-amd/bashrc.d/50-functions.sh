@@ -1305,7 +1305,7 @@ myqemu_install() {
   local iso="$1"
   local drive="$2"
   local addr="$3"
-  shift 2
+  shift 3
   qemu-system-x86_64 \
     -enable-kvm \
     -cpu host \
