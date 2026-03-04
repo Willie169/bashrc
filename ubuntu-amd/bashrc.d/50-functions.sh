@@ -1085,6 +1085,26 @@ dfssh() {
   fi
 }
 
+cfssh() {
+  if (( $# == 1 )); then
+    ssh "$1"@localhost
+  elif (( $# == 2 )); then
+    ssh "$1"@"$2"
+  elif (( $# >= 3 )); then
+    local user="$1"
+    local host="$2"
+    local port="$3"
+    shift 3
+    ssh "$user"@"$host" -p "$port" "$@"
+  else
+    echo "Usage:"
+    echo "  cfssh user"
+    echo "  cfssh user host"
+    echo "  cfssh user host port [extra ssh args...]"
+    return 1
+  fi
+}
+
 pdssh() {
   local forwards=(
     -L 3000:localhost:3000
@@ -1113,6 +1133,23 @@ pdssh() {
   fi
 }
 
+pcssh() {
+  if (( $# == 1 )); then
+    ssh "$1"@localhost -p 2222
+  elif (( $# >= 2 )); then
+    local user="$1"
+    local host="$2"
+    shift 2
+    ssh "$user"@"$host" -p 2222 "$@"
+  else
+    echo "Usage:"
+    echo "  pcssh user"
+    echo "  pcssh user host"
+    echo "  pcssh user host [extra ssh args...]"
+    return 1
+  fi
+}
+
 dfsftp() {
   if (( $# == 1 )); then
     sftp root@"$1"
@@ -1133,6 +1170,26 @@ dfsftp() {
   fi
 }
 
+cfsftp() {
+  if (( $# == 1 )); then
+    sftp "$1"@localhost
+  elif (( $# == 2 )); then
+    ssh "$1"@"$2"
+  elif (( $# >= 3 )); then
+    local user="$1"
+    local host="$2"
+    local port="$3"
+    shift 3
+    ssh "$user"@"$host" -p "$port" "$@"
+  else
+    echo "Usage:"
+    echo "  cfsftp user"
+    echo "  cfsftp user host"
+    echo "  cfsftp user host port [extra ssh args...]"
+    return 1
+  fi
+}
+
 pdsftp() {
   if (( $# == 1 )); then
     sftp root@"$1" -p 2022
@@ -1145,6 +1202,23 @@ pdsftp() {
     echo "Usage:"
     echo "  pdsftp host"
     echo "  pdsftp user host [extra ssh args...]"
+    return 1
+  fi
+}
+
+pcsftp() {
+  if (( $# == 1 )); then
+    sftp "$1"@localhost -p 2222
+  elif (( $# >= 2 )); then
+    local user="$1"
+    local host="$2"
+    shift 2
+    sftp "$user"@"$host" -p 2222 "$@"
+  else
+    echo "Usage:"
+    echo "  pcsftp user"
+    echo "  pcsftp user host"
+    echo "  pcsftp user host [extra ssh args...]"
     return 1
   fi
 }
@@ -1224,7 +1298,7 @@ rvs() {
   if (( $# == 0 )); then
     remote-viewer spice://127.0.0.1:5930
   else
-    remote-viewer spice://127.0.0.1:$@
+    remote-viewer spice://127.0.0.1:"$@"
   fi
 }
 
