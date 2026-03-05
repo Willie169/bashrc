@@ -1310,7 +1310,6 @@ myqemu_install() {
     -enable-kvm \
     -cpu host \
     -m 4G \
-    -balloon virtio \
     -smp $(nproc) \
     -boot d \
     -cdrom "$iso" \
@@ -1321,6 +1320,7 @@ myqemu_install() {
     -vga virtio \
     -device virtio-serial \
     -device virtserialport \
+    -device virtio-balloon-pci \
     -soundhw hda \
     -vnc :2 "$@"
 }
@@ -1333,7 +1333,6 @@ myqemu_run() {
     -enable-kvm \
     -cpu host \
     -m 4G \
-    -balloon virtio \
     -smp $(nproc) \
     -boot c \
     -drive file="$drive",format=qcow2,if=virtio \
@@ -1343,6 +1342,7 @@ myqemu_run() {
     -vga virtio \
     -device virtio-serial \
     -device virtserialport \
+    -device virtio-balloon-pci \
     -soundhw hda \
     -vnc :2 "$@"
 }
