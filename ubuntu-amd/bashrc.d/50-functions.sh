@@ -1321,7 +1321,9 @@ myqemu_install() {
     -device virtio-serial \
     -device virtserialport \
     -device virtio-balloon-pci \
-    -soundhw hda \
+    -audiodev pipewire,id=audio0 \
+    -device ich9-intel-hda \
+    -device hda-duplex,audiodev=audio0 \
     -vnc :2 "$@"
 }
 
@@ -1343,7 +1345,9 @@ myqemu_run() {
     -device virtio-serial \
     -device virtserialport \
     -device virtio-balloon-pci \
-    -soundhw hda \
+    -audiodev pipewire,id=audio0 \
+    -device ich9-intel-hda \
+    -device hda-duplex,audiodev=audio0 \
     -vnc :2 "$@"
 }
 
