@@ -23,5 +23,5 @@ SOCKET=/data/data/com.termux/files/usr/tmp/termux-shell.sock
 if command -v socat >/dev/null 2>&1 && [ ! -e "$SOCKET" ] || ! lsof -U >/dev/null 2>&1 | grep -q "$SOCKET"; then
   mkdir -p $(dirname "$SOCKET")
   [ -e "$SOCKET" ] && rm "$SOCKET"
-  socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'read line; if [ -n "$line" ]; then eval "$line"; fi' &
+  socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'read line; if [ -n "$line" ]; then eval "$line"; fi' >/dev/null 2>&1 &
 fi
