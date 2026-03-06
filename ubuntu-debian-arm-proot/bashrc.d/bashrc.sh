@@ -21,8 +21,7 @@ export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 
-export SOCKET="/tmp/termux-shell.sock"
-
+export TERMUX_SOCKET="/tmp/termux-shell.sock"
 termux() {
   if [ $# -lt 1 ]; then
     echo "Usage: termux <cmd> [args...]"

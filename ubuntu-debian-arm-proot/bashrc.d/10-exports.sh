@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export NVM_DIR="$HOME/.nvm"
+export MAMBA_ROOT_PREFIX="${HOME}/conda"
 export TMPDIR="/tmp"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
 export JAVAROOT="/usr/local/java"
