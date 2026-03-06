@@ -21,18 +21,16 @@ MESA_NO_ERROR=1 MESA_LOADER_DRIVER_OVERRIDE=zink MESA_GL_VERSION_OVERRIDE=4.3COM
 
 SOCKET=/data/data/com.termux/files/usr/tmp/termux-shell.sock
 if command -v socat >/dev/null 2>&1; then
-  if [ ! -S "$SOCKET" ] || ! echo "echo hello" | socat - UNIX-CONNECT:"$SOCKET" 2>/dev/null | grep -q "^hello$"; then
-    mkdir -p "$(dirname "$SOCKET")"
-    [ -e "$SOCKET" ] && rm "$SOCKET"
-    socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'
-      export PREFIX=/data/data/com.termux/files/usr
-      export PATH=$PATH
-      export HOME=$HOME
-      while read line; do
-        if [ -n "$line" ]; then
-          eval "$line"
-        fi
-      done
-    ' >/dev/null 2>&1 &
-  fi
+if [ ! -S "$SOCKET" ] || ! echo "echo hello" | socat - UNIX-CONNECT:"$SOCKET" 2>/dev/null | grep -q "^hello$"; then
+mkdir -p "$(dirname "$SOCKET")"
+[ -e "$SOCKET" ] && rm "$SOCKET"
+socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'
+source "$HOME/.bashrc"
+while IFS= read -r -d "" cmd; do
+if [ -n "$cmd" ]; then
+bash -c "$cmd"
+fi
+done
+' >/dev/null 2>&1 &
+fi
 fi
