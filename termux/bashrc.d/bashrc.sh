@@ -28,7 +28,7 @@ socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'
 source "$HOME/.bashrc"
 while IFS= read -r -d "" cmd; do
 if [ -n "$cmd" ]; then
-bash -c "$cmd"
+"$cmd"
 fi
 done
 ' >/dev/null 2>&1 &
