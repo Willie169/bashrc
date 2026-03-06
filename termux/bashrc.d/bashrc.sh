@@ -20,6 +20,7 @@ pacmd load-module module-sles-sink
 MESA_NO_ERROR=1 MESA_LOADER_DRIVER_OVERRIDE=zink MESA_GL_VERSION_OVERRIDE=4.3COMPAT MESA_GLES_VERSION_OVERRIDE=3.2 GALLIUM_DRIVER=zink ZINK_DESCRIPTORS=lazy virgl_test_server --use-egl-surfaceless --use-gles &
 
 export SOCKET=/data/data/com.termux/files/usr/tmp/termux-shell.sock
+
 if command -v socat >/dev/null 2>&1; then
 if [ ! -S "$SOCKET" ] || ! echo "echo hello" | socat - UNIX-CONNECT:"$SOCKET" 2>/dev/null | grep -q "^hello$"; then
 mkdir -p "$(dirname "$SOCKET")"
@@ -28,10 +29,17 @@ socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'
 source "$HOME/.bashrc"
 while IFS= read -r -d "" cmd; do
 if [ -n "$cmd" ]; then
-"$cmd"
+sh -c "$cmd"
 fi
 done
 ' >/dev/null 2>&1 &
 fi
 fi
-alias termux="socat - UNIX-CONNECT:$SOCKET"
+
+termux() {
+  if [ $# -lt 1 ]; then
+    echo "Usage: termux <cmd> [args...]"
+    return 1
+  fi
+  printf '%s\0' "$@" | socat - UNIX-CONNECT:"$SOCKET"
+}
