@@ -27,8 +27,7 @@ termux() {
     echo "Usage: termux <cmd> [args...]"
     return 1
   fi
-  cmd=$(printf '%q ' "$@")
-  echo "$cmd" | socat - UNIX-CONNECT:"$TERMUX_SOCKET"
+  printf '%s\0' "$@" | socat - UNIX-CONNECT:"$TERMUX_SOCKET"
 }
 
 mkdir -p ~/.bashrc.pid
