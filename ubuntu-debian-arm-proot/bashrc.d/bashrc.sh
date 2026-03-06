@@ -21,15 +21,6 @@ export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 
-export TERMUX_SOCKET="/tmp/termux-shell.sock"
-termux() {
-  if [ $# -lt 1 ]; then
-    echo "Usage: termux <cmd> [args...]"
-    return 1
-  fi
-  printf '%s\0' "$@" | socat - UNIX-CONNECT:"$SOCKET"
-}
-
 mkdir -p ~/.bashrc.pid
 
 if [ ! -f ~/.bashrc.pid/ollama.pid ] || ! kill -0 $(cat ~/.bashrc.pid/ollama.pid) 2>/dev/null; then
