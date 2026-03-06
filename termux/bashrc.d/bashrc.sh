@@ -34,3 +34,4 @@ done
 ' >/dev/null 2>&1 &
 fi
 fi
+alias termux="socat - UNIX-CONNECT:$SOCKET"
