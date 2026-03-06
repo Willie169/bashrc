@@ -20,7 +20,7 @@ pacmd load-module module-sles-sink
 MESA_NO_ERROR=1 MESA_LOADER_DRIVER_OVERRIDE=zink MESA_GL_VERSION_OVERRIDE=4.3COMPAT MESA_GLES_VERSION_OVERRIDE=3.2 GALLIUM_DRIVER=zink ZINK_DESCRIPTORS=lazy virgl_test_server --use-egl-surfaceless --use-gles &
 
 SOCKET=/data/data/com.termux/files/usr/tmp/termux-shell.sock
-if command -v socat >/dev/null 2>&1 && [ ! $(echo "echo hello" | socat - UNIX-CONNECT:$SOCKET) == "hello" ]; then
+if command -v socat >/dev/null 2>&1 && [ ! $(echo "echo hello" | socat - UNIX-CONNECT:$SOCKET 2>&1) == "hello" ]; then
   mkdir -p $(dirname "$SOCKET")
   [ -e "$SOCKET" ] && rm "$SOCKET"
   socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'read line; if [ -n "$line" ]; then eval "$line"; fi' >/dev/null 2>&1 &
