@@ -20,5 +20,5 @@ if [ ! -f ~/.bashrc.pid/pulseaudio.pid ] || ! kill -0 $(cat ~/.bashrc.pid/pulsea
 fi
 
 if [ ! -f ~/.bashrc.pid/virgl_test_server.pid ] || ! kill -0 $(cat ~/.bashrc.pid/virgl_test_server.pid) 2>/dev/null; then
-    command -v virgl_test_server >/dev/null 2>&1 && (MESA_NO_ERROR=1 MESA_LOADER_DRIVER_OVERRIDE=zink MESA_GL_VERSION_OVERRIDE=4.3COMPAT MESA_GLES_VERSION_OVERRIDE=3.2 GALLIUM_DRIVER=zink ZINK_DESCRIPTORS=lazy virgl_test_server --use-egl-surfaceless --use-gles >/dev/null 2>&1 &; echo $! > ~/.bashrc.pid/virgl_test_server.pid)
+    command -v virgl_test_server >/dev/null 2>&1 && (MESA_NO_ERROR=1 MESA_LOADER_DRIVER_OVERRIDE=zink MESA_GL_VERSION_OVERRIDE=4.3COMPAT MESA_GLES_VERSION_OVERRIDE=3.2 GALLIUM_DRIVER=zink ZINK_DESCRIPTORS=lazy virgl_test_server --use-egl-surfaceless --use-gles >/dev/null 2>&1 & echo $! > ~/.bashrc.pid/virgl_test_server.pid)
 fi
