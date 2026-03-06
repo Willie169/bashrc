@@ -22,22 +22,26 @@ MESA_NO_ERROR=1 MESA_LOADER_DRIVER_OVERRIDE=zink MESA_GL_VERSION_OVERRIDE=4.3COM
 export SOCKET=/data/data/com.termux/files/usr/tmp/termux-shell.sock
 
 if command -v socat >/dev/null 2>&1; then
-if [ ! -S "$SOCKET" ] || ! echo "echo hello" | socat - UNIX-CONNECT:"$SOCKET" 2>/dev/null | grep -q "^hello$"; then
-mkdir -p "$(dirname "$SOCKET")"
-[ -e "$SOCKET" ] && rm "$SOCKET"
-socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'
-if [ -d "$HOME/.bashrc.d"  ];  then
+  if [ ! -S "$SOCKET" ] || ! echo "echo hello" | socat - UNIX-CONNECT:"$SOCKET" 2>/dev/null | grep -q "^hello$"; then
+    mkdir -p "$(dirname "$SOCKET")"
+    [ -e "$SOCKET" ] && rm "$SOCKET"
+    cat > /data/data/com.termux/files/usr/tmp/socket-wrapper.sh << 'EOF'
+#!/data/data/com.termux/files/usr/bin/bash
+export PATH=$PATH:/data/data/com.termux/files/usr/bin
+if [ -d "$HOME/.bashrc.d" ]; then
   for f in "$HOME/.bashrc.d/"*; do
-    [ -r "$f"  ] && source "$f"
+    [ -r "$f" ] && source "$f"
   done
 fi
-while IFS= read -r -d "" cmd; do
-if [ -n "$cmd" ]; then
-sh -c "$cmd"
-fi
+while IFS= read -r -d '' cmd; do
+  if [ -n "$cmd" ]; then
+    eval "$cmd" 2>&1
+  fi
 done
-' >/dev/null 2>&1 &
-fi
+EOF
+    chmod +x /data/data/com.termux/files/usr/tmp/socket-wrapper.sh
+    socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr EXEC:/data/data/com.termux/files/usr/tmp/socket-wrapper.sh &
+  fi
 fi
 
 termux() {
@@ -45,5 +49,5 @@ termux() {
     echo "Usage: termux <cmd> [args...]"
     return 1
   fi
-  printf '%s\0' "$@" | socat - UNIX-CONNECT:"$SOCKET"
+  printf '%s\0' "$*" | socat - UNIX-CONNECT:"$SOCKET"
 }
