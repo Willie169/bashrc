@@ -26,7 +26,11 @@ if [ ! -S "$SOCKET" ] || ! echo "echo hello" | socat - UNIX-CONNECT:"$SOCKET" 2>
 mkdir -p "$(dirname "$SOCKET")"
 [ -e "$SOCKET" ] && rm "$SOCKET"
 socat UNIX-LISTEN:"$SOCKET",fork,reuseaddr SYSTEM:'
-source "$HOME/.bashrc"
+if [ -d "$HOME/.bashrc.d"  ];  then
+  for f in "$HOME/.bashrc.d/"*; do
+    [ -r "$f"  ] && source "$f"
+  done
+fi
 while IFS= read -r -d "" cmd; do
 if [ -n "$cmd" ]; then
 sh -c "$cmd"
