@@ -22,13 +22,7 @@ source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 
 export TERMUX_SOCKET="/tmp/termux-shell.sock"
-termux() {
-  if [ $# -lt 1 ]; then
-    echo "Usage: termux <cmd> [args...]"
-    return 1
-  fi
-  printf '%s\0' "$@" | socat - UNIX-CONNECT:"$TERMUX_SOCKET"
-}
+alias termux="socat - UNIX-CONNECT:$TERMUX_SOCKET"
 
 mkdir -p ~/.bashrc.pid
 
