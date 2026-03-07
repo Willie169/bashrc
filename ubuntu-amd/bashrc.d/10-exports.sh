@@ -27,6 +27,7 @@ export EDITOR="$VISUAL"
 export AIDER_EDITOR="$VISUAL"
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 export OLLAMA_BASE_URL=http://127.0.0.1:11434
+export OLLAMA_HOST=0.0.0.0
 export LITELLM_PROXY_URL=http://localhost:4000
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 export UBUNTU_VERSION_ID=$(
