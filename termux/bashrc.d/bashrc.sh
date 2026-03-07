@@ -11,6 +11,8 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 
+[ -r ~/API_KEY.sh ] && source ~/API_KEY.sh
+
 mkdir -p ~/.bashrc.pid
 
 if [ ! -f ~/.bashrc.pid/pulseaudio.pid ] || ! kill -0 $(cat ~/.bashrc.pid/pulseaudio.pid) 2>/dev/null; then
