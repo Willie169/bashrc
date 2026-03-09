@@ -19,6 +19,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export AIDER_EDITOR="$VISUAL"
 export OLLAMA_API_BASE=http://127.0.0.1:11434
+export OLLAMA_API_HOST=http://127.0.0.1:11434
 export OLLAMA_BASE_URL=http://127.0.0.1:11434
 export OLLAMA_HOST=0.0.0.0
 export PULSE_SERVER=127.0.0.1
