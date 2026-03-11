@@ -61,8 +61,8 @@ return {
         },
       },
     }
-    vim.keymap.set("c", "<C-h>", "CodeCompanion")
-    vim.keymap.set("c", "<C-g>", "CodeCompanionChat")
+    vim.keymap.set("n", "<leader>cc", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
+    vim.keymap.set("n", "<leader>ci", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
   dependencies = {
     "nvim-lua/plenary.nvim",
