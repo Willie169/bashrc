@@ -39,16 +39,15 @@ return {
     "ravitemer/mcphub.nvim",
   },
   config = function()
-    local ollama_fn = function()
-      return require("codecompanion.adapters").use("ollama", { schema = { model = { default = "qwen2.5-coder:3b-instruct-q4_K_M" } } })
-    end
     require("codecompanion").setup {
       strategies = {
         chat = {
-          adapter = "ollama_fn",
+          adapter = "ollama",
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
         },
         inline = {
-          adapter = "ollama_fn",
+          adapter = "ollama",
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
           keymaps = {
             accept_change = {
               modes = { n = "ga", i = "<Tab>" },
@@ -62,7 +61,8 @@ return {
           },
         },
         cmd = {
-          adapter = "ollama_fn",
+          adapter = "ollama",
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
         },
       },
     }
