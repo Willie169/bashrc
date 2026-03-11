@@ -70,6 +70,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
   },
+  config = function()
+    vim.keymap.set("i", "<C-g>", ":CodeCompanionInline<CR>")
+  end
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/mcphub.lua <<'EOF'
