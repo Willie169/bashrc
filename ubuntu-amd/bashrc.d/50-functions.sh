@@ -1272,6 +1272,10 @@ update_bashrc() {
   )
 }
 
+update_nvim() {
+  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+}
+
 update_lizzieyzy_config() {
   (
   mkdir -p $HOME/.lizzieyzy

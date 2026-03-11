@@ -1268,3 +1268,7 @@ update_bashrc() {
   wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
   )
 }
+
+update_nvim() {
+  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+}
