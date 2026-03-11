@@ -36,8 +36,24 @@ return {
   opts = {
     interactions = {
       chat = {
-        adapter = {
-          name = "ollama",
+        adapters = {
+          http = {
+            ollama = function()
+              return require("codecompanion.adapters").extend("ollama", {
+                env = {
+                  url = "https://localhost:11434",
+                  api_key = "ollama_local",
+                },
+                headers = {
+                  ["Content-Type"] = "application/json",
+                  ["Authorization"] = "Bearer ${api_key}",
+                },
+                parameters = {
+                  sync = true,
+                },
+              })
+            end,
+          },
           model = "qwen3.5-4b-q4_K_M",
         },
         keymaps = {
@@ -55,8 +71,26 @@ return {
         },
       },
       inline = {
-        adapter = "ollama",
-        model = "qwen2.5-coder:3b-instruct-q4_K_M",
+                adapters = {
+          http = {
+            ollama = function()
+              return require("codecompanion.adapters").extend("ollama", {
+                env = {
+                  url = "https://localhost:11434",
+                  api_key = "ollama_local",
+                },
+                headers = {
+                  ["Content-Type"] = "application/json",
+                  ["Authorization"] = "Bearer ${api_key}",
+                },
+                parameters = {
+                  sync = true,
+                },
+              })
+            end,
+          },
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+        },
         keymaps = {
           accept_change = {
             modes = { n = "<Tab>", i = "<Tab>" },
