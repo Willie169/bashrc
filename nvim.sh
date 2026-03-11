@@ -65,7 +65,7 @@ return {
           adapter = "ollama_fn",
         },
       },
-    },
+    }
     vim.keymap.set("n", "<C-x>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<C-d>", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
