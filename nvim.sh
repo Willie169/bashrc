@@ -37,24 +37,22 @@ return {
     interactions = {
       chat = {
         adapters = {
-          http = {
-            ollama = function()
-              return require("codecompanion.adapters").extend("ollama", {
-                env = {
-                  url = "https://localhost:11434",
-                  api_key = "ollama_local",
-                },
-                headers = {
-                  ["Content-Type"] = "application/json",
-                  ["Authorization"] = "Bearer ${api_key}",
-                },
-                parameters = {
-                  sync = true,
-                },
-                model = "qwen3.5-4b-q4_K_M",
-              })
-            end,
-          },
+          ollama = function()
+            return require("codecompanion.adapters").extend("ollama", {
+              env = {
+                url = "https://localhost:11434",
+                api_key = "ollama_local",
+              },
+              headers = {
+                ["Content-Type"] = "application/json",
+                ["Authorization"] = "Bearer ${api_key}",
+              },
+              parameters = {
+                sync = true,
+              },
+              model = "qwen3.5:4b-q4_K_M",
+            })
+          end,
         },
         keymaps = {
           send = {
@@ -72,24 +70,22 @@ return {
       },
       inline = {
         adapters = {
-          http = {
-            ollama = function()
-              return require("codecompanion.adapters").extend("ollama", {
-                env = {
-                  url = "https://localhost:11434",
-                  api_key = "ollama_local",
-                },
-                headers = {
-                  ["Content-Type"] = "application/json",
-                  ["Authorization"] = "Bearer ${api_key}",
-                },
-                parameters = {
-                  sync = true,
-                },
-                model = "qwen2.5-coder:3b-instruct-q4_K_M",
-              })
-            end,
-          },
+          ollama = function()
+            return require("codecompanion.adapters").extend("ollama", {
+              env = {
+                url = "https://localhost:11434",
+                api_key = "ollama_local",
+              },
+              headers = {
+                ["Content-Type"] = "application/json",
+                ["Authorization"] = "Bearer ${api_key}",
+              },
+              parameters = {
+                sync = true,
+              },
+              model = "qwen2.5-coder:3b-instruct-q4_K_M",
+            })
+          end,
         },
         keymaps = {
           accept_change = {
