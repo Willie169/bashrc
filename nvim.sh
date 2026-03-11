@@ -38,19 +38,17 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
   },
-  opts = {
-    log_level = "DEBUG",
-  },
   config = function()
     require("codecompanion").setup {
+      local ollama_fn = function()
+        return require("codecompanion.adapters").use("ollama", { schema = { model = { default = "llama3.1" } } })
+      end
       strategies = {
         chat = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+          adapter = "ollama_fn",
         },
         inline = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+          adapter = "ollama_fn",
           keymaps = {
             accept_change = {
               modes = { n = "ga", i = "<Tab>" },
@@ -64,15 +62,15 @@ return {
           },
         },
         cmd = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+          adapter = "ollama_fn",
         },
       },
-    }
-
+    },
+    opts = {
+      log_level = "DEBUG",
+    },
     vim.keymap.set("n", "<leader>kk", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<leader>ki", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
-
   end,
 }
 EOF
