@@ -68,7 +68,7 @@ return {
     },
     vim.keymap.set("n", "<leader>C", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<leader>I", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
-  end
+  end,
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/mcphub.lua <<'EOF'
