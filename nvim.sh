@@ -33,43 +33,37 @@ cat > ~/.config/nvim/lua/plugins/codecompanion.lua <<'EOF'
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
-  opts = {
-    strategies = {
-      chat = {
-        adapter = "ollama",
-        model = "qwen2.5-coder:3b-instruct-q4_K_M",
-        keymaps = {
-          send = {
-            modes = { n = "<C-s>" },
-            opts = {},
-          },
-          close = {
-            modes = { n = "<C-c>" },
-            opts = {},
+  config = function()
+    require("codecompanion").setup {
+      strategies = {
+        chat = {
+          adapter = "ollama",
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+        },
+        inline = {
+          adapter = "ollama",
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+          keymaps = {
+            accept_change = {
+              modes = { n = "ga", i = "<Tab>" },
+              description = "Accept the suggested change",
+            },
+            reject_change = {
+              modes = { n = "gr" },
+              opts = { nowait = true },
+              description = "Reject the suggested change",
+            },
           },
         },
-      },
-      inline = {
-        adapter = "ollama",
-        model = "qwen2.5-coder:3b-instruct-q4_K_M",
-        keymaps = {
-          accept_change = {
-            modes = { n = "<Tab>", i = "<Tab>" },
-            description = "Accept the suggested change",
-          },
-          reject_change = {
-            modes = { n = "gr" },
-            opts = { nowait = true },
-            description = "Reject the suggested change",
-          },
+        cmd = {
+          adapter = "ollama",
+          model = "qwen2.5-coder:3b-instruct-q4_K_M",
         },
       },
-      cmd = {
-        adapter = "ollama",
-        model = "qwen2.5-coder:3b-instruct-q4_K_M",
-      },
-    },
-  },
+    }
+    vim.keymap.set("n", "<leader>c", "CodeCompanion")
+    vim.keymap.set("n", "<leader>C", "CodeCompanionChat")
+  end,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
