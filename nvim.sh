@@ -36,7 +36,7 @@ return {
   opts = {
     strategies = {
       chat = {
-        adapters = "ollama",
+        adapter = "ollama",
         model = "qwen2.5-coder:3b-instruct-q4_K_M",
         keymaps = {
           send = {
@@ -48,12 +48,9 @@ return {
             opts = {},
           },
         },
-        opts = {
-          completion_provider = "cmp", -- blink|cmp|coc|default
-        },
       },
       inline = {
-        adapters = "ollama",
+        adapter = "ollama",
         model = "qwen2.5-coder:3b-instruct-q4_K_M",
         keymaps = {
           accept_change = {
@@ -66,16 +63,10 @@ return {
             description = "Reject the suggested change",
           },
         },
-        opts = {
-          completion_provider = "cmp", -- blink|cmp|coc|default
-        },
       },
       cmd = {
-        adapters = "ollama",
+        adapter = "ollama",
         model = "qwen2.5-coder:3b-instruct-q4_K_M",
-        opts = {
-          completion_provider = "cmp", -- blink|cmp|coc|default
-        },
       },
     },
   },
