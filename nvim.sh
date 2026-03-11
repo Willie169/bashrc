@@ -102,6 +102,9 @@ return {
             description = "Reject the suggested change",
           },
         },
+        opts = {
+          completion_provider = "cmp", -- blink|cmp|coc|default
+        },
       },
     },
   },
