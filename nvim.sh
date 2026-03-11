@@ -51,10 +51,10 @@ return {
                 parameters = {
                   sync = true,
                 },
+                model = "qwen3.5-4b-q4_K_M",
               })
             end,
           },
-          model = "qwen3.5-4b-q4_K_M",
         },
         keymaps = {
           send = {
@@ -86,10 +86,10 @@ return {
                 parameters = {
                   sync = true,
                 },
+                model = "qwen2.5-coder:3b-instruct-q4_K_M",
               })
             end,
           },
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
         },
         keymaps = {
           accept_change = {
@@ -153,7 +153,6 @@ return {
     },
   },
   keys = {
-    -- suggested keymap
     { "<leader>i", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
   },
 }
