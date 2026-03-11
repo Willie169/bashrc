@@ -60,9 +60,6 @@ return {
       agent = {
         adapter = "ollama_remote",
       },
-      cmd = {
-        adapter = "ollama_remote",
-      },
     },
     adapters = {
       ollama_remote = function()
