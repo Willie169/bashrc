@@ -38,6 +38,18 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
     { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
+    {
+      "HakonHarnes/img-clip.nvim",
+      opts = {
+        filetypes = {
+          codecompanion = {
+            prompt_for_file_name = false,
+            template = "[Image]($FILE_PATH)",
+            use_absolute_path = true,
+          },
+        },
+      },
+    },
   },
   opts = {
     strategies = {
@@ -136,17 +148,9 @@ cat > ~/.config/nvim/lua/plugins/img-clip.lua <<'EOF'
 return {
   "HakonHarnes/img-clip.nvim",
   event = "VeryLazy",
-  opts = {
-    filetypes = {
-      codecompanion = {
-        prompt_for_file_name = false,
-        template = "[Image]($FILE_PATH)",
-        use_absolute_path = true,
-      },
-    },
-  },
+  opts = {},
   keys = {
-    { "<leader>i", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+    { "<leader>P", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
   },
 }
 EOF
