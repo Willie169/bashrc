@@ -40,19 +40,33 @@ return {
           name = "ollama",
           model = "qwen3.5-4b-q4_K_M",
         },
+        keymaps = {
+          send = {
+            modes = { n = "<C-s>" },
+            opts = {},
+          },
+          close = {
+            modes = { n = "<C-c>" },
+            opts = {},
+          },
+        },
+        opts = {
+          completion_provider = "cmp", -- blink|cmp|coc|default
+        },
       },
       inline = {
         adapter = "ollama",
         model = "qwen2.5-coder:3b-instruct-q4_K_M",
-      },
-      cmd = {
-        adapter = "ollama",
-        model = "qwen3.5-4b-q4_K_M",
-      },
-      background = {
-        adapter = {
-          name = "ollama",
-          model = "qwen3.5-4b-q4_K_M",
+        keymaps = {
+          accept_change = {
+            modes = { n = "<Tab>", i = "<Tab>" },
+            description = "Accept the suggested change",
+          },
+          reject_change = {
+            modes = { n = "gr" },
+            opts = { nowait = true },
+            description = "Reject the suggested change",
+          },
         },
       },
     },
@@ -62,14 +76,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
   },
-  config = function()
-    vim.keymap.set("i", "<C-g>", function()
-      require("codecompanion").inline({strategy = "inline",})
-    end, { noremap = true, silent = true })
-    vim.keymap.set("i", "<Tab>", function()
-      require("codecompanion").accept_inline()
-    end, { noremap = true, silent = true })
-  end
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/mcphub.lua <<'EOF'
