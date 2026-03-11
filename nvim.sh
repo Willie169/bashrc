@@ -39,29 +39,6 @@ return {
     "ravitemer/mcphub.nvim",
   },
   opts = {
-    adapters = {
-      ollama_remote = function()
-        return require("codecompanion.adapters").extend("ollama", {
-          name = "ollama_remote",
-          env = {
-            url = "https://127.0.0.1:11434",
-            api_key = "ollama_local",
-          },
-          headers = {
-            ["Content-Type"] = "application/json",
-            ["Authorization"] = "Bearer ${api_key}",
-          },
-          parameters = {
-            sync = true,
-          },
-          schema = {
-            model = {
-              default = "qwen2.5-coder:3b-instruct-q4_K_M",
-            },
-          },
-        })
-      end,
-    },
     strategies = {
       chat = {
         adapter = "ollama_remote",
@@ -86,6 +63,29 @@ return {
       cmd = {
         adapter = "ollama_remote",
       },
+    },
+    adapters = {
+      ollama_remote = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          name = "ollama_remote",
+          env = {
+            url = "https://127.0.0.1:11434",
+            api_key = "ollama_local",
+          },
+          headers = {
+            ["Content-Type"] = "application/json",
+            ["Authorization"] = "Bearer ${api_key}",
+          },
+          parameters = {
+            sync = true,
+          },
+          schema = {
+            model = {
+              default = "qwen2.5-coder:3b-instruct-q4_K_M",
+            },
+          },
+        })
+      end,
     },
     opts = {
       log_level = 'DEBUG',
