@@ -34,35 +34,27 @@ return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
   opts = {
-    strategies = {
+    interactions = {
       chat = {
-        adapter = "ollama_chat",
+        adapter = {
+          name = "ollama",
+          model = "qwen3.5-4b-q4_K_M",
+        },
       },
       inline = {
-        adapter = "ollama_coder",
+        adapter = "ollama",
+        model = "qwen2.5-coder:3b-instruct-q4_K_M",
       },
-    },
-    adapters = {
-      ollama_chat = function()
-        return require("codecompanion.adapters").extend("ollama", {
-          name = "ollama_chat",
-          schema = {
-            model = {
-              default = "qwen3.5:4b-q4_K_M",
-            },
-          },
-        })
-      end,
-      ollama_coder = function()
-        return require("codecompanion.adapters").extend("ollama", {
-          name = "ollama_coder",
-          schema = {
-            model = {
-              default = "qwen2.5-coder:3b-instruct-q4_K_M",
-            },
-          },
-        })
-      end,
+      cmd = {
+        adapter = "ollama",
+        model = "qwen3.5-4b-q4_K_M",
+      },
+      background = {
+        adapter = {
+          name = "ollama",
+          model = "qwen3.5-4b-q4_K_M",
+        },
+      },
     },
   },
   dependencies = {
