@@ -71,7 +71,7 @@ return {
         },
       },
       inline = {
-                adapters = {
+        adapters = {
           http = {
             ollama = function()
               return require("codecompanion.adapters").extend("ollama", {
