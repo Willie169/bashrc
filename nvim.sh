@@ -34,75 +34,74 @@ return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
   lazy = false,
-  opts = {},
+  opts = {
+    adapters = {
+      ollama_remote = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          name = "ollama_remote",
+          env = {
+            url = "https://127.0.0.1:11434",
+            api_key = "ollama_local",
+          },
+          headers = {
+            ["Content-Type"] = "application/json",
+            ["Authorization"] = "Bearer ${api_key}",
+          },
+          parameters = {
+            sync = true,
+          },
+          schema = {
+            model = {
+              default = "qwen2.5-coder:3b-instruct-q4_K_M",
+            },
+          },
+        })
+      end,
+    },
+    strategies = {
+      chat = {
+        adapter = "ollama_remote",
+      },
+      inline = {
+        adapter = "ollama_remote",
+        keymaps = {
+          accept_change = {
+            modes = { n = "ga", i = "<Tab>" },
+            description = "Accept the suggested change",
+          },
+          reject_change = {
+            modes = { n = "gr" },
+            opts = { nowait = true },
+            description = "Reject the suggested change",
+          },
+        },
+      },
+      agent = {
+        adapter = "ollama_remote",
+      },
+      cmd = {
+        adapter = "ollama_remote",
+      },
+    },
+    opts = {
+      log_level = 'DEBUG',
+    },
+    display = {
+      diff = {
+        enabled = true,
+        close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+        layout = 'vertical', -- vertical|horizontal split for default provider
+        opts = { 'internal', 'filler', 'closeoff', 'algorithm:patience', 'followwrap', 'linematch:120' },
+        provider = 'default', -- default|mini_diff
+      },
+    },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
   },
   config = function()
-    require("codecompanion").setup {
-      adapters = {
-        ollama_remote = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            name = "ollama_remote",
-            env = {
-              url = "https://127.0.0.1:11434",
-              api_key = "ollama_local",
-            },
-            headers = {
-              ["Content-Type"] = "application/json",
-              ["Authorization"] = "Bearer ${api_key}",
-            },
-            parameters = {
-              sync = true,
-            },
-            schema = {
-              model = {
-                default = "qwen2.5-coder:3b-instruct-q4_K_M",
-              },
-            },
-          })
-        end,
-      },
-      strategies = {
-        chat = {
-          adapter = "ollama_remote",
-        },
-        inline = {
-          adapter = "ollama_remote",
-          keymaps = {
-            accept_change = {
-              modes = { n = "ga", i = "<Tab>" },
-              description = "Accept the suggested change",
-            },
-            reject_change = {
-              modes = { n = "gr" },
-              opts = { nowait = true },
-              description = "Reject the suggested change",
-            },
-          },
-        },
-        agent = {
-          adapter = "ollama_remote",
-        },
-        cmd = {
-          adapter = "ollama_remote",
-        },
-      },
-      opts = {
-        log_level = 'DEBUG',
-      },
-      display = {
-        diff = {
-          enabled = true,
-          close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
-          layout = 'vertical', -- vertical|horizontal split for default provider
-          opts = { 'internal', 'filler', 'closeoff', 'algorithm:patience', 'followwrap', 'linematch:120' },
-          provider = 'default', -- default|mini_diff
-        },
-      },
-    }
     vim.keymap.set("n", "<C-x>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<C-d>", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
