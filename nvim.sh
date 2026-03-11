@@ -36,28 +36,8 @@ return {
   opts = {
     strategies = {
       chat = {
-        adapters = {
-          ollama_chat = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              env = {
-                url = "https://localhost:11434",
-                api_key = "ollama_local",
-              },
-              headers = {
-                ["Content-Type"] = "application/json",
-                ["Authorization"] = "Bearer ${api_key}",
-              },
-              parameters = {
-                sync = true,
-              },
-              schema = {
-                model = {
-                  default = 'qwen2.5-coder:3b-instruct-q4_K_M',
-                },
-              },
-            })
-          end,
-        },
+        adapters = "ollama",
+        model = "qwen2.5-coder:3b-instruct-q4_K_M",
         keymaps = {
           send = {
             modes = { n = "<C-s>" },
@@ -73,28 +53,8 @@ return {
         },
       },
       inline = {
-        adapters = {
-          ollama_inline = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              env = {
-                url = "https://localhost:11434",
-                api_key = "ollama_local",
-              },
-              headers = {
-                ["Content-Type"] = "application/json",
-                ["Authorization"] = "Bearer ${api_key}",
-              },
-              parameters = {
-                sync = true,
-              },
-              schema = {
-                model = {
-                  default = 'qwen2.5-coder:3b-instruct-q4_K_M',
-                },
-              },
-            })
-          end,
-        },
+        adapters = "ollama",
+        model = "qwen2.5-coder:3b-instruct-q4_K_M",
         keymaps = {
           accept_change = {
             modes = { n = "<Tab>", i = "<Tab>" },
@@ -106,6 +66,13 @@ return {
             description = "Reject the suggested change",
           },
         },
+        opts = {
+          completion_provider = "cmp", -- blink|cmp|coc|default
+        },
+      },
+      cmd = {
+        adapters = "ollama",
+        model = "qwen2.5-coder:3b-instruct-q4_K_M",
         opts = {
           completion_provider = "cmp", -- blink|cmp|coc|default
         },
