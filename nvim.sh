@@ -33,7 +33,6 @@ cat > ~/.config/nvim/lua/plugins/codecompanion.lua <<'EOF'
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
-  lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
@@ -41,14 +40,35 @@ return {
   },
   config = function()
     require("codecompanion").setup {
+      adapters = {
+        ollama_remote = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            name = "ollama_remote",
+            env = {
+              url = "https://127.0.0.1:11434",
+              api_key = "ollama_local",
+            },
+            headers = {
+              ["Content-Type"] = "application/json",
+              ["Authorization"] = "Bearer ${api_key}",
+            },
+            parameters = {
+              sync = true,
+            },
+            schema = {
+              model = {
+                default = "qwen2.5-coder:3b-instruct-q4_K_M",
+              },
+            },
+          })
+        end,
+      },
       strategies = {
         chat = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+          adapter = "ollama_remote",
         },
         inline = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+          adapter = "ollama_remote",
           keymaps = {
             accept_change = {
               modes = { n = "ga", i = "<Tab>" },
@@ -61,9 +81,8 @@ return {
             },
           },
         },
-        cmd = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
+        agent = {
+          adapter = "ollama_remote",
         },
       },
     }
