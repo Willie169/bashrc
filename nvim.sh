@@ -63,15 +63,11 @@ return {
             },
           },
         },
-        cmd = {
-          adapter = "ollama",
-          model = "qwen2.5-coder:3b-instruct-q4_K_M",
-        },
       },
     }
 
-    vim.keymap.set("n", "<leader>CC", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
-    vim.keymap.set("n", "<leader>CI", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
+    vim.keymap.set("n", "<leader>C", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
+    vim.keymap.set("n", "<leader>I", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
 
   end,
 }
