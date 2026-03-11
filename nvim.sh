@@ -36,7 +36,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "ravitemer/mcphub.nvim",
     { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
     {
       "HakonHarnes/img-clip.nvim",
@@ -119,18 +118,6 @@ return {
     vim.keymap.set("n", "<C-x>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<C-d>", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
-}
-EOF
-cat > ~/.config/nvim/lua/plugins/mcphub.lua <<'EOF'
-return {
-  "ravitemer/mcphub.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  build = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
-  config = function()
-    require("mcphub").setup()
-  end
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/render-markdown.lua <<'EOF'
