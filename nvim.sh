@@ -237,6 +237,7 @@ return {
          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
        }),
        sources = cmp.config.sources({
+         { name = 'codecompanion' },
          { name = 'nvim_lsp' },
          -- { name = 'vsnip' }, -- For vsnip users.
          { name = 'luasnip' }, -- For luasnip users.
@@ -244,8 +245,10 @@ return {
          -- { name = 'snippy' }, -- For snippy users.
        }, {
          { name = 'buffer' },
-         { name = 'codecompanion' },
-       })
+       }),
+       completion = {
+         autocomplete = { require("cmp").TriggerEvent.TextChanged },
+       },
      })
 
      -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
