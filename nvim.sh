@@ -48,7 +48,7 @@ return {
           name = "ollama_chat",
           schema = {
             model = {
-              default = "qwen3.5:9b-q4_K_M",
+              default = "qwen3.5:4b-q4_K_M",
             },
           },
         })
@@ -58,7 +58,7 @@ return {
           name = "ollama_coder",
           schema = {
             model = {
-              default = "qwen2.5-coder:7b-instruct-q4_K_M",
+              default = "qwen2.5-coder:3b-instruct-q4_K_M",
             },
           },
         })
