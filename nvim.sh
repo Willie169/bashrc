@@ -34,10 +34,10 @@ return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
   opts = {
-    interactions = {
+    strategies = {
       chat = {
         adapters = {
-          ollama = function()
+          ollama_chat = function()
             return require("codecompanion.adapters").extend("ollama", {
               env = {
                 url = "https://localhost:11434",
@@ -50,7 +50,11 @@ return {
               parameters = {
                 sync = true,
               },
-              model = "qwen3.5:4b-q4_K_M",
+              schema = {
+                model = {
+                  default = 'qwen2.5-coder:3b-instruct-q4_K_M',
+                },
+              },
             })
           end,
         },
@@ -70,7 +74,7 @@ return {
       },
       inline = {
         adapters = {
-          ollama = function()
+          ollama_inline = function()
             return require("codecompanion.adapters").extend("ollama", {
               env = {
                 url = "https://localhost:11434",
@@ -83,7 +87,11 @@ return {
               parameters = {
                 sync = true,
               },
-              model = "qwen2.5-coder:3b-instruct-q4_K_M",
+              schema = {
+                model = {
+                  default = 'qwen2.5-coder:3b-instruct-q4_K_M',
+                },
+              },
             })
           end,
         },
