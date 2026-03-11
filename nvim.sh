@@ -70,8 +70,8 @@ return {
       },
     }
 
-    vim.keymap.set("n", "<leader>ic", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
-    vim.keymap.set("n", "<leader>ii", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
+    vim.keymap.set("n", "<leader>kk", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
+    vim.keymap.set("n", "<leader>ki", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
 
   end,
 }
