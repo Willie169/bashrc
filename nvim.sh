@@ -33,11 +33,83 @@ cat > ~/.config/nvim/lua/plugins/codecompanion.lua <<'EOF'
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
-  opts = {},
+  opts = {
+    backends = {
+      -- Chat models
+      ollama_chat_qwen3vl_2b = {
+        cli_path = "ollama",
+        model = "qwen3-vl:2b-instruct-q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+      ollama_chat_qwen3vl_4b = {
+        cli_path = "ollama",
+        model = "qwen3-vl:4b-instruct-q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+      ollama_chat_qwen3vl_8b = {
+        cli_path = "ollama",
+        model = "qwen3-vl:8b-instruct-q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+      ollama_chat_qwen3_2b = {
+        cli_path = "ollama",
+        model = "qwen3.5:2b-q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+      ollama_chat_qwen3_4b = {
+        cli_path = "ollama",
+        model = "qwen3.5:4b-q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+      ollama_chat_qwen3_9b = {
+        cli_path = "ollama",
+        model = "qwen3.5:9b-q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+      ollama_chat_gpt_oss_20b = {
+        cli_path = "ollama",
+        model = "hf.co/unsloth/gpt-oss-20b-GGUF:Q4_K_M",
+        opts = { temperature = 0.2, max_tokens = 1024 },
+        type = "chat",
+      },
+
+      -- Inline/code completion models
+      ollama_coder_qwen25_3b = {
+        cli_path = "ollama",
+        model = "qwen2.5-coder:3b-instruct-q4_K_M",
+        opts = { temperature = 0.1, max_tokens = 1024 },
+        type = "inline",
+      },
+      ollama_coder_qwen25_7b = {
+        cli_path = "ollama",
+        model = "qwen2.5-coder:7b-instruct-q4_K_M",
+        opts = { temperature = 0.1, max_tokens = 1024 },
+        type = "inline",
+      },
+      ollama_coder_qwen35_4b = {
+        cli_path = "ollama",
+        model = "qwen3.5:4b-q4_K_M",
+        opts = { temperature = 0.1, max_tokens = 1024 },
+        type = "inline",
+      },
+      ollama_coder_qwen35_9b = {
+        cli_path = "ollama",
+        model = "qwen3.5:9b-q4_K_M",
+        opts = { temperature = 0.1, max_tokens = 1024 },
+        type = "inline",
+      },
+    },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "ravitemer/mcphub.nvim"
+    "ravitemer/mcphub.nvim",
   },
 }
 EOF
