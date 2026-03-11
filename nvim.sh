@@ -37,6 +37,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "ravitemer/mcphub.nvim",
+    { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
   },
   opts = {
     strategies = {
@@ -58,6 +59,9 @@ return {
         },
       },
       agent = {
+        adapter = "ollama_remote",
+      },
+      cmd = {
         adapter = "ollama_remote",
       },
     },
@@ -97,7 +101,8 @@ return {
       },
     },
   },
-  config = function()
+  config = function(_, opts)
+    require("codecompanion").setup(opts)
     vim.keymap.set("n", "<C-x>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<C-d>", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
@@ -124,7 +129,6 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {},
-  ft = { "markdown", "codecompanion" },
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/img-clip.lua <<'EOF'
