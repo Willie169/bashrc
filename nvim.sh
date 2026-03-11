@@ -33,6 +33,7 @@ cat > ~/.config/nvim/lua/plugins/codecompanion.lua <<'EOF'
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
+  lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
