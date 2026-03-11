@@ -66,9 +66,6 @@ return {
         },
       },
     },
-    opts = {
-      log_level = "DEBUG",
-    },
     vim.keymap.set("n", "<leader>kk", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
     vim.keymap.set("n", "<leader>ki", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
