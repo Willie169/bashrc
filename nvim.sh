@@ -33,7 +33,11 @@ cat > ~/.config/nvim/lua/plugins/codecompanion.lua <<'EOF'
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
-  lazy = false,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "ravitemer/mcphub.nvim",
+  },
   opts = {
     adapters = {
       ollama_remote = function()
@@ -95,11 +99,6 @@ return {
         provider = 'default', -- default|mini_diff
       },
     },
-  },
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "ravitemer/mcphub.nvim",
   },
   config = function()
     vim.keymap.set("n", "<C-x>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
