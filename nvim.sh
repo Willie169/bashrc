@@ -71,7 +71,9 @@ return {
     "ravitemer/mcphub.nvim",
   },
   config = function()
-    vim.keymap.set("i", "<C-g>", ":CodeCompanionInline<CR>")
+    vim.keymap.set("i", "<C-g>", function()
+      vim.cmd("CodeCompanionInline")
+    end)
   end
 }
 EOF
@@ -174,7 +176,7 @@ return {
            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
-   
+
            -- For `mini.snippets` users:
            -- local insert = MiniSnippets.config.expand.insert or MiniSnippets.default_insert
            -- insert({ body = args.body }) -- Insert at cursor
@@ -206,7 +208,7 @@ return {
          { name = 'buffer' },
        })
      })
-   
+
      -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
      -- Set configuration for specific filetype.
      --[[ cmp.setup.filetype('gitcommit', {
@@ -217,7 +219,7 @@ return {
        })
     })
     require("cmp_git").setup() ]]--
-   
+
      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
      cmp.setup.cmdline({ '/', '?' }, {
        mapping = cmp.mapping.preset.cmdline(),
