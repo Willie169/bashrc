@@ -70,7 +70,7 @@ return {
         ollama_remote = function()
           return require("codecompanion.adapters").extend("ollama", {
             env = {
-              url = "https://127.0.0.1:11434",
+              url = "http://127.0.0.1:11434",
               api_key = "ollama_local",
             },
             headers = {
