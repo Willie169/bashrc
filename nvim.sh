@@ -66,8 +66,8 @@ return {
         },
       },
     },
-    vim.keymap.set("n", "<C-c>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
-    vim.keymap.set("n", "<C-d>", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
+    vim.keymap.set("n", "<C-C>", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
+    vim.keymap.set("n", "<C-X>", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
   end,
 }
 EOF
