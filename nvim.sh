@@ -33,6 +33,11 @@ cat > ~/.config/nvim/lua/plugins/codecompanion.lua <<'EOF'
 return {
   "olimorris/codecompanion.nvim",
   version = "^19.0.0",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "ravitemer/mcphub.nvim",
+  },
   config = function()
     require("codecompanion").setup {
       strategies = {
@@ -60,15 +65,10 @@ return {
           model = "qwen2.5-coder:3b-instruct-q4_K_M",
         },
       },
-    }
-    vim.keymap.set("n", "<leader>cc", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
-    vim.keymap.set("n", "<leader>ci", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
-  end,
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "ravitemer/mcphub.nvim",
-  },
+    },
+    vim.keymap.set("n", "<leader>C", "<cmd>CodeCompanionChat<CR>", { desc = "Open Code Companion Chat" })
+    vim.keymap.set("n", "<leader>I", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
+  end
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/mcphub.lua <<'EOF'
