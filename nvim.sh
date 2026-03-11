@@ -89,11 +89,23 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      clangd = {
-        mason = false
-      },
+      "bash-language-server",
+      "clangd",
+      "cmake-language-server",
+      "dockerfile-language-service",
+      "gopls",
+      "jdtls",
+      "pyright",
+      "superhtml",
     },
   },
+  config = function(_, opts)
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    for _, server in ipairs(opts.servers) do
+      vim.lsp.config(server, { capabilities = capabilities })
+      vim.lsp.enable(server)
+    end
+  end
 }
 EOF
 cat > ~/.config/nvim/lua/plugins/nvim-cmp.lua <<'EOF'
@@ -176,49 +188,6 @@ return {
          { name = 'buffer' }
        }
      })
-   
-     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-     cmp.setup.cmdline(':', {
-       mapping = cmp.mapping.preset.cmdline(),
-       sources = cmp.config.sources({
-         { name = 'path' }
-       }, {
-         { name = 'cmdline' }
-       }),
-       matching = { disallow_symbol_nonprefix_matching = false }
-     })
-   
-     -- Set up lspconfig.
-     local capabilities = require('cmp_nvim_lsp').default_capabilities()
-     -- Replace <YOUR_LSP_SERVER> with each lsp server you have enabled.
-     vim.lsp.config('bash-language-server', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('bash-language-server')
-     vim.lsp.config('clangd', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('clangd')
-     vim.lsp.config('cmake-language-server', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('cmake-language-server')
-     vim.lsp.config('dockerfile-language-server-nodejs', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('dockerfile-language-server-nodejs')
-     vim.lsp.config('gopls', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('gopls')
-     vim.lsp.config('pyright', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('pyright')
-     vim.lsp.config('superhtml', {
-       capabilities = capabilities
-     })
-     vim.lsp.enable('superhtml')
    end
 }
 EOF
