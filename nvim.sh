@@ -72,7 +72,7 @@ return {
   },
   config = function()
     vim.keymap.set("i", "<C-g>", function()
-      require("codecompanion").inline()
+      require("codecompanion").inline({strategy = "inline",})
     end, { noremap = true, silent = true })
     vim.keymap.set("i", "<Tab>", function()
       require("codecompanion").accept_inline()
