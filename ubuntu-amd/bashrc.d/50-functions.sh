@@ -145,7 +145,7 @@ dl() {
 
   try_aria2() {
     command -v aria2c >/dev/null 2>&1 || return 127
-    local opts=(-c)
+    local opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
@@ -164,7 +164,7 @@ dl() {
 
   try_curl() {
     command -v curl >/dev/null 2>&1 || return 127
-    local opts=(-cfL)
+    local opts=(-fL)
     [ "$quiet" -eq 1 ] && opts+=(-sS)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
@@ -179,7 +179,7 @@ dl() {
 
   try_wget() {
     command -v wget >/dev/null 2>&1 || return 127
-    local opts=(-c)
+    local opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
@@ -194,7 +194,7 @@ dl() {
 
   try_wget2() {
     command -v wget2 >/dev/null 2>&1 || return 127
-    local opts=(-c)
+    local opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
