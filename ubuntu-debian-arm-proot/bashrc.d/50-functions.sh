@@ -29,18 +29,19 @@ dl() {
   local use_aria2=1
   local use_curl=1
   local use_wget=1
-  local tmp_file old_exit old_int old_term
+  local use_wget2=1
+  local tmp_file
+  local aria2_option=""
+  local curl_option=""
+  local wget_option=""
+  local wget2_option=""
 
   set -- ${DLFLAGS:-} "$@"
-
-  cleanup() {
-    [ -n "$tmp_file" ] && rm -f "$tmp_file"
-  }
 
   while [ $# -gt 0 ]; do
     case "$1" in
       -h|--help)
-        echo "Usage: dl [-h|--help] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <URL>"
+        echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>"
         echo 'Global flags: $DLFLAGS'
         return 0
         ;;
@@ -61,7 +62,7 @@ dl() {
         shift
         ;;
       -a|--aria2)
-        use_aria2=1; use_curl=0; use_wget=0
+        use_aria2=1; use_curl=0; use_wget=0; use_wget2=0
         shift
         ;;
       -A|--no-aria2)
@@ -69,7 +70,7 @@ dl() {
         shift
         ;;
       -c|--curl)
-        use_curl=1; use_aria2=0; use_wget=0
+        use_curl=1; use_aria2=0; use_wget=0; use_wget2=0
         shift
         ;;
       -C|--no-curl)
@@ -77,16 +78,40 @@ dl() {
         shift
         ;;
       -w|--wget)
-        use_wget=1; use_aria2=0; use_curl=0
+        use_wget=1; use_aria2=0; use_curl=0; use_wget2=0
         shift
         ;;
       -W|--no-wget)
         use_wget=0
         shift
         ;;
+      -w2|--wget2)
+        use_wget2=1; use_aria2=0; use_curl=0; use_wget=0
+        shift
+        ;;
+      -W2|--no-wget2)
+        use_wget2=0
+        shift
+        ;;
       --no-fallback)
         no_fallback=1
         shift
+        ;;
+      --aria2_option)
+        aria2_option+=" $2"
+        shift 2
+        ;;
+      --curl_option)
+        curl_option+=" $2"
+        shift 2
+        ;;
+      --wget_option)
+        wget_option+=" $2"
+        shift 2
+        ;;
+      --wget2_option)
+        wget2_option+=" $2"
+        shift 2
         ;;
       --)
         shift
@@ -94,7 +119,7 @@ dl() {
         ;;
       -*)
         echo "Unknown option: $1" >&2
-        echo "Usage: dl [-h|--help] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <URL>" >&2
+        echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>" >&2
         echo 'Global flags: $DLFLAGS' >&2
         return 2
         ;;
@@ -109,7 +134,7 @@ dl() {
 
   if [ -z "$url" ]; then
     echo "Error: no URL provided" >&2
-    echo "Usage: dl [-h|--help] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <URL>" >&2
+    echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>" >&2
     echo 'Global flags: $DLFLAGS' >&2
     return 2
   fi
@@ -120,62 +145,65 @@ dl() {
 
   try_aria2() {
     command -v aria2c >/dev/null 2>&1 || return 127
-    local opts=()
+    local opts=(-c)
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
     if [ "$to_stdout" -eq 1 ]; then
-      if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
-        tmp_file=$(mktemp "/tmp/dl.XXXXXXXXXX") || return 1
-      else
-        tmp_file=$(mktemp "$TMPDIR/dl.XXXXXXXXXX") || return 1
-      fi
+      tmp_file=$(mktemp "${TMPDIR:-/tmp}/dl.XXXXXXXXXX") || return 1
       rm -f "$tmp_file"
-      old_exit=$(trap -p EXIT)
-      old_int=$(trap -p INT)
-      old_term=$(trap -p TERM)
-      trap cleanup EXIT INT TERM
-      aria2c "${opts[@]}" -c -o "$(basename "$tmp_file")" -d "$(dirname "$tmp_file")" "$url"
+      aria2c "${opts[@]}" "$aria2_option" -o "$(basename "$tmp_file")" -d "$(dirname "$tmp_file")" "$url"
       cat "$tmp_file"
       rm -f "$tmp_file"
-      trap - EXIT INT TERM
-      [ -n "$old_exit" ] && eval "$old_exit"
-      [ -n "$old_int" ]  && eval "$old_int"
-      [ -n "$old_term" ] && eval "$old_term"
     elif [ -n "$out" ]; then
-      aria2c "${opts[@]}" -c -o "$out" "$url"
+      aria2c "${opts[@]}" "$aria2_option" -o "$out" "$url"
     else
-      aria2c "${opts[@]}" -c "$url"
+      aria2c "${opts[@]}" "$aria2_option" "$url"
     fi
   }
 
   try_curl() {
     command -v curl >/dev/null 2>&1 || return 127
-    local opts=(-fL)
+    local opts=(-cfL)
     [ "$quiet" -eq 1 ] && opts+=(-sS)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
     if [ "$to_stdout" -eq 1 ]; then
-      curl "${opts[@]}" "$url"
+      curl "${opts[@]}" "$curl_option" "$url"
     elif [ -n "$out" ]; then
-      curl "${opts[@]}" -o "$out" "$url"
+      curl "${opts[@]}" "$curl_option" -o "$out" "$url"
     else
-      curl "${opts[@]}" -O "$url"
+      curl "${opts[@]}" "$curl_option" -O "$url"
     fi
   }
 
   try_wget() {
     command -v wget >/dev/null 2>&1 || return 127
-    local opts=()
+    local opts=(-c)
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
     if [ "$to_stdout" -eq 1 ]; then
-      wget "${opts[@]}" -O - "$url"
+      wget "${opts[@]}" "$wget_option" -O - "$url"
     elif [ -n "$out" ]; then
-      wget "${opts[@]}" -O "$out" "$url"
+      wget "${opts[@]}" "$wget_option" -O "$out" "$url"
     else
-      wget "${opts[@]}" "$url"
+      wget "${opts[@]}" "$wget_option" "$url"
+    fi
+  }
+
+  try_wget2() {
+    command -v wget2 >/dev/null 2>&1 || return 127
+    local opts=(-c)
+    [ "$quiet" -eq 1 ] && opts+=(-q)
+    [ "$verbose" -eq 1 ] && opts+=(-v)
+
+    if [ "$to_stdout" -eq 1 ]; then
+      wget2 "${opts[@]}" "$wget2_option" -O - "$url"
+    elif [ -n "$out" ]; then
+      wget2 "${opts[@]}" "$wget2_option" -O "$out" "$url"
+    else
+      wget2 "${opts[@]}" "$wget2_option" "$url"
     fi
   }
 
@@ -208,6 +236,15 @@ dl() {
     [ "$no_fallback" -eq 1 ] && return "$rc"
   fi
 
+  if [ "$use_wget2" -eq 1 ]; then
+    if try_wget2; then
+      [ "$to_stdout" -eq 1 ] || [ "$verbose" -eq 1 ] && echo "wget2 used"
+      return 0
+    fi
+    rc=$?
+    [ "$no_fallback" -eq 1 ] && return "$rc"
+  fi
+
   echo "Error: all enabled downloaders failed" >&2
   return "$rc"
 }
@@ -225,7 +262,7 @@ gh_latest() {
   while [ $# -gt 0 ]; do
     case "$1" in
       -h|--help)
-        echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <GitHub_repo_'user/repo'_or_URL> [asset_pattern]"
+        echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]"
         echo "Example: gh_latest cli/cli *.deb"
         echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb"
         echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb"
@@ -254,17 +291,17 @@ gh_latest() {
         index="$2"
         shift 2
         ;;
-      -o|--output|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|--no-fallback)
+      -O|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
         dl_args+=("$1")
-        if [[ "$1" == -o || "$1" == --output ]]; then
-          dl_args+=("$2")
-          shift
-        fi
-        shift
+        ;;
+      -o|--output|--aria2_option|--curl_option|--wget_option|--wget2_option)
+        dl_args+=("$1")
+        dl_args+=("$2")
+        shift 2
         ;;
       -*)
         echo "Unknown option: $1" >&2
-        echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <GitHub_repo_'user/repo'_or_URL> [asset_pattern]" >&2
+        echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
         echo "Example: gh_latest cli/cli *.deb" >&2
         echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
         echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
@@ -291,8 +328,8 @@ gh_latest() {
   repo="${repo%/}"
 
   if [ -z "$repo" ]; then
-    echo "Error: no repo provided. Expected 'user/repo' or URL" >&2
-    echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <GitHub_repo_'user/repo'_or_URL> [asset_pattern]" >&2
+    echo "Error: no repo provided. Expected user/repo or URL" >&2
+    echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
     echo "Example: gh_latest cli/cli *.deb" >&2
     echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
@@ -301,8 +338,8 @@ gh_latest() {
   fi
 
   if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
-    echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
-    echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <GitHub_repo_'user/repo'_or_URL> [asset_pattern]" >&2
+    echo "Error: invalid repo format. Expected user/repo or URL" >&2
+    echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
     echo "Example: gh_latest cli/cli *.deb" >&2
     echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
@@ -484,7 +521,7 @@ gh_file() {
   while [ $# -gt 0 ]; do
     case "$1" in
       -h|--help)
-        echo "Usage: gh_file [-h|--help] [-p|--print-url] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <GitHub_file_blob_URL>"
+        echo "Usage: gh_file [-h|--help] [-p|--print-url] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <GitHub file blob URL>"
         echo "Example: gh_file https://github.com/cli/cli/blob/trunk/README.md"
         return 0
         ;;
@@ -502,17 +539,17 @@ gh_file() {
         dl_args+=("$1")
         shift
         ;;
-     -o|--output|-O|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|--no-fallback)
+     -O|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
         dl_args+=("$1")
-        if [[ "$1" == -o || "$1" == --output ]]; then
-          dl_args+=("$2")
-          shift
-        fi
-        shift
+        ;;
+      -o|--output|--aria2_option|--curl_option|--wget_option|--wget2_option)
+        dl_args+=("$1")
+        dl_args+=("$2")
+        shift 2
         ;;
       -*)
         echo "Unknown option: $1" >&2
-        echo "Usage: gh_file [-h|--help] [-p|--print-url] [-o|--output output_file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <GitHub_file_blob_URL>" >&2
+        echo "Usage: gh_file [-h|--help] [-p|--print-url] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <GitHub file blob URL>" >&2
         echo "Example: gh_file https://github.com/cli/cli/blob/trunk/README.md" >&2
         return 1
         ;;
