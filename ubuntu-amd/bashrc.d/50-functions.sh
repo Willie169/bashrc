@@ -293,6 +293,7 @@ gh_latest() {
         ;;
       -O|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
         dl_args+=("$1")
+        shift
         ;;
       -o|--output|--aria2_option|--curl_option|--wget_option|--wget2_option)
         dl_args+=("$1")
