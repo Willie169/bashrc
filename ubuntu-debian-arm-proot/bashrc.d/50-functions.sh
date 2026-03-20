@@ -1104,6 +1104,8 @@ dfssh() {
     -L 7891:localhost:7891
     -L 8502:localhost:8502
     -L 8080:localhost:8080
+    -L 8081:localhost:8081
+    -L 8082:localhost:8082
     -L 11434:localhost:11434
     -L 18789:localhost:18789
   )
@@ -1162,6 +1164,8 @@ pdssh() {
     -L 7891:localhost:7891
     -L 8502:localhost:8502
     -L 8080:localhost:8080
+    -L 8081:localhost:8081
+    -L 8082:localhost:8082
     -L 11434:localhost:11434
     -L 18789:localhost:18789
   )
