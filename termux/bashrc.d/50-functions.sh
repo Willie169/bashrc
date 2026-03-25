@@ -1102,6 +1102,7 @@ dfssh() {
     -L 5902:localhost:5902
     -L 5903:localhost:5903
     -L 7891:localhost:7891
+    -L 8008:localhost:8008
     -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 8081:localhost:8081
@@ -1162,6 +1163,7 @@ pdssh() {
     -L 5902:localhost:5902
     -L 5903:localhost:5903
     -L 7891:localhost:7891
+    -L 8008:localhost:8008
     -L 8502:localhost:8502
     -L 8080:localhost:8080
     -L 8081:localhost:8081
