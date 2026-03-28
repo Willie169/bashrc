@@ -1320,6 +1320,10 @@ update_nvim() {
   curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 }
 
+update_kitty() {
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/kitty/kitty.conf -O ~/.config/kitty/kitty.conf
+}
+
 update_lizzieyzy_config() {
   (
   mkdir -p $HOME/.lizzieyzy
