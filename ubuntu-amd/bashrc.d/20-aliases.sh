@@ -11,6 +11,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias src='source'
 alias sbrc='source ~/.bashrc'
 alias py='python3'
+alias kitty='GLFW_IM_MODULE=ibus command kitty'
 alias httpp='http-server -p'
 alias lbtr='libretranslate &'
 alias open-notebook-up='(cd ~/.open-notebook && docker compose up -d)'
