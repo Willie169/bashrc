@@ -5,6 +5,8 @@ case $- in
   *) return;;
 esac
 
+[ -r ~/.xprofile ] && source ~/.xprofile
+
 if [ -d "$HOME/.bashrc.d"  ];  then
   for f in "$HOME/.bashrc.d/"*; do
     [ -r "$f"  ] && source "$f"
