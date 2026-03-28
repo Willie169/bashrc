@@ -4,9 +4,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-case "$TERM" in
-  xterm-color|*-256color) color_prompt=yes;;
-esac
+color_prompt=yes
 
 #force_color_prompt=yes
 
