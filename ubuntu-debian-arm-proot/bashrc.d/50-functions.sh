@@ -1280,9 +1280,13 @@ update_latex() {
   (
   /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
   cd /usr/share/LaTeX-ToolKit
-  git pull
+  git reset --hard
+  git clean -d --force
+  git pull --rebase
   cd ~/texmf/tex/latex/physics-patch
-  git pull
+  git reset --hard
+  git clean -d --force
+  git pull --rebase
   )
 }
 
