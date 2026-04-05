@@ -1351,10 +1351,6 @@ update_sylvan_config() {
   )
 }
 
-update_joplin() {
-  (wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash)
-}
-
 rvs() {
   if (( $# == 0 )); then
     remote-viewer spice://127.0.0.1:5930
