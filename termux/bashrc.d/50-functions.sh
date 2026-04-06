@@ -1283,6 +1283,7 @@ update_vimrc() {
   git clean -d --force
   git pull --rebase
   python3 update_plugins.py
+  rm -rf sources_non_forked/vim-ollama
   )
 }
 
