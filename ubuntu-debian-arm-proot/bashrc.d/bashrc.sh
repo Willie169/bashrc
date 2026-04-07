@@ -21,8 +21,3 @@ export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 
-mkdir -p ~/.bashrc.pid
-
-if [ ! -f ~/.bashrc.pid/ollama.pid ] || ! kill -0 $(cat ~/.bashrc.pid/ollama.pid) 2>/dev/null; then
-    command -v ollama >/dev/null 2>&1 && (OLLAMA_HOST=0.0.0.0 ollama serve >/dev/null 2>&1 & echo $! > ~/.bashrc.pid/ollama.pid)
-fi
