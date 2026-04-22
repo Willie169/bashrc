@@ -1351,6 +1351,13 @@ update_sylvan_config() {
   )
 }
 
+bind_waydroid() {
+  (
+  sudo mkdir -p /mnt/waydroid
+  sudo bindfs --mirror=$(id -u) ~/.local/share/waydroid/data/media/0 /mnt/waydroid
+  )
+}
+
 rvs() {
   if (( $# == 0 )); then
     remote-viewer spice://127.0.0.1:5930
