@@ -26,4 +26,6 @@ export PULSE_SERVER=127.0.0.1
 export GALLIUM_DRIVER=zink
 export MESA_GL_VERSION_OVERRIDE=4.3
 export DLFLAGS='-A -C'
+export HOMEBREW_UPDATE_TO_TAG=1
+export HOMEBREW_AUTO_UPDATE_SECS=86400
 source /etc/os-release

@@ -33,6 +33,8 @@ export OLLAMA_BASE_URL=http://127.0.0.1:11434
 export OLLAMA_HOST=0.0.0.0
 export LITELLM_PROXY_URL=http://localhost:4000
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
+export HOMEBREW_UPDATE_TO_TAG=1
+export HOMEBREW_AUTO_UPDATE_SECS=86400
 export UBUNTU_VERSION_ID=$(
 if grep -q '^NAME="Linux Mint"' /etc/os-release; then
   inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
