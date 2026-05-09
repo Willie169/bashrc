@@ -28,4 +28,5 @@ export MESA_GL_VERSION_OVERRIDE=4.3
 export DLFLAGS='-A -C'
 export HOMEBREW_UPDATE_TO_TAG=1
 export HOMEBREW_AUTO_UPDATE_SECS=86400
+export HOMEBRRW_TAPS='/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps'
 source /etc/os-release
