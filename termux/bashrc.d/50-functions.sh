@@ -1276,6 +1276,15 @@ pcsftp() {
   fi
 }
 
+csd(){
+  if (( $# == 1 )); then
+    cd ~/shared
+    cd $1
+  else
+    cd ~/shared
+  fi
+}
+
 update_vimrc() {
   (
   cd ~/.vim_runtime

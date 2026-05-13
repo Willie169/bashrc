@@ -1284,6 +1284,15 @@ pcsftp() {
   fi
 }
 
+csd(){
+  if (( $# == 1 )); then
+    cd ~/shared
+    cd $1
+  else
+    cd ~/shared
+  fi
+}
+
 xes() {
   xelatex *.tex && xelatex *.tex
 }
