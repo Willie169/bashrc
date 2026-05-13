@@ -1284,6 +1284,10 @@ pcsftp() {
   fi
 }
 
+xes() {
+  xelatex *.tex && xelatex *.tex
+}
+
 update_latex() {
   (
   /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
