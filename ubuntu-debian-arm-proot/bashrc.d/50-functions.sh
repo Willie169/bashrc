@@ -617,6 +617,11 @@ gauth() {
   gh auth login --scopes repo,read:org,admin:org,workflow,gist,notifications,delete_repo,write:packages,read:packages
 }
 
+gac() {
+  git add .
+  git commit -m "$1"
+}
+
 gacp() {
   git add .
   git commit -m "$1"
