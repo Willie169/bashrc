@@ -1099,6 +1099,7 @@ zip_split() {
 dfssh() {
   local forwards=(
     -L 3000:localhost:3000
+    -L 3001:localhost:3001
     -L 3300:localhost:3300
     -L 4000:localhost:4000
     -L 5500:localhost:5000
@@ -1112,6 +1113,7 @@ dfssh() {
     -L 8080:localhost:8080
     -L 8081:localhost:8081
     -L 8082:localhost:8082
+    -L 8765:localhost:8765
     -L 11434:localhost:11434
     -L 18789:localhost:18789
   )
@@ -1160,6 +1162,7 @@ cfssh() {
 pdssh() {
   local forwards=(
     -L 3000:localhost:3000
+    -L 3001:localhost:3001
     -L 3300:localhost:3300
     -L 4000:localhost:4000
     -L 5500:localhost:5000
@@ -1173,6 +1176,7 @@ pdssh() {
     -L 8080:localhost:8080
     -L 8081:localhost:8081
     -L 8082:localhost:8082
+    -L 8765:localhost:8765
     -L 11434:localhost:11434
     -L 18789:localhost:18789
   )
