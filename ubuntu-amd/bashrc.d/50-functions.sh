@@ -1306,6 +1306,24 @@ xes() {
   xelatex *.tex && xelatex *.tex
 }
 
+dicepass() {
+  local n="$1"
+  local sep="${2:--}"
+  local url="https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt"
+  local file="${HOME}/.eff_large_wordlist.txt"
+  [[ ! -f "$file" ]] && curl -fsSL "$url" -o "$file"
+  [[ ! -f "$file" ]] && printf 'ERROR: cannot download wordlist\n'
+  local passphrase=''
+  while true; do
+    local word
+    word="$(awk -v k="$(shuf -i 1-6 -n 5 | tr -d '\n')" '$1 == k { print $2; exit }' "$file")"
+    (( ${#passphrase} + ${#word} + ${#sep} > n )) && break
+    [[ -n "$passphrase" ]] && passphrase+="$sep"
+    passphrase+="$word"
+  done
+  (( ${#passphrase} > 0 )) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
+}
+
 update_latex() {
   (
   sudo /usr/local/texlive/2026/bin/x86_64-linux/tlmgr update --all --self --reinstall-forcibly-removed
