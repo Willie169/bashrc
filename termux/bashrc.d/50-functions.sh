@@ -245,7 +245,6 @@ dl() {
     [ "$no_fallback" -eq 1 ] && return "$rc"
   fi
 
-  echo "Error: all enabled downloaders failed" >&2
   return "$rc"
 }
 
