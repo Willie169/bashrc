@@ -1301,10 +1301,6 @@ csd(){
   fi
 }
 
-xes() {
-  xelatex *.tex && xelatex *.tex
-}
-
 dicepass() {
   local n="$1"
   local sep="${2:--}"
@@ -1321,6 +1317,14 @@ dicepass() {
     passphrase+="$word"
   done
   (( ${#passphrase} > 0 )) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
+}
+
+clean_char() {
+  perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' "$1"
+}
+
+xes() {
+  perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' *.tex && xelatex *.tex && xelatex *.tex
 }
 
 update_latex() {
