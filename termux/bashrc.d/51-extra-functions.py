@@ -15,7 +15,7 @@ remote = ["$DOW", "$DOC", "$SCR", "$EMU"]
 remoteStr = ["", "d", "s", "e"]
 local = [".", "~", ".."]
 localStr = ["c", "h", "b"]
-tlocal = ["\"$1\"", "\"$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root\""]
+tlocal = ["\"$1\"", "\"$PREFIX/var/lib/proot-distro/containers/$1/root\""]
 tlocalStr = ["r", "p"]
 pop = ["mvi", "mvo", "cpi", "cpo", "cpri", "cpro", "mvia", "cpia", "mvai", "cpai"]
 pup = ["mvy", "mvu", "cpy", "cpu", "cpry", "cpru", "mvya", "cpya", "mvay", "cpay"]
@@ -58,23 +58,23 @@ for i in lr(aop):
             f.write(aopStr[i] + "ya" + localStr[j] + tlocalStr[k] + "() {\n  (\n  cd " + tlocal[k] + "\n  LOCAL=$(pwd)\n  cd "  + local[j] + "\n  for f in *; do\n    " + aop[i] + " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
 
 f.write("""rmp() {
-  rm -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  rm -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 rmrp() {
-  rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  rm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 rmrfp() {
-  rm -rf -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  rm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 mkdirp() {
-  mkdir -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  mkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 mkdirpp() {
-  mkdir -p -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  mkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 """)
 

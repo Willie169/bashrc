@@ -31,11 +31,11 @@ mvor() {
 }
 
 mvip() {
-  mv -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvop() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$DOW"/
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$DOW"/
 }
 
 mvidc() {
@@ -71,11 +71,11 @@ mvodr() {
 }
 
 mvidp() {
-  mv -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvodp() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$DOC"/
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$DOC"/
 }
 
 mvisc() {
@@ -111,11 +111,11 @@ mvosr() {
 }
 
 mvisp() {
-  mv -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvosp() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$SCR"/
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$SCR"/
 }
 
 mviec() {
@@ -151,11 +151,11 @@ mvoer() {
 }
 
 mviep() {
-  mv -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvoep() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$EMU"/
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$EMU"/
 }
 
 cpic() {
@@ -191,11 +191,11 @@ cpor() {
 }
 
 cpip() {
-  cp -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpop() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$DOW"/
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$DOW"/
 }
 
 cpidc() {
@@ -231,11 +231,11 @@ cpodr() {
 }
 
 cpidp() {
-  cp -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpodp() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$DOC"/
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$DOC"/
 }
 
 cpisc() {
@@ -271,11 +271,11 @@ cposr() {
 }
 
 cpisp() {
-  cp -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cposp() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$SCR"/
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$SCR"/
 }
 
 cpiec() {
@@ -311,11 +311,11 @@ cpoer() {
 }
 
 cpiep() {
-  cp -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpoep() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$EMU"/
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$EMU"/
 }
 
 cpric() {
@@ -351,11 +351,11 @@ cpror() {
 }
 
 cprip() {
-  cp -r -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cprop() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$DOW"/
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$DOW"/
 }
 
 cpridc() {
@@ -391,11 +391,11 @@ cprodr() {
 }
 
 cpridp() {
-  cp -r -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cprodp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$DOC"/
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$DOC"/
 }
 
 cprisc() {
@@ -431,11 +431,11 @@ cprosr() {
 }
 
 cprisp() {
-  cp -r -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cprosp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$SCR"/
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$SCR"/
 }
 
 cpriec() {
@@ -471,11 +471,11 @@ cproer() {
 }
 
 cpriep() {
-  cp -r -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cproep() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2" "$EMU"/
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2" "$EMU"/
 }
 
 mviac() {
@@ -524,7 +524,7 @@ mviar() {
 
 mviap() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $DOW
   for f in *; do
@@ -579,7 +579,7 @@ mviadr() {
 
 mviadp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $DOC
   for f in *; do
@@ -634,7 +634,7 @@ mviasr() {
 
 mviasp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $SCR
   for f in *; do
@@ -689,7 +689,7 @@ mviaer() {
 
 mviaep() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $EMU
   for f in *; do
@@ -744,7 +744,7 @@ cpiar() {
 
 cpiap() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $DOW
   for f in *; do
@@ -799,7 +799,7 @@ cpiadr() {
 
 cpiadp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $DOC
   for f in *; do
@@ -854,7 +854,7 @@ cpiasr() {
 
 cpiasp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $SCR
   for f in *; do
@@ -909,7 +909,7 @@ cpiaer() {
 
 cpiaep() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   tlocal=$(pwd)
   cd $EMU
   for f in *; do
@@ -957,7 +957,7 @@ mvair() {
 mvaip() {
   (
   mvip "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1002,7 +1002,7 @@ mvaidr() {
 mvaidp() {
   (
   mvidp "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1047,7 +1047,7 @@ mvaisr() {
 mvaisp() {
   (
   mvisp "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1092,7 +1092,7 @@ mvaier() {
 mvaiep() {
   (
   mviep "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1137,7 +1137,7 @@ cpair() {
 cpaip() {
   (
   cprip "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1182,7 +1182,7 @@ cpaidr() {
 cpaidp() {
   (
   cpridp "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1227,7 +1227,7 @@ cpaisr() {
 cpaisp() {
   (
   cprisp "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1272,7 +1272,7 @@ cpaier() {
 cpaiep() {
   (
   cpriep "$1" "$2"
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   cp -r -- "$2"/* ./
   rm -r "$2"
   )
@@ -1287,11 +1287,11 @@ mvucr() {
 }
 
 mvycp() {
-  mv -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvucp() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 mvyhr() {
@@ -1303,11 +1303,11 @@ mvuhr() {
 }
 
 mvyhp() {
-  mv -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvuhp() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 mvybr() {
@@ -1319,11 +1319,11 @@ mvubr() {
 }
 
 mvybp() {
-  mv -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  mv -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 mvubp() {
-  mv -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 cpycr() {
@@ -1335,11 +1335,11 @@ cpucr() {
 }
 
 cpycp() {
-  cp -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpucp() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 cpyhr() {
@@ -1351,11 +1351,11 @@ cpuhr() {
 }
 
 cpyhp() {
-  cp -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpuhp() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 cpybr() {
@@ -1367,11 +1367,11 @@ cpubr() {
 }
 
 cpybp() {
-  cp -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpubp() {
-  cp -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 cprycr() {
@@ -1383,11 +1383,11 @@ cprucr() {
 }
 
 cprycp() {
-  cp -r -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cprucp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 cpryhr() {
@@ -1399,11 +1399,11 @@ cpruhr() {
 }
 
 cpryhp() {
-  cp -r -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cpruhp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 cprybr() {
@@ -1415,11 +1415,11 @@ cprubr() {
 }
 
 cprybp() {
-  cp -r -- "$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/
+  cp -r -- "$2" "$PREFIX/var/lib/proot-distro/containers/$1/root"/
 }
 
 cprubp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"/"$2"
+  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root"/"$2"
 }
 
 mvyacr() {
@@ -1435,7 +1435,7 @@ mvyacr() {
 
 mvyacp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   LOCAL=$(pwd)
   cd .
   for f in *; do
@@ -1457,7 +1457,7 @@ mvyahr() {
 
 mvyahp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   LOCAL=$(pwd)
   cd ~
   for f in *; do
@@ -1479,7 +1479,7 @@ mvyabr() {
 
 mvyabp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   LOCAL=$(pwd)
   cd ..
   for f in *; do
@@ -1501,7 +1501,7 @@ cpyacr() {
 
 cpyacp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   LOCAL=$(pwd)
   cd .
   for f in *; do
@@ -1523,7 +1523,7 @@ cpyahr() {
 
 cpyahp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   LOCAL=$(pwd)
   cd ~
   for f in *; do
@@ -1545,7 +1545,7 @@ cpyabr() {
 
 cpyabp() {
   (
-  cd "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+  cd "$PREFIX/var/lib/proot-distro/containers/$1/root"
   LOCAL=$(pwd)
   cd ..
   for f in *; do
@@ -1555,23 +1555,23 @@ cpyabp() {
 }
 
 rmp() {
-  rm -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  rm -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 rmrp() {
-  rm -r -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  rm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 rmrfp() {
-  rm -rf -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  rm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 mkdirp() {
-  mkdir -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  mkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 
 mkdirpp() {
-  mkdir -p -- "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+  mkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/root/$2"
 }
 mvipt(){
   if [ -n "$TERMUX" ]; then
