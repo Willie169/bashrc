@@ -1305,7 +1305,7 @@ csd(){
 
 phice() {
   local port="${1:-5000}"
-  uv run gunicorn -b 127.0.0.1:"$port" -w 4 "app:app"
+  cd ~/phice && uv run gunicorn -b 127.0.0.1:"$port" -w 4 "app:app"
 }
 
 dicepass() {
