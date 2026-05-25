@@ -1295,6 +1295,10 @@ csd(){
   fi
 }
 
+phice() {
+  uv run gunicorn -b 127.0.0.1:5000 -w 4 "app:app"
+}
+
 dicepass() {
   local n="$1"
   local sep="${2:--}"
