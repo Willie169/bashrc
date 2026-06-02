@@ -13,6 +13,8 @@ fi
 
 [ -r ~/API_KEY.sh ] && source ~/API_KEY.sh
 
+source ${HOME}/.config/broot/launcher/bash/br
+
 mkdir -p ~/.bashrc.pid
 
 if [ ! -f ~/.bashrc.pid/pulseaudio.pid ] || ! kill -0 $(cat ~/.bashrc.pid/pulseaudio.pid) 2>/dev/null; then

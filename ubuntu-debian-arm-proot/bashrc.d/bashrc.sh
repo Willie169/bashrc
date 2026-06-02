@@ -15,6 +15,8 @@ fi
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
+source ${HOME}/.config/broot/launcher/bash/br
+
 eval "$(fzf --bash)"
 
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
