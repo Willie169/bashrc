@@ -1326,13 +1326,15 @@ ccf() {
 }
 
 xes() {
-  ccf *.tex
-  xelatex *.tex && xelatex *.tex
+  set -- "${1:-"$(ls *.tex 2>/dev/null | head -n 1)"}"
+  ccf "$1"
+  xelatex "$1" && xelatex "$1"
 }
 
 lus() {
-  ccf *.tex
-  lualatex *.tex && lualatex *.tex
+  set -- "${1:-"$(ls *.tex 2>/dev/null | head -n 1)"}"
+  ccf "$1"
+  lualatex "$1" && lualatex "$1"
 }
 
 update_texlive() {
