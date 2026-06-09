@@ -1326,7 +1326,7 @@ ccf() {
 }
 
 clt() {
-  rm *.aux *.log *.nav *.out *.snm *.toc
+  rm *.aux *.log *.nav *.out *.snm *.toc || true
 }
 
 xes() {
