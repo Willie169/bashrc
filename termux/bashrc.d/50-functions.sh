@@ -1324,16 +1324,6 @@ ccf() {
   perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$1"
 }
 
-xes() {
-  ccf *.tex
-  xelatex *.tex && xelatex *.tex
-}
-
-lus() {
-  ccf *.tex
-  lualatex *.tex && lualatex *.tex
-}
-
 update_vimrc() {
   (
   cd ~/.vim_runtime

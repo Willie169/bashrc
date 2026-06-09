@@ -1335,9 +1335,12 @@ lus() {
   lualatex *.tex && lualatex *.tex
 }
 
+update_texlive() {
+  /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
+}
+
 update_latex() {
   (
-  /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
   cd /usr/share/LaTeX-ToolKit
   git reset --hard
   git clean -d --force
