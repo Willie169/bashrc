@@ -1325,6 +1325,10 @@ ccf() {
   perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$1"
 }
 
+clt() {
+  rm *.aux *.log *.nav *.out *.snm *.toc
+}
+
 xes() {
   set -- "${1:-"$(ls *.tex 2>/dev/null | head -n 1)"}"
   ccf "$1"
