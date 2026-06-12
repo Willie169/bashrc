@@ -1328,6 +1328,13 @@ clt() {
   rm *.aux *.log *.nav *.out *.snm *.toc || true
 }
 
+clean_disk() {
+  rm -rf $PREFIX/var/cache/* ~/.cache/*
+  find $PREFIX/tmp ! -path '*/proot*' -prune -o \( -type d -o -type f \) -exec rm -rf {} +
+  apt clean
+  apt autoclean
+}
+
 update_vimrc() {
   (
   cd ~/.vim_runtime

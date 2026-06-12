@@ -1341,6 +1341,14 @@ lus() {
   lualatex "$1" && lualatex "$1"
 }
 
+clean_disk() {
+  rm -rf /var/tmp/* /var/cache/* ~/.cache/*
+  find /tmp ! -path '*/proot*' -prune -o \( -type d -o -type f \) -exec rm -rf {} +
+  logrotate /etc/logrotate.conf
+  apt clean
+  apt autoclean
+}
+
 update_texlive() {
   /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
 }

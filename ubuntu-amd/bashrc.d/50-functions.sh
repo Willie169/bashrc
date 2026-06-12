@@ -1348,6 +1348,16 @@ lus() {
   lualatex "$1" && lualatex "$1"
 }
 
+clean_disk() {
+  sudo journalctl --vacuum-time=7d
+  sudo systemd-tmpfiles --clean
+  sudo rm -rf /var/tmp/* /tmp/* /var/cache/* ~/.cache/* ~/.var/app/*/cache/*
+  sudo apt clean
+  sudo apt autoclean
+  flatpak uninstall --unused -y
+  docker system prune
+}
+
 update_texlive() {
   sudo /usr/local/texlive/2026/bin/x86_64-linux/tlmgr update --all --self --reinstall-forcibly-removed
 }
