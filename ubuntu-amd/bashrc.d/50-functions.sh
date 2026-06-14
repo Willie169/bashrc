@@ -270,7 +270,7 @@ gh_latest() {
     case "$1" in
       -h|--help)
         echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]"
-        echo "Example: gh_latest cli/cli *.deb"
+        echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb"
         echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb"
         echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb"
         echo "Example: gh_latest cli/cli -i 0"
@@ -310,7 +310,7 @@ gh_latest() {
       -*)
         echo "Unknown option: $1" >&2
         echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-        echo "Example: gh_latest cli/cli *.deb" >&2
+        echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb" >&2
         echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
         echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
         echo "Example: gh_latest cli/cli -i 0" >&2
@@ -338,7 +338,7 @@ gh_latest() {
   if [ -z "$repo" ]; then
     echo "Error: no repo provided. Expected user/repo or URL" >&2
     echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-    echo "Example: gh_latest cli/cli *.deb" >&2
+    echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest cli/cli -i 0" >&2
@@ -348,7 +348,7 @@ gh_latest() {
   if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
     echo "Error: invalid repo format. Expected user/repo or URL" >&2
     echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-    echo "Example: gh_latest cli/cli *.deb" >&2
+    echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
     echo "Example: gh_latest cli/cli -i 0" >&2
