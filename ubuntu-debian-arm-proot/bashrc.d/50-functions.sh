@@ -1588,22 +1588,34 @@ update_vimrc() {
   )
 }
 
-update_bashrc() {
+update_nvim() {
+  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+}
+
+update_lizzieyzy_config() {
   (
-  cd ~
-  rm -f .bashrc 2>/dev/null || true
-  rm -rf .bashrc.d 2>/dev/null || true
-  mkdir .bashrc.d
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc.sh -O ~/.bashrc
+  mkdir -p $HOME/.lizzieyzy
+  rm $HOME/.lizzieyzy/config.txt 2>/dev/null || true
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.lizzieyzy/config.txt
+  sed -i -e "s|\$((\$(nproc)/2))|$(($(nproc)/2))|g" -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.lizzieyzy/config.txt
+  )
+}
+
+update_cutechess_config() {
+  (
+  mkdir -p $HOME/.config/cutechess
+  rm $HOME/.config/cutechess/engines.json 2>/dev/null || true
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O $HOME/.config/cutechess/engines.json
+  sed -i -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/cutechess/engines.json
+  )
+}
+
+update_sylvan_config() {
+  (
+  mkdir -p $HOME/.config/EterCyber
+  rm $HOME/.config/EterCyber/engines.json 2>/dev/null || true
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/Sylvan/engines.json -O $HOME/.config/EterCyber/engines.json
+  sed -i -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/EterCyber/engines.json
   )
 }
 
@@ -1642,34 +1654,40 @@ update_tools() {
   )
 }
 
-update_nvim() {
-  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
-}
-
-update_lizzieyzy_config() {
+update_bashrc() {
   (
-  mkdir -p $HOME/.lizzieyzy
-  rm $HOME/.lizzieyzy/config.txt 2>/dev/null || true
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.lizzieyzy/config.txt
-  sed -i -e "s|\$((\$(nproc)/2))|$(($(nproc)/2))|g" -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.lizzieyzy/config.txt
+  cd ~
+  rm -f .bashrc 2>/dev/null || true
+  rm -rf .bashrc.d 2>/dev/null || true
+  mkdir .bashrc.d
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc.sh -O ~/.bashrc
   )
 }
 
-update_cutechess_config() {
-  (
-  mkdir -p $HOME/.config/cutechess
-  rm $HOME/.config/cutechess/engines.json 2>/dev/null || true
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O $HOME/.config/cutechess/engines.json
-  sed -i -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/cutechess/engines.json
-  )
-}
-
-update_sylvan_config() {
-  (
-  mkdir -p $HOME/.config/EterCyber
-  rm $HOME/.config/EterCyber/engines.json 2>/dev/null || true
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/Sylvan/engines.json -O $HOME/.config/EterCyber/engines.json
-  sed -i -e "s|\$(nproc)|$(nproc)|g" -e "s|\$HOME|$HOME|g" $HOME/.config/EterCyber/engines.json
-  )
+update_all() {
+  apt update
+  apt upgrade -y
+  apt clean
+  apt autoclean
+  deb-get upgrade -y
+  deb-get clean
+  update_texlive
+  update_latex
+  update_vimrc
+  update_nvim
+  update_lizzieyzy_config
+  update_cutechess_config
+  update_sylvan_config
+  update_tools
+  update_bashrc
 }
 
