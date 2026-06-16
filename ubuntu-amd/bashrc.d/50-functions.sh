@@ -1616,6 +1616,50 @@ update_bashrc() {
   )
 }
 
+update_tools() {
+  (
+  cd ~ || exit
+  sudo rm -f /usr/local/bin/apktool || true
+  wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
+  chmod +x apktool
+  sudo mv apktool /usr/local/bin/
+  sudo rm -f /usr/local/bin/apktool_*.jar || true
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
+  chmod +x apktool_*.jar
+  sudo mv apktool_*.jar /usr/local/bin/
+  rm -rf ~/jadx
+  mkdir jadx
+  cd jadx || exit
+  gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
+  unzip jadx*.zip
+  rm jadx*.zip
+  chmod +x bin/jadx
+  chmod +x bin/jadx-gui
+  cd ~ || exit
+  rm -f ~/.local/bin/superhtml
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
+  tar -xJf x86_64-linux-musl.tar.xz
+  rm x86_64-linux-musl.tar.xz
+  mv superhtml ~/.local/bin
+  rm -rf ~/eclipse.jdt.ls || true
+  mkdir eclipse.jdt.ls
+  cd eclipse.jdt.ls || exit
+  wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
+  tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
+  rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
+  cd ~ || exit
+  sudo rm -rf /usr/local/java/ClipCascade-Server-JRE_21.jar
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade-Server-JRE_21.jar
+  sudo mv ClipCascade-Server-JRE_21.jar /usr/local/java/
+  cp ~/ClipCascade/DATA ~/.ClipCascade.DATA || true
+  rm -rf ~/ClipCascade
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade_Linux.tar.xz
+  tar -xJf ClipCascade_Linux.tar.xz
+  rm ClipCascade_Linux.tar.xz
+  [ -f ~/.ClipCascade.DATA ] && mv ~/.ClipCascade.DATA ~/ClipCascade/DATA
+  )
+}
+
 update_nvim() {
   curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 }
