@@ -1557,6 +1557,7 @@ clean_disk() {
   logrotate /etc/logrotate.conf
   apt clean
   apt autoclean
+  deb-get clean
 }
 
 update_texlive() {

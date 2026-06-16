@@ -1564,8 +1564,8 @@ clean_disk() {
   sudo rm -rf /var/tmp/* /tmp/* ~/.cache/* ~/.var/app/*/cache/*
   sudo apt clean
   sudo apt autoclean
+  deb-get clean
   flatpak uninstall --unused -y
-  docker system prune
 }
 
 update_texlive() {
