@@ -1505,7 +1505,7 @@ pcsftp() {
   fi
 }
 
-csd(){
+csd() {
   if (( $# == 1 )); then
     cd ~/shared
     cd $1
