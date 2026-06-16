@@ -1640,9 +1640,9 @@ update_tools() {
   chmod +x bin/jadx-gui
   cd ~ || exit
   rm -f ~/.local/bin/superhtml
-  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
-  tar -xJf x86_64-linux-musl.tar.xz
-  rm x86_64-linux-musl.tar.xz
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
+  tar -xJf aarch64-linux.tar.xz
+  rm aarch64-linux.tar.xz
   mv superhtml ~/.local/bin
   rm -rf ~/eclipse.jdt.ls || true
   mkdir eclipse.jdt.ls
