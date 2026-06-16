@@ -1565,6 +1565,7 @@ clean_disk() {
   sudo apt clean
   sudo apt autoclean
   flatpak uninstall --unused -y
+  docker system prune
 }
 
 update_texlive() {
