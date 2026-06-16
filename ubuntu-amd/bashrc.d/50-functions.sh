@@ -1561,7 +1561,7 @@ lus() {
 clean_disk() {
   sudo journalctl --vacuum-time=7d
   sudo systemd-tmpfiles --clean
-  sudo rm -rf /var/tmp/* /tmp/* /var/cache/* ~/.cache/* ~/.var/app/*/cache/*
+  sudo rm -rf /var/tmp/* /tmp/* ~/.cache/* ~/.var/app/*/cache/*
   sudo apt clean
   sudo apt autoclean
   flatpak uninstall --unused -y

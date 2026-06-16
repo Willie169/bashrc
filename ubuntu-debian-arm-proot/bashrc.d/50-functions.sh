@@ -1552,7 +1552,7 @@ lus() {
 }
 
 clean_disk() {
-  rm -rf /var/tmp/* /var/cache/* ~/.cache/*
+  rm -rf /var/tmp/* ~/.cache/*
   find /tmp ! -path '*/proot*' -prune -o \( -type d -o -type f \) -exec rm -rf {} +
   logrotate /etc/logrotate.conf
   apt clean
