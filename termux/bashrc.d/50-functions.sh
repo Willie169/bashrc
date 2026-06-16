@@ -1557,6 +1557,10 @@ update_vimrc() {
   )
 }
 
+update_nvim() {
+  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+}
+
 update_bashrc() {
   (
   cd ~
@@ -1584,6 +1588,14 @@ update_bashrc() {
   )
 }
 
-update_nvim() {
-  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+update_all() {
+  pkg update
+  pkg upgrade -y
+  pkg autoremove -y
+  pkg clean
+  pkg autoclean
+  update_vimrc
+  update_nvim
+  update_bashrc
 }
+
