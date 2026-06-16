@@ -21,8 +21,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 eval "$(fzf --bash)"
 
-source '/home/willie/.bash_completions/ir.sh'
-
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
