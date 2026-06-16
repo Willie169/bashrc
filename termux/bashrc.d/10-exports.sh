@@ -7,6 +7,7 @@ export CLASSPATH="${CLASSPATH}:${PREFIX}/local/java/antlr-4.13.2-complete.jar:${
 export GOPROXY='direct'
 export GOROOT="${PREFIX}/local/go"
 export GOPATH="${HOME}/go"
+export GOSUMDB="sum.golang.org"
 export ANDROID_HOME="${HOME}/Android/Sdk"
 export ANDROID_SDK_ROOT="${ANDROID_HOME}"
 export ANDROID_NDK_HOME="${HOME}/Android/Sdk/ndk/android-ndk-r29"
