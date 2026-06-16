@@ -1668,6 +1668,11 @@ update_tools() {
   tar -xJf ClipCascade_Linux.tar.xz
   rm ClipCascade_Linux.tar.xz
   [ -f ~/.ClipCascade.DATA ] && mv ~/.ClipCascade.DATA ~/ClipCascade/DATA
+  rm -rf ~/ventoy
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' ventoy/ventoy ventoy-*-linux.tar.gz
+  tar -xzf ventoy-*-linux.tar.gz
+  rm ventoy-*-linux.tar.gz
+  mv ventoy-* ventoy
   )
 }
 
