@@ -1681,6 +1681,7 @@ update_all() {
   apt autoremove -y
   apt clean
   apt autoclean
+  bin update
   update_texlive
   update_latex
   update_vimrc

@@ -1699,6 +1699,7 @@ update_all() {
   sudo apt autoremove -y
   sudo apt clean
   sudo apt autoclean
+  bin update
   echo y | sudo ubuntu-drivers install || true
   echo y | sudo ubuntu-drivers install || true
   echo y | sudo ubuntu-drivers install || true
