@@ -1692,23 +1692,30 @@ update_bashrc() {
 }
 
 update_all() {
-  sudo apt update
-  sudo apt upgrade -y
-  sudo apt clean
-  sudo apt autoclean
   deb-get upgrade -y
   deb-get clean
+  sudo apt update
+  sudo apt upgrade -y
+  sudo apt autoremove -y
+  sudo apt clean
+  sudo apt autoclean
+  echo y | sudo ubuntu-drivers install || true
+  echo y | sudo ubuntu-drivers install || true
+  echo y | sudo ubuntu-drivers install || true
+  echo y | sudo ubuntu-drivers autoinstall || true
+  echo y | sudo ubuntu-drivers autoinstall || true
+  echo y | sudo ubuntu-drivers autoinstall || true
   flatpak update -y
   flatpak uninstall --unused -y
   sudo snap refresh
   update_texlive
   update_latex
   update_vimrc
-  update_tools
   update_nvim
   update_lizzieyzy_config
   update_cutechess_config
   update_sylvan_config
+  update_tools
   update_bashrc
 }
 

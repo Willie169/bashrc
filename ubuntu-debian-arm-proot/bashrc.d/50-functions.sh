@@ -1674,12 +1674,13 @@ update_bashrc() {
 }
 
 update_all() {
-  apt update
-  apt upgrade -y
-  apt clean
-  apt autoclean
   deb-get upgrade -y
   deb-get clean
+  apt update
+  apt upgrade -y
+  apt autoremove -y
+  apt clean
+  apt autoclean
   update_texlive
   update_latex
   update_vimrc
