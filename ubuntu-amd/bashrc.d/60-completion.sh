@@ -8,4 +8,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval $(register-python-argcomplete pipx)

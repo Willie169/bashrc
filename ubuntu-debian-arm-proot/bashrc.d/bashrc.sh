@@ -11,13 +11,15 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+[ -f ${HOME}/.config/broot/launcher/bash/br ] && source ${HOME}/.config/broot/launcher/bash/br
 
-source ${HOME}/.config/broot/launcher/bash/br
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
-eval "$(fzf --bash)"
+command -v fzf >/dev/null && eval "$(fzf --bash)"
 
-eval "$(bin completion bash)"
+command -v bin >/dev/null && eval "$(bin completion bash)"
+
+command -v register-python-argcomplete >/dev/null && command -v pipx >/dev/null && eval $(register-python-argcomplete pipx)
 
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true

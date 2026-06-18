@@ -11,7 +11,9 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 
-source ${HOME}/.config/broot/launcher/bash/br
+[ -f ${HOME}/.config/broot/launcher/bash/br ] && source ${HOME}/.config/broot/launcher/bash/br
+
+command -v register-python-argcomplete >/dev/null && command -v pipx >/dev/null && eval $(register-python-argcomplete pipx)
 
 mkdir -p ~/.bashrc.pid
 
