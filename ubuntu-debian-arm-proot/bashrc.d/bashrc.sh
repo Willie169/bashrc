@@ -11,8 +11,6 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 
-[ -r ~/API_KEY.sh ] && source ~/API_KEY.sh
-
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 source ${HOME}/.config/broot/launcher/bash/br
