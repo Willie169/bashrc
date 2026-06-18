@@ -1697,6 +1697,7 @@ update_bashrc() {
 }
 
 update_all() {
+  deb-get update
   deb-get upgrade -y
   deb-get clean
   sudo apt update
