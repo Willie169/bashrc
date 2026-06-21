@@ -17,8 +17,6 @@ fi
 
 command -v fzf >/dev/null && eval "$(fzf --bash)"
 
-command -v bin >/dev/null && eval "$(bin completion bash)"
-
 command -v register-python-argcomplete >/dev/null && command -v pipx >/dev/null && eval $(register-python-argcomplete pipx)
 
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
