@@ -1553,12 +1553,11 @@ lus() {
 }
 
 clean_disk() {
-  rm -rf /var/tmp/* ~/.cache/*
-  find /tmp ! -path '*/proot*' -prune -o \( -type d -o -type f \) -exec rm -rf {} +
+  rm -rf ~/.cache/*
   logrotate /etc/logrotate.conf
+  apt autoremove -y
   apt clean
   apt autoclean
-  deb-get clean
 }
 
 update_texlive() {
@@ -1674,15 +1673,11 @@ update_bashrc() {
 }
 
 update_all() {
-  deb-get update
-  deb-get upgrade -y
-  deb-get clean
   apt update
   apt upgrade -y
   apt autoremove -y
   apt clean
   apt autoclean
-  bin update
   update_texlive
   update_latex
   update_vimrc

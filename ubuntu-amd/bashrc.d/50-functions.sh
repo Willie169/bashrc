@@ -1562,10 +1562,10 @@ lus() {
 clean_disk() {
   sudo journalctl --vacuum-time=7d
   sudo systemd-tmpfiles --clean
-  sudo rm -rf /var/tmp/* /tmp/* ~/.cache/* ~/.var/app/*/cache/*
+  rm -rf ~/.cache/*
+  sudo apt autoremove -y
   sudo apt clean
   sudo apt autoclean
-  deb-get clean
   flatpak uninstall --unused -y
 }
 
@@ -1697,15 +1697,11 @@ update_bashrc() {
 }
 
 update_all() {
-  deb-get update
-  deb-get upgrade -y
-  deb-get clean
   sudo apt update
   sudo apt upgrade -y
   sudo apt autoremove -y
   sudo apt clean
   sudo apt autoclean
-  bin update
   echo y | sudo ubuntu-drivers install || true
   echo y | sudo ubuntu-drivers install || true
   echo y | sudo ubuntu-drivers install || true

@@ -1550,7 +1550,7 @@ clt() {
 
 clean_disk() {
   rm -rf ~/.cache/*
-  find $PREFIX/tmp ! -path '*/proot*' -prune -o \( -type d -o -type f \) -exec rm -rf {} +
+  apt autoremove -y
   apt clean
   apt autoclean
 }
