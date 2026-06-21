@@ -1522,6 +1522,15 @@ cyberchef() {
   )
 }
 
+stirlingpdf() {
+  (
+  local port="${1:-9000}"
+  echo -e "server:\n  port: $port" | tee $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
+  proot-distro run stirling-pdf -e SECURITY_ENABLELOGIN=false -e LANGS=en_GB
+  echo -e "server:\n  port: 9000" | tee $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
+  )
+}
+
 dicepass() {
   local n="$1"
   local sep="${2:--}"
