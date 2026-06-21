@@ -23,6 +23,7 @@ export WAYDROID="${HOME}/.local/share/waydroid/data/media/0"
 export ANTLR_JAR="/usr/local/java/antlr-4.13.2-complete.jar"
 export PLANTUML_JAR="/usr/local/java/plantuml.jar"
 export BOTTLES="${HOME}/.var/app/com.usebottles.bottles/data/bottles"
+export PRF="${HOME}/.local/share/proot-distro/containers"
 export MINETEST="${HOME}/.var/app/org.luanti.luanti/.minetest"
 export CC_PORT=8082
 export KIT="/usr/share/LaTeX-ToolKit"
