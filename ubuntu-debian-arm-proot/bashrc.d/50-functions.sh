@@ -1650,6 +1650,11 @@ update_tools() {
   tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
   rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
   cd ~ || exit
+  rm -f ~/.local/bin/rclone
+  gh_latest gulp79/rclone-extra rclone-linux-amd64.zip
+  unzip rclone-linux-arm64.zip
+  rm rclone-linux-arm64.zip*
+  mv rclone ~/.local/bin/
   )
 }
 

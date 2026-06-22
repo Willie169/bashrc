@@ -1579,6 +1579,46 @@ update_nvim() {
   curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 }
 
+update_tools() {
+  (
+  if [ -f ~/.local/bin/rclone ]; then
+  cd ~ || exit
+  rm -f ~/.local/bin/rclone
+  ARCH=$(uname -m)
+  gh_latest gulp79/rclone-extra rclone-android-all.zip
+  unzip rclone-android-all.zip
+  rm rclone-android-all.zip*
+  if [[ "$ARCH" == "x86_64" ]]; then
+  rm rclone-android-386
+  mv rclone-android-amd64 rclone
+  rm rclone-android-arm
+  rm rclone-android-arm64
+  elif [[ "$ARCH" =~ ^i[3-6]86$ ]]; then
+  mv rclone-android-386 rclone
+  rm rclone-android-amd64
+  rm rclone-android-arm
+  rm rclone-android-arm64
+  elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+  rm rclone-android-386
+  rm rclone-android-amd64
+  rm rclone-android-arm
+  mv rclone-android-arm64 rclone
+  elif [[ "$ARCH" == arm* ]]; then
+  rm rclone-android-386
+  rm rclone-android-amd64
+  mv rclone-android-arm rclone
+  rm rclone-android-arm64
+  else
+  rm rclone-android-386
+  rm rclone-android-amd64
+  rm rclone-android-arm
+  mv rm rclone-android-arm64 rclone
+  fi
+  mv rclone ~/.local/bin/
+  fi
+  )
+}
+
 update_bashrc() {
   (
   cd ~
@@ -1614,6 +1654,7 @@ update_all() {
   pkg autoclean
   update_vimrc
   update_nvim
+  update_tools
   update_bashrc
 }
 

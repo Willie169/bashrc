@@ -1673,6 +1673,11 @@ update_tools() {
   tar -xzf ventoy-*-linux.tar.gz
   rm ventoy-*-linux.tar.gz
   mv ventoy-* ventoy
+  rm -f ~/.local/bin/rclone
+  gh_latest gulp79/rclone-extra rclone-linux-amd64.zip
+  unzip rclone-linux-amd64.zip
+  rm rclone-linux-amd64.zip*
+  mv rclone ~/.local/bin/
   )
 }
 
