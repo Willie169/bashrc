@@ -1308,25 +1308,10 @@ zip_split() {
 
 dfssh() {
   local forwards=(
-    -L 3000:localhost:3000
-    -L 3001:localhost:3001
-    -L 3300:localhost:3300
-    -L 4000:localhost:4000
-    -L 5000:localhost:5000
-    -L 5500:localhost:5500
     -L 5900:localhost:5900
     -L 5901:localhost:5901
     -L 5902:localhost:5902
     -L 5903:localhost:5903
-    -L 7891:localhost:7891
-    -L 8008:localhost:8008
-    -L 8502:localhost:8502
-    -L 8080:localhost:8080
-    -L 8081:localhost:8081
-    -L 8082:localhost:8082
-    -L 8765:localhost:8765
-    -L 11434:localhost:11434
-    -L 18789:localhost:18789
   )
   if (( $# == 1 )); then
     ssh root@"$1" "${forwards[@]}"
@@ -1372,25 +1357,10 @@ cfssh() {
 
 pdssh() {
   local forwards=(
-    -L 3000:localhost:3000
-    -L 3001:localhost:3001
-    -L 3300:localhost:3300
-    -L 4000:localhost:4000
-    -L 5000:localhost:5000
-    -L 5500:localhost:5500
     -L 5900:localhost:5900
     -L 5901:localhost:5901
     -L 5902:localhost:5902
     -L 5903:localhost:5903
-    -L 7891:localhost:7891
-    -L 8008:localhost:8008
-    -L 8502:localhost:8502
-    -L 8080:localhost:8080
-    -L 8081:localhost:8081
-    -L 8082:localhost:8082
-    -L 8765:localhost:8765
-    -L 11434:localhost:11434
-    -L 18789:localhost:18789
   )
   if (( $# == 1 )); then
     ssh root@"$1" -p 2022 "${forwards[@]}"
