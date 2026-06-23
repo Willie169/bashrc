@@ -11,6 +11,8 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 
+unset PREFIX
+
 [ -f ${HOME}/.config/broot/launcher/bash/br ] && source ${HOME}/.config/broot/launcher/bash/br
 
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
