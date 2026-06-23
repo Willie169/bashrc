@@ -1515,10 +1515,10 @@ phice() {
 
 cyberchef() {
   (
-  local port="${1:-8080}"
+  local port="${1:-8081}"
   sed -Ei "s/(listen[ \t]+)[0-9]*;/\1${port};/" $PREFIX/var/lib/proot-distro/containers/cyberchef/rootfs/etc/nginx/conf.d/default.conf
   proot-distro run cyberchef
-  sed -Ei "s/(listen[ \t]+)[0-9]*;/\18080;/" $PREFIX/var/lib/proot-distro/containers/cyberchef/rootfs/etc/nginx/conf.d/default.conf
+  sed -Ei "s/(listen[ \t]+)[0-9]*;/\18081;/" $PREFIX/var/lib/proot-distro/containers/cyberchef/rootfs/etc/nginx/conf.d/default.conf
   )
 }
 
