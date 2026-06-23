@@ -1,6 +1,6 @@
 # 51-extra-functions.py
 
-f = open("51-extra-functions.sh", "w")
+f = open("bashrc.d/51-extra-functions.sh", "w")
 
 def lr(x):
     return range(0, len(x))

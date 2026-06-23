@@ -11,6 +11,9 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 
+sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/commands/login/proot_cmd.py || true
+sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/helpers/build_engine/run_step.py || true
+
 [ -f ${HOME}/.config/broot/launcher/bash/br ] && source ${HOME}/.config/broot/launcher/bash/br
 
 command -v register-python-argcomplete >/dev/null && command -v pipx >/dev/null && eval $(register-python-argcomplete pipx)
