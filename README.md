@@ -13,7 +13,7 @@
 Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
 
 1. Clone the `bashrc.d` folder in the folder corresponding to your environment to `~` and rename it `.bashrc.d`.
-2. Move the `bashrc.sh` out to `~` and rename it to `.bashrc`.
+2. Move the `bashrc` out to `~` and rename it to `.bashrc`.
 3. Run `source ~/.bashrc`.
 
 ## Script Installation
@@ -39,7 +39,7 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/24-flatpak.sh -O ~/.bashrc.d/24-flatpak.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc.sh -O ~/.bashrc
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc -O ~/.bashrc
 source ~/.bashrc
 </code></pre></li>
 <li><strong>Ubuntu/Debian ARM64 Proot</strong>:
@@ -58,7 +58,7 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-p
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc.sh -O ~/.bashrc
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc -O ~/.bashrc
 source ~/.bashrc
 </code></pre></li>
 <li><strong>Termux</strong>:
@@ -85,7 +85,7 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/51-extra-functions.sh -O ~/.bashrc.d/51-extra-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc -O ~/.bashrc
 source ~/.bashrc
 </code></pre></li>
 </ul>
