@@ -1648,6 +1648,12 @@ update_tools() {
   unzip rclone-linux-amd64.zip
   rm rclone-linux-amd64.zip*
   mv rclone ~/.local/bin/
+  gh_latest rustdesk/rustdesk rustdesk-*-x86_64.deb
+  sudo apt install ./rustdesk-*-x86_64.deb -y
+  rm rustdesk-*-x86_64.deb*
+  gh_latest rustdesk/rustdesk-server rustdesk-server-hbbr_*_amd64.deb
+  sudo apt install ./rustdesk-server-hbbr_*_amd64.deb -y
+  rm rustdesk-server-hbbr_*_amd64.deb*
   )
 }
 
