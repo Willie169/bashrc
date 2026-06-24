@@ -231,7 +231,7 @@
       3,
       100
     ],
-    "host-name": "localhost",
+    "host-name": "$(hostname)",
     "kata-time-byoyomi-times": 3,
     "show-blunder-bar": true,
     "only-last-move-number": 1,
