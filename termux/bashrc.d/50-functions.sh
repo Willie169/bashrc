@@ -1551,8 +1551,13 @@ update_nvim() {
 
 update_tools() {
   (
-  if [ -f ~/.local/bin/rclone ]; then
   cd ~ || exit
+  if [ -f ~/.local/bin/yt-dlp ]; then
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+  chmod +x yt-dlp
+  mv yt-dlp ~/.local/bin/
+  fi
+  if [ -f ~/.local/bin/rclone ]; then
   rm -f ~/.local/bin/rclone
   ARCH=$(uname -m)
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip

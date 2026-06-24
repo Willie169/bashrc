@@ -1591,6 +1591,9 @@ update_sylvan_config() {
 update_tools() {
   (
   cd ~ || exit
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+  chmod +x yt-dlp
+  mv yt-dlp ~/.local/bin/
   rm -f /usr/local/bin/apktool || true
   wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
   chmod +x apktool
