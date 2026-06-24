@@ -1596,7 +1596,7 @@ update_tools() {
   chmod +x apktool
   mv apktool /usr/local/bin/
   rm -f /usr/local/bin/apktool_*.jar || true
-  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
   chmod +x apktool_*.jar
   mv apktool_*.jar /usr/local/bin/
   rm -rf ~/jadx

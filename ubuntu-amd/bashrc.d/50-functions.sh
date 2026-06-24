@@ -1605,7 +1605,7 @@ update_tools() {
   chmod +x apktool
   sudo mv apktool /usr/local/bin/
   sudo rm -f /usr/local/bin/apktool_*.jar || true
-  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
   chmod +x apktool_*.jar
   sudo mv apktool_*.jar /usr/local/bin/
   rm -rf ~/jadx
@@ -1639,7 +1639,7 @@ update_tools() {
   rm ClipCascade_Linux.tar.xz
   [ -f ~/.ClipCascade.DATA ] && mv ~/.ClipCascade.DATA ~/ClipCascade/DATA
   rm -rf ~/ventoy
-  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' ventoy/ventoy ventoy-*-linux.tar.gz
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' ventoy/ventoy 'ventoy-*-linux.tar.gz'
   tar -xzf ventoy-*-linux.tar.gz
   rm ventoy-*-linux.tar.gz
   mv ventoy-* ventoy
@@ -1648,13 +1648,13 @@ update_tools() {
   unzip rclone-linux-amd64.zip
   rm rclone-linux-amd64.zip*
   mv rclone ~/.local/bin/
-  gh_latest rustdesk/rustdesk rustdesk-*-x86_64.deb
+  gh_latest rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
   sudo apt install ./rustdesk-*-x86_64.deb -y
   rm rustdesk-*-x86_64.deb*
-  gh_latest rustdesk/rustdesk-server rustdesk-server-hbbs_*_amd64.deb
+  gh_latest rustdesk/rustdesk-server 'rustdesk-server-hbbs_*_amd64.deb'
   sudo apt install ./rustdesk-server-hbbs_*_amd64.deb -y
   rm rustdesk-server-hbbs_*_amd64.deb*
-  gh_latest rustdesk/rustdesk-server rustdesk-server-hbbr_*_amd64.deb
+  gh_latest rustdesk/rustdesk-server 'rustdesk-server-hbbr_*_amd64.deb'
   sudo apt install ./rustdesk-server-hbbr_*_amd64.deb -y
   rm rustdesk-server-hbbr_*_amd64.deb*
   )
