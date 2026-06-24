@@ -1621,7 +1621,7 @@ update_tools() {
   rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
   cd ~ || exit
   rm -f ~/.local/bin/rclone
-  gh_latest gulp79/rclone-extra rclone-linux-arm64.zip
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
   unzip rclone-linux-arm64.zip
   rm rclone-linux-arm64.zip*
   mv rclone ~/.local/bin/

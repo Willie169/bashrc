@@ -1644,17 +1644,17 @@ update_tools() {
   rm ventoy-*-linux.tar.gz
   mv ventoy-* ventoy
   rm -f ~/.local/bin/rclone
-  gh_latest gulp79/rclone-extra rclone-linux-amd64.zip
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-amd64.zip
   unzip rclone-linux-amd64.zip
   rm rclone-linux-amd64.zip*
   mv rclone ~/.local/bin/
-  gh_latest rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
   sudo apt install ./rustdesk-*-x86_64.deb -y
   rm rustdesk-*-x86_64.deb*
-  gh_latest rustdesk/rustdesk-server 'rustdesk-server-hbbs_*_amd64.deb'
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk-server 'rustdesk-server-hbbs_*_amd64.deb'
   sudo apt install ./rustdesk-server-hbbs_*_amd64.deb -y
   rm rustdesk-server-hbbs_*_amd64.deb*
-  gh_latest rustdesk/rustdesk-server 'rustdesk-server-hbbr_*_amd64.deb'
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk-server 'rustdesk-server-hbbr_*_amd64.deb'
   sudo apt install ./rustdesk-server-hbbr_*_amd64.deb -y
   rm rustdesk-server-hbbr_*_amd64.deb*
   )
