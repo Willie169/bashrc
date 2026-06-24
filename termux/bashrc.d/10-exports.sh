@@ -3,7 +3,7 @@
 export TMPDIR="${PREFIX}/tmp"
 export JAVA_HOME="${PREFIX}/lib/jvm/java-21-openjdk"
 export JAVAROOT="${PREFIX}/local/java"
-export CLASSPATH="${CLASSPATH}:${PREFIX}/local/java/antlr-4.13.2-complete.jar:${PREFIX}/local/java/plantuml.jar"
+export CLASSPATH="${PREFIX}/local/java/antlr-4.13.2-complete.jar:${PREFIX}/local/java/plantuml.jar"
 export GOPROXY='direct'
 export GOROOT="${PREFIX}/lib/go"
 export GOPATH="${HOME}/go"
