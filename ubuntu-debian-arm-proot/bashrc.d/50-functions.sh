@@ -1583,7 +1583,7 @@ update_sylvan_config() {
   (
   mkdir -p $HOME/.config/EterCyber
   rm $HOME/.config/EterCyber/engines.json 2>/dev/null || true
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/Sylvan/engines.json -O $HOME/.config/EterCyber/engines.json
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/sylvan/engines.json -O $HOME/.config/EterCyber/engines.json
   sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" $HOME/.config/EterCyber/engines.json
   )
 }
