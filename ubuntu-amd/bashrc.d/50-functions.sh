@@ -1663,6 +1663,15 @@ update_tools() {
   )
 }
 
+update_pied() {
+  (
+  cd ~
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Elleo/pied com.mikeasoft.pied.flatpak
+  sudo flatpak install com.mikeasoft.pied.flatpak -y
+  rm com.mikeasoft.pied.flatpak*
+  )
+}
+
 update_bashrc() {
   (
   cd ~
@@ -1706,6 +1715,7 @@ update_all() {
   update_cutechess_config
   update_sylvan_config
   update_tools
+  update_pied
   update_bashrc
 }
 
