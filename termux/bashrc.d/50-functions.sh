@@ -1563,6 +1563,7 @@ update_tools() {
   xz -dc aarch64-linux.tar.xz | tar -xf - || true
   rm aarch64-linux.tar.xz*
   mv superhtml ~/.local/bin/
+  fi
   if [ -f ~/.local/bin/rclone ]; then
   rm -f ~/.local/bin/rclone
   ARCH=$(uname -m)
