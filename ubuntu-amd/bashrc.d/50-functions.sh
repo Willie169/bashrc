@@ -1667,7 +1667,7 @@ update_pied() {
   (
   cd ~
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Elleo/pied com.mikeasoft.pied.flatpak
-  sudo flatpak install com.mikeasoft.pied.flatpak -y
+  sudo flatpak install com.mikeasoft.pied.flatpak -y || true
   rm com.mikeasoft.pied.flatpak*
   )
 }
