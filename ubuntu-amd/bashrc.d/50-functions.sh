@@ -1486,7 +1486,7 @@ csd() {
 
 phice() {
   (
-  local port="${1:-5000}"
+  local port="${1:-5001}"
   cd ~/phice && uv run gunicorn -b 127.0.0.1:"$port" -w 4 "app:app"
   )
 }
