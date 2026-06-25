@@ -11,6 +11,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias src='source'
 alias sbrc='source ~/.bashrc'
 alias py='python3'
+alias dfur='df $(dirname "$PREFIX") | tail -n1 | awk '"'"'{print $3}'"'"
 alias ping='/data/data/com.termux/files/usr/bin/ping'
 alias httpp='http-server -p'
 alias yt-sub='yt-dlp --write-subs --sub-format vtt  --skip-download'
