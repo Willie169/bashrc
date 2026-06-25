@@ -1,6 +1,5 @@
 #!/bin/bash
 
-unset PREFIX
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -30,8 +29,9 @@ export OLLAMA_HOST=0.0.0.0
 export PULSE_SERVER=127.0.0.1
 export GALLIUM_DRIVER=zink
 export MESA_GL_VERSION_OVERRIDE=4.3
-export DLFLAGS='-A -C'
 export HOMEBREW_UPDATE_TO_TAG=1
 export HOMEBREW_AUTO_UPDATE_SECS=86400
 export HOMEBREW_TAPS='/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps'
+export DLFLAGS='-A -C'
 source /etc/os-release
+unset PREFIX

@@ -35,6 +35,7 @@ export LITELLM_PROXY_URL=http://localhost:4000
 export HOMEBREW_UPDATE_TO_TAG=1
 export HOMEBREW_AUTO_UPDATE_SECS=86400
 export HOMEBREW_TAPS='/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps'
+export DLFLAGS='-A -C'
 export UBUNTU_VERSION_ID=$(
 if grep -q '^NAME="Linux Mint"' /etc/os-release; then
   inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'

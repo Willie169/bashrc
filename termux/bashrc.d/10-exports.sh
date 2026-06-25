@@ -30,3 +30,4 @@ export OLLAMA_API_HOST=http://127.0.0.1:11434
 export OLLAMA_BASE_URL=http://127.0.0.1:11434
 export GALLIUM_DRIVER=zink
 export MESA_GL_VERSION_OVERRIDE=4.3
+export DLFLAGS='-A -C'
