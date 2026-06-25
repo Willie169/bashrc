@@ -1615,14 +1615,7 @@ update_tools() {
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
   tar -xJf aarch64-linux.tar.xz
   rm aarch64-linux.tar.xz
-  mv superhtml ~/.local/bin
-  rm -rf ~/eclipse.jdt.ls || true
-  mkdir eclipse.jdt.ls
-  cd eclipse.jdt.ls || exit
-  wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
-  tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
-  rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
-  cd ~ || exit
+  mv superhtml ~/.local/bin/
   rm -f ~/.local/bin/rclone
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
   unzip rclone-linux-arm64.zip
@@ -1666,4 +1659,3 @@ update_all() {
   update_tools
   update_bashrc
 }
-
