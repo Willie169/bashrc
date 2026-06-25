@@ -1553,10 +1553,17 @@ update_tools() {
   (
   cd ~ || exit
   if [ -f ~/.local/bin/yt-dlp ]; then
+  rm -f /.local/bin/yt-dlp
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
   chmod +x yt-dlp
   mv yt-dlp ~/.local/bin/
   fi
+  if [ -f ~/.local/bin/superhtml ]; then
+  rm -f /.local/bin/superhtml
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
+  xz -dc aarch64-linux.tar.xz | tar -xf - || true
+  rm aarch64-linux.tar.xz*
+  mv superhtml ~/.local/bin/
   if [ -f ~/.local/bin/rclone ]; then
   rm -f ~/.local/bin/rclone
   ARCH=$(uname -m)
