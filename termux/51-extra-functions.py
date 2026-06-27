@@ -134,7 +134,7 @@ DB = ["", " -s localhost:5555"]
 E = ["n", "a"]
 F = ["", " --no-audio"]
 eG = ["", " --new-display"]
-G = [[""], ["n", "sc", "lc"]]
+G = [[""], ["n", "sa", "lc"]]
 H = [[""], ["", " --start-app", " --start-app app.lawnchair"]]
 
 for eg in lr(eG):
@@ -142,6 +142,6 @@ for eg in lr(eG):
         for c in lr(C):
             for e in lr(E):
                 for g in lr(G[eg]):
-                  file.write("scc" + A[a] + C[c] + E[e] + G[eg][g] + "(){" + B[a] + DA[c] + "\n  unset GALLIUM_DRIVER\n  scrcpy" + DB[c] + " --video-codec=h265 --fullscreen" + F[e] + eG[eg] + H[eg][g] + ' "$@"\n}\n\n')
+                  file.write("sc" + A[a] + C[c] + E[e] + G[eg][g] + "(){" + B[a] + DA[c] + "\n  unset GALLIUM_DRIVER\n  scrcpy" + DB[c] + " --video-codec=h265 --fullscreen" + F[e] + eG[eg] + H[eg][g] + ' "$@"\n}\n\n')
 
 file.close()

@@ -4689,400 +4689,400 @@ cpiaegcp() {
   cpiaec "*"
   gacp "$1"
 }
-sccnnn(){
+scnnn(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen "$@"
 }
 
-sccnna(){
+scnna(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccnan(){
+scnan(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen "$@"
 }
 
-sccnaa(){
+scnaa(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccdnn(){
+scdnn(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen "$@"
 }
 
-sccdna(){
+scdna(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccdan(){
+scdan(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen "$@"
 }
 
-sccdaa(){
+scdaa(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccznn(){
+scznn(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen "$@"
 }
 
-scczna(){
+sczna(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-scczan(){
+sczan(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen "$@"
 }
 
-scczaa(){
+sczaa(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccfnn(){
+scfnn(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen "$@"
 }
 
-sccfna(){
+scfna(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccfan(){
+scfan(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen "$@"
 }
 
-sccfaa(){
+scfaa(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio "$@"
 }
 
-sccnnnn(){
+scnnnn(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccnnnsc(){
+scnnnsa(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccnnnlc(){
+scnnnlc(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccnnan(){
+scnnan(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccnnasc(){
+scnnasa(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccnnalc(){
+scnnalc(){
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-sccnann(){
+scnann(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccnansc(){
+scnansa(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccnanlc(){
+scnanlc(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccnaan(){
+scnaan(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccnaasc(){
+scnaasa(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccnaalc(){
+scnaalc(){
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-sccdnnn(){
+scdnnn(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccdnnsc(){
+scdnnsa(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccdnnlc(){
+scdnnlc(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccdnan(){
+scdnan(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccdnasc(){
+scdnasa(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccdnalc(){
+scdnalc(){
   export DISPLAY="$1"
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-sccdann(){
+scdann(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccdansc(){
+scdansa(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccdanlc(){
+scdanlc(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccdaan(){
+scdaan(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccdaasc(){
+scdaasa(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccdaalc(){
+scdaalc(){
   export DISPLAY="$1"
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-sccznnn(){
+scznnn(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccznnsc(){
+scznnsa(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccznnlc(){
+scznnlc(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccznan(){
+scznan(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccznasc(){
+scznasa(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccznalc(){
+scznalc(){
   export DISPLAY=':0'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-scczann(){
+sczann(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-scczansc(){
+sczansa(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-scczanlc(){
+sczanlc(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-scczaan(){
+sczaan(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-scczaasc(){
+sczaasa(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-scczaalc(){
+sczaalc(){
   export DISPLAY=':0'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-sccfnnn(){
+scfnnn(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccfnnsc(){
+scfnnsa(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccfnnlc(){
+scfnnlc(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccfnan(){
+scfnan(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccfnasc(){
+scfnasa(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccfnalc(){
+scfnalc(){
   export DISPLAY=':1'
   unset GALLIUM_DRIVER
   scrcpy --video-codec=h265 --fullscreen --no-audio --new-display --start-app app.lawnchair "$@"
 }
 
-sccfann(){
+scfann(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display "$@"
 }
 
-sccfansc(){
+scfansa(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app "$@"
 }
 
-sccfanlc(){
+scfanlc(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
 
-sccfaan(){
+scfaan(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display "$@"
 }
 
-sccfaasc(){
+scfaasa(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
   scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --no-audio --new-display --start-app "$@"
 }
 
-sccfaalc(){
+scfaalc(){
   export DISPLAY=':1'
   adb connect localhost:5555
   unset GALLIUM_DRIVER
