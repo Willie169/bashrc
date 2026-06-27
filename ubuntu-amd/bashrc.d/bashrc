@@ -27,9 +27,9 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
-command -v fzf >/dev/null && eval "$(fzf --bash)"
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
 
-command -v register-python-argcomplete >/dev/null && command -v pipx >/dev/null && eval $(register-python-argcomplete pipx)
+command -v register-python-argcomplete >/dev/null 2>&1 && command -v pipx >/dev/null 2>&1 && eval $(register-python-argcomplete pipx)
 
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
