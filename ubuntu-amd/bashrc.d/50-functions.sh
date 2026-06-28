@@ -493,7 +493,7 @@ gh_latest() {
   fi
 
   local count
-  count=$(echo "$urls" | grep -cve '^\s*$')
+  count=$(echo "$urls" | grep -cve '^[[:space:]]*$')
 
   if [ "$quiet" -eq 0 ]; then
     local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
@@ -713,7 +713,7 @@ gh_latest_r() {
   fi
 
   local count
-  count=$(echo "$urls" | grep -cve '^\s*$')
+  count=$(echo "$urls" | grep -cve '^[[:space:]]*$')
 
   if [ "$quiet" -eq 0 ]; then
     local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
