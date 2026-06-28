@@ -258,6 +258,7 @@ dl() {
 
 gh_latest() {
   local dl_args=()
+  local out_args=()
   local quiet=0
   local verbose=0
   local repo=""
@@ -298,13 +299,22 @@ gh_latest() {
         index="$2"
         shift 2
         ;;
-      -O|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
+      -a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
         dl_args+=("$1")
         shift
         ;;
-      -o|--output|--aria2_option|--curl_option|--wget_option|--wget2_option)
+      --aria2_option|--curl_option|--wget_option|--wget2_option)
         dl_args+=("$1")
         dl_args+=("$2")
+        shift 2
+        ;;
+      -O|--stdout)
+        out_args+=("$1")
+        shift
+        ;;
+      -o|--output)
+        out_args+=("$1")
+        out_args+=("$2")
         shift 2
         ;;
       -*)
@@ -378,13 +388,13 @@ gh_latest() {
 
   local release_json
   if [ -n "$name" ] || [ -n "$tag" ]; then
-    release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases" 2>/dev/null)
     if [ -z "$release_json" ]; then
       echo "Error: failed to fetch releases or repo not found" >&2
       return 1
     fi
   else
-    release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
     if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
       echo "Error: no releases found or repo not found" >&2
       return 1
@@ -506,7 +516,7 @@ gh_latest() {
     downloaded=$((downloaded + 1))
     [ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
 
-    if ! dl "${dl_args[@]}" "$url"; then
+    if ! dl "${dl_args[@]}" "${out_args[@]}" "$url"; then
       echo "Error: failed to download $url" >&2
       success=false
     fi
@@ -521,6 +531,7 @@ gh_latest() {
 
 gh_latest_r() {
   local dl_args=()
+  local out_args=()
   local quiet=0
   local verbose=0
   local repo=""
@@ -561,13 +572,22 @@ gh_latest_r() {
         index="$2"
         shift 2
         ;;
-      -O|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
+      -a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|-w2|--wget2|-W2|--no-wget2|--no-fallback)
         dl_args+=("$1")
         shift
         ;;
-      -o|--output|--aria2_option|--curl_option|--wget_option|--wget2_option)
+      --aria2_option|--curl_option|--wget_option|--wget2_option)
         dl_args+=("$1")
         dl_args+=("$2")
+        shift 2
+        ;;
+      -O|--stdout)
+        out_args+=("$1")
+        shift
+        ;;
+      -o|--output)
+        out_args+=("$1")
+        out_args+=("$2")
         shift 2
         ;;
       -*)
@@ -622,13 +642,13 @@ gh_latest_r() {
 
   local release_json
   if [ -n "$name" ] || [ -n "$tag" ]; then
-    release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases" 2>/dev/null)
     if [ -z "$release_json" ]; then
       echo "Error: failed to fetch releases or repo not found" >&2
       return 1
     fi
   else
-    release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
     if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
       echo "Error: no releases found or repo not found" >&2
       return 1
@@ -716,7 +736,7 @@ gh_latest_r() {
     downloaded=$((downloaded + 1))
     [ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
 
-    if ! dl "${dl_args[@]}" "$url"; then
+    if ! dl "${dl_args[@]}" "${out_args[@]}" "$url"; then
       echo "Error: failed to download $url" >&2
       success=false
     fi
