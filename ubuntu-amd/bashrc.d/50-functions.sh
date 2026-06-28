@@ -388,13 +388,13 @@ gh_latest() {
 
   local release_json
   if [ -n "$name" ] || [ -n "$tag" ]; then
-    release_json=$(dl -O "${dl_args[@]}""https://api.github.com/repos/$repo/releases" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases" 2>/dev/null)
     if [ -z "$release_json" ]; then
       echo "Error: failed to fetch releases or repo not found" >&2
       return 1
     fi
   else
-    release_json=$(dl -O "${dl_args[@]}""https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
     if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
       echo "Error: no releases found or repo not found" >&2
       return 1
@@ -642,13 +642,13 @@ gh_latest_r() {
 
   local release_json
   if [ -n "$name" ] || [ -n "$tag" ]; then
-    release_json=$(dl -O "${dl_args[@]}""https://api.github.com/repos/$repo/releases" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases" 2>/dev/null)
     if [ -z "$release_json" ]; then
       echo "Error: failed to fetch releases or repo not found" >&2
       return 1
     fi
   else
-    release_json=$(dl -O "${dl_args[@]}""https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
+    release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
     if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
       echo "Error: no releases found or repo not found" >&2
       return 1
