@@ -1550,6 +1550,10 @@ clean_disk() {
   apt autoremove -y
   apt clean
   apt autoclean
+  brew update
+  echo y | brew upgrade
+  echo y | brew autoremove
+  brew cleanup
 }
 
 update_texlive() {
@@ -1671,6 +1675,10 @@ update_all() {
   apt autoremove -y
   apt clean
   apt autoclean
+  brew update
+  echo y | brew upgrade
+  echo y | brew autoremove
+  brew cleanup
   update_texlive
   update_latex
   update_vimrc

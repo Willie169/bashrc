@@ -1558,7 +1558,11 @@ clean_disk() {
   sudo apt autoremove -y
   sudo apt clean
   sudo apt autoclean
-  flatpak uninstall --unused -y
+  flatpak uninstall --unused -y || true
+  brew update
+  echo y | brew upgrade
+  echo y | brew autoremove
+  brew cleanup
 }
 
 update_texlive() {
@@ -1726,9 +1730,13 @@ update_all() {
   echo y | sudo ubuntu-drivers autoinstall || true
   echo y | sudo ubuntu-drivers autoinstall || true
   echo y | sudo ubuntu-drivers autoinstall || true
-  flatpak update -y
-  flatpak uninstall --unused -y
-  sudo snap refresh
+  flatpak update -y || true
+  flatpak uninstall --unused -y || true
+  sudo snap refresh || true
+  brew update
+  echo y | brew upgrade
+  echo y | brew autoremove
+  brew cleanup
   update_texlive
   update_latex
   update_vimrc
