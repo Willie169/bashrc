@@ -1560,6 +1560,7 @@ clean_disk() {
   apt autoremove -y
   apt clean
   apt autoclean
+  proot-distro clear-cache || true
 }
 
 update_vimrc() {
