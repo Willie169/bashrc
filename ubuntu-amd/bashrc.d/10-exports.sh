@@ -47,3 +47,4 @@ fi
 source /etc/os-release
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
+unset GIT_ASKPASS
