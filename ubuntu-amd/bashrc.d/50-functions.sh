@@ -1563,7 +1563,6 @@ clean_disk() {
   echo y | brew upgrade
   echo y | brew autoremove
   brew cleanup
-  echo y | docker system prune
 }
 
 update_texlive() {
