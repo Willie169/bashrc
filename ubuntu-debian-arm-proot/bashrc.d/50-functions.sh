@@ -1679,6 +1679,7 @@ update_all() {
   echo y | brew upgrade
   echo y | brew autoremove
   brew cleanup
+  pipx upgrade-all || pipx reinstall-all
   update_texlive
   update_latex
   update_vimrc
