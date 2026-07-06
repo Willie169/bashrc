@@ -162,13 +162,13 @@ dl() {
     if [ "$to_stdout" -eq 1 ]; then
       tmp_file=$(mktemp "${TMPDIR:-/tmp}/dl.XXXXXXXXXX") || return 1
       rm -f "$tmp_file"
-      aria2c "${opts[@]}" "$aria2_option" -o "$(basename "$tmp_file")" -d "$(dirname "$tmp_file")" "$url"
+      aria2c "${opts[@]}" $aria2_option -o "$(basename "$tmp_file")" -d "$(dirname "$tmp_file")" "$url"
       cat "$tmp_file"
       rm -f "$tmp_file"
     elif [ -n "$out" ]; then
-      aria2c "${opts[@]}" "$aria2_option" -o "$out" "$url"
+      aria2c "${opts[@]}" $aria2_option -o "$out" "$url"
     else
-      aria2c "${opts[@]}" "$aria2_option" "$url"
+      aria2c "${opts[@]}" $aria2_option "$url"
     fi
   }
 
@@ -179,11 +179,11 @@ dl() {
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
     if [ "$to_stdout" -eq 1 ]; then
-      curl "${opts[@]}" "$curl_option" "$url"
+      curl "${opts[@]}" $curl_option "$url"
     elif [ -n "$out" ]; then
-      curl "${opts[@]}" "$curl_option" -o "$out" "$url"
+      curl "${opts[@]}" $curl_option -o "$out" "$url"
     else
-      curl "${opts[@]}" "$curl_option" -O "$url"
+      curl "${opts[@]}" $curl_option -O "$url"
     fi
   }
 
@@ -194,11 +194,11 @@ dl() {
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
     if [ "$to_stdout" -eq 1 ]; then
-      wget "${opts[@]}" "$wget_option" -O - "$url"
+      wget "${opts[@]}" $wget_option -O - "$url"
     elif [ -n "$out" ]; then
-      wget "${opts[@]}" "$wget_option" -O "$out" "$url"
+      wget "${opts[@]}" $wget_option -O "$out" "$url"
     else
-      wget "${opts[@]}" "$wget_option" "$url"
+      wget "${opts[@]}" $wget_option "$url"
     fi
   }
 
@@ -209,11 +209,11 @@ dl() {
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
     if [ "$to_stdout" -eq 1 ]; then
-      wget2 "${opts[@]}" "$wget2_option" -O - "$url"
+      wget2 "${opts[@]}" $wget2_option -O - "$url"
     elif [ -n "$out" ]; then
-      wget2 "${opts[@]}" "$wget2_option" -O "$out" "$url"
+      wget2 "${opts[@]}" $wget2_option -O "$out" "$url"
     else
-      wget2 "${opts[@]}" "$wget2_option" "$url"
+      wget2 "${opts[@]}" $wget2_option "$url"
     fi
   }
 
