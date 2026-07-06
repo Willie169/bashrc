@@ -1580,7 +1580,7 @@ update_nvim() {
 update_tools() {
   (
   cd ~ || exit
-  pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy
+  pip3 install argcomplete pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy
   if [ -f ~/.local/bin/yt-dlp ]; then
   rm -f /.local/bin/yt-dlp
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
