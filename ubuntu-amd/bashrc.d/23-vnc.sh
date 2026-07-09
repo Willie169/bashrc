@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 alias vnc='vncserver'
 alias vncn='vncserver -noxstartup'

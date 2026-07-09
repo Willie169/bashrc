@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 alias vokoscreenNG='flatpak run com.github.vkohaupt.vokoscreenNG'
 alias bottles='flatpak run com.usebottles.bottles'

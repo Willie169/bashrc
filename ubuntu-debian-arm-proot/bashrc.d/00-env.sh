@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 HISTCONTROL=ignoreboth
 shopt -s histappend
