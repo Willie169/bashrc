@@ -1786,3 +1786,6 @@ EOF
   sudo systemctl restart systemd-resolved
 }
 
+update_combinedfox() {
+  ./prefsCleaner.sh -s && ./overrides-updater.sh -su && ./updater.sh -su
+}
