@@ -485,7 +485,7 @@ gh_latest() {
     else
       empty
     end
-  ')
+  ' || true)
 
   if [ -z "$urls" ]; then
     echo "Error: no matching assets found" >&2
@@ -705,7 +705,7 @@ gh_latest_r() {
     else
       empty
     end
-  ')
+  ' || true)
 
   if [ -z "$urls" ]; then
     echo "Error: no matching assets found" >&2
