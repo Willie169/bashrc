@@ -9,6 +9,7 @@ function y() {
 }
 
 __git_repo_reminder() {
+  command -v git >/dev/null 2>&1 || return 0
   REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
   if [ -n "$REPO_ROOT" ]; then
     if [ "$__LAST_REPO_ROOT" != "$REPO_ROOT" ]; then
