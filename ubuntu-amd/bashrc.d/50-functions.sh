@@ -1558,14 +1558,6 @@ update_tools() {
   mv scrcpy-linux-x86_64-*/adb ~/.local/bin/
   mv scrcpy-linux-x86_64-*/scrcpy ~/.local/bin/
   rm -r scrcpy-linux-x86_64-*
-  git clone https://github.com/jusw85/mozlz4.git
-  cd mozlz4 || true
-  cargo build --release
-  cd target/release || true
-  mv mozlz4-bin mozlz4
-  mv mozlz4 ~/.local/bin/
-  cd ~ || true
-  rm -rf mozlz4
   )
 }
 

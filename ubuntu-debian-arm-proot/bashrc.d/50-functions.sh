@@ -1524,14 +1524,6 @@ update_tools() {
   unzip rclone-linux-arm64.zip
   rm rclone-linux-arm64.zip*
   mv rclone ~/.local/bin/
-  git clone https://github.com/jusw85/mozlz4.git
-  cd mozlz4 || true
-  cargo build --release
-  cd target/release || true
-  mv mozlz4-bin mozlz4
-  mv mozlz4 ~/.local/bin/
-  cd ~ || true
-  rm -rf mozlz4
   )
 }
 
