@@ -1344,20 +1344,16 @@ dfssh() {
     -L 5903:localhost:5903
   )
   if (( $# == 1 )); then
-    ssh root@"$1" "${forwards[@]}"
-  elif (( $# == 2 )); then
-    ssh "$1"@"$2" "${forwards[@]}"
-  elif (( $# >= 3 )); then
-    local user="$1"
-    local host="$2"
-    local port="$3"
-    shift 3
-    ssh "$user"@"$host" -p "$port" "${forwards[@]}" "$@"
+    ssh "$1" "${forwards[@]}"
+  elif (( $# >= 2 )); then
+    local host="$1"
+    local port="$2"
+    shift 2
+    ssh -p "$port" "$host" "${forwards[@]}" "$@"
   else
     echo "Usage:"
     echo "  dfssh host"
-    echo "  dfssh user host"
-    echo "  dfssh user host port [extra ssh args...]"
+    echo "  dfssh host port [extra ssh args...]"
     return 1
   fi
 }
