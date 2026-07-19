@@ -29,8 +29,6 @@ export NVM_DIR="$HOME/.nvm"
 
 command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
 
-command -v register-python-argcomplete >/dev/null 2>&1 && command -v pipx >/dev/null 2>&1 && eval $(register-python-argcomplete pipx)
-
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true

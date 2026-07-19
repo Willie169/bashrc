@@ -13,8 +13,6 @@ fi
 
 [ -f ${HOME}/.config/broot/launcher/bash/br ] && source ${HOME}/.config/broot/launcher/bash/br
 
-command -v register-python-argcomplete >/dev/null 2>&1 && command -v pipx >/dev/null 2>&1 && eval $(register-python-argcomplete pipx)
-
 mkdir -p ~/.bashrc.pid
 
 if [ ! -f ~/.bashrc.pid/pulseaudio.pid ] || ! kill -0 $(cat ~/.bashrc.pid/pulseaudio.pid) 2>/dev/null; then
