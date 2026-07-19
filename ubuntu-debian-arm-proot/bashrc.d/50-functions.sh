@@ -1344,155 +1344,32 @@ dfssh() {
     -L 5903:localhost:5903
   )
   if (( $# == 1 )); then
-    ssh root@"$1" "${forwards[@]}"
-  elif (( $# == 2 )); then
-    ssh "$1"@"$2" "${forwards[@]}"
-  elif (( $# >= 3 )); then
-    local user="$1"
-    local host="$2"
-    local port="$3"
-    shift 3
-    ssh "$user"@"$host" -p "$port" "${forwards[@]}" "$@"
+    ssh "$1" "${forwards[@]}"
+  elif (( $# >= 2 )); then
+    local host="$1"
+    local port="$2"
+    shift 2
+    ssh -p "$port" "$host" "${forwards[@]}" "$@"
   else
     echo "Usage:"
     echo "  dfssh host"
-    echo "  dfssh user host"
-    echo "  dfssh user host port [extra ssh args...]"
-    return 1
-  fi
-}
-
-cfssh() {
-  local forwards=(
-    -L 18789:localhost:18789
-  )
-  if (( $# == 1 )); then
-    ssh "$1"@localhost "${forwards[@]}"
-  elif (( $# == 2 )); then
-    ssh "$1"@"$2" "${forwards[@]}"
-  elif (( $# >= 3 )); then
-    local user="$1"
-    local host="$2"
-    local port="$3"
-    shift 3
-    ssh "$user"@"$host" -p "$port" "${forwards[@]}" "$@"
-  else
-    echo "Usage:"
-    echo "  cfssh user"
-    echo "  cfssh user host"
-    echo "  cfssh user host port [extra ssh args...]"
-    return 1
-  fi
-}
-
-pdssh() {
-  local forwards=(
-    -L 5900:localhost:5900
-    -L 5901:localhost:5901
-    -L 5902:localhost:5902
-    -L 5903:localhost:5903
-  )
-  if (( $# == 1 )); then
-    ssh root@"$1" -p 2022 "${forwards[@]}"
-  elif (( $# >= 2 )); then
-    local user="$1"
-    local host="$2"
-    shift 2
-    ssh "$user"@"$host" -p 2022 "${forwards[@]}" "$@"
-  else
-    echo "Usage:"
-    echo "  pdssh host"
-    echo "  pdssh user host [extra ssh args...]"
-    return 1
-  fi
-}
-
-pcssh() {
-  if (( $# == 1 )); then
-    ssh "$1"@localhost -p 2222
-  elif (( $# >= 2 )); then
-    local user="$1"
-    local host="$2"
-    shift 2
-    ssh "$user"@"$host" -p 2222 "$@"
-  else
-    echo "Usage:"
-    echo "  pcssh user"
-    echo "  pcssh user host"
-    echo "  pcssh user host [extra ssh args...]"
+    echo "  dfssh host port [extra ssh args...]"
     return 1
   fi
 }
 
 dfsftp() {
   if (( $# == 1 )); then
-    sftp root@"$1"
-  elif (( $# == 2 )); then
-    sftp "$1"@"$2"
-  elif (( $# >= 3 )); then
-    local user="$1"
-    local host="$2"
-    local port="$3"
-    shift 3
-    sftp -P "$port" "$user"@"$host" "$@"
+    sftp "$1"
+  elif (( $# >= 2 )); then
+    local host="$1"
+    local port="$2"
+    shift 2
+    sftp -P "$port" "$host" "$@"
   else
     echo "Usage:"
     echo "  dfsftp host"
-    echo "  dfsftp user host"
-    echo "  dfsftp user host port [extra ssh args...]"
-    return 1
-  fi
-}
-
-cfsftp() {
-  if (( $# == 1 )); then
-    sftp "$1"@localhost
-  elif (( $# == 2 )); then
-    sftp "$1"@"$2"
-  elif (( $# >= 3 )); then
-    local user="$1"
-    local host="$2"
-    local port="$3"
-    shift 3
-    sftp -P "$port" "$user"@"$host" "$@"
-  else
-    echo "Usage:"
-    echo "  cfsftp user"
-    echo "  cfsftp user host"
-    echo "  cfsftp user host port [extra ssh args...]"
-    return 1
-  fi
-}
-
-pdsftp() {
-  if (( $# == 1 )); then
-    sftp -P 2022 root@"$1"
-  elif (( $# >= 2 )); then
-    local user="$1"
-    local host="$2"
-    shift 2
-    sftp -P 2022 "$user"@"$host" "$@"
-  else
-    echo "Usage:"
-    echo "  pdsftp host"
-    echo "  pdsftp user host [extra ssh args...]"
-    return 1
-  fi
-}
-
-pcsftp() {
-  if (( $# == 1 )); then
-    sftp -P 2222 "$1"@localhost
-  elif (( $# >= 2 )); then
-    local user="$1"
-    local host="$2"
-    shift 2
-    sftp -P 2222 "$user"@"$host" "$@"
-  else
-    echo "Usage:"
-    echo "  pcsftp user"
-    echo "  pcsftp user host"
-    echo "  pcsftp user host [extra ssh args...]"
+    echo "  dfsftp host port [extra ssh args...]"
     return 1
   fi
 }
