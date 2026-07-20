@@ -1,7 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-export CXXFLAGS='-std=c++20 -O2'
-export CFLAGS='-std=c17 -O2'
 alias gpp11='g++ -std=c++11'
 alias cpp11='clang++ -std=c++11'
 alias gpp111='g++ -std=c++11 -O1'
