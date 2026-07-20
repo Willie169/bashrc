@@ -1,5 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+export PROOT_NO_SECCOMP=1
 export TMPDIR="${PREFIX}/tmp"
 export JAVA_HOME="${PREFIX}/lib/jvm/java-21-openjdk"
 export JAVAROOT="${PREFIX}/local/java"
