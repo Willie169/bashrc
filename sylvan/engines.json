@@ -1,6 +1,6 @@
 [
 	{
-		"command" : "$HOME/Fairy-Stockfish/src/stockfish",
+		"command" : "$HOME/.local/bin/stockfish",
 		"name" : "Fairy-Stockfish",
 		"options" : [
 			{
