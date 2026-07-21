@@ -8,6 +8,10 @@
 - [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for Ubuntu/Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - [**Termux**](termux): designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
+## Overrides
+
+Put your overrides in `~/.bashrc.overrides`.
+
 ## Manual Installation
 
 Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
