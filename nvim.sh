@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 cat > ~/.config/nvim/lua/plugins/telescope.lua <<'EOF'
 return {
     'nvim-telescope/telescope.nvim', version = '*',

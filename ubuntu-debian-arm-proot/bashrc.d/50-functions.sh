@@ -1476,10 +1476,10 @@ update_nvim() {
 
 update_lizzieyzy_config() {
   (
-  mkdir -p $HOME/.lizzieyzy
-  rm $HOME/.lizzieyzy/config.txt 2>/dev/null || true
-  wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.lizzieyzy/config.txt
-  sed -i "s|\$((\$(nproc)/2))|$(($(nproc)/2))|g; s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g; s|\$(hostname)|$(hostname)|g" $HOME/.lizzieyzy/config.txt
+  mkdir -p $HOME/.local/share/lizzieyzy
+  rm $HOME/.local/share/lizzieyzy/config.txt 2>/dev/null || true
+  wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.local/share/lizzieyzy/config.txt
+  sed -i "s|\$((\$(nproc)/2))|$(($(nproc)/2))|g; s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g; s|\$(hostname)|$(hostname)|g" $HOME/.local/share/lizzieyzy/config.txt
   )
 }
 
