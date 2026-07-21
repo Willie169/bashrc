@@ -824,6 +824,16 @@ gh_file() {
   fi
 }
 
+ghcrpb() {
+  gh repo create "$1" --public
+  gh repo clone "$1"
+}
+
+ghcrpv() {
+  gh repo create "$1" --private
+  gh repo clone "$1"
+}
+
 gpull() {
   level="${1:-0}"
   if [ "$level" -eq 0 ]; then
