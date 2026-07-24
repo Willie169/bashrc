@@ -24,7 +24,6 @@ export DOC="/storage/emulated/0/Documents"
 export SCR="/storage/emulated/0/Scripts"
 export VISUAL=nvim
 export EDITOR="${VISUAL}"
-export AIDER_EDITOR="${VISUAL}"
 export GTK_USE_PORTAL=1
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 export OLLAMA_API_HOST=http://127.0.0.1:11434
