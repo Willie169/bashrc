@@ -1568,6 +1568,9 @@ update_tools() {
   mv scrcpy-linux-x86_64-*/adb ~/.local/bin/
   mv scrcpy-linux-x86_64-*/scrcpy ~/.local/bin/
   rm -r scrcpy-linux-x86_64-*
+  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
+  sudo apt install ./appimagelauncher_*-*.*_amd64.deb -y
+  rm appimagelauncher_*-*.*_amd64.deb*
   )
 }
 
