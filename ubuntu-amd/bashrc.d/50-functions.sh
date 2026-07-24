@@ -859,6 +859,10 @@ gauth() {
   gh auth login --scopes repo,read:org,admin:org,workflow,gist,notifications,delete_repo,write:packages,read:packages
 }
 
+gh_delete_runs() {
+  gh run list --json databaseId --limit 99999 -q '.[].databaseId' | xargs -IID gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE
+}
+
 gac() {
   git add .
   git commit -m "$1"
