@@ -1559,12 +1559,6 @@ update_tools() {
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
   sudo apt install ./rustdesk-*-x86_64.deb -y
   rm rustdesk-*-x86_64.deb*
-  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk-server 'rustdesk-server-hbbs_*_amd64.deb'
-  sudo apt install ./rustdesk-server-hbbs_*_amd64.deb -y
-  rm rustdesk-server-hbbs_*_amd64.deb*
-  gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk-server 'rustdesk-server-hbbr_*_amd64.deb'
-  sudo apt install ./rustdesk-server-hbbr_*_amd64.deb -y
-  rm rustdesk-server-hbbr_*_amd64.deb*
   rm -f ~/.local/bin/adb
   rm -f ~/.local/bin/scrcpy
   gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Genymobile/scrcpy 'scrcpy-linux-x86_64-*.tar.gz'
