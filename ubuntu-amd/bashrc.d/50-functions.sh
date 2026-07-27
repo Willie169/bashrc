@@ -1602,6 +1602,9 @@ update_bashrc() {
 }
 
 update_all() {
+  sudo -v
+  while true; do sudo -nv; sleep 29; done & SUDOPIDFIRST=$!
+  while true; do sudo -nv; sleep 31; done & SUDOPIDSECOND=$!
   sudo apt update
   sudo apt upgrade -y
   sudo apt autoremove -y
@@ -1632,6 +1635,8 @@ update_all() {
   update_tools
   update_pied
   update_bashrc
+  kill "$SUDOPIDFIRST"
+  kill "$SUDOPIDSECOND"
 }
 
 bind_waydroid() {
