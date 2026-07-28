@@ -1481,9 +1481,10 @@ update_vimrc() {
   (
   cd ~/.vim_runtime
   git reset --hard
-  git clean -d --force
   git pull --rebase
-  python3 update_plugins.py
+  git submodule sync --recursive
+  git submodule update --init --remote --recursive
+  git clean -fd
   )
 }
 
