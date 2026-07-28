@@ -1479,25 +1479,13 @@ update_latex() {
 
 update_vim_config() {
   (
-  cd ~/.vim_runtime
-  git reset --hard
-  git submodule deinit --all --force
-  git pull --rebase
-  git submodule sync --recursive
-  git submodule update --init --remote --recursive
-  git clean -fd
+  sh ~/.vim_runtime/update.sh
   )
 }
 
 update_nvim_config() {
   (
-  cd ~/.config/nvim
-  git reset --hard
-  git submodule deinit --all --force
-  git pull --rebase
-  git submodule sync --recursive
-  git submodule update --init --remote --recursive
-  git clean -fd
+  sh ~/.config/nvim/update.sh
   )
 }
 
