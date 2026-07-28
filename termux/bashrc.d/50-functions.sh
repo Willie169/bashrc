@@ -1459,7 +1459,7 @@ clean_disk() {
   proot-distro clear-cache || true
 }
 
-update_vimrc() {
+update_vim_config() {
   (
   cd ~/.vim_runtime
   git reset --hard
@@ -1470,7 +1470,7 @@ update_vimrc() {
   )
 }
 
-update_nvim() {
+update_nvim_config() {
   curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 }
 
@@ -1563,8 +1563,8 @@ update_all() {
   pkg autoclean
   uv self update
   uv tool upgrade --all
-  update_vimrc
-  update_nvim
+  update_vim_config
+  update_nvim_config
   update_tools
   update_bashrc
 }

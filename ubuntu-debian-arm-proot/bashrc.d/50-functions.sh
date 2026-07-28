@@ -1468,7 +1468,7 @@ update_latex() {
   )
 }
 
-update_vimrc() {
+update_vim_config() {
   (
   cd ~/.vim_runtime
   git reset --hard
@@ -1479,7 +1479,7 @@ update_vimrc() {
   )
 }
 
-update_nvim() {
+update_nvim_config() {
   curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 }
 
@@ -1579,8 +1579,8 @@ update_all() {
   uv tool upgrade --all
   update_texlive
   update_latex
-  update_vimrc
-  update_nvim
+  update_vim_config
+  update_nvim_config
   update_lizzieyzy_config
   update_cutechess_config
   update_sylvan_config
