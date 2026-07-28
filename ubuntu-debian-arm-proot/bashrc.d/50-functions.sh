@@ -824,6 +824,10 @@ gh_file() {
   fi
 }
 
+groot() {
+  [ -n "$REPO_ROOT" ] && cd "$REPO_ROOT"
+}
+
 ghcrpb() {
   gh repo create "$1" --public
   gh repo clone "$1"
