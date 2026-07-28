@@ -1481,6 +1481,7 @@ update_vim_config() {
   (
   cd ~/.vim_runtime
   git reset --hard
+  git submodule deinit --all --force
   git pull --rebase
   git submodule sync --recursive
   git submodule update --init --remote --recursive
@@ -1489,7 +1490,15 @@ update_vim_config() {
 }
 
 update_nvim_config() {
-  curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+  (
+  cd ~/.config/nvim
+  git reset --hard
+  git submodule deinit --all --force
+  git pull --rebase
+  git submodule sync --recursive
+  git submodule update --init --remote --recursive
+  git clean -fd
+  )
 }
 
 update_lizzieyzy_config() {
