@@ -5,6 +5,8 @@ case $- in
   *) return;;
 esac
 
+shopt -s globstar
+
 if [ -d "$HOME/.bashrc.d"  ];  then
   for f in "$HOME/.bashrc.d/"*; do
     [ -r "$f"  ] && source "$f"
