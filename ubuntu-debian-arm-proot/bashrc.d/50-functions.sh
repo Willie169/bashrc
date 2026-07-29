@@ -897,6 +897,7 @@ gtr() {
   local version="$1"
   shift
   local notes=""
+  local repo=""
   local files=()
 
   while [ $# -gt 0 ]; do
@@ -919,10 +920,12 @@ gtr() {
   git tag -a "v$version" -m "Version $version release"
   git push origin "v$version"
 
+  repo=$(git remote -v | grep origin | grep push | sed 's/^origin[ \t]*git@github\.com://' | sed -E 's/\.git[ \t]*\(push)//')
+
   if [ -n "$notes" ]; then
-    gh release create "v$version" --title "Version $version release" --notes "$notes" "${files[@]}"
+    gh release create "v$version" --title "Version $version release" --notes "$notes" --repo "$repo" "${files[@]}"
   else
-    gh release create "v$version" --title "Version $version release" --notes "" "${files[@]}"
+    gh release create "v$version" --title "Version $version release" --repo "$repo" --notes "" "${files[@]}"
   fi
 }
 
