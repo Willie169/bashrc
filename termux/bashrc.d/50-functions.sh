@@ -866,19 +866,26 @@ gh_delete_runs() {
   gh run list --json databaseId --limit 99999 -q '.[].databaseId' | xargs -IID gh api "repos/$(gh repo view --json nameWithOwner -q .nameWithOwner)/actions/runs/ID" -X DELETE
 }
 
-gac() {
+gad() {
+  (
+  groot
   git add .
+  )
+}
+
+gac() {
+  gad
   git commit -m "$1"
 }
 
 gacp() {
-  git add .
+  gad
   git commit -m "$1"
   git push
 }
 
 grm() {
-    git rm -rf "${1:-*}"
+  git rm -rf "${1:-*}"
 }
 
 gtr() {
