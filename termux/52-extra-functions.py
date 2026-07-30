@@ -2,7 +2,7 @@
 
 file = open("bashrc.d/52-extra-functions.sh", "w")
 
-file.write("#!/data/data/com.termux/files/usr/bin/bash\n")
+file.write("#!/data/data/com.termux/files/usr/bin/bash\n\n")
 
 
 def lr(x):
@@ -55,7 +55,7 @@ for i in lr(op):
                 "i" +
                 remoteStr[j] +
                 localStr[k] +
-                "() {\n  " +
+                "() {\n\t" +
                 op[i] +
                 " -- \"" +
                 remote[j] +
@@ -67,7 +67,7 @@ for i in lr(op):
                 "o" +
                 remoteStr[j] +
                 localStr[k] +
-                "() {\n  " +
+                "() {\n\t" +
                 op[i] +
                 " -- " +
                 local[k] +
@@ -80,7 +80,7 @@ for i in lr(op):
                 "i" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                "() {\n  " +
+                "() {\n\t" +
                 op[i] +
                 " -- \"" +
                 remote[j] +
@@ -92,7 +92,7 @@ for i in lr(op):
                 "o" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                "() {\n  " +
+                "() {\n\t" +
                 op[i] +
                 " -- " +
                 tlocal[k] +
@@ -108,26 +108,26 @@ for i in lr(aop):
                 "ia" +
                 remoteStr[j] +
                 localStr[k] +
-                "() {\n  (\n  cd " +
+                "() {\n\t(\n\tcd " +
                 local[k] +
-                "\n  LOCAL=$(pwd)\n  cd " +
+                "\n\tLOCAL=$(pwd)\n\tcd " +
                 remote[j] +
-                "\n  for f in *; do\n    " +
+                "\n\tfor f in *; do\n\t\t" +
                 aop[i] +
-                " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
+                " -- \"$f\" \"$LOCAL\"/\n\tdone\n\t)\n}\n\n")
         for k in lr(tlocal):
             file.write(
                 aopStr[i] +
                 "ia" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                "() {\n  (\n  cd " +
+                "() {\n\t(\n\tcd " +
                 tlocal[k] +
-                "\n  tlocal=$(pwd)\n  cd " +
+                "\n\ttlocal=$(pwd)\n\tcd " +
                 remote[j] +
-                "\n  for f in *; do\n    " +
+                "\n\tfor f in *; do\n\t\t" +
                 aop[i] +
-                " -- \"$f\" \"$tlocal\"/\n  done\n  )\n}\n\n")
+                " -- \"$f\" \"$tlocal\"/\n\tdone\n\t)\n}\n\n")
 
 for i in lr(iop):
     for j in lr(remote):
@@ -137,28 +137,28 @@ for i in lr(iop):
                 "ai" +
                 remoteStr[j] +
                 localStr[k] +
-                "() {\n  (\n  " +
+                "() {\n\t(\n\t" +
                 iop[i] +
                 "i" +
                 remoteStr[j] +
                 localStr[k] +
-                " \"$1\"\n  cd " +
+                " \"$1\"\n\tcd " +
                 local[k] +
-                "\n  cp -r -- \"$1\"/* ./\n  rm -r \"$1\"\n  )\n}\n\n")
+                "\n\tcp -r -- \"$1\"/* ./\n\trm -r \"$1\"\n\t)\n}\n\n")
         for k in lr(tlocal):
             file.write(
                 iopStr[i] +
                 "ai" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                "() {\n  (\n  " +
+                "() {\n\t(\n\t" +
                 iop[i] +
                 "i" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                " \"$1\" \"$2\"\n  cd " +
+                " \"$1\" \"$2\"\n\tcd " +
                 tlocal[k] +
-                "\n  cp -r -- \"$2\"/* ./\n  rm -r \"$2\"\n  )\n}\n\n")
+                "\n\tcp -r -- \"$2\"/* ./\n\trm -r \"$2\"\n\t)\n}\n\n")
 
 for i in lr(op):
     for j in lr(local):
@@ -168,7 +168,7 @@ for i in lr(op):
                 "y" +
                 localStr[j] +
                 tlocalStr[k] +
-                "() {\n  " +
+                "() {\n\t" +
                 op[i] +
                 " -- \"$2\" " +
                 tlocal[k] +
@@ -178,7 +178,7 @@ for i in lr(op):
                 "u" +
                 localStr[j] +
                 tlocalStr[k] +
-                "() {\n  " +
+                "() {\n\t" +
                 op[i] +
                 " -- " +
                 tlocal[k] +
@@ -192,32 +192,32 @@ for i in lr(aop):
                 "ya" +
                 localStr[j] +
                 tlocalStr[k] +
-                "() {\n  (\n  cd " +
+                "() {\n\t(\n\tcd " +
                 tlocal[k] +
-                "\n  LOCAL=$(pwd)\n  cd " +
+                "\n\tLOCAL=$(pwd)\n\tcd " +
                 local[j] +
-                "\n  for f in *; do\n    " +
+                "\n\tfor f in *; do\n\t\t" +
                 aop[i] +
-                " -- \"$f\" \"$LOCAL\"/\n  done\n  )\n}\n\n")
+                " -- \"$f\" \"$LOCAL\"/\n\tdone\n\t)\n}\n\n")
 
 file.write("""rmp() {
-  rm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+\trm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
 
 rmrp() {
-  rm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+\trm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
 
 rmrfp() {
-  rm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+\trm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
 
 mkdirp() {
-  mkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+\tmkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
 
 mkdirpp() {
-  mkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+\tmkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
 """)
 
@@ -229,19 +229,19 @@ for i in lr(pop):
                 remoteStr[j] +
                 "p" +
                 prootStr[k] +
-                "(){\n  if [ -n \"$" +
+                "(){\n\tif [ -n \"$" +
                 proot[k].upper() +
-                "\" ]; then\n    " +
+                "\" ]; then\n\t\t" +
                 pop[i] +
                 remoteStr[j] +
                 "p \"$" +
                 proot[k].upper() +
-                "\" \"$1\"\n  else\n    " +
+                "\" \"$1\"\n\telse\n\t\t" +
                 pop[i] +
                 remoteStr[j] +
                 "p \"" +
                 proot[k] +
-                "\" \"$1\"\n  fi\n}\n\n")
+                "\" \"$1\"\n\tfi\n}\n\n")
 
 for i in lr(npop):
     for k in lr(proot):
@@ -249,17 +249,17 @@ for i in lr(npop):
             npop[i] +
             "p" +
             prootStr[k] +
-            "(){\n  if [ -n \"$" +
+            "(){\n\tif [ -n \"$" +
             proot[k].upper() +
-            "\" ]; then\n    " +
+            "\" ]; then\n\t\t" +
             npop[i] +
             "p \"$" +
             proot[k].upper() +
-            "\" \"$1\"\n  else\n    " +
+            "\" \"$1\"\n\telse\n\t\t" +
             npop[i] +
             "p \"" +
             proot[k] +
-            "\" \"$1\"\n  fi\n}\n\n")
+            "\" \"$1\"\n\tfi\n}\n\n")
 
 for i in lr(pup):
     for j in lr(local):
@@ -269,49 +269,49 @@ for i in lr(pup):
                 remoteStr[j] +
                 "p" +
                 prootStr[k] +
-                "(){\n  if [ -n \"$" +
+                "(){\n\tif [ -n \"$" +
                 proot[k].upper() +
-                "\" ]; then\n    " +
+                "\" ]; then\n\t\t" +
                 pup[i] +
                 localStr[j] +
                 "p \"$" +
                 proot[k].upper() +
-                "\" \"$1\"\n  else\n    " +
+                "\" \"$1\"\n\telse\n\t\t" +
                 pup[i] +
                 localStr[j] +
                 "p \"" +
                 proot[k] +
-                "\" \"$1\"\n  fi\n}\n\n")
+                "\" \"$1\"\n\tfi\n}\n\n")
 
 gacp = """mvaAgcp() {
-  mvaAic "$1"
-  gacp "$2"
+\tmvaAic "$1"
+\tgacp "$2"
 }
 
 cpaAgcp() {
-  cpaAic "$1"
-  gacp "$2"
+\tcpaAic "$1"
+\tgacp "$2"
 }
 
 mviAgcp() {
-  mviAc "$1"
-  gacp "$2"
+\tmviAc "$1"
+\tgacp "$2"
 }
 
 cpiAgcp() {
-  cpriAc "$1"
-  gacp "$2"
+\tcpriAc "$1"
+\tgacp "$2"
 }
 
 mviaAgcp() {
-  mviaAc
-  gacp "$1"
+\tmviaAc
+\tgacp "$1"
 }
 
 cpiaAgcp() {
-  cpiaAc "*"
-  gacp "$1"
-}
+\tcpiaAc "*"
+\tgacp "$1"
+
 """
 
 for i in remoteStr:
@@ -320,11 +320,11 @@ for i in remoteStr:
 A = ["n", "d", "z", "f"]
 B = [
     "",
-    '\n  export DISPLAY="$1"',
-    "\n  export DISPLAY=':0'",
-    "\n  export DISPLAY=':1'"]
+    '\n\texport DISPLAY="$1"',
+    "\n\texport DISPLAY=':0'",
+    "\n\texport DISPLAY=':1'"]
 C = ["n", "a"]
-DA = ["", "\n  adb connect localhost:5555"]
+DA = ["", "\n\tadb connect localhost:5555"]
 DB = ["", " -s localhost:5555"]
 E = ["n", "a"]
 F = [" --no-audio", ""]
@@ -346,7 +346,7 @@ for eg in lr(eG):
                         "(){" +
                         B[a] +
                         DA[c] +
-                        "\n  unset GALLIUM_DRIVER\n  scrcpy" +
+                        "\n\tunset GALLIUM_DRIVER\n\tscrcpy" +
                         DB[c] +
                         " --video-codec=h265 --fullscreen" +
                         F[e] +
