@@ -4,8 +4,8 @@ shopt -s globstar
 dir="$(cd -- "$(dirname -- "$0")" && pwd)"
 arr=("termux" "ubuntu-amd" "ubuntu-debian-arm-proot")
 for d in "${arr[@]}"; do
-	u="$dir/$d"/update.sh
-	echo '#!/usr/bin/env bash
+	u="$dir/$d"/install.sh
+	echo '#!/usr/bin/env sh
 
 cd ~ || exit
 rm -f .bashrc 2>/dev/null || true

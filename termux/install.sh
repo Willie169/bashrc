@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 cd ~ || exit
 rm -f .bashrc 2>/dev/null || true
@@ -9,7 +9,6 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/20-shared-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/50-shared-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/11-proot.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/22-vnc.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/51-functions.sh

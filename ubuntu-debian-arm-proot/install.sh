@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 cd ~ || exit
 rm -f .bashrc 2>/dev/null || true
