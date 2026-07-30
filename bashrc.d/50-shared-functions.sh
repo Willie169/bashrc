@@ -887,7 +887,7 @@ gad() {
 }
 
 gcmd() {
-    git commit -m "$(date -uIs)"
+	git commit -m "$(date -uIs)"
 }
 
 gac() {
@@ -908,7 +908,7 @@ gacp() {
 
 gacdp() {
 	gad
-    gcmd
+	gcmd
 	git push
 }
 

@@ -5,22 +5,14 @@
 ## Supported Environments
 
 - [**Ubuntu AMD64**](ubuntu-amd): designed for Ubuntu derivatives for my [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu) repo.
-- [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for Ubuntu/Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
+- [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for Ubuntu and Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - [**Termux**](termux): designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
 ## Overrides
 
 Put your overrides in `~/.bashrc.overrides`.
 
-## Manual Installation
-
-Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
-
-1. Clone the `bashrc.d` folder in the folder corresponding to your environment to `~` and rename it `.bashrc.d`.
-2. Move the `bashrc` out to `~` and rename it to `.bashrc`.
-3. Run `source ~/.bashrc`.
-
-## Script Installation
+## Installation
 
 Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted.
 
