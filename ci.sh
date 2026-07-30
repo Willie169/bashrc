@@ -24,7 +24,7 @@ done
 for f in "$dir"/**/*.sh "$dir"/**/bashrc; do
 	chmod +x "$f"
 	shfmt -w "$f"
-	#shellcheck "$f"
+	##shellcheck -e 1090,1091 "$f"
 done
 
 for f in "$dir"/**/*.py; do
