@@ -11,19 +11,19 @@ function y() {
 
 __git_repo_reminder() {
 	command -v git >/dev/null 2>&1 || return 0
-	REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-	if [ -n "$REPO_ROOT" ]; then
-		if [ "$__LAST_REPO_ROOT" != "$REPO_ROOT" ]; then
-			if [ -n "$__LAST_REPO_ROOT" ]; then
+	GIT_REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+	if [ -n "$GIT_REPO_ROOT" ]; then
+		if [ "$__LAST_GIT_REPO_ROOT" != "$GIT_REPO_ROOT" ]; then
+			if [ -n "$__LAST_GIT_REPO_ROOT" ]; then
 				echo "Leaving Git repository: consider running 'git push'"
 			fi
 			echo "Entered Git repository: consider running 'git pull'"
-			__LAST_REPO_ROOT="$REPO_ROOT"
+			__LAST_GIT_REPO_ROOT="$GIT_REPO_ROOT"
 		fi
 	else
-		if [ -n "$__LAST_REPO_ROOT" ]; then
+		if [ -n "$__LAST_GIT_REPO_ROOT" ]; then
 			echo "Leaving Git repository: consider running 'git push'"
-			unset __LAST_REPO_ROOT
+			unset __LAST_GIT_REPO_ROOT
 		fi
 	fi
 }
@@ -836,8 +836,8 @@ gh_file() {
 	fi
 }
 
-groot() {
-	[ -n "$REPO_ROOT" ] && cd "$REPO_ROOT"
+cgrr() {
+	[ -n "$GIT_REPO_ROOT" ] && cd "$GIT_REPO_ROOT"
 }
 
 ghcrpb() {
@@ -850,7 +850,7 @@ ghcrpv() {
 	gh repo clone "$1"
 }
 
-gpull() {
+gpul() {
 	level="${1:-0}"
 	if [ "$level" -eq 0 ]; then
 		repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -886,14 +886,29 @@ gad() {
 	)
 }
 
+gcmd() {
+    git commit -m "$(date -uIs)"
+}
+
 gac() {
 	gad
 	git commit -m "$1"
 }
 
+gacd() {
+	gad
+	gcmd
+}
+
 gacp() {
 	gad
 	git commit -m "$1"
+	git push
+}
+
+gacdp() {
+	gad
+    gcmd
 	git push
 }
 
@@ -961,7 +976,7 @@ git_upstream_pr() {
 	git branch -D pr-$1
 }
 
-__pv() {
+opv() {
 	command -v pv >/dev/null 2>&1 && pv || cat
 }
 
@@ -994,9 +1009,9 @@ bzip2_single() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		bzip2 -9 |
-		__pv \
+		opv \
 			>"$2.tar.bz2"
 }
 
@@ -1029,9 +1044,9 @@ gzip_single() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		gzip -9 |
-		__pv \
+		opv \
 			>"$2.tar.gz"
 }
 
@@ -1064,9 +1079,9 @@ xz_single() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		xz -9 |
-		__pv \
+		opv \
 			>"$2.tar.xz"
 }
 
@@ -1183,9 +1198,9 @@ bzip2_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		bzip2 -9 |
-		__pv |
+		opv |
 		split -b "$bytes" -d -a 3 - "$2.tar.bz2.part."
 }
 
@@ -1242,9 +1257,9 @@ gzip_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		gzip -9 |
-		__pv |
+		opv |
 		split -b "$bytes" -d -a 3 - "$2.tar.gz.part."
 }
 
@@ -1301,9 +1316,9 @@ xz_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		xz -9 |
-		__pv |
+		opv |
 		split -b "$bytes" -d -a 3 - "$2.tar.xz.part."
 }
 
@@ -1360,7 +1375,7 @@ tar_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		__pv |
+		opv |
 		split -b "$bytes" -d -a 3 - "$2.tar.part."
 }
 
