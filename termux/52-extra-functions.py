@@ -1,6 +1,6 @@
-# 51-extra-functions.py
+#!/usr/bin/python3
 
-file = open("bashrc.d/51-extra-functions.sh", "w")
+file = open("bashrc.d/52-extra-functions.sh", "w")
 
 def lr(x):
     return range(0, len(x))
