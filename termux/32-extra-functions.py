@@ -113,9 +113,9 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     localStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     local[k] +
-                    "\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
+                    " || exit\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
                     remote[j] +
-                    "\"\n\t\tfor f in *; do\n\t\t\t" +
+                    "\" || exit\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
                     " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
             for k in lr(tlocal):
@@ -126,9 +126,9 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     tlocalStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     tlocal[k] +
-                    "\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
+                    " || exit\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
                     remote[j] +
-                    "\"\n\t\tfor f in *; do\n\t\t\t" +
+                    "\" || exit\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
                     " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
 
@@ -147,7 +147,7 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     localStr[k] +
                     " \"$1\"\n\t\tcd " +
                     local[k] +
-                    "\n\t\tcp -r -- \"$1\"/* ./\n\t\trm -r \"$1\"\n\t)\n}\n\n")
+                    " || exit\n\t\tcp -r -- \"$1\"/* ./\n\t\trm -r \"$1\"\n\t)\n}\n\n")
             for k in lr(tlocal):
                 file.write(
                     iopStr[i] +
@@ -161,7 +161,7 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     tlocalStr[k] +
                     " \"$1\" \"$2\"\n\t\tcd " +
                     tlocal[k] +
-                    "\n\t\tcp -r -- \"$2\"/* ./\n\t\trm -r \"$2\"\n\t)\n}\n\n")
+                    " || exit\n\t\tcp -r -- \"$2\"/* ./\n\t\trm -r \"$2\"\n\t)\n}\n\n")
 
     for i in lr(op):
         for j in lr(local):
@@ -197,9 +197,9 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     tlocalStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     tlocal[k] +
-                    "\n\t\tLOCAL=$(pwd)\n\t\tcd " +
+                    " || exit\n\t\tLOCAL=$(pwd)\n\t\tcd " +
                     local[j] +
-                    "\n\t\tfor f in *; do\n\t\t\t" +
+                    " || exit\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
                     " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
 

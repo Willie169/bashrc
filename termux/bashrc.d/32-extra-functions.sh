@@ -483,9 +483,9 @@ cproep() {
 
 mviac() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -494,9 +494,9 @@ mviac() {
 
 mviah() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -505,9 +505,9 @@ mviah() {
 
 mviab() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -516,9 +516,9 @@ mviab() {
 
 mviar() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -527,9 +527,9 @@ mviar() {
 
 mviap() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -538,9 +538,9 @@ mviap() {
 
 mviadc() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -549,9 +549,9 @@ mviadc() {
 
 mviadh() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -560,9 +560,9 @@ mviadh() {
 
 mviadb() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -571,9 +571,9 @@ mviadb() {
 
 mviadr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -582,9 +582,9 @@ mviadr() {
 
 mviadp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -593,9 +593,9 @@ mviadp() {
 
 mviasc() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -604,9 +604,9 @@ mviasc() {
 
 mviash() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -615,9 +615,9 @@ mviash() {
 
 mviasb() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -626,9 +626,9 @@ mviasb() {
 
 mviasr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -637,9 +637,9 @@ mviasr() {
 
 mviasp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -648,9 +648,9 @@ mviasp() {
 
 mviaec() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -659,9 +659,9 @@ mviaec() {
 
 mviaeh() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -670,9 +670,9 @@ mviaeh() {
 
 mviaeb() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -681,9 +681,9 @@ mviaeb() {
 
 mviaer() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -692,9 +692,9 @@ mviaer() {
 
 mviaep() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -703,9 +703,9 @@ mviaep() {
 
 cpiac() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -714,9 +714,9 @@ cpiac() {
 
 cpiah() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -725,9 +725,9 @@ cpiah() {
 
 cpiab() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -736,9 +736,9 @@ cpiab() {
 
 cpiar() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -747,9 +747,9 @@ cpiar() {
 
 cpiap() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$DOW"
+		cd "$DOW" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -758,9 +758,9 @@ cpiap() {
 
 cpiadc() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -769,9 +769,9 @@ cpiadc() {
 
 cpiadh() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -780,9 +780,9 @@ cpiadh() {
 
 cpiadb() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -791,9 +791,9 @@ cpiadb() {
 
 cpiadr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -802,9 +802,9 @@ cpiadr() {
 
 cpiadp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$DOC"
+		cd "$DOC" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -813,9 +813,9 @@ cpiadp() {
 
 cpiasc() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -824,9 +824,9 @@ cpiasc() {
 
 cpiash() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -835,9 +835,9 @@ cpiash() {
 
 cpiasb() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -846,9 +846,9 @@ cpiasb() {
 
 cpiasr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -857,9 +857,9 @@ cpiasr() {
 
 cpiasp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$SCR"
+		cd "$SCR" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -868,9 +868,9 @@ cpiasp() {
 
 cpiaec() {
 	(
-		cd .
+		cd . || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -879,9 +879,9 @@ cpiaec() {
 
 cpiaeh() {
 	(
-		cd ~
+		cd ~ || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -890,9 +890,9 @@ cpiaeh() {
 
 cpiaeb() {
 	(
-		cd ..
+		cd .. || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -901,9 +901,9 @@ cpiaeb() {
 
 cpiaer() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -912,9 +912,9 @@ cpiaer() {
 
 cpiaep() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd "$EMU"
+		cd "$EMU" || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -924,7 +924,7 @@ cpiaep() {
 mvaic() {
 	(
 		mvic "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -933,7 +933,7 @@ mvaic() {
 mvaih() {
 	(
 		mvih "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -942,7 +942,7 @@ mvaih() {
 mvaib() {
 	(
 		mvib "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -951,7 +951,7 @@ mvaib() {
 mvair() {
 	(
 		mvir "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -960,7 +960,7 @@ mvair() {
 mvaip() {
 	(
 		mvip "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -969,7 +969,7 @@ mvaip() {
 mvaidc() {
 	(
 		mvidc "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -978,7 +978,7 @@ mvaidc() {
 mvaidh() {
 	(
 		mvidh "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -987,7 +987,7 @@ mvaidh() {
 mvaidb() {
 	(
 		mvidb "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -996,7 +996,7 @@ mvaidb() {
 mvaidr() {
 	(
 		mvidr "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1005,7 +1005,7 @@ mvaidr() {
 mvaidp() {
 	(
 		mvidp "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1014,7 +1014,7 @@ mvaidp() {
 mvaisc() {
 	(
 		mvisc "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1023,7 +1023,7 @@ mvaisc() {
 mvaish() {
 	(
 		mvish "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1032,7 +1032,7 @@ mvaish() {
 mvaisb() {
 	(
 		mvisb "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1041,7 +1041,7 @@ mvaisb() {
 mvaisr() {
 	(
 		mvisr "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1050,7 +1050,7 @@ mvaisr() {
 mvaisp() {
 	(
 		mvisp "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1059,7 +1059,7 @@ mvaisp() {
 mvaiec() {
 	(
 		mviec "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1068,7 +1068,7 @@ mvaiec() {
 mvaieh() {
 	(
 		mvieh "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1077,7 +1077,7 @@ mvaieh() {
 mvaieb() {
 	(
 		mvieb "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1086,7 +1086,7 @@ mvaieb() {
 mvaier() {
 	(
 		mvier "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1095,7 +1095,7 @@ mvaier() {
 mvaiep() {
 	(
 		mviep "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1104,7 +1104,7 @@ mvaiep() {
 cpaic() {
 	(
 		cpric "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1113,7 +1113,7 @@ cpaic() {
 cpaih() {
 	(
 		cprih "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1122,7 +1122,7 @@ cpaih() {
 cpaib() {
 	(
 		cprib "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1131,7 +1131,7 @@ cpaib() {
 cpair() {
 	(
 		cprir "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1140,7 +1140,7 @@ cpair() {
 cpaip() {
 	(
 		cprip "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1149,7 +1149,7 @@ cpaip() {
 cpaidc() {
 	(
 		cpridc "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1158,7 +1158,7 @@ cpaidc() {
 cpaidh() {
 	(
 		cpridh "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1167,7 +1167,7 @@ cpaidh() {
 cpaidb() {
 	(
 		cpridb "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1176,7 +1176,7 @@ cpaidb() {
 cpaidr() {
 	(
 		cpridr "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1185,7 +1185,7 @@ cpaidr() {
 cpaidp() {
 	(
 		cpridp "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1194,7 +1194,7 @@ cpaidp() {
 cpaisc() {
 	(
 		cprisc "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1203,7 +1203,7 @@ cpaisc() {
 cpaish() {
 	(
 		cprish "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1212,7 +1212,7 @@ cpaish() {
 cpaisb() {
 	(
 		cprisb "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1221,7 +1221,7 @@ cpaisb() {
 cpaisr() {
 	(
 		cprisr "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1230,7 +1230,7 @@ cpaisr() {
 cpaisp() {
 	(
 		cprisp "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1239,7 +1239,7 @@ cpaisp() {
 cpaiec() {
 	(
 		cpriec "$1"
-		cd .
+		cd . || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1248,7 +1248,7 @@ cpaiec() {
 cpaieh() {
 	(
 		cprieh "$1"
-		cd ~
+		cd ~ || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1257,7 +1257,7 @@ cpaieh() {
 cpaieb() {
 	(
 		cprieb "$1"
-		cd ..
+		cd .. || exit
 		cp -r -- "$1"/* ./
 		rm -r "$1"
 	)
@@ -1266,7 +1266,7 @@ cpaieb() {
 cpaier() {
 	(
 		cprier "$1" "$2"
-		cd "$1"
+		cd "$1" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1275,7 +1275,7 @@ cpaier() {
 cpaiep() {
 	(
 		cpriep "$1" "$2"
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		cp -r -- "$2"/* ./
 		rm -r "$2"
 	)
@@ -1427,9 +1427,9 @@ cprubp() {
 
 mvyacr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd .
+		cd . || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -1438,9 +1438,9 @@ mvyacr() {
 
 mvyacp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd .
+		cd . || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -1449,9 +1449,9 @@ mvyacp() {
 
 mvyahr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd ~
+		cd ~ || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -1460,9 +1460,9 @@ mvyahr() {
 
 mvyahp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd ~
+		cd ~ || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -1471,9 +1471,9 @@ mvyahp() {
 
 mvyabr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd ..
+		cd .. || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -1482,9 +1482,9 @@ mvyabr() {
 
 mvyabp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd ..
+		cd .. || exit
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -1493,9 +1493,9 @@ mvyabp() {
 
 cpyacr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd .
+		cd . || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -1504,9 +1504,9 @@ cpyacr() {
 
 cpyacp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd .
+		cd . || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -1515,9 +1515,9 @@ cpyacp() {
 
 cpyahr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd ~
+		cd ~ || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -1526,9 +1526,9 @@ cpyahr() {
 
 cpyahp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd ~
+		cd ~ || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -1537,9 +1537,9 @@ cpyahp() {
 
 cpyabr() {
 	(
-		cd "$1"
+		cd "$1" || exit
 		LOCAL=$(pwd)
-		cd ..
+		cd .. || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -1548,9 +1548,9 @@ cpyabr() {
 
 cpyabp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root" || exit
 		LOCAL=$(pwd)
-		cd ..
+		cd .. || exit
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
