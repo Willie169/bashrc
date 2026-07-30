@@ -1570,7 +1570,6 @@ update_all() {
   pkg autoclean
   uv self update
   uv tool upgrade --all
-  npm i -g npm
   npm update -g
   update_vim_config
   update_nvim_config
