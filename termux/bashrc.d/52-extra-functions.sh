@@ -1426,133 +1426,133 @@ cprubp() {
 
 mvyacr() {
 	(
-	cd "$1"
-	LOCAL=$(pwd)
-	cd .
-	for f in *; do
-		mv -- "$f" "$LOCAL"/
-	done
+		cd "$1"
+		LOCAL=$(pwd)
+		cd .
+		for f in *; do
+			mv -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 mvyacp() {
 	(
-	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-	LOCAL=$(pwd)
-	cd .
-	for f in *; do
-		mv -- "$f" "$LOCAL"/
-	done
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		LOCAL=$(pwd)
+		cd .
+		for f in *; do
+			mv -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 mvyahr() {
 	(
-	cd "$1"
-	LOCAL=$(pwd)
-	cd ~
-	for f in *; do
-		mv -- "$f" "$LOCAL"/
-	done
+		cd "$1"
+		LOCAL=$(pwd)
+		cd ~
+		for f in *; do
+			mv -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 mvyahp() {
 	(
-	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-	LOCAL=$(pwd)
-	cd ~
-	for f in *; do
-		mv -- "$f" "$LOCAL"/
-	done
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		LOCAL=$(pwd)
+		cd ~
+		for f in *; do
+			mv -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 mvyabr() {
 	(
-	cd "$1"
-	LOCAL=$(pwd)
-	cd ..
-	for f in *; do
-		mv -- "$f" "$LOCAL"/
-	done
+		cd "$1"
+		LOCAL=$(pwd)
+		cd ..
+		for f in *; do
+			mv -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 mvyabp() {
 	(
-	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-	LOCAL=$(pwd)
-	cd ..
-	for f in *; do
-		mv -- "$f" "$LOCAL"/
-	done
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		LOCAL=$(pwd)
+		cd ..
+		for f in *; do
+			mv -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 cpyacr() {
 	(
-	cd "$1"
-	LOCAL=$(pwd)
-	cd .
-	for f in *; do
-		cp -r -- "$f" "$LOCAL"/
-	done
+		cd "$1"
+		LOCAL=$(pwd)
+		cd .
+		for f in *; do
+			cp -r -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 cpyacp() {
 	(
-	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-	LOCAL=$(pwd)
-	cd .
-	for f in *; do
-		cp -r -- "$f" "$LOCAL"/
-	done
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		LOCAL=$(pwd)
+		cd .
+		for f in *; do
+			cp -r -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 cpyahr() {
 	(
-	cd "$1"
-	LOCAL=$(pwd)
-	cd ~
-	for f in *; do
-		cp -r -- "$f" "$LOCAL"/
-	done
+		cd "$1"
+		LOCAL=$(pwd)
+		cd ~
+		for f in *; do
+			cp -r -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 cpyahp() {
 	(
-	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-	LOCAL=$(pwd)
-	cd ~
-	for f in *; do
-		cp -r -- "$f" "$LOCAL"/
-	done
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		LOCAL=$(pwd)
+		cd ~
+		for f in *; do
+			cp -r -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 cpyabr() {
 	(
-	cd "$1"
-	LOCAL=$(pwd)
-	cd ..
-	for f in *; do
-		cp -r -- "$f" "$LOCAL"/
-	done
+		cd "$1"
+		LOCAL=$(pwd)
+		cd ..
+		for f in *; do
+			cp -r -- "$f" "$LOCAL"/
+		done
 	)
 }
 
 cpyabp() {
 	(
-	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-	LOCAL=$(pwd)
-	cd ..
-	for f in *; do
-		cp -r -- "$f" "$LOCAL"/
-	done
+		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+		LOCAL=$(pwd)
+		cd ..
+		for f in *; do
+			cp -r -- "$f" "$LOCAL"/
+		done
 	)
 }
 

@@ -192,13 +192,13 @@ with open("bashrc.d/52-extra-functions.sh", "w") as file:
                     "ya" +
                     localStr[j] +
                     tlocalStr[k] +
-                    "() {\n\t(\n\tcd " +
+                    "() {\n\t(\n\t\tcd " +
                     tlocal[k] +
-                    "\n\tLOCAL=$(pwd)\n\tcd " +
+                    "\n\t\tLOCAL=$(pwd)\n\t\tcd " +
                     local[j] +
-                    "\n\tfor f in *; do\n\t\t" +
+                    "\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
-                    " -- \"$f\" \"$LOCAL\"/\n\tdone\n\t)\n}\n\n")
+                    " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
 
     file.write("""rmp() {
 \trm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
