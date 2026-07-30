@@ -22,8 +22,8 @@ xdgset() {
 	else
 		export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
 	fi
-	mkdir -p $XDG_RUNTIME_DIR
-	chmod 700 $XDG_RUNTIME_DIR
+	mkdir -p "$XDG_RUNTIME_DIR"
+	chmod 700 "$XDG_RUNTIME_DIR"
 	if [ $# -ne 0 ]; then
 		export DISPLAY="$1"
 	fi

@@ -14,7 +14,9 @@ undis() {
 }
 
 vncd() {
-	export DISPLAY=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
+    # shellcheck disable=2155
+	local var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
+    [ -n "$var" ] && export DISPLAY="$var"
 }
 
 xdgset() {
@@ -23,8 +25,8 @@ xdgset() {
 	else
 		export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
 	fi
-	mkdir -p $XDG_RUNTIME_DIR
-	chmod 700 $XDG_RUNTIME_DIR
+	mkdir -p "$XDG_RUNTIME_DIR"
+	chmod 700 "$XDG_RUNTIME_DIR"
 	if [ $# -ne 0 ]; then
 		export DISPLAY="$1"
 	fi

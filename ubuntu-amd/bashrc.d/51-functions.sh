@@ -9,7 +9,7 @@ phice() {
 
 lizzieyzy() {
 	(
-		cd $HOME/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
+		cd "$HOME"/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
 	)
 }
 
@@ -33,11 +33,11 @@ update_texlive() {
 
 update_latex() {
 	(
-		cd /usr/share/LaTeX-ToolKit
+		cd /usr/share/LaTeX-ToolKit || exit
 		sudo git reset --hard
 		sudo git clean -d --force
 		sudo git pull --rebase
-		cd ~/texmf/tex/latex/physics-patch
+		cd ~/texmf/tex/latex/physics-patch || exit
 		git reset --hard
 		git clean -d --force
 		git pull --rebase
@@ -58,28 +58,28 @@ update_nvim_config() {
 
 update_lizzieyzy_config() {
 	(
-		mkdir -p $HOME/.local/share/lizzieyzy
-		rm $HOME/.local/share/lizzieyzy/config.txt 2>/dev/null || true
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O $HOME/.local/share/lizzieyzy/config.txt
-		sed -i "s|\$((\$(nproc)/2))|$(($(nproc) / 2))|g; s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g; s|\$(hostname)|$(hostname)|g" $HOME/.local/share/lizzieyzy/config.txt
+		mkdir -p "$HOME"/.local/share/lizzieyzy
+		rm "$HOME"/.local/share/lizzieyzy/config.txt 2>/dev/null || true
+		wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O "$HOME"/.local/share/lizzieyzy/config.txt
+		sed -i "s|\$((\$(nproc)/2))|$(($(nproc) / 2))|g; s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g; s|\$(hostname)|$(hostname)|g" "$HOME"/.local/share/lizzieyzy/config.txt
 	)
 }
 
 update_cutechess_config() {
 	(
-		mkdir -p $HOME/.config/cutechess
-		rm $HOME/.config/cutechess/engines.json 2>/dev/null || true
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O $HOME/.config/cutechess/engines.json
-		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" $HOME/.config/cutechess/engines.json
+		mkdir -p "$HOME"/.config/cutechess
+		rm "$HOME"/.config/cutechess/engines.json 2>/dev/null || true
+		wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O "$HOME"/.config/cutechess/engines.json
+		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" "$HOME"/.config/cutechess/engines.json
 	)
 }
 
 update_sylvan_config() {
 	(
-		mkdir -p $HOME/.config/EterCyber
-		rm $HOME/.config/EterCyber/engines.json 2>/dev/null || true
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/sylvan/engines.json -O $HOME/.config/EterCyber/engines.json
-		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" $HOME/.config/EterCyber/engines.json
+		mkdir -p "$HOME"/.config/EterCyber
+		rm "$HOME"/.config/EterCyber/engines.json 2>/dev/null || true
+		wget https://raw.githubusercontent.com/Willie169/bashrc/main/sylvan/engines.json -O "$HOME"/.config/EterCyber/engines.json
+		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" "$HOME"/.config/EterCyber/engines.json
 	)
 }
 
@@ -143,7 +143,7 @@ update_tools() {
 
 update_pied() {
 	(
-		cd ~
+		cd ~ || exit
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Elleo/pied com.mikeasoft.pied.flatpak
 		sudo flatpak install com.mikeasoft.pied.flatpak -y || true
 		rm com.mikeasoft.pied.flatpak*
@@ -152,21 +152,7 @@ update_pied() {
 
 update_bashrc() {
 	(
-		cd ~
-		rm -f .bashrc 2>/dev/null || true
-		rm -rf .bashrc.d 2>/dev/null || true
-		mkdir .bashrc.d
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/24-flatpak.sh -O ~/.bashrc.d/24-flatpak.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/bashrc -O ~/.bashrc
+        wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
 	)
 }
 
@@ -221,7 +207,7 @@ update_all() {
 bind_waydroid() {
 	(
 		sudo mkdir -p /mnt/waydroid
-		sudo bindfs --mirror=$(id -u) ~/.local/share/waydroid/data/media/0 /mnt/waydroid
+		sudo bindfs --mirror="$(id -u)" "$HOME"/.local/share/waydroid/data/media/0 /mnt/waydroid
 	)
 }
 
@@ -229,7 +215,7 @@ rvs() {
 	if (($# == 0)); then
 		remote-viewer spice://127.0.0.1:5930
 	else
-		remote-viewer spice://127.0.0.1:"$@"
+		remote-viewer spice://127.0.0.1:"$1"
 	fi
 }
 
