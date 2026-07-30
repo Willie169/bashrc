@@ -229,7 +229,7 @@ for i in lr(pop):
                 remoteStr[j] +
                 "p" +
                 prootStr[k] +
-                "(){\n\tif [ -n \"$" +
+                "() {\n\tif [ -n \"$" +
                 proot[k].upper() +
                 "\" ]; then\n\t\t" +
                 pop[i] +
@@ -249,7 +249,7 @@ for i in lr(npop):
             npop[i] +
             "p" +
             prootStr[k] +
-            "(){\n\tif [ -n \"$" +
+            "() {\n\tif [ -n \"$" +
             proot[k].upper() +
             "\" ]; then\n\t\t" +
             npop[i] +
@@ -269,7 +269,7 @@ for i in lr(pup):
                 remoteStr[j] +
                 "p" +
                 prootStr[k] +
-                "(){\n\tif [ -n \"$" +
+                "() {\n\tif [ -n \"$" +
                 proot[k].upper() +
                 "\" ]; then\n\t\t" +
                 pup[i] +
