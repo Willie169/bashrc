@@ -24,10 +24,11 @@ done
 for f in "$dir"/**/*.sh "$dir"/**/bashrc; do
 	chmod +x "$f"
 	shfmt -w "$f"
-	##shellcheck -e 1090,1091 "$f"
+	shellcheck -e 1090,1091 "$f"
 done
 
 for f in "$dir"/**/*.py; do
 	chmod +x "$f"
 	autopep8 --in-place --aggressive --aggressive "$f"
+	(cd "$(dirname "$f")" && python3 "$(basename "$f")")
 done

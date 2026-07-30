@@ -13,6 +13,13 @@ if [ -d "$HOME/.bashrc.d" ]; then
 	done
 fi
 
+if ! shopt -oq posix; then
+	[ -f "$PREFIX"/share/bash-completion/bash_completion ] && . "$PREFIX"/share/bash-completion/bash_completion
+	[ -f "$PREFIX"/etc/bash_completion ] && . "$PREFIX"/etc/bash_completion
+fi
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
 [ -f ${HOME}/.config/broot/launcher/bash/br ] && source ${HOME}/.config/broot/launcher/bash/br
 
 mkdir -p ~/.bashrc.pid
