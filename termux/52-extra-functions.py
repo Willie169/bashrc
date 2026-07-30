@@ -384,8 +384,6 @@ cpiaAgcdp() {
                             H[eg][g] +
                             ' "$@"\n}\n\n')
 
-data = None
-
 with open("bashrc.d/52-extra-functions.sh", "rb") as file:
     data = file.read()
 
