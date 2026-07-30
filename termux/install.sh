@@ -7,6 +7,7 @@ mkdir .bashrc.d
 cd .bashrc.d || exit
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/20-shared-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/30-shared-functions.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/40-shared-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-aliases.sh

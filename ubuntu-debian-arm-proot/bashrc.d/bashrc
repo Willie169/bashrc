@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-case $- in
-*i*) ;;
-*) return ;;
-esac
-
 shopt -s globstar
 
 if [ -d "$HOME/.bashrc.d" ]; then

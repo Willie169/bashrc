@@ -7,11 +7,12 @@ mkdir .bashrc.d
 cd .bashrc.d || exit
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/20-shared-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/30-shared-functions.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/40-shared-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/21-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/22-vnc.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/31-functions.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/41-color.sh
 cd ~ || exit
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc -O .bashrc
