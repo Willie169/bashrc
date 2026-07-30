@@ -4,47 +4,47 @@ alias tx11='termux-x11'
 alias xfce='dbus-launch --exit-with-session xfce4-session & 2>/dev/null'
 
 xxfce() {
-  if [ $# -ne 0 ]; then
-    termux-x11 $1 -xstartup "dbus-launch --exit-with-session xfce4-session"
-  else
-    termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"
-  fi
+	if [ $# -ne 0 ]; then
+		termux-x11 $1 -xstartup "dbus-launch --exit-with-session xfce4-session"
+	else
+		termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"
+	fi
 }
 
 dis() {
-  export DISPLAY="$1"
+	export DISPLAY="$1"
 }
 
 undis() {
-  unset DISPLAY
+	unset DISPLAY
 }
 
 xdgset() {
-  if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
-    export XDG_RUNTIME_DIR="$TMPDIR/runtime-root"
-  else
-    export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
-  fi
-  mkdir -p $XDG_RUNTIME_DIR
-  chmod 700 $XDG_RUNTIME_DIR
-  if [ $# -ne 0 ]; then
-    export DISPLAY="$1"
-  fi
+	if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
+		export XDG_RUNTIME_DIR="$TMPDIR/runtime-root"
+	else
+		export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
+	fi
+	mkdir -p $XDG_RUNTIME_DIR
+	chmod 700 $XDG_RUNTIME_DIR
+	if [ $# -ne 0 ]; then
+		export DISPLAY="$1"
+	fi
 }
 
 xclean() {
-  if [ $# -ne 1 ] || ! [[ $1 =~ ^[0-9]+$ ]]; then
-    echo "Usage: vncclean <display_number>" >&2
-    return 1
-  fi
+	if [ $# -ne 1 ] || ! [[ $1 =~ ^[0-9]+$ ]]; then
+		echo "Usage: vncclean <display_number>" >&2
+		return 1
+	fi
 
-  if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
-    rm -f "$TMPDIR/.X${1}-lock" 2>/dev/null || true
-    rm -f "$TMPDIR/.X11-unix/.X${1}" 2>/dev/null || true
-    rm -f "$TMPDIR/.X11-unix/X${1}" 2>/dev/null || true
-  else
-    rm -f "/data/data/com.termux/files/usr/tmp/.X${1}-lock" 2>/dev/null || true
-    rm -f "/data/data/com.termux/files/usr/tmp/.X11-unix/.X${1}" 2>/dev/null || true
-    rm -f "/data/data/com.termux/files/usr/tmp/.X11-unix/X${1}" 2>/dev/null || true
-  fi
+	if [ -z "$TMPDIR" ] || [ -n "$TMPDIR" ]; then
+		rm -f "$TMPDIR/.X${1}-lock" 2>/dev/null || true
+		rm -f "$TMPDIR/.X11-unix/.X${1}" 2>/dev/null || true
+		rm -f "$TMPDIR/.X11-unix/X${1}" 2>/dev/null || true
+	else
+		rm -f "/data/data/com.termux/files/usr/tmp/.X${1}-lock" 2>/dev/null || true
+		rm -f "/data/data/com.termux/files/usr/tmp/.X11-unix/.X${1}" 2>/dev/null || true
+		rm -f "/data/data/com.termux/files/usr/tmp/.X11-unix/X${1}" 2>/dev/null || true
+	fi
 }
