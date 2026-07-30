@@ -939,6 +939,10 @@ grm() {
 	git rm -rf "${1:-*}"
 }
 
+gdfh() {
+    git diff HEAD~"$1" HEAD
+}
+
 gtr() {
 	if [ $# -lt 1 ]; then
 		echo "Usage: gtr <version> [-n|--notes 'notes'] [files...]"
