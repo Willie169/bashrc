@@ -201,25 +201,25 @@ with open("bashrc.d/52-extra-functions.sh", "w") as file:
                     " -- \"$f\" \"$LOCAL\"/\n\tdone\n\t)\n}\n\n")
 
     file.write("""rmp() {
-    \trm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+\trm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    rmrp() {
-    \trm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+rmrp() {
+\trm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    rmrfp() {
-    \trm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+rmrfp() {
+\trm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    mkdirp() {
-    \tmkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+mkdirp() {
+\tmkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    mkdirpp() {
-    \tmkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
-    """)
+mkdirpp() {
+\tmkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
+""")
 
     for i in lr(pop):
         for j in lr(remote):
@@ -284,65 +284,65 @@ with open("bashrc.d/52-extra-functions.sh", "w") as file:
                     "\" \"$1\"\n\tfi\n}\n\n")
 
     gacp = """mvaAgcp() {
-    \tmvaAic "$1"
-    \tgacp "$2"
-    }
+\tmvaAic "$1"
+\tgacp "$2"
+}
 
-    cpaAgcp() {
-    \tcpaAic "$1"
-    \tgacp "$2"
-    }
+cpaAgcp() {
+\tcpaAic "$1"
+\tgacp "$2"
+}
 
-    mviAgcp() {
-    \tmviAc "$1"
-    \tgacp "$2"
-    }
+mviAgcp() {
+\tmviAc "$1"
+\tgacp "$2"
+}
 
-    cpiAgcp() {
-    \tcpriAc "$1"
-    \tgacp "$2"
-    }
+cpiAgcp() {
+\tcpriAc "$1"
+\tgacp "$2"
+}
 
-    mviaAgcp() {
-    \tmviaAc
-    \tgacp "$1"
-    }
+mviaAgcp() {
+\tmviaAc
+\tgacp "$1"
+}
 
-    cpiaAgcp() {
-    \tcpiaAc "*"
-    \tgacp "$1"
-    }
+cpiaAgcp() {
+\tcpiaAc "*"
+\tgacp "$1"
+}
 
-    mvaAgcdp() {
-    \tmvaAic "$1"
-    \tgacdp "$2"
-    }
+mvaAgcdp() {
+\tmvaAic "$1"
+\tgacdp "$2"
+}
 
-    cpaAgcdp() {
-    \tcpaAic "$1"
-    \tgacdp "$2"
-    }
+cpaAgcdp() {
+\tcpaAic "$1"
+\tgacdp "$2"
+}
 
-    mviAgcdp() {
-    \tmviAc "$1"
-    \tgacdp "$2"
-    }
+mviAgcdp() {
+\tmviAc "$1"
+\tgacdp "$2"
+}
 
-    cpiAgcdp() {
-    \tcpriAc "$1"
-    \tgacdp "$2"
-    }
+cpiAgcdp() {
+\tcpriAc "$1"
+\tgacdp "$2"
+}
 
-    mviaAgcdp() {
-    \tmviaAc
-    \tgacdp "$1"
-    }
+mviaAgcdp() {
+\tmviaAc
+\tgacdp "$1"
+}
 
-    cpiaAgcdp() {
-    \tcpiaAc "*"
-    \tgacdp "$1"
-    }
-    """
+cpiaAgcdp() {
+\tcpiaAc "*"
+\tgacdp "$1"
+}
+"""
 
     for i in remoteStr:
         file.write(gacp.replace("A", i))

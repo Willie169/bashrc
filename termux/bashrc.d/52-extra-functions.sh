@@ -1557,25 +1557,25 @@ cpyabp() {
 }
 
 rmp() {
-    	rm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+	rm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    rmrp() {
-    	rm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+rmrp() {
+	rm -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    rmrfp() {
-    	rm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+rmrfp() {
+	rm -rf -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    mkdirp() {
-    	mkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
+mkdirp() {
+	mkdir -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
 
-    mkdirpp() {
-    	mkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
-    }
-    mvipt() {
+mkdirpp() {
+	mkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
+}
+mvipt() {
 	if [ -n "$TERMUX" ]; then
 		mvip "$TERMUX" "$1"
 	else
@@ -4576,242 +4576,242 @@ cpayspdb() {
 }
 
 mvagcp() {
-    	mvaic "$1"
-    	gacp "$2"
-    }
+	mvaic "$1"
+	gacp "$2"
+}
 
-    cpagcp() {
-    	cpaic "$1"
-    	gacp "$2"
-    }
+cpagcp() {
+	cpaic "$1"
+	gacp "$2"
+}
 
-    mvigcp() {
-    	mvic "$1"
-    	gacp "$2"
-    }
+mvigcp() {
+	mvic "$1"
+	gacp "$2"
+}
 
-    cpigcp() {
-    	cpric "$1"
-    	gacp "$2"
-    }
+cpigcp() {
+	cpric "$1"
+	gacp "$2"
+}
 
-    mviagcp() {
-    	mviac
-    	gacp "$1"
-    }
+mviagcp() {
+	mviac
+	gacp "$1"
+}
 
-    cpiagcp() {
-    	cpiac "*"
-    	gacp "$1"
-    }
+cpiagcp() {
+	cpiac "*"
+	gacp "$1"
+}
 
-    mvagcdp() {
-    	mvaic "$1"
-    	gacdp "$2"
-    }
+mvagcdp() {
+	mvaic "$1"
+	gacdp "$2"
+}
 
-    cpagcdp() {
-    	cpaic "$1"
-    	gacdp "$2"
-    }
+cpagcdp() {
+	cpaic "$1"
+	gacdp "$2"
+}
 
-    mvigcdp() {
-    	mvic "$1"
-    	gacdp "$2"
-    }
+mvigcdp() {
+	mvic "$1"
+	gacdp "$2"
+}
 
-    cpigcdp() {
-    	cpric "$1"
-    	gacdp "$2"
-    }
+cpigcdp() {
+	cpric "$1"
+	gacdp "$2"
+}
 
-    mviagcdp() {
-    	mviac
-    	gacdp "$1"
-    }
+mviagcdp() {
+	mviac
+	gacdp "$1"
+}
 
-    cpiagcdp() {
-    	cpiac "*"
-    	gacdp "$1"
-    }
-    mvadgcp() {
-    	mvadic "$1"
-    	gacp "$2"
-    }
+cpiagcdp() {
+	cpiac "*"
+	gacdp "$1"
+}
+mvadgcp() {
+	mvadic "$1"
+	gacp "$2"
+}
 
-    cpadgcp() {
-    	cpadic "$1"
-    	gacp "$2"
-    }
+cpadgcp() {
+	cpadic "$1"
+	gacp "$2"
+}
 
-    mvidgcp() {
-    	mvidc "$1"
-    	gacp "$2"
-    }
+mvidgcp() {
+	mvidc "$1"
+	gacp "$2"
+}
 
-    cpidgcp() {
-    	cpridc "$1"
-    	gacp "$2"
-    }
+cpidgcp() {
+	cpridc "$1"
+	gacp "$2"
+}
 
-    mviadgcp() {
-    	mviadc
-    	gacp "$1"
-    }
+mviadgcp() {
+	mviadc
+	gacp "$1"
+}
 
-    cpiadgcp() {
-    	cpiadc "*"
-    	gacp "$1"
-    }
+cpiadgcp() {
+	cpiadc "*"
+	gacp "$1"
+}
 
-    mvadgcdp() {
-    	mvadic "$1"
-    	gacdp "$2"
-    }
+mvadgcdp() {
+	mvadic "$1"
+	gacdp "$2"
+}
 
-    cpadgcdp() {
-    	cpadic "$1"
-    	gacdp "$2"
-    }
+cpadgcdp() {
+	cpadic "$1"
+	gacdp "$2"
+}
 
-    mvidgcdp() {
-    	mvidc "$1"
-    	gacdp "$2"
-    }
+mvidgcdp() {
+	mvidc "$1"
+	gacdp "$2"
+}
 
-    cpidgcdp() {
-    	cpridc "$1"
-    	gacdp "$2"
-    }
+cpidgcdp() {
+	cpridc "$1"
+	gacdp "$2"
+}
 
-    mviadgcdp() {
-    	mviadc
-    	gacdp "$1"
-    }
+mviadgcdp() {
+	mviadc
+	gacdp "$1"
+}
 
-    cpiadgcdp() {
-    	cpiadc "*"
-    	gacdp "$1"
-    }
-    mvasgcp() {
-    	mvasic "$1"
-    	gacp "$2"
-    }
+cpiadgcdp() {
+	cpiadc "*"
+	gacdp "$1"
+}
+mvasgcp() {
+	mvasic "$1"
+	gacp "$2"
+}
 
-    cpasgcp() {
-    	cpasic "$1"
-    	gacp "$2"
-    }
+cpasgcp() {
+	cpasic "$1"
+	gacp "$2"
+}
 
-    mvisgcp() {
-    	mvisc "$1"
-    	gacp "$2"
-    }
+mvisgcp() {
+	mvisc "$1"
+	gacp "$2"
+}
 
-    cpisgcp() {
-    	cprisc "$1"
-    	gacp "$2"
-    }
+cpisgcp() {
+	cprisc "$1"
+	gacp "$2"
+}
 
-    mviasgcp() {
-    	mviasc
-    	gacp "$1"
-    }
+mviasgcp() {
+	mviasc
+	gacp "$1"
+}
 
-    cpiasgcp() {
-    	cpiasc "*"
-    	gacp "$1"
-    }
+cpiasgcp() {
+	cpiasc "*"
+	gacp "$1"
+}
 
-    mvasgcdp() {
-    	mvasic "$1"
-    	gacdp "$2"
-    }
+mvasgcdp() {
+	mvasic "$1"
+	gacdp "$2"
+}
 
-    cpasgcdp() {
-    	cpasic "$1"
-    	gacdp "$2"
-    }
+cpasgcdp() {
+	cpasic "$1"
+	gacdp "$2"
+}
 
-    mvisgcdp() {
-    	mvisc "$1"
-    	gacdp "$2"
-    }
+mvisgcdp() {
+	mvisc "$1"
+	gacdp "$2"
+}
 
-    cpisgcdp() {
-    	cprisc "$1"
-    	gacdp "$2"
-    }
+cpisgcdp() {
+	cprisc "$1"
+	gacdp "$2"
+}
 
-    mviasgcdp() {
-    	mviasc
-    	gacdp "$1"
-    }
+mviasgcdp() {
+	mviasc
+	gacdp "$1"
+}
 
-    cpiasgcdp() {
-    	cpiasc "*"
-    	gacdp "$1"
-    }
-    mvaegcp() {
-    	mvaeic "$1"
-    	gacp "$2"
-    }
+cpiasgcdp() {
+	cpiasc "*"
+	gacdp "$1"
+}
+mvaegcp() {
+	mvaeic "$1"
+	gacp "$2"
+}
 
-    cpaegcp() {
-    	cpaeic "$1"
-    	gacp "$2"
-    }
+cpaegcp() {
+	cpaeic "$1"
+	gacp "$2"
+}
 
-    mviegcp() {
-    	mviec "$1"
-    	gacp "$2"
-    }
+mviegcp() {
+	mviec "$1"
+	gacp "$2"
+}
 
-    cpiegcp() {
-    	cpriec "$1"
-    	gacp "$2"
-    }
+cpiegcp() {
+	cpriec "$1"
+	gacp "$2"
+}
 
-    mviaegcp() {
-    	mviaec
-    	gacp "$1"
-    }
+mviaegcp() {
+	mviaec
+	gacp "$1"
+}
 
-    cpiaegcp() {
-    	cpiaec "*"
-    	gacp "$1"
-    }
+cpiaegcp() {
+	cpiaec "*"
+	gacp "$1"
+}
 
-    mvaegcdp() {
-    	mvaeic "$1"
-    	gacdp "$2"
-    }
+mvaegcdp() {
+	mvaeic "$1"
+	gacdp "$2"
+}
 
-    cpaegcdp() {
-    	cpaeic "$1"
-    	gacdp "$2"
-    }
+cpaegcdp() {
+	cpaeic "$1"
+	gacdp "$2"
+}
 
-    mviegcdp() {
-    	mviec "$1"
-    	gacdp "$2"
-    }
+mviegcdp() {
+	mviec "$1"
+	gacdp "$2"
+}
 
-    cpiegcdp() {
-    	cpriec "$1"
-    	gacdp "$2"
-    }
+cpiegcdp() {
+	cpriec "$1"
+	gacdp "$2"
+}
 
-    mviaegcdp() {
-    	mviaec
-    	gacdp "$1"
-    }
+mviaegcdp() {
+	mviaec
+	gacdp "$1"
+}
 
-    cpiaegcdp() {
-    	cpiaec "*"
-    	gacdp "$1"
-    }
-    scnnn() {
+cpiaegcdp() {
+	cpiaec "*"
+	gacdp "$1"
+}
+scnnn() {
 	unset GALLIUM_DRIVER
 	scrcpy --video-codec=h265 --fullscreen --no-audio "$@"
 }
