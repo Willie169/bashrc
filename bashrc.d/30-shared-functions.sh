@@ -904,7 +904,7 @@ gh_delete_runs() {
 
 gad() {
 	(
-		groot
+		cgrr
 		git add .
 	)
 }
@@ -1518,8 +1518,8 @@ dfsftp() {
 csd() {
 	if (($# == 1)); then
 		cd ~/shared || return
-		# shellcheck disable=2164
-		cd "$1"
+		# shellcheck disable=2086,2164
+		cd $1
 	else
 		# shellcheck disable=2164
 		cd ~/shared
