@@ -516,10 +516,10 @@ mviab() {
 mviar() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOW
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -527,10 +527,10 @@ mviar() {
 mviap() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOW
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -571,10 +571,10 @@ mviadb() {
 mviadr() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOC
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -582,10 +582,10 @@ mviadr() {
 mviadp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOC
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -626,10 +626,10 @@ mviasb() {
 mviasr() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $SCR
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -637,10 +637,10 @@ mviasr() {
 mviasp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $SCR
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -681,10 +681,10 @@ mviaeb() {
 mviaer() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $EMU
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -692,10 +692,10 @@ mviaer() {
 mviaep() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $EMU
 		for f in *; do
-			mv -- "$f" "$tlocal"/
+			mv -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -736,10 +736,10 @@ cpiab() {
 cpiar() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOW
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -747,10 +747,10 @@ cpiar() {
 cpiap() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOW
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -791,10 +791,10 @@ cpiadb() {
 cpiadr() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOC
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -802,10 +802,10 @@ cpiadr() {
 cpiadp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $DOC
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -846,10 +846,10 @@ cpiasb() {
 cpiasr() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $SCR
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -857,10 +857,10 @@ cpiasr() {
 cpiasp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $SCR
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -901,10 +901,10 @@ cpiaeb() {
 cpiaer() {
 	(
 		cd "$1"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $EMU
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -912,10 +912,10 @@ cpiaer() {
 cpiaep() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		tlocal=$(pwd)
+		LOCAl=$(pwd)
 		cd $EMU
 		for f in *; do
-			cp -r -- "$f" "$tlocal"/
+			cp -r -- "$f" "$LOCAL"/
 		done
 	)
 }
@@ -1426,133 +1426,133 @@ cprubp() {
 
 mvyacr() {
 	(
-		cd "$1"
-		LOCAL=$(pwd)
-		cd .
-		for f in *; do
-			mv -- "$f" "$LOCAL"/
-		done
+	cd "$1"
+	LOCAL=$(pwd)
+	cd .
+	for f in *; do
+		mv -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 mvyacp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAL=$(pwd)
-		cd .
-		for f in *; do
-			mv -- "$f" "$LOCAL"/
-		done
+	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+	LOCAL=$(pwd)
+	cd .
+	for f in *; do
+		mv -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 mvyahr() {
 	(
-		cd "$1"
-		LOCAL=$(pwd)
-		cd ~
-		for f in *; do
-			mv -- "$f" "$LOCAL"/
-		done
+	cd "$1"
+	LOCAL=$(pwd)
+	cd ~
+	for f in *; do
+		mv -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 mvyahp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAL=$(pwd)
-		cd ~
-		for f in *; do
-			mv -- "$f" "$LOCAL"/
-		done
+	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+	LOCAL=$(pwd)
+	cd ~
+	for f in *; do
+		mv -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 mvyabr() {
 	(
-		cd "$1"
-		LOCAL=$(pwd)
-		cd ..
-		for f in *; do
-			mv -- "$f" "$LOCAL"/
-		done
+	cd "$1"
+	LOCAL=$(pwd)
+	cd ..
+	for f in *; do
+		mv -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 mvyabp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAL=$(pwd)
-		cd ..
-		for f in *; do
-			mv -- "$f" "$LOCAL"/
-		done
+	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+	LOCAL=$(pwd)
+	cd ..
+	for f in *; do
+		mv -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 cpyacr() {
 	(
-		cd "$1"
-		LOCAL=$(pwd)
-		cd .
-		for f in *; do
-			cp -r -- "$f" "$LOCAL"/
-		done
+	cd "$1"
+	LOCAL=$(pwd)
+	cd .
+	for f in *; do
+		cp -r -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 cpyacp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAL=$(pwd)
-		cd .
-		for f in *; do
-			cp -r -- "$f" "$LOCAL"/
-		done
+	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+	LOCAL=$(pwd)
+	cd .
+	for f in *; do
+		cp -r -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 cpyahr() {
 	(
-		cd "$1"
-		LOCAL=$(pwd)
-		cd ~
-		for f in *; do
-			cp -r -- "$f" "$LOCAL"/
-		done
+	cd "$1"
+	LOCAL=$(pwd)
+	cd ~
+	for f in *; do
+		cp -r -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 cpyahp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAL=$(pwd)
-		cd ~
-		for f in *; do
-			cp -r -- "$f" "$LOCAL"/
-		done
+	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+	LOCAL=$(pwd)
+	cd ~
+	for f in *; do
+		cp -r -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 cpyabr() {
 	(
-		cd "$1"
-		LOCAL=$(pwd)
-		cd ..
-		for f in *; do
-			cp -r -- "$f" "$LOCAL"/
-		done
+	cd "$1"
+	LOCAL=$(pwd)
+	cd ..
+	for f in *; do
+		cp -r -- "$f" "$LOCAL"/
+	done
 	)
 }
 
 cpyabp() {
 	(
-		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAL=$(pwd)
-		cd ..
-		for f in *; do
-			cp -r -- "$f" "$LOCAL"/
-		done
+	cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
+	LOCAL=$(pwd)
+	cd ..
+	for f in *; do
+		cp -r -- "$f" "$LOCAL"/
+	done
 	)
 }
 
@@ -1575,7 +1575,7 @@ mkdirp() {
 mkdirpp() {
 	mkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
-mvipt() {
+mvipt(){
 	if [ -n "$TERMUX" ]; then
 		mvip "$TERMUX" "$1"
 	else
@@ -1583,7 +1583,7 @@ mvipt() {
 	fi
 }
 
-mvipu() {
+mvipu(){
 	if [ -n "$UBUNTU" ]; then
 		mvip "$UBUNTU" "$1"
 	else
@@ -1591,7 +1591,7 @@ mvipu() {
 	fi
 }
 
-mvipd() {
+mvipd(){
 	if [ -n "$DEBIAN" ]; then
 		mvip "$DEBIAN" "$1"
 	else
@@ -1599,7 +1599,7 @@ mvipd() {
 	fi
 }
 
-mvipub() {
+mvipub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvip "$UBUNTUBOX" "$1"
 	else
@@ -1607,7 +1607,7 @@ mvipub() {
 	fi
 }
 
-mvipdb() {
+mvipdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvip "$DEBIANBOX" "$1"
 	else
@@ -1615,7 +1615,7 @@ mvipdb() {
 	fi
 }
 
-mvidpt() {
+mvidpt(){
 	if [ -n "$TERMUX" ]; then
 		mvidp "$TERMUX" "$1"
 	else
@@ -1623,7 +1623,7 @@ mvidpt() {
 	fi
 }
 
-mvidpu() {
+mvidpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvidp "$UBUNTU" "$1"
 	else
@@ -1631,7 +1631,7 @@ mvidpu() {
 	fi
 }
 
-mvidpd() {
+mvidpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvidp "$DEBIAN" "$1"
 	else
@@ -1639,7 +1639,7 @@ mvidpd() {
 	fi
 }
 
-mvidpub() {
+mvidpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvidp "$UBUNTUBOX" "$1"
 	else
@@ -1647,7 +1647,7 @@ mvidpub() {
 	fi
 }
 
-mvidpdb() {
+mvidpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvidp "$DEBIANBOX" "$1"
 	else
@@ -1655,7 +1655,7 @@ mvidpdb() {
 	fi
 }
 
-mvispt() {
+mvispt(){
 	if [ -n "$TERMUX" ]; then
 		mvisp "$TERMUX" "$1"
 	else
@@ -1663,7 +1663,7 @@ mvispt() {
 	fi
 }
 
-mvispu() {
+mvispu(){
 	if [ -n "$UBUNTU" ]; then
 		mvisp "$UBUNTU" "$1"
 	else
@@ -1671,7 +1671,7 @@ mvispu() {
 	fi
 }
 
-mvispd() {
+mvispd(){
 	if [ -n "$DEBIAN" ]; then
 		mvisp "$DEBIAN" "$1"
 	else
@@ -1679,7 +1679,7 @@ mvispd() {
 	fi
 }
 
-mvispub() {
+mvispub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvisp "$UBUNTUBOX" "$1"
 	else
@@ -1687,7 +1687,7 @@ mvispub() {
 	fi
 }
 
-mvispdb() {
+mvispdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvisp "$DEBIANBOX" "$1"
 	else
@@ -1695,7 +1695,7 @@ mvispdb() {
 	fi
 }
 
-mviept() {
+mviept(){
 	if [ -n "$TERMUX" ]; then
 		mviep "$TERMUX" "$1"
 	else
@@ -1703,7 +1703,7 @@ mviept() {
 	fi
 }
 
-mviepu() {
+mviepu(){
 	if [ -n "$UBUNTU" ]; then
 		mviep "$UBUNTU" "$1"
 	else
@@ -1711,7 +1711,7 @@ mviepu() {
 	fi
 }
 
-mviepd() {
+mviepd(){
 	if [ -n "$DEBIAN" ]; then
 		mviep "$DEBIAN" "$1"
 	else
@@ -1719,7 +1719,7 @@ mviepd() {
 	fi
 }
 
-mviepub() {
+mviepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mviep "$UBUNTUBOX" "$1"
 	else
@@ -1727,7 +1727,7 @@ mviepub() {
 	fi
 }
 
-mviepdb() {
+mviepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mviep "$DEBIANBOX" "$1"
 	else
@@ -1735,7 +1735,7 @@ mviepdb() {
 	fi
 }
 
-mvopt() {
+mvopt(){
 	if [ -n "$TERMUX" ]; then
 		mvop "$TERMUX" "$1"
 	else
@@ -1743,7 +1743,7 @@ mvopt() {
 	fi
 }
 
-mvopu() {
+mvopu(){
 	if [ -n "$UBUNTU" ]; then
 		mvop "$UBUNTU" "$1"
 	else
@@ -1751,7 +1751,7 @@ mvopu() {
 	fi
 }
 
-mvopd() {
+mvopd(){
 	if [ -n "$DEBIAN" ]; then
 		mvop "$DEBIAN" "$1"
 	else
@@ -1759,7 +1759,7 @@ mvopd() {
 	fi
 }
 
-mvopub() {
+mvopub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvop "$UBUNTUBOX" "$1"
 	else
@@ -1767,7 +1767,7 @@ mvopub() {
 	fi
 }
 
-mvopdb() {
+mvopdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvop "$DEBIANBOX" "$1"
 	else
@@ -1775,7 +1775,7 @@ mvopdb() {
 	fi
 }
 
-mvodpt() {
+mvodpt(){
 	if [ -n "$TERMUX" ]; then
 		mvodp "$TERMUX" "$1"
 	else
@@ -1783,7 +1783,7 @@ mvodpt() {
 	fi
 }
 
-mvodpu() {
+mvodpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvodp "$UBUNTU" "$1"
 	else
@@ -1791,7 +1791,7 @@ mvodpu() {
 	fi
 }
 
-mvodpd() {
+mvodpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvodp "$DEBIAN" "$1"
 	else
@@ -1799,7 +1799,7 @@ mvodpd() {
 	fi
 }
 
-mvodpub() {
+mvodpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvodp "$UBUNTUBOX" "$1"
 	else
@@ -1807,7 +1807,7 @@ mvodpub() {
 	fi
 }
 
-mvodpdb() {
+mvodpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvodp "$DEBIANBOX" "$1"
 	else
@@ -1815,7 +1815,7 @@ mvodpdb() {
 	fi
 }
 
-mvospt() {
+mvospt(){
 	if [ -n "$TERMUX" ]; then
 		mvosp "$TERMUX" "$1"
 	else
@@ -1823,7 +1823,7 @@ mvospt() {
 	fi
 }
 
-mvospu() {
+mvospu(){
 	if [ -n "$UBUNTU" ]; then
 		mvosp "$UBUNTU" "$1"
 	else
@@ -1831,7 +1831,7 @@ mvospu() {
 	fi
 }
 
-mvospd() {
+mvospd(){
 	if [ -n "$DEBIAN" ]; then
 		mvosp "$DEBIAN" "$1"
 	else
@@ -1839,7 +1839,7 @@ mvospd() {
 	fi
 }
 
-mvospub() {
+mvospub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvosp "$UBUNTUBOX" "$1"
 	else
@@ -1847,7 +1847,7 @@ mvospub() {
 	fi
 }
 
-mvospdb() {
+mvospdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvosp "$DEBIANBOX" "$1"
 	else
@@ -1855,7 +1855,7 @@ mvospdb() {
 	fi
 }
 
-mvoept() {
+mvoept(){
 	if [ -n "$TERMUX" ]; then
 		mvoep "$TERMUX" "$1"
 	else
@@ -1863,7 +1863,7 @@ mvoept() {
 	fi
 }
 
-mvoepu() {
+mvoepu(){
 	if [ -n "$UBUNTU" ]; then
 		mvoep "$UBUNTU" "$1"
 	else
@@ -1871,7 +1871,7 @@ mvoepu() {
 	fi
 }
 
-mvoepd() {
+mvoepd(){
 	if [ -n "$DEBIAN" ]; then
 		mvoep "$DEBIAN" "$1"
 	else
@@ -1879,7 +1879,7 @@ mvoepd() {
 	fi
 }
 
-mvoepub() {
+mvoepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvoep "$UBUNTUBOX" "$1"
 	else
@@ -1887,7 +1887,7 @@ mvoepub() {
 	fi
 }
 
-mvoepdb() {
+mvoepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvoep "$DEBIANBOX" "$1"
 	else
@@ -1895,7 +1895,7 @@ mvoepdb() {
 	fi
 }
 
-cpipt() {
+cpipt(){
 	if [ -n "$TERMUX" ]; then
 		cpip "$TERMUX" "$1"
 	else
@@ -1903,7 +1903,7 @@ cpipt() {
 	fi
 }
 
-cpipu() {
+cpipu(){
 	if [ -n "$UBUNTU" ]; then
 		cpip "$UBUNTU" "$1"
 	else
@@ -1911,7 +1911,7 @@ cpipu() {
 	fi
 }
 
-cpipd() {
+cpipd(){
 	if [ -n "$DEBIAN" ]; then
 		cpip "$DEBIAN" "$1"
 	else
@@ -1919,7 +1919,7 @@ cpipd() {
 	fi
 }
 
-cpipub() {
+cpipub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpip "$UBUNTUBOX" "$1"
 	else
@@ -1927,7 +1927,7 @@ cpipub() {
 	fi
 }
 
-cpipdb() {
+cpipdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpip "$DEBIANBOX" "$1"
 	else
@@ -1935,7 +1935,7 @@ cpipdb() {
 	fi
 }
 
-cpidpt() {
+cpidpt(){
 	if [ -n "$TERMUX" ]; then
 		cpidp "$TERMUX" "$1"
 	else
@@ -1943,7 +1943,7 @@ cpidpt() {
 	fi
 }
 
-cpidpu() {
+cpidpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpidp "$UBUNTU" "$1"
 	else
@@ -1951,7 +1951,7 @@ cpidpu() {
 	fi
 }
 
-cpidpd() {
+cpidpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpidp "$DEBIAN" "$1"
 	else
@@ -1959,7 +1959,7 @@ cpidpd() {
 	fi
 }
 
-cpidpub() {
+cpidpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpidp "$UBUNTUBOX" "$1"
 	else
@@ -1967,7 +1967,7 @@ cpidpub() {
 	fi
 }
 
-cpidpdb() {
+cpidpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpidp "$DEBIANBOX" "$1"
 	else
@@ -1975,7 +1975,7 @@ cpidpdb() {
 	fi
 }
 
-cpispt() {
+cpispt(){
 	if [ -n "$TERMUX" ]; then
 		cpisp "$TERMUX" "$1"
 	else
@@ -1983,7 +1983,7 @@ cpispt() {
 	fi
 }
 
-cpispu() {
+cpispu(){
 	if [ -n "$UBUNTU" ]; then
 		cpisp "$UBUNTU" "$1"
 	else
@@ -1991,7 +1991,7 @@ cpispu() {
 	fi
 }
 
-cpispd() {
+cpispd(){
 	if [ -n "$DEBIAN" ]; then
 		cpisp "$DEBIAN" "$1"
 	else
@@ -1999,7 +1999,7 @@ cpispd() {
 	fi
 }
 
-cpispub() {
+cpispub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpisp "$UBUNTUBOX" "$1"
 	else
@@ -2007,7 +2007,7 @@ cpispub() {
 	fi
 }
 
-cpispdb() {
+cpispdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpisp "$DEBIANBOX" "$1"
 	else
@@ -2015,7 +2015,7 @@ cpispdb() {
 	fi
 }
 
-cpiept() {
+cpiept(){
 	if [ -n "$TERMUX" ]; then
 		cpiep "$TERMUX" "$1"
 	else
@@ -2023,7 +2023,7 @@ cpiept() {
 	fi
 }
 
-cpiepu() {
+cpiepu(){
 	if [ -n "$UBUNTU" ]; then
 		cpiep "$UBUNTU" "$1"
 	else
@@ -2031,7 +2031,7 @@ cpiepu() {
 	fi
 }
 
-cpiepd() {
+cpiepd(){
 	if [ -n "$DEBIAN" ]; then
 		cpiep "$DEBIAN" "$1"
 	else
@@ -2039,7 +2039,7 @@ cpiepd() {
 	fi
 }
 
-cpiepub() {
+cpiepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpiep "$UBUNTUBOX" "$1"
 	else
@@ -2047,7 +2047,7 @@ cpiepub() {
 	fi
 }
 
-cpiepdb() {
+cpiepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpiep "$DEBIANBOX" "$1"
 	else
@@ -2055,7 +2055,7 @@ cpiepdb() {
 	fi
 }
 
-cpopt() {
+cpopt(){
 	if [ -n "$TERMUX" ]; then
 		cpop "$TERMUX" "$1"
 	else
@@ -2063,7 +2063,7 @@ cpopt() {
 	fi
 }
 
-cpopu() {
+cpopu(){
 	if [ -n "$UBUNTU" ]; then
 		cpop "$UBUNTU" "$1"
 	else
@@ -2071,7 +2071,7 @@ cpopu() {
 	fi
 }
 
-cpopd() {
+cpopd(){
 	if [ -n "$DEBIAN" ]; then
 		cpop "$DEBIAN" "$1"
 	else
@@ -2079,7 +2079,7 @@ cpopd() {
 	fi
 }
 
-cpopub() {
+cpopub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpop "$UBUNTUBOX" "$1"
 	else
@@ -2087,7 +2087,7 @@ cpopub() {
 	fi
 }
 
-cpopdb() {
+cpopdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpop "$DEBIANBOX" "$1"
 	else
@@ -2095,7 +2095,7 @@ cpopdb() {
 	fi
 }
 
-cpodpt() {
+cpodpt(){
 	if [ -n "$TERMUX" ]; then
 		cpodp "$TERMUX" "$1"
 	else
@@ -2103,7 +2103,7 @@ cpodpt() {
 	fi
 }
 
-cpodpu() {
+cpodpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpodp "$UBUNTU" "$1"
 	else
@@ -2111,7 +2111,7 @@ cpodpu() {
 	fi
 }
 
-cpodpd() {
+cpodpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpodp "$DEBIAN" "$1"
 	else
@@ -2119,7 +2119,7 @@ cpodpd() {
 	fi
 }
 
-cpodpub() {
+cpodpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpodp "$UBUNTUBOX" "$1"
 	else
@@ -2127,7 +2127,7 @@ cpodpub() {
 	fi
 }
 
-cpodpdb() {
+cpodpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpodp "$DEBIANBOX" "$1"
 	else
@@ -2135,7 +2135,7 @@ cpodpdb() {
 	fi
 }
 
-cpospt() {
+cpospt(){
 	if [ -n "$TERMUX" ]; then
 		cposp "$TERMUX" "$1"
 	else
@@ -2143,7 +2143,7 @@ cpospt() {
 	fi
 }
 
-cpospu() {
+cpospu(){
 	if [ -n "$UBUNTU" ]; then
 		cposp "$UBUNTU" "$1"
 	else
@@ -2151,7 +2151,7 @@ cpospu() {
 	fi
 }
 
-cpospd() {
+cpospd(){
 	if [ -n "$DEBIAN" ]; then
 		cposp "$DEBIAN" "$1"
 	else
@@ -2159,7 +2159,7 @@ cpospd() {
 	fi
 }
 
-cpospub() {
+cpospub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cposp "$UBUNTUBOX" "$1"
 	else
@@ -2167,7 +2167,7 @@ cpospub() {
 	fi
 }
 
-cpospdb() {
+cpospdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cposp "$DEBIANBOX" "$1"
 	else
@@ -2175,7 +2175,7 @@ cpospdb() {
 	fi
 }
 
-cpoept() {
+cpoept(){
 	if [ -n "$TERMUX" ]; then
 		cpoep "$TERMUX" "$1"
 	else
@@ -2183,7 +2183,7 @@ cpoept() {
 	fi
 }
 
-cpoepu() {
+cpoepu(){
 	if [ -n "$UBUNTU" ]; then
 		cpoep "$UBUNTU" "$1"
 	else
@@ -2191,7 +2191,7 @@ cpoepu() {
 	fi
 }
 
-cpoepd() {
+cpoepd(){
 	if [ -n "$DEBIAN" ]; then
 		cpoep "$DEBIAN" "$1"
 	else
@@ -2199,7 +2199,7 @@ cpoepd() {
 	fi
 }
 
-cpoepub() {
+cpoepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpoep "$UBUNTUBOX" "$1"
 	else
@@ -2207,7 +2207,7 @@ cpoepub() {
 	fi
 }
 
-cpoepdb() {
+cpoepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpoep "$DEBIANBOX" "$1"
 	else
@@ -2215,7 +2215,7 @@ cpoepdb() {
 	fi
 }
 
-cpript() {
+cpript(){
 	if [ -n "$TERMUX" ]; then
 		cprip "$TERMUX" "$1"
 	else
@@ -2223,7 +2223,7 @@ cpript() {
 	fi
 }
 
-cpripu() {
+cpripu(){
 	if [ -n "$UBUNTU" ]; then
 		cprip "$UBUNTU" "$1"
 	else
@@ -2231,7 +2231,7 @@ cpripu() {
 	fi
 }
 
-cpripd() {
+cpripd(){
 	if [ -n "$DEBIAN" ]; then
 		cprip "$DEBIAN" "$1"
 	else
@@ -2239,7 +2239,7 @@ cpripd() {
 	fi
 }
 
-cpripub() {
+cpripub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprip "$UBUNTUBOX" "$1"
 	else
@@ -2247,7 +2247,7 @@ cpripub() {
 	fi
 }
 
-cpripdb() {
+cpripdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprip "$DEBIANBOX" "$1"
 	else
@@ -2255,7 +2255,7 @@ cpripdb() {
 	fi
 }
 
-cpridpt() {
+cpridpt(){
 	if [ -n "$TERMUX" ]; then
 		cpridp "$TERMUX" "$1"
 	else
@@ -2263,7 +2263,7 @@ cpridpt() {
 	fi
 }
 
-cpridpu() {
+cpridpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpridp "$UBUNTU" "$1"
 	else
@@ -2271,7 +2271,7 @@ cpridpu() {
 	fi
 }
 
-cpridpd() {
+cpridpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpridp "$DEBIAN" "$1"
 	else
@@ -2279,7 +2279,7 @@ cpridpd() {
 	fi
 }
 
-cpridpub() {
+cpridpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpridp "$UBUNTUBOX" "$1"
 	else
@@ -2287,7 +2287,7 @@ cpridpub() {
 	fi
 }
 
-cpridpdb() {
+cpridpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpridp "$DEBIANBOX" "$1"
 	else
@@ -2295,7 +2295,7 @@ cpridpdb() {
 	fi
 }
 
-cprispt() {
+cprispt(){
 	if [ -n "$TERMUX" ]; then
 		cprisp "$TERMUX" "$1"
 	else
@@ -2303,7 +2303,7 @@ cprispt() {
 	fi
 }
 
-cprispu() {
+cprispu(){
 	if [ -n "$UBUNTU" ]; then
 		cprisp "$UBUNTU" "$1"
 	else
@@ -2311,7 +2311,7 @@ cprispu() {
 	fi
 }
 
-cprispd() {
+cprispd(){
 	if [ -n "$DEBIAN" ]; then
 		cprisp "$DEBIAN" "$1"
 	else
@@ -2319,7 +2319,7 @@ cprispd() {
 	fi
 }
 
-cprispub() {
+cprispub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprisp "$UBUNTUBOX" "$1"
 	else
@@ -2327,7 +2327,7 @@ cprispub() {
 	fi
 }
 
-cprispdb() {
+cprispdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprisp "$DEBIANBOX" "$1"
 	else
@@ -2335,7 +2335,7 @@ cprispdb() {
 	fi
 }
 
-cpriept() {
+cpriept(){
 	if [ -n "$TERMUX" ]; then
 		cpriep "$TERMUX" "$1"
 	else
@@ -2343,7 +2343,7 @@ cpriept() {
 	fi
 }
 
-cpriepu() {
+cpriepu(){
 	if [ -n "$UBUNTU" ]; then
 		cpriep "$UBUNTU" "$1"
 	else
@@ -2351,7 +2351,7 @@ cpriepu() {
 	fi
 }
 
-cpriepd() {
+cpriepd(){
 	if [ -n "$DEBIAN" ]; then
 		cpriep "$DEBIAN" "$1"
 	else
@@ -2359,7 +2359,7 @@ cpriepd() {
 	fi
 }
 
-cpriepub() {
+cpriepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpriep "$UBUNTUBOX" "$1"
 	else
@@ -2367,7 +2367,7 @@ cpriepub() {
 	fi
 }
 
-cpriepdb() {
+cpriepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpriep "$DEBIANBOX" "$1"
 	else
@@ -2375,7 +2375,7 @@ cpriepdb() {
 	fi
 }
 
-cpropt() {
+cpropt(){
 	if [ -n "$TERMUX" ]; then
 		cprop "$TERMUX" "$1"
 	else
@@ -2383,7 +2383,7 @@ cpropt() {
 	fi
 }
 
-cpropu() {
+cpropu(){
 	if [ -n "$UBUNTU" ]; then
 		cprop "$UBUNTU" "$1"
 	else
@@ -2391,7 +2391,7 @@ cpropu() {
 	fi
 }
 
-cpropd() {
+cpropd(){
 	if [ -n "$DEBIAN" ]; then
 		cprop "$DEBIAN" "$1"
 	else
@@ -2399,7 +2399,7 @@ cpropd() {
 	fi
 }
 
-cpropub() {
+cpropub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprop "$UBUNTUBOX" "$1"
 	else
@@ -2407,7 +2407,7 @@ cpropub() {
 	fi
 }
 
-cpropdb() {
+cpropdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprop "$DEBIANBOX" "$1"
 	else
@@ -2415,7 +2415,7 @@ cpropdb() {
 	fi
 }
 
-cprodpt() {
+cprodpt(){
 	if [ -n "$TERMUX" ]; then
 		cprodp "$TERMUX" "$1"
 	else
@@ -2423,7 +2423,7 @@ cprodpt() {
 	fi
 }
 
-cprodpu() {
+cprodpu(){
 	if [ -n "$UBUNTU" ]; then
 		cprodp "$UBUNTU" "$1"
 	else
@@ -2431,7 +2431,7 @@ cprodpu() {
 	fi
 }
 
-cprodpd() {
+cprodpd(){
 	if [ -n "$DEBIAN" ]; then
 		cprodp "$DEBIAN" "$1"
 	else
@@ -2439,7 +2439,7 @@ cprodpd() {
 	fi
 }
 
-cprodpub() {
+cprodpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprodp "$UBUNTUBOX" "$1"
 	else
@@ -2447,7 +2447,7 @@ cprodpub() {
 	fi
 }
 
-cprodpdb() {
+cprodpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprodp "$DEBIANBOX" "$1"
 	else
@@ -2455,7 +2455,7 @@ cprodpdb() {
 	fi
 }
 
-cprospt() {
+cprospt(){
 	if [ -n "$TERMUX" ]; then
 		cprosp "$TERMUX" "$1"
 	else
@@ -2463,7 +2463,7 @@ cprospt() {
 	fi
 }
 
-cprospu() {
+cprospu(){
 	if [ -n "$UBUNTU" ]; then
 		cprosp "$UBUNTU" "$1"
 	else
@@ -2471,7 +2471,7 @@ cprospu() {
 	fi
 }
 
-cprospd() {
+cprospd(){
 	if [ -n "$DEBIAN" ]; then
 		cprosp "$DEBIAN" "$1"
 	else
@@ -2479,7 +2479,7 @@ cprospd() {
 	fi
 }
 
-cprospub() {
+cprospub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprosp "$UBUNTUBOX" "$1"
 	else
@@ -2487,7 +2487,7 @@ cprospub() {
 	fi
 }
 
-cprospdb() {
+cprospdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprosp "$DEBIANBOX" "$1"
 	else
@@ -2495,7 +2495,7 @@ cprospdb() {
 	fi
 }
 
-cproept() {
+cproept(){
 	if [ -n "$TERMUX" ]; then
 		cproep "$TERMUX" "$1"
 	else
@@ -2503,7 +2503,7 @@ cproept() {
 	fi
 }
 
-cproepu() {
+cproepu(){
 	if [ -n "$UBUNTU" ]; then
 		cproep "$UBUNTU" "$1"
 	else
@@ -2511,7 +2511,7 @@ cproepu() {
 	fi
 }
 
-cproepd() {
+cproepd(){
 	if [ -n "$DEBIAN" ]; then
 		cproep "$DEBIAN" "$1"
 	else
@@ -2519,7 +2519,7 @@ cproepd() {
 	fi
 }
 
-cproepub() {
+cproepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cproep "$UBUNTUBOX" "$1"
 	else
@@ -2527,7 +2527,7 @@ cproepub() {
 	fi
 }
 
-cproepdb() {
+cproepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cproep "$DEBIANBOX" "$1"
 	else
@@ -2535,7 +2535,7 @@ cproepdb() {
 	fi
 }
 
-mviapt() {
+mviapt(){
 	if [ -n "$TERMUX" ]; then
 		mviap "$TERMUX" "$1"
 	else
@@ -2543,7 +2543,7 @@ mviapt() {
 	fi
 }
 
-mviapu() {
+mviapu(){
 	if [ -n "$UBUNTU" ]; then
 		mviap "$UBUNTU" "$1"
 	else
@@ -2551,7 +2551,7 @@ mviapu() {
 	fi
 }
 
-mviapd() {
+mviapd(){
 	if [ -n "$DEBIAN" ]; then
 		mviap "$DEBIAN" "$1"
 	else
@@ -2559,7 +2559,7 @@ mviapd() {
 	fi
 }
 
-mviapub() {
+mviapub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mviap "$UBUNTUBOX" "$1"
 	else
@@ -2567,7 +2567,7 @@ mviapub() {
 	fi
 }
 
-mviapdb() {
+mviapdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mviap "$DEBIANBOX" "$1"
 	else
@@ -2575,7 +2575,7 @@ mviapdb() {
 	fi
 }
 
-mviadpt() {
+mviadpt(){
 	if [ -n "$TERMUX" ]; then
 		mviadp "$TERMUX" "$1"
 	else
@@ -2583,7 +2583,7 @@ mviadpt() {
 	fi
 }
 
-mviadpu() {
+mviadpu(){
 	if [ -n "$UBUNTU" ]; then
 		mviadp "$UBUNTU" "$1"
 	else
@@ -2591,7 +2591,7 @@ mviadpu() {
 	fi
 }
 
-mviadpd() {
+mviadpd(){
 	if [ -n "$DEBIAN" ]; then
 		mviadp "$DEBIAN" "$1"
 	else
@@ -2599,7 +2599,7 @@ mviadpd() {
 	fi
 }
 
-mviadpub() {
+mviadpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mviadp "$UBUNTUBOX" "$1"
 	else
@@ -2607,7 +2607,7 @@ mviadpub() {
 	fi
 }
 
-mviadpdb() {
+mviadpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mviadp "$DEBIANBOX" "$1"
 	else
@@ -2615,7 +2615,7 @@ mviadpdb() {
 	fi
 }
 
-mviaspt() {
+mviaspt(){
 	if [ -n "$TERMUX" ]; then
 		mviasp "$TERMUX" "$1"
 	else
@@ -2623,7 +2623,7 @@ mviaspt() {
 	fi
 }
 
-mviaspu() {
+mviaspu(){
 	if [ -n "$UBUNTU" ]; then
 		mviasp "$UBUNTU" "$1"
 	else
@@ -2631,7 +2631,7 @@ mviaspu() {
 	fi
 }
 
-mviaspd() {
+mviaspd(){
 	if [ -n "$DEBIAN" ]; then
 		mviasp "$DEBIAN" "$1"
 	else
@@ -2639,7 +2639,7 @@ mviaspd() {
 	fi
 }
 
-mviaspub() {
+mviaspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mviasp "$UBUNTUBOX" "$1"
 	else
@@ -2647,7 +2647,7 @@ mviaspub() {
 	fi
 }
 
-mviaspdb() {
+mviaspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mviasp "$DEBIANBOX" "$1"
 	else
@@ -2655,7 +2655,7 @@ mviaspdb() {
 	fi
 }
 
-mviaept() {
+mviaept(){
 	if [ -n "$TERMUX" ]; then
 		mviaep "$TERMUX" "$1"
 	else
@@ -2663,7 +2663,7 @@ mviaept() {
 	fi
 }
 
-mviaepu() {
+mviaepu(){
 	if [ -n "$UBUNTU" ]; then
 		mviaep "$UBUNTU" "$1"
 	else
@@ -2671,7 +2671,7 @@ mviaepu() {
 	fi
 }
 
-mviaepd() {
+mviaepd(){
 	if [ -n "$DEBIAN" ]; then
 		mviaep "$DEBIAN" "$1"
 	else
@@ -2679,7 +2679,7 @@ mviaepd() {
 	fi
 }
 
-mviaepub() {
+mviaepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mviaep "$UBUNTUBOX" "$1"
 	else
@@ -2687,7 +2687,7 @@ mviaepub() {
 	fi
 }
 
-mviaepdb() {
+mviaepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mviaep "$DEBIANBOX" "$1"
 	else
@@ -2695,7 +2695,7 @@ mviaepdb() {
 	fi
 }
 
-cpiapt() {
+cpiapt(){
 	if [ -n "$TERMUX" ]; then
 		cpiap "$TERMUX" "$1"
 	else
@@ -2703,7 +2703,7 @@ cpiapt() {
 	fi
 }
 
-cpiapu() {
+cpiapu(){
 	if [ -n "$UBUNTU" ]; then
 		cpiap "$UBUNTU" "$1"
 	else
@@ -2711,7 +2711,7 @@ cpiapu() {
 	fi
 }
 
-cpiapd() {
+cpiapd(){
 	if [ -n "$DEBIAN" ]; then
 		cpiap "$DEBIAN" "$1"
 	else
@@ -2719,7 +2719,7 @@ cpiapd() {
 	fi
 }
 
-cpiapub() {
+cpiapub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpiap "$UBUNTUBOX" "$1"
 	else
@@ -2727,7 +2727,7 @@ cpiapub() {
 	fi
 }
 
-cpiapdb() {
+cpiapdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpiap "$DEBIANBOX" "$1"
 	else
@@ -2735,7 +2735,7 @@ cpiapdb() {
 	fi
 }
 
-cpiadpt() {
+cpiadpt(){
 	if [ -n "$TERMUX" ]; then
 		cpiadp "$TERMUX" "$1"
 	else
@@ -2743,7 +2743,7 @@ cpiadpt() {
 	fi
 }
 
-cpiadpu() {
+cpiadpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpiadp "$UBUNTU" "$1"
 	else
@@ -2751,7 +2751,7 @@ cpiadpu() {
 	fi
 }
 
-cpiadpd() {
+cpiadpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpiadp "$DEBIAN" "$1"
 	else
@@ -2759,7 +2759,7 @@ cpiadpd() {
 	fi
 }
 
-cpiadpub() {
+cpiadpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpiadp "$UBUNTUBOX" "$1"
 	else
@@ -2767,7 +2767,7 @@ cpiadpub() {
 	fi
 }
 
-cpiadpdb() {
+cpiadpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpiadp "$DEBIANBOX" "$1"
 	else
@@ -2775,7 +2775,7 @@ cpiadpdb() {
 	fi
 }
 
-cpiaspt() {
+cpiaspt(){
 	if [ -n "$TERMUX" ]; then
 		cpiasp "$TERMUX" "$1"
 	else
@@ -2783,7 +2783,7 @@ cpiaspt() {
 	fi
 }
 
-cpiaspu() {
+cpiaspu(){
 	if [ -n "$UBUNTU" ]; then
 		cpiasp "$UBUNTU" "$1"
 	else
@@ -2791,7 +2791,7 @@ cpiaspu() {
 	fi
 }
 
-cpiaspd() {
+cpiaspd(){
 	if [ -n "$DEBIAN" ]; then
 		cpiasp "$DEBIAN" "$1"
 	else
@@ -2799,7 +2799,7 @@ cpiaspd() {
 	fi
 }
 
-cpiaspub() {
+cpiaspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpiasp "$UBUNTUBOX" "$1"
 	else
@@ -2807,7 +2807,7 @@ cpiaspub() {
 	fi
 }
 
-cpiaspdb() {
+cpiaspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpiasp "$DEBIANBOX" "$1"
 	else
@@ -2815,7 +2815,7 @@ cpiaspdb() {
 	fi
 }
 
-cpiaept() {
+cpiaept(){
 	if [ -n "$TERMUX" ]; then
 		cpiaep "$TERMUX" "$1"
 	else
@@ -2823,7 +2823,7 @@ cpiaept() {
 	fi
 }
 
-cpiaepu() {
+cpiaepu(){
 	if [ -n "$UBUNTU" ]; then
 		cpiaep "$UBUNTU" "$1"
 	else
@@ -2831,7 +2831,7 @@ cpiaepu() {
 	fi
 }
 
-cpiaepd() {
+cpiaepd(){
 	if [ -n "$DEBIAN" ]; then
 		cpiaep "$DEBIAN" "$1"
 	else
@@ -2839,7 +2839,7 @@ cpiaepd() {
 	fi
 }
 
-cpiaepub() {
+cpiaepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpiaep "$UBUNTUBOX" "$1"
 	else
@@ -2847,7 +2847,7 @@ cpiaepub() {
 	fi
 }
 
-cpiaepdb() {
+cpiaepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpiaep "$DEBIANBOX" "$1"
 	else
@@ -2855,7 +2855,7 @@ cpiaepdb() {
 	fi
 }
 
-mvaipt() {
+mvaipt(){
 	if [ -n "$TERMUX" ]; then
 		mvaip "$TERMUX" "$1"
 	else
@@ -2863,7 +2863,7 @@ mvaipt() {
 	fi
 }
 
-mvaipu() {
+mvaipu(){
 	if [ -n "$UBUNTU" ]; then
 		mvaip "$UBUNTU" "$1"
 	else
@@ -2871,7 +2871,7 @@ mvaipu() {
 	fi
 }
 
-mvaipd() {
+mvaipd(){
 	if [ -n "$DEBIAN" ]; then
 		mvaip "$DEBIAN" "$1"
 	else
@@ -2879,7 +2879,7 @@ mvaipd() {
 	fi
 }
 
-mvaipub() {
+mvaipub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvaip "$UBUNTUBOX" "$1"
 	else
@@ -2887,7 +2887,7 @@ mvaipub() {
 	fi
 }
 
-mvaipdb() {
+mvaipdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvaip "$DEBIANBOX" "$1"
 	else
@@ -2895,7 +2895,7 @@ mvaipdb() {
 	fi
 }
 
-mvaidpt() {
+mvaidpt(){
 	if [ -n "$TERMUX" ]; then
 		mvaidp "$TERMUX" "$1"
 	else
@@ -2903,7 +2903,7 @@ mvaidpt() {
 	fi
 }
 
-mvaidpu() {
+mvaidpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvaidp "$UBUNTU" "$1"
 	else
@@ -2911,7 +2911,7 @@ mvaidpu() {
 	fi
 }
 
-mvaidpd() {
+mvaidpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvaidp "$DEBIAN" "$1"
 	else
@@ -2919,7 +2919,7 @@ mvaidpd() {
 	fi
 }
 
-mvaidpub() {
+mvaidpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvaidp "$UBUNTUBOX" "$1"
 	else
@@ -2927,7 +2927,7 @@ mvaidpub() {
 	fi
 }
 
-mvaidpdb() {
+mvaidpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvaidp "$DEBIANBOX" "$1"
 	else
@@ -2935,7 +2935,7 @@ mvaidpdb() {
 	fi
 }
 
-mvaispt() {
+mvaispt(){
 	if [ -n "$TERMUX" ]; then
 		mvaisp "$TERMUX" "$1"
 	else
@@ -2943,7 +2943,7 @@ mvaispt() {
 	fi
 }
 
-mvaispu() {
+mvaispu(){
 	if [ -n "$UBUNTU" ]; then
 		mvaisp "$UBUNTU" "$1"
 	else
@@ -2951,7 +2951,7 @@ mvaispu() {
 	fi
 }
 
-mvaispd() {
+mvaispd(){
 	if [ -n "$DEBIAN" ]; then
 		mvaisp "$DEBIAN" "$1"
 	else
@@ -2959,7 +2959,7 @@ mvaispd() {
 	fi
 }
 
-mvaispub() {
+mvaispub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvaisp "$UBUNTUBOX" "$1"
 	else
@@ -2967,7 +2967,7 @@ mvaispub() {
 	fi
 }
 
-mvaispdb() {
+mvaispdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvaisp "$DEBIANBOX" "$1"
 	else
@@ -2975,7 +2975,7 @@ mvaispdb() {
 	fi
 }
 
-mvaiept() {
+mvaiept(){
 	if [ -n "$TERMUX" ]; then
 		mvaiep "$TERMUX" "$1"
 	else
@@ -2983,7 +2983,7 @@ mvaiept() {
 	fi
 }
 
-mvaiepu() {
+mvaiepu(){
 	if [ -n "$UBUNTU" ]; then
 		mvaiep "$UBUNTU" "$1"
 	else
@@ -2991,7 +2991,7 @@ mvaiepu() {
 	fi
 }
 
-mvaiepd() {
+mvaiepd(){
 	if [ -n "$DEBIAN" ]; then
 		mvaiep "$DEBIAN" "$1"
 	else
@@ -2999,7 +2999,7 @@ mvaiepd() {
 	fi
 }
 
-mvaiepub() {
+mvaiepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvaiep "$UBUNTUBOX" "$1"
 	else
@@ -3007,7 +3007,7 @@ mvaiepub() {
 	fi
 }
 
-mvaiepdb() {
+mvaiepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvaiep "$DEBIANBOX" "$1"
 	else
@@ -3015,7 +3015,7 @@ mvaiepdb() {
 	fi
 }
 
-cpaipt() {
+cpaipt(){
 	if [ -n "$TERMUX" ]; then
 		cpaip "$TERMUX" "$1"
 	else
@@ -3023,7 +3023,7 @@ cpaipt() {
 	fi
 }
 
-cpaipu() {
+cpaipu(){
 	if [ -n "$UBUNTU" ]; then
 		cpaip "$UBUNTU" "$1"
 	else
@@ -3031,7 +3031,7 @@ cpaipu() {
 	fi
 }
 
-cpaipd() {
+cpaipd(){
 	if [ -n "$DEBIAN" ]; then
 		cpaip "$DEBIAN" "$1"
 	else
@@ -3039,7 +3039,7 @@ cpaipd() {
 	fi
 }
 
-cpaipub() {
+cpaipub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpaip "$UBUNTUBOX" "$1"
 	else
@@ -3047,7 +3047,7 @@ cpaipub() {
 	fi
 }
 
-cpaipdb() {
+cpaipdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpaip "$DEBIANBOX" "$1"
 	else
@@ -3055,7 +3055,7 @@ cpaipdb() {
 	fi
 }
 
-cpaidpt() {
+cpaidpt(){
 	if [ -n "$TERMUX" ]; then
 		cpaidp "$TERMUX" "$1"
 	else
@@ -3063,7 +3063,7 @@ cpaidpt() {
 	fi
 }
 
-cpaidpu() {
+cpaidpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpaidp "$UBUNTU" "$1"
 	else
@@ -3071,7 +3071,7 @@ cpaidpu() {
 	fi
 }
 
-cpaidpd() {
+cpaidpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpaidp "$DEBIAN" "$1"
 	else
@@ -3079,7 +3079,7 @@ cpaidpd() {
 	fi
 }
 
-cpaidpub() {
+cpaidpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpaidp "$UBUNTUBOX" "$1"
 	else
@@ -3087,7 +3087,7 @@ cpaidpub() {
 	fi
 }
 
-cpaidpdb() {
+cpaidpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpaidp "$DEBIANBOX" "$1"
 	else
@@ -3095,7 +3095,7 @@ cpaidpdb() {
 	fi
 }
 
-cpaispt() {
+cpaispt(){
 	if [ -n "$TERMUX" ]; then
 		cpaisp "$TERMUX" "$1"
 	else
@@ -3103,7 +3103,7 @@ cpaispt() {
 	fi
 }
 
-cpaispu() {
+cpaispu(){
 	if [ -n "$UBUNTU" ]; then
 		cpaisp "$UBUNTU" "$1"
 	else
@@ -3111,7 +3111,7 @@ cpaispu() {
 	fi
 }
 
-cpaispd() {
+cpaispd(){
 	if [ -n "$DEBIAN" ]; then
 		cpaisp "$DEBIAN" "$1"
 	else
@@ -3119,7 +3119,7 @@ cpaispd() {
 	fi
 }
 
-cpaispub() {
+cpaispub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpaisp "$UBUNTUBOX" "$1"
 	else
@@ -3127,7 +3127,7 @@ cpaispub() {
 	fi
 }
 
-cpaispdb() {
+cpaispdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpaisp "$DEBIANBOX" "$1"
 	else
@@ -3135,7 +3135,7 @@ cpaispdb() {
 	fi
 }
 
-cpaiept() {
+cpaiept(){
 	if [ -n "$TERMUX" ]; then
 		cpaiep "$TERMUX" "$1"
 	else
@@ -3143,7 +3143,7 @@ cpaiept() {
 	fi
 }
 
-cpaiepu() {
+cpaiepu(){
 	if [ -n "$UBUNTU" ]; then
 		cpaiep "$UBUNTU" "$1"
 	else
@@ -3151,7 +3151,7 @@ cpaiepu() {
 	fi
 }
 
-cpaiepd() {
+cpaiepd(){
 	if [ -n "$DEBIAN" ]; then
 		cpaiep "$DEBIAN" "$1"
 	else
@@ -3159,7 +3159,7 @@ cpaiepd() {
 	fi
 }
 
-cpaiepub() {
+cpaiepub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpaiep "$UBUNTUBOX" "$1"
 	else
@@ -3167,7 +3167,7 @@ cpaiepub() {
 	fi
 }
 
-cpaiepdb() {
+cpaiepdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpaiep "$DEBIANBOX" "$1"
 	else
@@ -3175,7 +3175,7 @@ cpaiepdb() {
 	fi
 }
 
-rmpt() {
+rmpt(){
 	if [ -n "$TERMUX" ]; then
 		rmp "$TERMUX" "$1"
 	else
@@ -3183,7 +3183,7 @@ rmpt() {
 	fi
 }
 
-rmpu() {
+rmpu(){
 	if [ -n "$UBUNTU" ]; then
 		rmp "$UBUNTU" "$1"
 	else
@@ -3191,7 +3191,7 @@ rmpu() {
 	fi
 }
 
-rmpd() {
+rmpd(){
 	if [ -n "$DEBIAN" ]; then
 		rmp "$DEBIAN" "$1"
 	else
@@ -3199,7 +3199,7 @@ rmpd() {
 	fi
 }
 
-rmpub() {
+rmpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		rmp "$UBUNTUBOX" "$1"
 	else
@@ -3207,7 +3207,7 @@ rmpub() {
 	fi
 }
 
-rmpdb() {
+rmpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		rmp "$DEBIANBOX" "$1"
 	else
@@ -3215,7 +3215,7 @@ rmpdb() {
 	fi
 }
 
-rmrpt() {
+rmrpt(){
 	if [ -n "$TERMUX" ]; then
 		rmrp "$TERMUX" "$1"
 	else
@@ -3223,7 +3223,7 @@ rmrpt() {
 	fi
 }
 
-rmrpu() {
+rmrpu(){
 	if [ -n "$UBUNTU" ]; then
 		rmrp "$UBUNTU" "$1"
 	else
@@ -3231,7 +3231,7 @@ rmrpu() {
 	fi
 }
 
-rmrpd() {
+rmrpd(){
 	if [ -n "$DEBIAN" ]; then
 		rmrp "$DEBIAN" "$1"
 	else
@@ -3239,7 +3239,7 @@ rmrpd() {
 	fi
 }
 
-rmrpub() {
+rmrpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		rmrp "$UBUNTUBOX" "$1"
 	else
@@ -3247,7 +3247,7 @@ rmrpub() {
 	fi
 }
 
-rmrpdb() {
+rmrpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		rmrp "$DEBIANBOX" "$1"
 	else
@@ -3255,7 +3255,7 @@ rmrpdb() {
 	fi
 }
 
-rmrfpt() {
+rmrfpt(){
 	if [ -n "$TERMUX" ]; then
 		rmrfp "$TERMUX" "$1"
 	else
@@ -3263,7 +3263,7 @@ rmrfpt() {
 	fi
 }
 
-rmrfpu() {
+rmrfpu(){
 	if [ -n "$UBUNTU" ]; then
 		rmrfp "$UBUNTU" "$1"
 	else
@@ -3271,7 +3271,7 @@ rmrfpu() {
 	fi
 }
 
-rmrfpd() {
+rmrfpd(){
 	if [ -n "$DEBIAN" ]; then
 		rmrfp "$DEBIAN" "$1"
 	else
@@ -3279,7 +3279,7 @@ rmrfpd() {
 	fi
 }
 
-rmrfpub() {
+rmrfpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		rmrfp "$UBUNTUBOX" "$1"
 	else
@@ -3287,7 +3287,7 @@ rmrfpub() {
 	fi
 }
 
-rmrfpdb() {
+rmrfpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		rmrfp "$DEBIANBOX" "$1"
 	else
@@ -3295,7 +3295,7 @@ rmrfpdb() {
 	fi
 }
 
-mkdirpt() {
+mkdirpt(){
 	if [ -n "$TERMUX" ]; then
 		mkdirp "$TERMUX" "$1"
 	else
@@ -3303,7 +3303,7 @@ mkdirpt() {
 	fi
 }
 
-mkdirpu() {
+mkdirpu(){
 	if [ -n "$UBUNTU" ]; then
 		mkdirp "$UBUNTU" "$1"
 	else
@@ -3311,7 +3311,7 @@ mkdirpu() {
 	fi
 }
 
-mkdirpd() {
+mkdirpd(){
 	if [ -n "$DEBIAN" ]; then
 		mkdirp "$DEBIAN" "$1"
 	else
@@ -3319,7 +3319,7 @@ mkdirpd() {
 	fi
 }
 
-mkdirpub() {
+mkdirpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mkdirp "$UBUNTUBOX" "$1"
 	else
@@ -3327,7 +3327,7 @@ mkdirpub() {
 	fi
 }
 
-mkdirpdb() {
+mkdirpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mkdirp "$DEBIANBOX" "$1"
 	else
@@ -3335,7 +3335,7 @@ mkdirpdb() {
 	fi
 }
 
-mkdirppt() {
+mkdirppt(){
 	if [ -n "$TERMUX" ]; then
 		mkdirpp "$TERMUX" "$1"
 	else
@@ -3343,7 +3343,7 @@ mkdirppt() {
 	fi
 }
 
-mkdirppu() {
+mkdirppu(){
 	if [ -n "$UBUNTU" ]; then
 		mkdirpp "$UBUNTU" "$1"
 	else
@@ -3351,7 +3351,7 @@ mkdirppu() {
 	fi
 }
 
-mkdirppd() {
+mkdirppd(){
 	if [ -n "$DEBIAN" ]; then
 		mkdirpp "$DEBIAN" "$1"
 	else
@@ -3359,7 +3359,7 @@ mkdirppd() {
 	fi
 }
 
-mkdirppub() {
+mkdirppub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mkdirpp "$UBUNTUBOX" "$1"
 	else
@@ -3367,7 +3367,7 @@ mkdirppub() {
 	fi
 }
 
-mkdirppdb() {
+mkdirppdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mkdirpp "$DEBIANBOX" "$1"
 	else
@@ -3375,7 +3375,7 @@ mkdirppdb() {
 	fi
 }
 
-mvypt() {
+mvypt(){
 	if [ -n "$TERMUX" ]; then
 		mvycp "$TERMUX" "$1"
 	else
@@ -3383,7 +3383,7 @@ mvypt() {
 	fi
 }
 
-mvypu() {
+mvypu(){
 	if [ -n "$UBUNTU" ]; then
 		mvycp "$UBUNTU" "$1"
 	else
@@ -3391,7 +3391,7 @@ mvypu() {
 	fi
 }
 
-mvypd() {
+mvypd(){
 	if [ -n "$DEBIAN" ]; then
 		mvycp "$DEBIAN" "$1"
 	else
@@ -3399,7 +3399,7 @@ mvypd() {
 	fi
 }
 
-mvypub() {
+mvypub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvycp "$UBUNTUBOX" "$1"
 	else
@@ -3407,7 +3407,7 @@ mvypub() {
 	fi
 }
 
-mvypdb() {
+mvypdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvycp "$DEBIANBOX" "$1"
 	else
@@ -3415,7 +3415,7 @@ mvypdb() {
 	fi
 }
 
-mvydpt() {
+mvydpt(){
 	if [ -n "$TERMUX" ]; then
 		mvyhp "$TERMUX" "$1"
 	else
@@ -3423,7 +3423,7 @@ mvydpt() {
 	fi
 }
 
-mvydpu() {
+mvydpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvyhp "$UBUNTU" "$1"
 	else
@@ -3431,7 +3431,7 @@ mvydpu() {
 	fi
 }
 
-mvydpd() {
+mvydpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvyhp "$DEBIAN" "$1"
 	else
@@ -3439,7 +3439,7 @@ mvydpd() {
 	fi
 }
 
-mvydpub() {
+mvydpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvyhp "$UBUNTUBOX" "$1"
 	else
@@ -3447,7 +3447,7 @@ mvydpub() {
 	fi
 }
 
-mvydpdb() {
+mvydpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvyhp "$DEBIANBOX" "$1"
 	else
@@ -3455,7 +3455,7 @@ mvydpdb() {
 	fi
 }
 
-mvyspt() {
+mvyspt(){
 	if [ -n "$TERMUX" ]; then
 		mvybp "$TERMUX" "$1"
 	else
@@ -3463,7 +3463,7 @@ mvyspt() {
 	fi
 }
 
-mvyspu() {
+mvyspu(){
 	if [ -n "$UBUNTU" ]; then
 		mvybp "$UBUNTU" "$1"
 	else
@@ -3471,7 +3471,7 @@ mvyspu() {
 	fi
 }
 
-mvyspd() {
+mvyspd(){
 	if [ -n "$DEBIAN" ]; then
 		mvybp "$DEBIAN" "$1"
 	else
@@ -3479,7 +3479,7 @@ mvyspd() {
 	fi
 }
 
-mvyspub() {
+mvyspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvybp "$UBUNTUBOX" "$1"
 	else
@@ -3487,7 +3487,7 @@ mvyspub() {
 	fi
 }
 
-mvyspdb() {
+mvyspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvybp "$DEBIANBOX" "$1"
 	else
@@ -3495,7 +3495,7 @@ mvyspdb() {
 	fi
 }
 
-mvupt() {
+mvupt(){
 	if [ -n "$TERMUX" ]; then
 		mvucp "$TERMUX" "$1"
 	else
@@ -3503,7 +3503,7 @@ mvupt() {
 	fi
 }
 
-mvupu() {
+mvupu(){
 	if [ -n "$UBUNTU" ]; then
 		mvucp "$UBUNTU" "$1"
 	else
@@ -3511,7 +3511,7 @@ mvupu() {
 	fi
 }
 
-mvupd() {
+mvupd(){
 	if [ -n "$DEBIAN" ]; then
 		mvucp "$DEBIAN" "$1"
 	else
@@ -3519,7 +3519,7 @@ mvupd() {
 	fi
 }
 
-mvupub() {
+mvupub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvucp "$UBUNTUBOX" "$1"
 	else
@@ -3527,7 +3527,7 @@ mvupub() {
 	fi
 }
 
-mvupdb() {
+mvupdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvucp "$DEBIANBOX" "$1"
 	else
@@ -3535,7 +3535,7 @@ mvupdb() {
 	fi
 }
 
-mvudpt() {
+mvudpt(){
 	if [ -n "$TERMUX" ]; then
 		mvuhp "$TERMUX" "$1"
 	else
@@ -3543,7 +3543,7 @@ mvudpt() {
 	fi
 }
 
-mvudpu() {
+mvudpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvuhp "$UBUNTU" "$1"
 	else
@@ -3551,7 +3551,7 @@ mvudpu() {
 	fi
 }
 
-mvudpd() {
+mvudpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvuhp "$DEBIAN" "$1"
 	else
@@ -3559,7 +3559,7 @@ mvudpd() {
 	fi
 }
 
-mvudpub() {
+mvudpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvuhp "$UBUNTUBOX" "$1"
 	else
@@ -3567,7 +3567,7 @@ mvudpub() {
 	fi
 }
 
-mvudpdb() {
+mvudpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvuhp "$DEBIANBOX" "$1"
 	else
@@ -3575,7 +3575,7 @@ mvudpdb() {
 	fi
 }
 
-mvuspt() {
+mvuspt(){
 	if [ -n "$TERMUX" ]; then
 		mvubp "$TERMUX" "$1"
 	else
@@ -3583,7 +3583,7 @@ mvuspt() {
 	fi
 }
 
-mvuspu() {
+mvuspu(){
 	if [ -n "$UBUNTU" ]; then
 		mvubp "$UBUNTU" "$1"
 	else
@@ -3591,7 +3591,7 @@ mvuspu() {
 	fi
 }
 
-mvuspd() {
+mvuspd(){
 	if [ -n "$DEBIAN" ]; then
 		mvubp "$DEBIAN" "$1"
 	else
@@ -3599,7 +3599,7 @@ mvuspd() {
 	fi
 }
 
-mvuspub() {
+mvuspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvubp "$UBUNTUBOX" "$1"
 	else
@@ -3607,7 +3607,7 @@ mvuspub() {
 	fi
 }
 
-mvuspdb() {
+mvuspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvubp "$DEBIANBOX" "$1"
 	else
@@ -3615,7 +3615,7 @@ mvuspdb() {
 	fi
 }
 
-cpypt() {
+cpypt(){
 	if [ -n "$TERMUX" ]; then
 		cpycp "$TERMUX" "$1"
 	else
@@ -3623,7 +3623,7 @@ cpypt() {
 	fi
 }
 
-cpypu() {
+cpypu(){
 	if [ -n "$UBUNTU" ]; then
 		cpycp "$UBUNTU" "$1"
 	else
@@ -3631,7 +3631,7 @@ cpypu() {
 	fi
 }
 
-cpypd() {
+cpypd(){
 	if [ -n "$DEBIAN" ]; then
 		cpycp "$DEBIAN" "$1"
 	else
@@ -3639,7 +3639,7 @@ cpypd() {
 	fi
 }
 
-cpypub() {
+cpypub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpycp "$UBUNTUBOX" "$1"
 	else
@@ -3647,7 +3647,7 @@ cpypub() {
 	fi
 }
 
-cpypdb() {
+cpypdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpycp "$DEBIANBOX" "$1"
 	else
@@ -3655,7 +3655,7 @@ cpypdb() {
 	fi
 }
 
-cpydpt() {
+cpydpt(){
 	if [ -n "$TERMUX" ]; then
 		cpyhp "$TERMUX" "$1"
 	else
@@ -3663,7 +3663,7 @@ cpydpt() {
 	fi
 }
 
-cpydpu() {
+cpydpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpyhp "$UBUNTU" "$1"
 	else
@@ -3671,7 +3671,7 @@ cpydpu() {
 	fi
 }
 
-cpydpd() {
+cpydpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpyhp "$DEBIAN" "$1"
 	else
@@ -3679,7 +3679,7 @@ cpydpd() {
 	fi
 }
 
-cpydpub() {
+cpydpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpyhp "$UBUNTUBOX" "$1"
 	else
@@ -3687,7 +3687,7 @@ cpydpub() {
 	fi
 }
 
-cpydpdb() {
+cpydpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpyhp "$DEBIANBOX" "$1"
 	else
@@ -3695,7 +3695,7 @@ cpydpdb() {
 	fi
 }
 
-cpyspt() {
+cpyspt(){
 	if [ -n "$TERMUX" ]; then
 		cpybp "$TERMUX" "$1"
 	else
@@ -3703,7 +3703,7 @@ cpyspt() {
 	fi
 }
 
-cpyspu() {
+cpyspu(){
 	if [ -n "$UBUNTU" ]; then
 		cpybp "$UBUNTU" "$1"
 	else
@@ -3711,7 +3711,7 @@ cpyspu() {
 	fi
 }
 
-cpyspd() {
+cpyspd(){
 	if [ -n "$DEBIAN" ]; then
 		cpybp "$DEBIAN" "$1"
 	else
@@ -3719,7 +3719,7 @@ cpyspd() {
 	fi
 }
 
-cpyspub() {
+cpyspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpybp "$UBUNTUBOX" "$1"
 	else
@@ -3727,7 +3727,7 @@ cpyspub() {
 	fi
 }
 
-cpyspdb() {
+cpyspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpybp "$DEBIANBOX" "$1"
 	else
@@ -3735,7 +3735,7 @@ cpyspdb() {
 	fi
 }
 
-cpupt() {
+cpupt(){
 	if [ -n "$TERMUX" ]; then
 		cpucp "$TERMUX" "$1"
 	else
@@ -3743,7 +3743,7 @@ cpupt() {
 	fi
 }
 
-cpupu() {
+cpupu(){
 	if [ -n "$UBUNTU" ]; then
 		cpucp "$UBUNTU" "$1"
 	else
@@ -3751,7 +3751,7 @@ cpupu() {
 	fi
 }
 
-cpupd() {
+cpupd(){
 	if [ -n "$DEBIAN" ]; then
 		cpucp "$DEBIAN" "$1"
 	else
@@ -3759,7 +3759,7 @@ cpupd() {
 	fi
 }
 
-cpupub() {
+cpupub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpucp "$UBUNTUBOX" "$1"
 	else
@@ -3767,7 +3767,7 @@ cpupub() {
 	fi
 }
 
-cpupdb() {
+cpupdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpucp "$DEBIANBOX" "$1"
 	else
@@ -3775,7 +3775,7 @@ cpupdb() {
 	fi
 }
 
-cpudpt() {
+cpudpt(){
 	if [ -n "$TERMUX" ]; then
 		cpuhp "$TERMUX" "$1"
 	else
@@ -3783,7 +3783,7 @@ cpudpt() {
 	fi
 }
 
-cpudpu() {
+cpudpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpuhp "$UBUNTU" "$1"
 	else
@@ -3791,7 +3791,7 @@ cpudpu() {
 	fi
 }
 
-cpudpd() {
+cpudpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpuhp "$DEBIAN" "$1"
 	else
@@ -3799,7 +3799,7 @@ cpudpd() {
 	fi
 }
 
-cpudpub() {
+cpudpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpuhp "$UBUNTUBOX" "$1"
 	else
@@ -3807,7 +3807,7 @@ cpudpub() {
 	fi
 }
 
-cpudpdb() {
+cpudpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpuhp "$DEBIANBOX" "$1"
 	else
@@ -3815,7 +3815,7 @@ cpudpdb() {
 	fi
 }
 
-cpuspt() {
+cpuspt(){
 	if [ -n "$TERMUX" ]; then
 		cpubp "$TERMUX" "$1"
 	else
@@ -3823,7 +3823,7 @@ cpuspt() {
 	fi
 }
 
-cpuspu() {
+cpuspu(){
 	if [ -n "$UBUNTU" ]; then
 		cpubp "$UBUNTU" "$1"
 	else
@@ -3831,7 +3831,7 @@ cpuspu() {
 	fi
 }
 
-cpuspd() {
+cpuspd(){
 	if [ -n "$DEBIAN" ]; then
 		cpubp "$DEBIAN" "$1"
 	else
@@ -3839,7 +3839,7 @@ cpuspd() {
 	fi
 }
 
-cpuspub() {
+cpuspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpubp "$UBUNTUBOX" "$1"
 	else
@@ -3847,7 +3847,7 @@ cpuspub() {
 	fi
 }
 
-cpuspdb() {
+cpuspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpubp "$DEBIANBOX" "$1"
 	else
@@ -3855,7 +3855,7 @@ cpuspdb() {
 	fi
 }
 
-cprypt() {
+cprypt(){
 	if [ -n "$TERMUX" ]; then
 		cprycp "$TERMUX" "$1"
 	else
@@ -3863,7 +3863,7 @@ cprypt() {
 	fi
 }
 
-cprypu() {
+cprypu(){
 	if [ -n "$UBUNTU" ]; then
 		cprycp "$UBUNTU" "$1"
 	else
@@ -3871,7 +3871,7 @@ cprypu() {
 	fi
 }
 
-cprypd() {
+cprypd(){
 	if [ -n "$DEBIAN" ]; then
 		cprycp "$DEBIAN" "$1"
 	else
@@ -3879,7 +3879,7 @@ cprypd() {
 	fi
 }
 
-cprypub() {
+cprypub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprycp "$UBUNTUBOX" "$1"
 	else
@@ -3887,7 +3887,7 @@ cprypub() {
 	fi
 }
 
-cprypdb() {
+cprypdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprycp "$DEBIANBOX" "$1"
 	else
@@ -3895,7 +3895,7 @@ cprypdb() {
 	fi
 }
 
-cprydpt() {
+cprydpt(){
 	if [ -n "$TERMUX" ]; then
 		cpryhp "$TERMUX" "$1"
 	else
@@ -3903,7 +3903,7 @@ cprydpt() {
 	fi
 }
 
-cprydpu() {
+cprydpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpryhp "$UBUNTU" "$1"
 	else
@@ -3911,7 +3911,7 @@ cprydpu() {
 	fi
 }
 
-cprydpd() {
+cprydpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpryhp "$DEBIAN" "$1"
 	else
@@ -3919,7 +3919,7 @@ cprydpd() {
 	fi
 }
 
-cprydpub() {
+cprydpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpryhp "$UBUNTUBOX" "$1"
 	else
@@ -3927,7 +3927,7 @@ cprydpub() {
 	fi
 }
 
-cprydpdb() {
+cprydpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpryhp "$DEBIANBOX" "$1"
 	else
@@ -3935,7 +3935,7 @@ cprydpdb() {
 	fi
 }
 
-cpryspt() {
+cpryspt(){
 	if [ -n "$TERMUX" ]; then
 		cprybp "$TERMUX" "$1"
 	else
@@ -3943,7 +3943,7 @@ cpryspt() {
 	fi
 }
 
-cpryspu() {
+cpryspu(){
 	if [ -n "$UBUNTU" ]; then
 		cprybp "$UBUNTU" "$1"
 	else
@@ -3951,7 +3951,7 @@ cpryspu() {
 	fi
 }
 
-cpryspd() {
+cpryspd(){
 	if [ -n "$DEBIAN" ]; then
 		cprybp "$DEBIAN" "$1"
 	else
@@ -3959,7 +3959,7 @@ cpryspd() {
 	fi
 }
 
-cpryspub() {
+cpryspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprybp "$UBUNTUBOX" "$1"
 	else
@@ -3967,7 +3967,7 @@ cpryspub() {
 	fi
 }
 
-cpryspdb() {
+cpryspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprybp "$DEBIANBOX" "$1"
 	else
@@ -3975,7 +3975,7 @@ cpryspdb() {
 	fi
 }
 
-cprupt() {
+cprupt(){
 	if [ -n "$TERMUX" ]; then
 		cprucp "$TERMUX" "$1"
 	else
@@ -3983,7 +3983,7 @@ cprupt() {
 	fi
 }
 
-cprupu() {
+cprupu(){
 	if [ -n "$UBUNTU" ]; then
 		cprucp "$UBUNTU" "$1"
 	else
@@ -3991,7 +3991,7 @@ cprupu() {
 	fi
 }
 
-cprupd() {
+cprupd(){
 	if [ -n "$DEBIAN" ]; then
 		cprucp "$DEBIAN" "$1"
 	else
@@ -3999,7 +3999,7 @@ cprupd() {
 	fi
 }
 
-cprupub() {
+cprupub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprucp "$UBUNTUBOX" "$1"
 	else
@@ -4007,7 +4007,7 @@ cprupub() {
 	fi
 }
 
-cprupdb() {
+cprupdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprucp "$DEBIANBOX" "$1"
 	else
@@ -4015,7 +4015,7 @@ cprupdb() {
 	fi
 }
 
-cprudpt() {
+cprudpt(){
 	if [ -n "$TERMUX" ]; then
 		cpruhp "$TERMUX" "$1"
 	else
@@ -4023,7 +4023,7 @@ cprudpt() {
 	fi
 }
 
-cprudpu() {
+cprudpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpruhp "$UBUNTU" "$1"
 	else
@@ -4031,7 +4031,7 @@ cprudpu() {
 	fi
 }
 
-cprudpd() {
+cprudpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpruhp "$DEBIAN" "$1"
 	else
@@ -4039,7 +4039,7 @@ cprudpd() {
 	fi
 }
 
-cprudpub() {
+cprudpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpruhp "$UBUNTUBOX" "$1"
 	else
@@ -4047,7 +4047,7 @@ cprudpub() {
 	fi
 }
 
-cprudpdb() {
+cprudpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpruhp "$DEBIANBOX" "$1"
 	else
@@ -4055,7 +4055,7 @@ cprudpdb() {
 	fi
 }
 
-cpruspt() {
+cpruspt(){
 	if [ -n "$TERMUX" ]; then
 		cprubp "$TERMUX" "$1"
 	else
@@ -4063,7 +4063,7 @@ cpruspt() {
 	fi
 }
 
-cpruspu() {
+cpruspu(){
 	if [ -n "$UBUNTU" ]; then
 		cprubp "$UBUNTU" "$1"
 	else
@@ -4071,7 +4071,7 @@ cpruspu() {
 	fi
 }
 
-cpruspd() {
+cpruspd(){
 	if [ -n "$DEBIAN" ]; then
 		cprubp "$DEBIAN" "$1"
 	else
@@ -4079,7 +4079,7 @@ cpruspd() {
 	fi
 }
 
-cpruspub() {
+cpruspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cprubp "$UBUNTUBOX" "$1"
 	else
@@ -4087,7 +4087,7 @@ cpruspub() {
 	fi
 }
 
-cpruspdb() {
+cpruspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cprubp "$DEBIANBOX" "$1"
 	else
@@ -4095,7 +4095,7 @@ cpruspdb() {
 	fi
 }
 
-mvyapt() {
+mvyapt(){
 	if [ -n "$TERMUX" ]; then
 		mvyacp "$TERMUX" "$1"
 	else
@@ -4103,7 +4103,7 @@ mvyapt() {
 	fi
 }
 
-mvyapu() {
+mvyapu(){
 	if [ -n "$UBUNTU" ]; then
 		mvyacp "$UBUNTU" "$1"
 	else
@@ -4111,7 +4111,7 @@ mvyapu() {
 	fi
 }
 
-mvyapd() {
+mvyapd(){
 	if [ -n "$DEBIAN" ]; then
 		mvyacp "$DEBIAN" "$1"
 	else
@@ -4119,7 +4119,7 @@ mvyapd() {
 	fi
 }
 
-mvyapub() {
+mvyapub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvyacp "$UBUNTUBOX" "$1"
 	else
@@ -4127,7 +4127,7 @@ mvyapub() {
 	fi
 }
 
-mvyapdb() {
+mvyapdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvyacp "$DEBIANBOX" "$1"
 	else
@@ -4135,7 +4135,7 @@ mvyapdb() {
 	fi
 }
 
-mvyadpt() {
+mvyadpt(){
 	if [ -n "$TERMUX" ]; then
 		mvyahp "$TERMUX" "$1"
 	else
@@ -4143,7 +4143,7 @@ mvyadpt() {
 	fi
 }
 
-mvyadpu() {
+mvyadpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvyahp "$UBUNTU" "$1"
 	else
@@ -4151,7 +4151,7 @@ mvyadpu() {
 	fi
 }
 
-mvyadpd() {
+mvyadpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvyahp "$DEBIAN" "$1"
 	else
@@ -4159,7 +4159,7 @@ mvyadpd() {
 	fi
 }
 
-mvyadpub() {
+mvyadpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvyahp "$UBUNTUBOX" "$1"
 	else
@@ -4167,7 +4167,7 @@ mvyadpub() {
 	fi
 }
 
-mvyadpdb() {
+mvyadpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvyahp "$DEBIANBOX" "$1"
 	else
@@ -4175,7 +4175,7 @@ mvyadpdb() {
 	fi
 }
 
-mvyaspt() {
+mvyaspt(){
 	if [ -n "$TERMUX" ]; then
 		mvyabp "$TERMUX" "$1"
 	else
@@ -4183,7 +4183,7 @@ mvyaspt() {
 	fi
 }
 
-mvyaspu() {
+mvyaspu(){
 	if [ -n "$UBUNTU" ]; then
 		mvyabp "$UBUNTU" "$1"
 	else
@@ -4191,7 +4191,7 @@ mvyaspu() {
 	fi
 }
 
-mvyaspd() {
+mvyaspd(){
 	if [ -n "$DEBIAN" ]; then
 		mvyabp "$DEBIAN" "$1"
 	else
@@ -4199,7 +4199,7 @@ mvyaspd() {
 	fi
 }
 
-mvyaspub() {
+mvyaspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvyabp "$UBUNTUBOX" "$1"
 	else
@@ -4207,7 +4207,7 @@ mvyaspub() {
 	fi
 }
 
-mvyaspdb() {
+mvyaspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvyabp "$DEBIANBOX" "$1"
 	else
@@ -4215,7 +4215,7 @@ mvyaspdb() {
 	fi
 }
 
-cpyapt() {
+cpyapt(){
 	if [ -n "$TERMUX" ]; then
 		cpyacp "$TERMUX" "$1"
 	else
@@ -4223,7 +4223,7 @@ cpyapt() {
 	fi
 }
 
-cpyapu() {
+cpyapu(){
 	if [ -n "$UBUNTU" ]; then
 		cpyacp "$UBUNTU" "$1"
 	else
@@ -4231,7 +4231,7 @@ cpyapu() {
 	fi
 }
 
-cpyapd() {
+cpyapd(){
 	if [ -n "$DEBIAN" ]; then
 		cpyacp "$DEBIAN" "$1"
 	else
@@ -4239,7 +4239,7 @@ cpyapd() {
 	fi
 }
 
-cpyapub() {
+cpyapub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpyacp "$UBUNTUBOX" "$1"
 	else
@@ -4247,7 +4247,7 @@ cpyapub() {
 	fi
 }
 
-cpyapdb() {
+cpyapdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpyacp "$DEBIANBOX" "$1"
 	else
@@ -4255,7 +4255,7 @@ cpyapdb() {
 	fi
 }
 
-cpyadpt() {
+cpyadpt(){
 	if [ -n "$TERMUX" ]; then
 		cpyahp "$TERMUX" "$1"
 	else
@@ -4263,7 +4263,7 @@ cpyadpt() {
 	fi
 }
 
-cpyadpu() {
+cpyadpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpyahp "$UBUNTU" "$1"
 	else
@@ -4271,7 +4271,7 @@ cpyadpu() {
 	fi
 }
 
-cpyadpd() {
+cpyadpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpyahp "$DEBIAN" "$1"
 	else
@@ -4279,7 +4279,7 @@ cpyadpd() {
 	fi
 }
 
-cpyadpub() {
+cpyadpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpyahp "$UBUNTUBOX" "$1"
 	else
@@ -4287,7 +4287,7 @@ cpyadpub() {
 	fi
 }
 
-cpyadpdb() {
+cpyadpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpyahp "$DEBIANBOX" "$1"
 	else
@@ -4295,7 +4295,7 @@ cpyadpdb() {
 	fi
 }
 
-cpyaspt() {
+cpyaspt(){
 	if [ -n "$TERMUX" ]; then
 		cpyabp "$TERMUX" "$1"
 	else
@@ -4303,7 +4303,7 @@ cpyaspt() {
 	fi
 }
 
-cpyaspu() {
+cpyaspu(){
 	if [ -n "$UBUNTU" ]; then
 		cpyabp "$UBUNTU" "$1"
 	else
@@ -4311,7 +4311,7 @@ cpyaspu() {
 	fi
 }
 
-cpyaspd() {
+cpyaspd(){
 	if [ -n "$DEBIAN" ]; then
 		cpyabp "$DEBIAN" "$1"
 	else
@@ -4319,7 +4319,7 @@ cpyaspd() {
 	fi
 }
 
-cpyaspub() {
+cpyaspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpyabp "$UBUNTUBOX" "$1"
 	else
@@ -4327,7 +4327,7 @@ cpyaspub() {
 	fi
 }
 
-cpyaspdb() {
+cpyaspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpyabp "$DEBIANBOX" "$1"
 	else
@@ -4335,7 +4335,7 @@ cpyaspdb() {
 	fi
 }
 
-mvaypt() {
+mvaypt(){
 	if [ -n "$TERMUX" ]; then
 		mvaycp "$TERMUX" "$1"
 	else
@@ -4343,7 +4343,7 @@ mvaypt() {
 	fi
 }
 
-mvaypu() {
+mvaypu(){
 	if [ -n "$UBUNTU" ]; then
 		mvaycp "$UBUNTU" "$1"
 	else
@@ -4351,7 +4351,7 @@ mvaypu() {
 	fi
 }
 
-mvaypd() {
+mvaypd(){
 	if [ -n "$DEBIAN" ]; then
 		mvaycp "$DEBIAN" "$1"
 	else
@@ -4359,7 +4359,7 @@ mvaypd() {
 	fi
 }
 
-mvaypub() {
+mvaypub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvaycp "$UBUNTUBOX" "$1"
 	else
@@ -4367,7 +4367,7 @@ mvaypub() {
 	fi
 }
 
-mvaypdb() {
+mvaypdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvaycp "$DEBIANBOX" "$1"
 	else
@@ -4375,7 +4375,7 @@ mvaypdb() {
 	fi
 }
 
-mvaydpt() {
+mvaydpt(){
 	if [ -n "$TERMUX" ]; then
 		mvayhp "$TERMUX" "$1"
 	else
@@ -4383,7 +4383,7 @@ mvaydpt() {
 	fi
 }
 
-mvaydpu() {
+mvaydpu(){
 	if [ -n "$UBUNTU" ]; then
 		mvayhp "$UBUNTU" "$1"
 	else
@@ -4391,7 +4391,7 @@ mvaydpu() {
 	fi
 }
 
-mvaydpd() {
+mvaydpd(){
 	if [ -n "$DEBIAN" ]; then
 		mvayhp "$DEBIAN" "$1"
 	else
@@ -4399,7 +4399,7 @@ mvaydpd() {
 	fi
 }
 
-mvaydpub() {
+mvaydpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvayhp "$UBUNTUBOX" "$1"
 	else
@@ -4407,7 +4407,7 @@ mvaydpub() {
 	fi
 }
 
-mvaydpdb() {
+mvaydpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvayhp "$DEBIANBOX" "$1"
 	else
@@ -4415,7 +4415,7 @@ mvaydpdb() {
 	fi
 }
 
-mvayspt() {
+mvayspt(){
 	if [ -n "$TERMUX" ]; then
 		mvaybp "$TERMUX" "$1"
 	else
@@ -4423,7 +4423,7 @@ mvayspt() {
 	fi
 }
 
-mvayspu() {
+mvayspu(){
 	if [ -n "$UBUNTU" ]; then
 		mvaybp "$UBUNTU" "$1"
 	else
@@ -4431,7 +4431,7 @@ mvayspu() {
 	fi
 }
 
-mvayspd() {
+mvayspd(){
 	if [ -n "$DEBIAN" ]; then
 		mvaybp "$DEBIAN" "$1"
 	else
@@ -4439,7 +4439,7 @@ mvayspd() {
 	fi
 }
 
-mvayspub() {
+mvayspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		mvaybp "$UBUNTUBOX" "$1"
 	else
@@ -4447,7 +4447,7 @@ mvayspub() {
 	fi
 }
 
-mvayspdb() {
+mvayspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		mvaybp "$DEBIANBOX" "$1"
 	else
@@ -4455,7 +4455,7 @@ mvayspdb() {
 	fi
 }
 
-cpaypt() {
+cpaypt(){
 	if [ -n "$TERMUX" ]; then
 		cpaycp "$TERMUX" "$1"
 	else
@@ -4463,7 +4463,7 @@ cpaypt() {
 	fi
 }
 
-cpaypu() {
+cpaypu(){
 	if [ -n "$UBUNTU" ]; then
 		cpaycp "$UBUNTU" "$1"
 	else
@@ -4471,7 +4471,7 @@ cpaypu() {
 	fi
 }
 
-cpaypd() {
+cpaypd(){
 	if [ -n "$DEBIAN" ]; then
 		cpaycp "$DEBIAN" "$1"
 	else
@@ -4479,7 +4479,7 @@ cpaypd() {
 	fi
 }
 
-cpaypub() {
+cpaypub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpaycp "$UBUNTUBOX" "$1"
 	else
@@ -4487,7 +4487,7 @@ cpaypub() {
 	fi
 }
 
-cpaypdb() {
+cpaypdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpaycp "$DEBIANBOX" "$1"
 	else
@@ -4495,7 +4495,7 @@ cpaypdb() {
 	fi
 }
 
-cpaydpt() {
+cpaydpt(){
 	if [ -n "$TERMUX" ]; then
 		cpayhp "$TERMUX" "$1"
 	else
@@ -4503,7 +4503,7 @@ cpaydpt() {
 	fi
 }
 
-cpaydpu() {
+cpaydpu(){
 	if [ -n "$UBUNTU" ]; then
 		cpayhp "$UBUNTU" "$1"
 	else
@@ -4511,7 +4511,7 @@ cpaydpu() {
 	fi
 }
 
-cpaydpd() {
+cpaydpd(){
 	if [ -n "$DEBIAN" ]; then
 		cpayhp "$DEBIAN" "$1"
 	else
@@ -4519,7 +4519,7 @@ cpaydpd() {
 	fi
 }
 
-cpaydpub() {
+cpaydpub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpayhp "$UBUNTUBOX" "$1"
 	else
@@ -4527,7 +4527,7 @@ cpaydpub() {
 	fi
 }
 
-cpaydpdb() {
+cpaydpdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpayhp "$DEBIANBOX" "$1"
 	else
@@ -4535,7 +4535,7 @@ cpaydpdb() {
 	fi
 }
 
-cpayspt() {
+cpayspt(){
 	if [ -n "$TERMUX" ]; then
 		cpaybp "$TERMUX" "$1"
 	else
@@ -4543,7 +4543,7 @@ cpayspt() {
 	fi
 }
 
-cpayspu() {
+cpayspu(){
 	if [ -n "$UBUNTU" ]; then
 		cpaybp "$UBUNTU" "$1"
 	else
@@ -4551,7 +4551,7 @@ cpayspu() {
 	fi
 }
 
-cpayspd() {
+cpayspd(){
 	if [ -n "$DEBIAN" ]; then
 		cpaybp "$DEBIAN" "$1"
 	else
@@ -4559,7 +4559,7 @@ cpayspd() {
 	fi
 }
 
-cpayspub() {
+cpayspub(){
 	if [ -n "$UBUNTUBOX" ]; then
 		cpaybp "$UBUNTUBOX" "$1"
 	else
@@ -4567,7 +4567,7 @@ cpayspub() {
 	fi
 }
 
-cpayspdb() {
+cpayspdb(){
 	if [ -n "$DEBIANBOX" ]; then
 		cpaybp "$DEBIANBOX" "$1"
 	else
@@ -5210,3 +5210,4 @@ scfaalc() {
 	unset GALLIUM_DRIVER
 	scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
+

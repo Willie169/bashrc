@@ -108,26 +108,26 @@ for i in lr(aop):
                 "ia" +
                 remoteStr[j] +
                 localStr[k] +
-                "() {\n\t(\n\tcd " +
+                "() {\n\t(\n\t\tcd " +
                 local[k] +
-                "\n\tLOCAL=$(pwd)\n\tcd " +
+                "\n\t\tLOCAL=$(pwd)\n\t\tcd " +
                 remote[j] +
-                "\n\tfor f in *; do\n\t\t" +
+                "\n\t\tfor f in *; do\n\t\t\t" +
                 aop[i] +
-                " -- \"$f\" \"$LOCAL\"/\n\tdone\n\t)\n}\n\n")
+                " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
         for k in lr(tlocal):
             file.write(
                 aopStr[i] +
                 "ia" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                "() {\n\t(\n\tcd " +
+                "() {\n\t(\n\t\tcd " +
                 tlocal[k] +
-                "\n\ttlocal=$(pwd)\n\tcd " +
+                "\n\t\tLOCAl=$(pwd)\n\t\tcd " +
                 remote[j] +
-                "\n\tfor f in *; do\n\t\t" +
+                "\n\t\tfor f in *; do\n\t\t\t" +
                 aop[i] +
-                " -- \"$f\" \"$tlocal\"/\n\tdone\n\t)\n}\n\n")
+                " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
 
 for i in lr(iop):
     for j in lr(remote):
@@ -137,28 +137,28 @@ for i in lr(iop):
                 "ai" +
                 remoteStr[j] +
                 localStr[k] +
-                "() {\n\t(\n\t" +
+                "() {\n\t(\n\t\t" +
                 iop[i] +
                 "i" +
                 remoteStr[j] +
                 localStr[k] +
-                " \"$1\"\n\tcd " +
+                " \"$1\"\n\t\tcd " +
                 local[k] +
-                "\n\tcp -r -- \"$1\"/* ./\n\trm -r \"$1\"\n\t)\n}\n\n")
+                "\n\t\tcp -r -- \"$1\"/* ./\n\t\trm -r \"$1\"\n\t)\n}\n\n")
         for k in lr(tlocal):
             file.write(
                 iopStr[i] +
                 "ai" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                "() {\n\t(\n\t" +
+                "() {\n\t(\n\t\t" +
                 iop[i] +
                 "i" +
                 remoteStr[j] +
                 tlocalStr[k] +
-                " \"$1\" \"$2\"\n\tcd " +
+                " \"$1\" \"$2\"\n\t\tcd " +
                 tlocal[k] +
-                "\n\tcp -r -- \"$2\"/* ./\n\trm -r \"$2\"\n\t)\n}\n\n")
+                "\n\t\tcp -r -- \"$2\"/* ./\n\t\trm -r \"$2\"\n\t)\n}\n\n")
 
 for i in lr(op):
     for j in lr(local):
