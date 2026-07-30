@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-with open("bashrc.d/52-extra-functions.sh", "w") as file:
+with open("bashrc.d/52-extra-functions.sh", "w", encoding="utf-8") as file:
 
     file.write("#!/data/data/com.termux/files/usr/bin/bash\n\n")
 
@@ -383,3 +383,11 @@ cpiaAgcdp() {
                             eG[eg] +
                             H[eg][g] +
                             ' "$@"\n}\n\n')
+
+data = None
+
+with open("bashrc.d/52-extra-functions.sh", "rb") as file:
+    data = file.read()
+
+with open("bashrc.d/52-extra-functions.sh", "wb") as file:
+    file.write(data.rstrip(b"\n") + b"\n")
