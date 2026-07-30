@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
+# shellcheck disable=2103
 
 mvic() {
 	mv -- "$DOW"/"$1" ./
