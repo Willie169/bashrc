@@ -2,9 +2,11 @@
 
 function y() {
 	command -v yazi >/dev/null 2>&1 || return 0
+	# shellcheck disable=2155
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	command yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd <"$tmp"
+	# shellcheck disable=2164
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
@@ -46,12 +48,14 @@ dl() {
 	local wget_option=""
 	local wget2_option=""
 
+	# shellcheck disable=2086
 	set -- ${DLFLAGS:-} "$@"
 
 	while [ $# -gt 0 ]; do
 		case "$1" in
 		-h | --help)
 			echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>"
+			# shellcheck disable=2016
 			echo 'Global flags: $DLFLAGS'
 			return 0
 			;;
@@ -142,6 +146,7 @@ dl() {
 		-*)
 			echo "Unknown option: $1" >&2
 			echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>" >&2
+			# shellcheck disable=2016
 			echo 'Global flags: $DLFLAGS' >&2
 			return 2
 			;;
@@ -157,6 +162,7 @@ dl() {
 	if [ -z "$url" ]; then
 		echo "Error: no URL provided" >&2
 		echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>" >&2
+		# shellcheck disable=2016
 		echo 'Global flags: $DLFLAGS' >&2
 		return 2
 	fi
@@ -174,12 +180,15 @@ dl() {
 		if [ "$to_stdout" -eq 1 ]; then
 			tmp_file=$(mktemp "${TMPDIR:-/tmp}/dl.XXXXXXXXXX") || return 1
 			rm -f "$tmp_file"
+			# shellcheck disable=2086
 			aria2c "${opts[@]}" $aria2_option -o "$(basename "$tmp_file")" -d "$(dirname "$tmp_file")" -- "$url"
 			cat "$tmp_file"
 			rm -f "$tmp_file"
 		elif [ -n "$out" ]; then
+			# shellcheck disable=2086
 			aria2c "${opts[@]}" $aria2_option -o "$out" -- "$url"
 		else
+			# shellcheck disable=2086
 			aria2c "${opts[@]}" $aria2_option "$url"
 		fi
 	}
@@ -191,10 +200,13 @@ dl() {
 		[ "$verbose" -eq 1 ] && opts+=(-v)
 
 		if [ "$to_stdout" -eq 1 ]; then
+			# shellcheck disable=2086
 			curl "${opts[@]}" $curl_option "$url"
 		elif [ -n "$out" ]; then
+			# shellcheck disable=2086
 			curl "${opts[@]}" $curl_option -o "$out" -- "$url"
 		else
+			# shellcheck disable=2086
 			curl "${opts[@]}" $curl_option -O "$url"
 		fi
 	}
@@ -206,10 +218,13 @@ dl() {
 		[ "$verbose" -eq 1 ] && opts+=(-v)
 
 		if [ "$to_stdout" -eq 1 ]; then
+			# shellcheck disable=2086
 			wget "${opts[@]}" $wget_option -O - -- "$url"
 		elif [ -n "$out" ]; then
+			# shellcheck disable=2086
 			wget "${opts[@]}" $wget_option -O "$out" -- "$url"
 		else
+			# shellcheck disable=2086
 			wget "${opts[@]}" $wget_option "$url"
 		fi
 	}
@@ -221,10 +236,13 @@ dl() {
 		[ "$verbose" -eq 1 ] && opts+=(-v)
 
 		if [ "$to_stdout" -eq 1 ]; then
+			# shellcheck disable=2086
 			wget2 "${opts[@]}" $wget2_option -O - -- "$url"
 		elif [ -n "$out" ]; then
+			# shellcheck disable=2086
 			wget2 "${opts[@]}" $wget2_option -O "$out" -- "$url"
 		else
+			# shellcheck disable=2086
 			wget2 "${opts[@]}" $wget2_option "$url"
 		fi
 	}
@@ -508,6 +526,7 @@ gh_latest() {
 	count=$(echo "$urls" | grep -cve '^[[:space:]]*$')
 
 	if [ "$quiet" -eq 0 ]; then
+		# shellcheck disable=2155
 		local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
 		echo "Release: $release_name" >&2
 
@@ -518,6 +537,7 @@ gh_latest() {
 			fi
 		elif [ "$verbose" -eq 1 ]; then
 			echo "Found 1 matching asset:" >&2
+			# shellcheck disable=2001
 			echo "$urls" | sed 's/^/  /' >&2
 		fi
 	fi
@@ -728,6 +748,7 @@ gh_latest_r() {
 	count=$(echo "$urls" | grep -cve '^[[:space:]]*$')
 
 	if [ "$quiet" -eq 0 ]; then
+		# shellcheck disable=2155
 		local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
 		echo "Release: $release_name" >&2
 
@@ -738,6 +759,7 @@ gh_latest_r() {
 			fi
 		elif [ "$verbose" -eq 1 ]; then
 			echo "Found 1 matching asset:" >&2
+			# shellcheck disable=2001
 			echo "$urls" | sed 's/^/  /' >&2
 		fi
 	fi
@@ -837,6 +859,7 @@ gh_file() {
 }
 
 cgrr() {
+	# shellcheck disable=2164
 	[ -n "$GIT_REPO_ROOT" ] && cd "$GIT_REPO_ROOT"
 }
 
@@ -961,11 +984,11 @@ git_upstream_pr() {
 		echo "Usage: git_upstream_pr <PR_NUMBER>"
 		return 1
 	fi
-	git fetch upstream pull/$1/head:pr-$1 || {
+	git fetch upstream pull/"$1"/head:pr-"$1" || {
 		echo "Fetch failed"
 		return 1
 	}
-	git merge pr-$1 || {
+	git merge pr-"$1" || {
 		echo "Merge conflict! Resolve manually."
 		return 1
 	}
@@ -973,10 +996,11 @@ git_upstream_pr() {
 		echo "Push failed"
 		return 1
 	}
-	git branch -D pr-$1
+	git branch -D pr-"$1"
 }
 
 opv() {
+	# shellcheck disable=2015
 	command -v pv >/dev/null 2>&1 && pv || cat
 }
 
@@ -1157,6 +1181,7 @@ bzip2_split() {
 		case "$1" in
 		-h | --help)
 			echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
 			return 0
 			;;
@@ -1164,6 +1189,7 @@ bzip2_split() {
 			if [ -z "$2" ]; then
 				echo "Option -b requires an argument" >&2
 				echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+				# shellcheck disable=2016
 				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 				return 1
 			fi
@@ -1181,6 +1207,7 @@ bzip2_split() {
 		-*)
 			echo "Unknown option: $1" >&2
 			echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 			return 1
 			;;
@@ -1192,6 +1219,7 @@ bzip2_split() {
 
 	[ "$#" -eq 2 ] || {
 		echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+		# shellcheck disable=2016
 		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 		return 2
 	}
@@ -1216,6 +1244,7 @@ gzip_split() {
 		case "$1" in
 		-h | --help)
 			echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
 			return 0
 			;;
@@ -1223,6 +1252,7 @@ gzip_split() {
 			if [ -z "$2" ]; then
 				echo "Option -b requires an argument" >&2
 				echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+				# shellcheck disable=2016
 				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 				return 1
 			fi
@@ -1240,6 +1270,7 @@ gzip_split() {
 		-*)
 			echo "Unknown option: $1" >&2
 			echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 			return 1
 			;;
@@ -1251,6 +1282,7 @@ gzip_split() {
 
 	[ "$#" -eq 2 ] || {
 		echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+		# shellcheck disable=2016
 		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 		return 2
 	}
@@ -1275,6 +1307,7 @@ xz_split() {
 		case "$1" in
 		-h | --help)
 			echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
 			return 0
 			;;
@@ -1282,6 +1315,7 @@ xz_split() {
 			if [ -z "$2" ]; then
 				echo "Option -b requires an argument" >&2
 				echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+				# shellcheck disable=2016
 				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 				return 1
 			fi
@@ -1299,6 +1333,7 @@ xz_split() {
 		-*)
 			echo "Unknown option: $1" >&2
 			echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 			return 1
 			;;
@@ -1310,6 +1345,7 @@ xz_split() {
 
 	[ "$#" -eq 2 ] || {
 		echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+		# shellcheck disable=2016
 		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 		return 2
 	}
@@ -1334,6 +1370,7 @@ tar_split() {
 		case "$1" in
 		-h | --help)
 			echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
 			return 0
 			;;
@@ -1341,6 +1378,7 @@ tar_split() {
 			if [ -z "$2" ]; then
 				echo "Option -b requires an argument" >&2
 				echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+				# shellcheck disable=2016
 				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 				return 1
 			fi
@@ -1358,6 +1396,7 @@ tar_split() {
 		-*)
 			echo "Unknown option: $1" >&2
 			echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 			return 1
 			;;
@@ -1369,6 +1408,7 @@ tar_split() {
 
 	[ "$#" -eq 2 ] || {
 		echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+		# shellcheck disable=2016
 		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 		return 2
 	}
@@ -1391,6 +1431,7 @@ zip_split() {
 		case "$1" in
 		-h | --help)
 			echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
 			return 0
 			;;
@@ -1398,6 +1439,7 @@ zip_split() {
 			if [ -z "$2" ]; then
 				echo "Option -b requires an argument" >&2
 				echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+				# shellcheck disable=2016
 				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 				return 1
 			fi
@@ -1415,6 +1457,7 @@ zip_split() {
 		-*)
 			echo "Unknown option: $1" >&2
 			echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+			# shellcheck disable=2016
 			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 			return 1
 			;;
@@ -1426,6 +1469,7 @@ zip_split() {
 
 	[ "$#" -eq 2 ] || {
 		echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
+		# shellcheck disable=2016
 		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
 		return 2
 	}
@@ -1469,9 +1513,11 @@ dfsftp() {
 
 csd() {
 	if (($# == 1)); then
-		cd ~/shared
-		cd $1
+		cd ~/shared || return
+		# shellcheck disable=2164
+		cd "$1"
 	else
+		# shellcheck disable=2164
 		cd ~/shared
 	fi
 }
@@ -1499,17 +1545,17 @@ ccf() {
 }
 
 clt() {
-	rm *.aux *.log *.nav *.out *.snm *.toc || true
+	rm -- *.aux *.log *.nav *.out *.snm *.toc || true
 }
 
 xes() {
-	set -- "${1:-"$(ls *.tex 2>/dev/null | head -n 1)"}"
+	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
 	ccf "$1"
 	xelatex "$1" && xelatex "$1"
 }
 
 lus() {
-	set -- "${1:-"$(ls *.tex 2>/dev/null | head -n 1)"}"
+	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
 	ccf "$1"
 	lualatex "$1" && lualatex "$1"
 }
