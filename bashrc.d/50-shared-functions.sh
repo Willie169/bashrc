@@ -940,7 +940,7 @@ grm() {
 }
 
 gdfh() {
-    git diff HEAD~"$1" HEAD
+	git diff HEAD~"$1" HEAD
 }
 
 gtr() {

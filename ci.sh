@@ -23,7 +23,7 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/'"$d"'/bashrc.d/bas
 done
 for f in "$dir"/**/*.sh "$dir"/**/bashrc; do
 	chmod +x "$f"
-	#shfmt -w "$f"
+	shfmt -w "$f"
 	#shellcheck "$f"
 done
 
