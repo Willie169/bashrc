@@ -7,12 +7,6 @@ phice() {
 	)
 }
 
-lizzieyzy() {
-	(
-		cd "$HOME"/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
-	)
-}
-
 clean_disk() {
 	sudo journalctl --vacuum-time=7d
 	sudo systemd-tmpfiles --clean
@@ -41,45 +35,6 @@ update_latex() {
 		git reset --hard
 		git clean -d --force
 		git pull --rebase
-	)
-}
-
-update_vim_config() {
-	(
-		sh ~/.vim_runtime/update.sh
-	)
-}
-
-update_nvim_config() {
-	(
-		sh ~/.config/nvim/update.sh
-	)
-}
-
-update_lizzieyzy_config() {
-	(
-		mkdir -p "$HOME"/.local/share/lizzieyzy
-		rm "$HOME"/.local/share/lizzieyzy/config.txt 2>/dev/null || true
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O "$HOME"/.local/share/lizzieyzy/config.txt
-		sed -i "s|\$((\$(nproc)/2))|$(($(nproc) / 2))|g; s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g; s|\$(hostname)|$(hostname)|g" "$HOME"/.local/share/lizzieyzy/config.txt
-	)
-}
-
-update_cutechess_config() {
-	(
-		mkdir -p "$HOME"/.config/cutechess
-		rm "$HOME"/.config/cutechess/engines.json 2>/dev/null || true
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O "$HOME"/.config/cutechess/engines.json
-		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" "$HOME"/.config/cutechess/engines.json
-	)
-}
-
-update_sylvan_config() {
-	(
-		mkdir -p "$HOME"/.config/EterCyber
-		rm "$HOME"/.config/EterCyber/engines.json 2>/dev/null || true
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/sylvan/engines.json -O "$HOME"/.config/EterCyber/engines.json
-		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" "$HOME"/.config/EterCyber/engines.json
 	)
 }
 

@@ -13,19 +13,19 @@ function y() {
 
 __git_repo_reminder() {
 	command -v git >/dev/null 2>&1 || return 0
-	GIT_REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-	if [ -n "$GIT_REPO_ROOT" ]; then
-		if [ "$__LAST_GIT_REPO_ROOT" != "$GIT_REPO_ROOT" ]; then
-			if [ -n "$__LAST_GIT_REPO_ROOT" ]; then
+	GRR=$(git rev-parse --show-toplevel 2>/dev/null)
+	if [ -n "$GRR" ]; then
+		if [ "$__LAST_GRR" != "$GRR" ]; then
+			if [ -n "$__LAST_GRR" ]; then
 				echo "Leaving Git repository: consider running 'git push'"
 			fi
 			echo "Entered Git repository: consider running 'git pull'"
-			__LAST_GIT_REPO_ROOT="$GIT_REPO_ROOT"
+			__LAST_GRR="$GRR"
 		fi
 	else
-		if [ -n "$__LAST_GIT_REPO_ROOT" ]; then
+		if [ -n "$__LAST_GRR" ]; then
 			echo "Leaving Git repository: consider running 'git push'"
-			unset __LAST_GIT_REPO_ROOT
+			unset __LAST_GRR
 		fi
 	fi
 }
@@ -860,7 +860,7 @@ gh_file() {
 
 cgrr() {
 	# shellcheck disable=2164
-	[ -n "$GIT_REPO_ROOT" ] && cd "$GIT_REPO_ROOT"
+	[ -n "$GRR" ] && cd "$GRR"
 }
 
 ghcrpb() {
@@ -1562,4 +1562,49 @@ lus() {
 	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
 	ccf "$1"
 	lualatex "$1" && lualatex "$1"
+}
+
+update_vim_config() {
+	(
+		sh ~/.vim_runtime/update.sh
+	)
+}
+
+update_nvim_config() {
+	(
+		sh ~/.config/nvim/update.sh
+	)
+}
+
+update_lizzieyzy_config() {
+	(
+		mkdir -p "$HOME"/.local/share/lizzieyzy
+		rm "$HOME"/.local/share/lizzieyzy/config.txt 2>/dev/null || true
+		wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt -O "$HOME"/.local/share/lizzieyzy/config.txt
+		sed -i "s|\$((\$(nproc)/2))|$(($(nproc) / 2))|g; s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g; s|\$(hostname)|$(hostname)|g" "$HOME"/.local/share/lizzieyzy/config.txt
+	)
+}
+
+update_cutechess_config() {
+	(
+		mkdir -p "$HOME"/.config/cutechess
+		rm "$HOME"/.config/cutechess/engines.json 2>/dev/null || true
+		wget https://raw.githubusercontent.com/Willie169/bashrc/main/cutechess/engines.json -O "$HOME"/.config/cutechess/engines.json
+		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" "$HOME"/.config/cutechess/engines.json
+	)
+}
+
+update_sylvan_config() {
+	(
+		mkdir -p "$HOME"/.config/EterCyber
+		rm "$HOME"/.config/EterCyber/engines.json 2>/dev/null || true
+		wget https://raw.githubusercontent.com/Willie169/bashrc/main/sylvan/engines.json -O "$HOME"/.config/EterCyber/engines.json
+		sed -i "s|\$(nproc)|$(nproc)|g; s|\$HOME|$HOME|g" "$HOME"/.config/EterCyber/engines.json
+	)
+}
+
+lizzieyzy() {
+	(
+		cd "$HOME"/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
+	)
 }

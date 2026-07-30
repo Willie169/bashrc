@@ -101,28 +101,7 @@ update_tools() {
 
 update_bashrc() {
 	(
-		cd ~
-		[ -r ".bashrc.d/11-proot.sh" ] && mkdir .bashrc.d.tmp && cp .bashrc.d/11-proot.sh .bashrc.d.tmp/11-proot.sh
-		rm -f .bashrc 2>/dev/null || true
-		rm -rf .bashrc.d 2>/dev/null || true
-		mkdir .bashrc.d
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
-		if [ -r ".bashrc.d.tmp/11-proot.sh" ]; then
-			cp .bashrc.d.tmp/11-proot.sh .bashrc.d/
-			rm -r .bashrc.d.tmp 2>/dev/null || true
-		else
-			wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/11-proot.sh
-		fi
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/51-extra-functions.sh -O ~/.bashrc.d/51-extra-functions.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-		wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc -O ~/.bashrc
+		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
 	)
 }
 
