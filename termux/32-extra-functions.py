@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 
-with open("bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as file:
+from pathlib import Path
+
+sdir = Path(__file__).resolve().parent
+
+with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as file:
 
     file.write("#!/data/data/com.termux/files/usr/bin/bash\n\n")
 
@@ -384,8 +388,8 @@ cpiaAgcdp() {
                             H[eg][g] +
                             ' "$@"\n}\n\n')
 
-with open("bashrc.d/32-extra-functions.sh", "rb") as file:
+with open(sdir / "bashrc.d/32-extra-functions.sh", "rb") as file:
     data = file.read()
 
-with open("bashrc.d/32-extra-functions.sh", "wb") as file:
-    file.write(data.rstrip(b"\n") + b"\n")
+p = Path(sdir / "bashrc.d/32-extra-functions.sh")
+p.write_bytes(p.read_bytes().rstrip(b"\n") + b"\n")
