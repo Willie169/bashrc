@@ -5210,4 +5210,3 @@ scfaalc() {
 	unset GALLIUM_DRIVER
 	scrcpy -s localhost:5555 --video-codec=h265 --fullscreen --new-display --start-app app.lawnchair "$@"
 }
-
