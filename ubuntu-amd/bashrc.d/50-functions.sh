@@ -7,6 +7,12 @@ phice() {
 	)
 }
 
+lizzieyzy() {
+	(
+		cd $HOME/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
+	)
+}
+
 clean_disk() {
 	sudo journalctl --vacuum-time=7d
 	sudo systemd-tmpfiles --clean

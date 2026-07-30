@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+lizzieyzy() {
+	(
+		cd $HOME/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
+	)
+}
+
 clean_disk() {
 	rm -rf ~/.cache/*
 	logrotate /etc/logrotate.conf

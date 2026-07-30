@@ -3,6 +3,7 @@
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export NVM_DIR="${HOME}/.nvm"
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 export TMPDIR="/tmp"
