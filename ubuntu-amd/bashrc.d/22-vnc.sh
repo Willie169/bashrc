@@ -14,9 +14,9 @@ undis() {
 }
 
 vncd() {
-    # shellcheck disable=2155
+	# shellcheck disable=2155
 	local var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
-    [ -n "$var" ] && export DISPLAY="$var"
+	[ -n "$var" ] && export DISPLAY="$var"
 }
 
 xdgset() {

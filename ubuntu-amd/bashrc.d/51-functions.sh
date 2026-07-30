@@ -152,7 +152,7 @@ update_pied() {
 
 update_bashrc() {
 	(
-        wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
+		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
 	)
 }
 
