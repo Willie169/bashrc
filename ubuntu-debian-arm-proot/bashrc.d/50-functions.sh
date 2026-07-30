@@ -1584,6 +1584,8 @@ update_all() {
   brew cleanup
   uv self update
   uv tool upgrade --all
+  npm i -g npm
+  npm update -g
   update_texlive
   update_latex
   update_vim_config
