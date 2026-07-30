@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
 shopt -s globstar
+
 dir="$(cd -- "$(dirname -- "$0")" && pwd)"
+
+for f in "$dir"/**/*.py; do
+	chmod +x "$f"
+	autopep8 --in-place --aggressive --aggressive "$f"
+	(
+		cd "$(dirname "$f")" && python3 "$(basename "$f")"
+	)
+done
+
 arr=("termux" "ubuntu-amd" "ubuntu-debian-arm-proot")
 for d in "${arr[@]}"; do
 	u="$dir/$d"/install.sh
@@ -21,14 +31,9 @@ cd .bashrc.d || exit' >"$u"
 	echo 'cd ~ || exit
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/'"$d"'/bashrc.d/bashrc -O .bashrc' >>"$u"
 done
+
 for f in "$dir"/**/*.sh "$dir"/**/bashrc; do
 	chmod +x "$f"
 	shfmt -w "$f"
 	shellcheck -e 1090,1091 "$f"
-done
-
-for f in "$dir"/**/*.py; do
-	chmod +x "$f"
-	autopep8 --in-place --aggressive --aggressive "$f"
-	(cd "$(dirname "$f")" && python3 "$(basename "$f")")
 done
