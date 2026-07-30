@@ -15,7 +15,7 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
     aopStr = ["mv", "cp"]
     iop = ["mv", "cpr"]
     iopStr = ["mv", "cp"]
-    remote = ["\"$DOW\"", "\"$DOC\"", "\"$SCR\"", "\"$EMU\""]
+    remote = ["$DOW", "$DOC", "$SCR", "$EMU"]
     remoteStr = ["", "d", "s", "e"]
     local = [".", "~", ".."]
     localStr = ["c", "h", "b"]
@@ -112,9 +112,9 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     localStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     local[k] +
-                    "\n\t\tLOCAL=$(pwd)\n\t\tcd " +
+                    "\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
                     remote[j] +
-                    "\n\t\tfor f in *; do\n\t\t\t" +
+                    "\"\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
                     " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
             for k in lr(tlocal):
@@ -125,9 +125,9 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
                     tlocalStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     tlocal[k] +
-                    "\n\t\tLOCAL=$(pwd)\n\t\tcd " +
+                    "\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
                     remote[j] +
-                    "\n\t\tfor f in *; do\n\t\t\t" +
+                    "\"\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
                     " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
 
