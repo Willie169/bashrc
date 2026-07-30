@@ -311,7 +311,37 @@ mviaAgcp() {
 cpiaAgcp() {
 \tcpiaAc "*"
 \tgacp "$1"
+}
 
+mvaAgcdp() {
+\tmvaAic "$1"
+\tgacdp "$2"
+}
+
+cpaAgcdp() {
+\tcpaAic "$1"
+\tgacdp "$2"
+}
+
+mviAgcdp() {
+\tmviAc "$1"
+\tgacdp "$2"
+}
+
+cpiAgcdp() {
+\tcpriAc "$1"
+\tgacdp "$2"
+}
+
+mviaAgcdp() {
+\tmviaAc
+\tgacdp "$1"
+}
+
+cpiaAgcdp() {
+\tcpiaAc "*"
+\tgacdp "$1"
+}
 """
 
 for i in remoteStr:
@@ -343,7 +373,7 @@ for eg in lr(eG):
                         C[c] +
                         E[e] +
                         G[eg][g] +
-                        "(){" +
+                        "() {" +
                         B[a] +
                         DA[c] +
                         "\n\tunset GALLIUM_DRIVER\n\tscrcpy" +
