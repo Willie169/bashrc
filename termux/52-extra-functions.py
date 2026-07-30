@@ -383,7 +383,3 @@ with open("bashrc.d/52-extra-functions.sh", "w") as file:
                             eG[eg] +
                             H[eg][g] +
                             ' "$@"\n}\n\n')
-
-    file.seek(0, 2)
-    file.seek(file.tell() - 2, 0)
-    file.truncate()
