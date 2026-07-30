@@ -1,490 +1,490 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 mvic() {
-	mv -- "$DOW"/"$1" ./
+	mv -- ""$DOW""/"$1" ./
 }
 
 mvoc() {
-	mv -- ./"$1" "$DOW"/
+	mv -- ./"$1" ""$DOW""/
 }
 
 mvih() {
-	mv -- "$DOW"/"$1" ~/
+	mv -- ""$DOW""/"$1" ~/
 }
 
 mvoh() {
-	mv -- ~/"$1" "$DOW"/
+	mv -- ~/"$1" ""$DOW""/
 }
 
 mvib() {
-	mv -- "$DOW"/"$1" ../
+	mv -- ""$DOW""/"$1" ../
 }
 
 mvob() {
-	mv -- ../"$1" "$DOW"/
+	mv -- ../"$1" ""$DOW""/
 }
 
 mvir() {
-	mv -- "$DOW"/"$2" "$1"/
+	mv -- ""$DOW""/"$2" "$1"/
 }
 
 mvor() {
-	mv -- "$1"/"$2" "$DOW"/
+	mv -- "$1"/"$2" ""$DOW""/
 }
 
 mvip() {
-	mv -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	mv -- ""$DOW""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 mvop() {
-	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$DOW""/
 }
 
 mvidc() {
-	mv -- "$DOC"/"$1" ./
+	mv -- ""$DOC""/"$1" ./
 }
 
 mvodc() {
-	mv -- ./"$1" "$DOC"/
+	mv -- ./"$1" ""$DOC""/
 }
 
 mvidh() {
-	mv -- "$DOC"/"$1" ~/
+	mv -- ""$DOC""/"$1" ~/
 }
 
 mvodh() {
-	mv -- ~/"$1" "$DOC"/
+	mv -- ~/"$1" ""$DOC""/
 }
 
 mvidb() {
-	mv -- "$DOC"/"$1" ../
+	mv -- ""$DOC""/"$1" ../
 }
 
 mvodb() {
-	mv -- ../"$1" "$DOC"/
+	mv -- ../"$1" ""$DOC""/
 }
 
 mvidr() {
-	mv -- "$DOC"/"$2" "$1"/
+	mv -- ""$DOC""/"$2" "$1"/
 }
 
 mvodr() {
-	mv -- "$1"/"$2" "$DOC"/
+	mv -- "$1"/"$2" ""$DOC""/
 }
 
 mvidp() {
-	mv -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	mv -- ""$DOC""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 mvodp() {
-	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$DOC""/
 }
 
 mvisc() {
-	mv -- "$SCR"/"$1" ./
+	mv -- ""$SCR""/"$1" ./
 }
 
 mvosc() {
-	mv -- ./"$1" "$SCR"/
+	mv -- ./"$1" ""$SCR""/
 }
 
 mvish() {
-	mv -- "$SCR"/"$1" ~/
+	mv -- ""$SCR""/"$1" ~/
 }
 
 mvosh() {
-	mv -- ~/"$1" "$SCR"/
+	mv -- ~/"$1" ""$SCR""/
 }
 
 mvisb() {
-	mv -- "$SCR"/"$1" ../
+	mv -- ""$SCR""/"$1" ../
 }
 
 mvosb() {
-	mv -- ../"$1" "$SCR"/
+	mv -- ../"$1" ""$SCR""/
 }
 
 mvisr() {
-	mv -- "$SCR"/"$2" "$1"/
+	mv -- ""$SCR""/"$2" "$1"/
 }
 
 mvosr() {
-	mv -- "$1"/"$2" "$SCR"/
+	mv -- "$1"/"$2" ""$SCR""/
 }
 
 mvisp() {
-	mv -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	mv -- ""$SCR""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 mvosp() {
-	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$SCR""/
 }
 
 mviec() {
-	mv -- "$EMU"/"$1" ./
+	mv -- ""$EMU""/"$1" ./
 }
 
 mvoec() {
-	mv -- ./"$1" "$EMU"/
+	mv -- ./"$1" ""$EMU""/
 }
 
 mvieh() {
-	mv -- "$EMU"/"$1" ~/
+	mv -- ""$EMU""/"$1" ~/
 }
 
 mvoeh() {
-	mv -- ~/"$1" "$EMU"/
+	mv -- ~/"$1" ""$EMU""/
 }
 
 mvieb() {
-	mv -- "$EMU"/"$1" ../
+	mv -- ""$EMU""/"$1" ../
 }
 
 mvoeb() {
-	mv -- ../"$1" "$EMU"/
+	mv -- ../"$1" ""$EMU""/
 }
 
 mvier() {
-	mv -- "$EMU"/"$2" "$1"/
+	mv -- ""$EMU""/"$2" "$1"/
 }
 
 mvoer() {
-	mv -- "$1"/"$2" "$EMU"/
+	mv -- "$1"/"$2" ""$EMU""/
 }
 
 mviep() {
-	mv -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	mv -- ""$EMU""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 mvoep() {
-	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+	mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$EMU""/
 }
 
 cpic() {
-	cp -- "$DOW"/"$1" ./
+	cp -- ""$DOW""/"$1" ./
 }
 
 cpoc() {
-	cp -- ./"$1" "$DOW"/
+	cp -- ./"$1" ""$DOW""/
 }
 
 cpih() {
-	cp -- "$DOW"/"$1" ~/
+	cp -- ""$DOW""/"$1" ~/
 }
 
 cpoh() {
-	cp -- ~/"$1" "$DOW"/
+	cp -- ~/"$1" ""$DOW""/
 }
 
 cpib() {
-	cp -- "$DOW"/"$1" ../
+	cp -- ""$DOW""/"$1" ../
 }
 
 cpob() {
-	cp -- ../"$1" "$DOW"/
+	cp -- ../"$1" ""$DOW""/
 }
 
 cpir() {
-	cp -- "$DOW"/"$2" "$1"/
+	cp -- ""$DOW""/"$2" "$1"/
 }
 
 cpor() {
-	cp -- "$1"/"$2" "$DOW"/
+	cp -- "$1"/"$2" ""$DOW""/
 }
 
 cpip() {
-	cp -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -- ""$DOW""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cpop() {
-	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$DOW""/
 }
 
 cpidc() {
-	cp -- "$DOC"/"$1" ./
+	cp -- ""$DOC""/"$1" ./
 }
 
 cpodc() {
-	cp -- ./"$1" "$DOC"/
+	cp -- ./"$1" ""$DOC""/
 }
 
 cpidh() {
-	cp -- "$DOC"/"$1" ~/
+	cp -- ""$DOC""/"$1" ~/
 }
 
 cpodh() {
-	cp -- ~/"$1" "$DOC"/
+	cp -- ~/"$1" ""$DOC""/
 }
 
 cpidb() {
-	cp -- "$DOC"/"$1" ../
+	cp -- ""$DOC""/"$1" ../
 }
 
 cpodb() {
-	cp -- ../"$1" "$DOC"/
+	cp -- ../"$1" ""$DOC""/
 }
 
 cpidr() {
-	cp -- "$DOC"/"$2" "$1"/
+	cp -- ""$DOC""/"$2" "$1"/
 }
 
 cpodr() {
-	cp -- "$1"/"$2" "$DOC"/
+	cp -- "$1"/"$2" ""$DOC""/
 }
 
 cpidp() {
-	cp -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -- ""$DOC""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cpodp() {
-	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$DOC""/
 }
 
 cpisc() {
-	cp -- "$SCR"/"$1" ./
+	cp -- ""$SCR""/"$1" ./
 }
 
 cposc() {
-	cp -- ./"$1" "$SCR"/
+	cp -- ./"$1" ""$SCR""/
 }
 
 cpish() {
-	cp -- "$SCR"/"$1" ~/
+	cp -- ""$SCR""/"$1" ~/
 }
 
 cposh() {
-	cp -- ~/"$1" "$SCR"/
+	cp -- ~/"$1" ""$SCR""/
 }
 
 cpisb() {
-	cp -- "$SCR"/"$1" ../
+	cp -- ""$SCR""/"$1" ../
 }
 
 cposb() {
-	cp -- ../"$1" "$SCR"/
+	cp -- ../"$1" ""$SCR""/
 }
 
 cpisr() {
-	cp -- "$SCR"/"$2" "$1"/
+	cp -- ""$SCR""/"$2" "$1"/
 }
 
 cposr() {
-	cp -- "$1"/"$2" "$SCR"/
+	cp -- "$1"/"$2" ""$SCR""/
 }
 
 cpisp() {
-	cp -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -- ""$SCR""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cposp() {
-	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$SCR""/
 }
 
 cpiec() {
-	cp -- "$EMU"/"$1" ./
+	cp -- ""$EMU""/"$1" ./
 }
 
 cpoec() {
-	cp -- ./"$1" "$EMU"/
+	cp -- ./"$1" ""$EMU""/
 }
 
 cpieh() {
-	cp -- "$EMU"/"$1" ~/
+	cp -- ""$EMU""/"$1" ~/
 }
 
 cpoeh() {
-	cp -- ~/"$1" "$EMU"/
+	cp -- ~/"$1" ""$EMU""/
 }
 
 cpieb() {
-	cp -- "$EMU"/"$1" ../
+	cp -- ""$EMU""/"$1" ../
 }
 
 cpoeb() {
-	cp -- ../"$1" "$EMU"/
+	cp -- ../"$1" ""$EMU""/
 }
 
 cpier() {
-	cp -- "$EMU"/"$2" "$1"/
+	cp -- ""$EMU""/"$2" "$1"/
 }
 
 cpoer() {
-	cp -- "$1"/"$2" "$EMU"/
+	cp -- "$1"/"$2" ""$EMU""/
 }
 
 cpiep() {
-	cp -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -- ""$EMU""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cpoep() {
-	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+	cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$EMU""/
 }
 
 cpric() {
-	cp -r -- "$DOW"/"$1" ./
+	cp -r -- ""$DOW""/"$1" ./
 }
 
 cproc() {
-	cp -r -- ./"$1" "$DOW"/
+	cp -r -- ./"$1" ""$DOW""/
 }
 
 cprih() {
-	cp -r -- "$DOW"/"$1" ~/
+	cp -r -- ""$DOW""/"$1" ~/
 }
 
 cproh() {
-	cp -r -- ~/"$1" "$DOW"/
+	cp -r -- ~/"$1" ""$DOW""/
 }
 
 cprib() {
-	cp -r -- "$DOW"/"$1" ../
+	cp -r -- ""$DOW""/"$1" ../
 }
 
 cprob() {
-	cp -r -- ../"$1" "$DOW"/
+	cp -r -- ../"$1" ""$DOW""/
 }
 
 cprir() {
-	cp -r -- "$DOW"/"$2" "$1"/
+	cp -r -- ""$DOW""/"$2" "$1"/
 }
 
 cpror() {
-	cp -r -- "$1"/"$2" "$DOW"/
+	cp -r -- "$1"/"$2" ""$DOW""/
 }
 
 cprip() {
-	cp -r -- "$DOW"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -r -- ""$DOW""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cprop() {
-	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$DOW""/
 }
 
 cpridc() {
-	cp -r -- "$DOC"/"$1" ./
+	cp -r -- ""$DOC""/"$1" ./
 }
 
 cprodc() {
-	cp -r -- ./"$1" "$DOC"/
+	cp -r -- ./"$1" ""$DOC""/
 }
 
 cpridh() {
-	cp -r -- "$DOC"/"$1" ~/
+	cp -r -- ""$DOC""/"$1" ~/
 }
 
 cprodh() {
-	cp -r -- ~/"$1" "$DOC"/
+	cp -r -- ~/"$1" ""$DOC""/
 }
 
 cpridb() {
-	cp -r -- "$DOC"/"$1" ../
+	cp -r -- ""$DOC""/"$1" ../
 }
 
 cprodb() {
-	cp -r -- ../"$1" "$DOC"/
+	cp -r -- ../"$1" ""$DOC""/
 }
 
 cpridr() {
-	cp -r -- "$DOC"/"$2" "$1"/
+	cp -r -- ""$DOC""/"$2" "$1"/
 }
 
 cprodr() {
-	cp -r -- "$1"/"$2" "$DOC"/
+	cp -r -- "$1"/"$2" ""$DOC""/
 }
 
 cpridp() {
-	cp -r -- "$DOC"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -r -- ""$DOC""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cprodp() {
-	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$DOC""/
 }
 
 cprisc() {
-	cp -r -- "$SCR"/"$1" ./
+	cp -r -- ""$SCR""/"$1" ./
 }
 
 cprosc() {
-	cp -r -- ./"$1" "$SCR"/
+	cp -r -- ./"$1" ""$SCR""/
 }
 
 cprish() {
-	cp -r -- "$SCR"/"$1" ~/
+	cp -r -- ""$SCR""/"$1" ~/
 }
 
 cprosh() {
-	cp -r -- ~/"$1" "$SCR"/
+	cp -r -- ~/"$1" ""$SCR""/
 }
 
 cprisb() {
-	cp -r -- "$SCR"/"$1" ../
+	cp -r -- ""$SCR""/"$1" ../
 }
 
 cprosb() {
-	cp -r -- ../"$1" "$SCR"/
+	cp -r -- ../"$1" ""$SCR""/
 }
 
 cprisr() {
-	cp -r -- "$SCR"/"$2" "$1"/
+	cp -r -- ""$SCR""/"$2" "$1"/
 }
 
 cprosr() {
-	cp -r -- "$1"/"$2" "$SCR"/
+	cp -r -- "$1"/"$2" ""$SCR""/
 }
 
 cprisp() {
-	cp -r -- "$SCR"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -r -- ""$SCR""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cprosp() {
-	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$SCR""/
 }
 
 cpriec() {
-	cp -r -- "$EMU"/"$1" ./
+	cp -r -- ""$EMU""/"$1" ./
 }
 
 cproec() {
-	cp -r -- ./"$1" "$EMU"/
+	cp -r -- ./"$1" ""$EMU""/
 }
 
 cprieh() {
-	cp -r -- "$EMU"/"$1" ~/
+	cp -r -- ""$EMU""/"$1" ~/
 }
 
 cproeh() {
-	cp -r -- ~/"$1" "$EMU"/
+	cp -r -- ~/"$1" ""$EMU""/
 }
 
 cprieb() {
-	cp -r -- "$EMU"/"$1" ../
+	cp -r -- ""$EMU""/"$1" ../
 }
 
 cproeb() {
-	cp -r -- ../"$1" "$EMU"/
+	cp -r -- ../"$1" ""$EMU""/
 }
 
 cprier() {
-	cp -r -- "$EMU"/"$2" "$1"/
+	cp -r -- ""$EMU""/"$2" "$1"/
 }
 
 cproer() {
-	cp -r -- "$1"/"$2" "$EMU"/
+	cp -r -- "$1"/"$2" ""$EMU""/
 }
 
 cpriep() {
-	cp -r -- "$EMU"/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
+	cp -r -- ""$EMU""/"$2" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
 }
 
 cproep() {
-	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+	cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" ""$EMU""/
 }
 
 mviac() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $DOW
+		cd "$DOW"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -495,7 +495,7 @@ mviah() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $DOW
+		cd "$DOW"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -506,7 +506,7 @@ mviab() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $DOW
+		cd "$DOW"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -516,8 +516,8 @@ mviab() {
 mviar() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $DOW
+		LOCAL=$(pwd)
+		cd "$DOW"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -527,8 +527,8 @@ mviar() {
 mviap() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $DOW
+		LOCAL=$(pwd)
+		cd "$DOW"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -539,7 +539,7 @@ mviadc() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $DOC
+		cd "$DOC"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -550,7 +550,7 @@ mviadh() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $DOC
+		cd "$DOC"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -561,7 +561,7 @@ mviadb() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $DOC
+		cd "$DOC"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -571,8 +571,8 @@ mviadb() {
 mviadr() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $DOC
+		LOCAL=$(pwd)
+		cd "$DOC"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -582,8 +582,8 @@ mviadr() {
 mviadp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $DOC
+		LOCAL=$(pwd)
+		cd "$DOC"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -594,7 +594,7 @@ mviasc() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $SCR
+		cd "$SCR"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -605,7 +605,7 @@ mviash() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $SCR
+		cd "$SCR"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -616,7 +616,7 @@ mviasb() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $SCR
+		cd "$SCR"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -626,8 +626,8 @@ mviasb() {
 mviasr() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $SCR
+		LOCAL=$(pwd)
+		cd "$SCR"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -637,8 +637,8 @@ mviasr() {
 mviasp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $SCR
+		LOCAL=$(pwd)
+		cd "$SCR"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -649,7 +649,7 @@ mviaec() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $EMU
+		cd "$EMU"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -660,7 +660,7 @@ mviaeh() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $EMU
+		cd "$EMU"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -671,7 +671,7 @@ mviaeb() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $EMU
+		cd "$EMU"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -681,8 +681,8 @@ mviaeb() {
 mviaer() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $EMU
+		LOCAL=$(pwd)
+		cd "$EMU"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -692,8 +692,8 @@ mviaer() {
 mviaep() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $EMU
+		LOCAL=$(pwd)
+		cd "$EMU"
 		for f in *; do
 			mv -- "$f" "$LOCAL"/
 		done
@@ -704,7 +704,7 @@ cpiac() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $DOW
+		cd "$DOW"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -715,7 +715,7 @@ cpiah() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $DOW
+		cd "$DOW"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -726,7 +726,7 @@ cpiab() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $DOW
+		cd "$DOW"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -736,8 +736,8 @@ cpiab() {
 cpiar() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $DOW
+		LOCAL=$(pwd)
+		cd "$DOW"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -747,8 +747,8 @@ cpiar() {
 cpiap() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $DOW
+		LOCAL=$(pwd)
+		cd "$DOW"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -759,7 +759,7 @@ cpiadc() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $DOC
+		cd "$DOC"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -770,7 +770,7 @@ cpiadh() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $DOC
+		cd "$DOC"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -781,7 +781,7 @@ cpiadb() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $DOC
+		cd "$DOC"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -791,8 +791,8 @@ cpiadb() {
 cpiadr() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $DOC
+		LOCAL=$(pwd)
+		cd "$DOC"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -802,8 +802,8 @@ cpiadr() {
 cpiadp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $DOC
+		LOCAL=$(pwd)
+		cd "$DOC"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -814,7 +814,7 @@ cpiasc() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $SCR
+		cd "$SCR"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -825,7 +825,7 @@ cpiash() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $SCR
+		cd "$SCR"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -836,7 +836,7 @@ cpiasb() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $SCR
+		cd "$SCR"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -846,8 +846,8 @@ cpiasb() {
 cpiasr() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $SCR
+		LOCAL=$(pwd)
+		cd "$SCR"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -857,8 +857,8 @@ cpiasr() {
 cpiasp() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $SCR
+		LOCAL=$(pwd)
+		cd "$SCR"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -869,7 +869,7 @@ cpiaec() {
 	(
 		cd .
 		LOCAL=$(pwd)
-		cd $EMU
+		cd "$EMU"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -880,7 +880,7 @@ cpiaeh() {
 	(
 		cd ~
 		LOCAL=$(pwd)
-		cd $EMU
+		cd "$EMU"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -891,7 +891,7 @@ cpiaeb() {
 	(
 		cd ..
 		LOCAL=$(pwd)
-		cd $EMU
+		cd "$EMU"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -901,8 +901,8 @@ cpiaeb() {
 cpiaer() {
 	(
 		cd "$1"
-		LOCAl=$(pwd)
-		cd $EMU
+		LOCAL=$(pwd)
+		cd "$EMU"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done
@@ -912,8 +912,8 @@ cpiaer() {
 cpiaep() {
 	(
 		cd "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"
-		LOCAl=$(pwd)
-		cd $EMU
+		LOCAL=$(pwd)
+		cd "$EMU"
 		for f in *; do
 			cp -r -- "$f" "$LOCAL"/
 		done

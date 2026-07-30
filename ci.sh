@@ -5,11 +5,8 @@ shopt -s globstar
 dir="$(cd -- "$(dirname -- "$0")" && pwd)"
 
 for f in "$dir"/**/*.py; do
-	chmod +x "$f"
 	autopep8 --in-place --aggressive --aggressive "$f"
-	(
-		cd "$(dirname "$f")" && python3 "$(basename "$f")"
-	)
+	python3 "$f"
 done
 
 arr=("termux" "ubuntu-amd" "ubuntu-debian-arm-proot")

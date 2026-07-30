@@ -5,7 +5,7 @@ alias xfce='dbus-launch --exit-with-session xfce4-session & 2>/dev/null'
 
 xxfce() {
 	if [ $# -ne 0 ]; then
-		termux-x11 $1 -xstartup "dbus-launch --exit-with-session xfce4-session"
+		termux-x11 "$1" -xstartup "dbus-launch --exit-with-session xfce4-session"
 	else
 		termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"
 	fi
@@ -25,8 +25,8 @@ xdgset() {
 	else
 		export XDG_RUNTIME_DIR="/data/data/com.termux/files/usr/tmp/runtime-root"
 	fi
-	mkdir -p $XDG_RUNTIME_DIR
-	chmod 700 $XDG_RUNTIME_DIR
+	mkdir -p "$XDG_RUNTIME_DIR"
+	chmod 700 "$XDG_RUNTIME_DIR"
 	if [ $# -ne 0 ]; then
 		export DISPLAY="$1"
 	fi
