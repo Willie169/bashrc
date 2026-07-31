@@ -168,13 +168,14 @@ update_all() {
 		sleep 31
 	done &
 	SUDOPIDSECOND=$!
+	update_bashrc
+    source ~/.bashrc
 	_update_pm
 	update_texlive
 	update_latex
 	update_tools
 	update_pied
 	update_config
-	update_bashrc
 	kill "$SUDOPIDFIRST"
 	kill "$SUDOPIDSECOND"
 }

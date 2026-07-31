@@ -115,10 +115,11 @@ update_pm() {
 }
 
 update_all() {
+	update_bashrc
+    source ~/.bashrc
 	update_pm
 	update_tools
 	update_config
-	update_bashrc
 }
 
 pdl() {

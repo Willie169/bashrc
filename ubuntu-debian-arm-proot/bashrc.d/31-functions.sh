@@ -91,10 +91,11 @@ update_pm() {
 }
 
 update_all() {
+	update_bashrc
+    source ~/.bashrc
 	update_pm
 	update_texlive
 	update_latex
 	update_tools
 	update_config
-	update_bashrc
 }
