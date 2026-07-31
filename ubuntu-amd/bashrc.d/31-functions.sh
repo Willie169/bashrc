@@ -61,11 +61,6 @@ update_tools() {
 		chmod +x bin/jadx
 		chmod +x bin/jadx-gui
 		cd ~ || exit
-		rm -f ~/.local/bin/superhtml
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
-		tar -xJf x86_64-linux-musl.tar.xz
-		rm x86_64-linux-musl.tar.xz
-		mv superhtml ~/.local/bin/
 		sudo rm -rf /usr/local/java/ClipCascade-Server-JRE_21.jar
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade-Server-JRE_21.jar
 		sudo mv ClipCascade-Server-JRE_21.jar /usr/local/java/
