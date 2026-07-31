@@ -71,7 +71,15 @@ update_bashrc() {
 	)
 }
 
-update_all() {
+update_config() {
+	update_vim_config
+	update_nvim_config
+	update_lizzieyzy_config
+	update_cutechess_config
+	update_sylvan_config
+}
+
+update_pm() {
 	apt update
 	apt upgrade -y
 	apt autoremove -y
@@ -85,13 +93,13 @@ update_all() {
 	uv tool upgrade --all
 	npm i -g npm
 	npm update -g
+}
+
+update_all() {
+	update_pm
 	update_texlive
 	update_latex
-	update_vim_config
-	update_nvim_config
-	update_lizzieyzy_config
-	update_cutechess_config
-	update_sylvan_config
 	update_tools
+	update_config
 	update_bashrc
 }

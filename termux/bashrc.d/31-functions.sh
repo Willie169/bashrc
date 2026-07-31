@@ -105,7 +105,12 @@ update_bashrc() {
 	)
 }
 
-update_all() {
+update_config() {
+	update_vim_config
+	update_nvim_config
+}
+
+update_pm() {
 	pkg update
 	pkg upgrade -y
 	pkg autoremove -y
@@ -114,9 +119,12 @@ update_all() {
 	uv self update
 	uv tool upgrade --all
 	npm update -g
-	update_vim_config
-	update_nvim_config
+}
+
+update_all() {
+	update_pm
 	update_tools
+	update_config
 	update_bashrc
 }
 

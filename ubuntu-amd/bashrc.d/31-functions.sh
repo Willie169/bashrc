@@ -111,18 +111,15 @@ update_bashrc() {
 	)
 }
 
-update_all() {
-	sudo -v
-	while true; do
-		sudo -nv
-		sleep 29
-	done &
-	SUDOPIDFIRST=$!
-	while true; do
-		sudo -nv
-		sleep 31
-	done &
-	SUDOPIDSECOND=$!
+update_config() {
+	update_vim_config
+	update_nvim_config
+	update_lizzieyzy_config
+	update_cutechess_config
+	update_sylvan_config
+}
+
+_update_pm() {
 	sudo apt update
 	sudo apt upgrade -y
 	sudo apt autoremove -y
@@ -145,15 +142,43 @@ update_all() {
 	uv tool upgrade --all
 	npm i -g npm
 	npm update -g
+}
+
+update_pm() {
+	sudo -v
+	while true; do
+		sudo -nv
+		sleep 29
+	done &
+	SUDOPIDFIRST=$!
+	while true; do
+		sudo -nv
+		sleep 31
+	done &
+	SUDOPIDSECOND=$!
+	_update_pm
+	kill "$SUDOPIDFIRST"
+	kill "$SUDOPIDSECOND"
+}
+
+update_all() {
+	sudo -v
+	while true; do
+		sudo -nv
+		sleep 29
+	done &
+	SUDOPIDFIRST=$!
+	while true; do
+		sudo -nv
+		sleep 31
+	done &
+	SUDOPIDSECOND=$!
+	_update_pm
 	update_texlive
 	update_latex
-	update_vim_config
-	update_nvim_config
-	update_lizzieyzy_config
-	update_cutechess_config
-	update_sylvan_config
 	update_tools
 	update_pied
+	update_config
 	update_bashrc
 	kill "$SUDOPIDFIRST"
 	kill "$SUDOPIDSECOND"
