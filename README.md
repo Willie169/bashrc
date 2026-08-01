@@ -1,18 +1,18 @@
-# bashrc
+## bashrc
 
 `.bashrc` of Ubuntu AMD, Ubuntu/Debian ARM proot, and Termux.
 
-## Supported Environments
+### Supported Environments
 
 - [**Ubuntu AMD64**](ubuntu-amd): designed for Ubuntu derivatives for my [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu) repo.
 - [**Ubuntu/Debian ARM Proot**](ubuntu-debian-arm-proot): designed for Ubuntu and Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - [**Termux**](termux): designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
-## Overrides
+### Overrides
 
 Put your overrides in `~/.bashrc.overrides`.
 
-## Installation
+### Installation
 
 Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted. wget is required.
 
@@ -31,7 +31,7 @@ Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted. wget is require
 
 `source ~/.bashrc` to make it take effect in current shell.
 
-## Update
+### Update
 
 ```
 source ~/.bashrc
