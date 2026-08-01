@@ -982,6 +982,16 @@ gchmr() {
 	fi
 }
 
+gchgp() {
+	if [ $# -eq 0 ]; then
+		git checkout gh-pages
+	else
+		local first="$1"
+		shift
+		git checkout gh-pages~"$first" "$@"
+	fi
+}
+
 grbih() {
 	if [ $# -eq 0 ]; then
 		git rebase -i HEAD~1
@@ -1009,6 +1019,16 @@ grbimr() {
 		local first="$1"
 		shift
 		git rebase -i master~"$first" "$@"
+	fi
+}
+
+grbigp() {
+	if [ $# -eq 0 ]; then
+		git rebase -i gh-pages~1
+	else
+		local first="$1"
+		shift
+		git rebase -i gh-pages~"$first" "$@"
 	fi
 }
 
