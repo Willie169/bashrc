@@ -939,12 +939,51 @@ grm() {
 	git rm -rf "${1:-*}"
 }
 
-gdfh() {
-	git diff HEAD~"$1" HEAD
+gdifh() {
+	if [ $# -eq 0 ]; then
+		git diff HEAD~1 HEAD
+	elif [ $# -eq 1 ]; then
+		git diff HEAD~"$1" HEAD
+	else
+		local first="$1"
+		local second="$2"
+		shift 2
+		git diff HEAD~"$first" HEAD~"$second" "$@"
+	fi
+}
+
+gchh() {
+	if [ $# -eq 0 ]; then
+		git checkout HEAD~1
+	else
+		local first="$1"
+		shift
+		git checkout HEAD~"$first" "$@"
+	fi
+}
+
+gchmn() {
+	if [ $# -eq 0 ]; then
+		git checkout main
+	else
+		local first="$1"
+		shift
+		git checkout main~"$first" "$@"
+	fi
+}
+
+gchmr() {
+	if [ $# -eq 0 ]; then
+		git checkout master
+	else
+		local first="$1"
+		shift
+		git checkout master~"$first" "$@"
+	fi
 }
 
 gtr() {
-	if [ $# -lt 1 ]; then
+	if [ $# -eq 1 ]; then
 		echo "Usage: gtr <version> [-n|--notes 'notes'] [files...]"
 		return 1
 	fi
