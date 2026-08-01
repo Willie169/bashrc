@@ -89,6 +89,21 @@ update_tools() {
 			fi
 			mv rclone ~/.local/bin/
 		fi
+		if [ -f ~/.local/bin/superhtml ]; then
+			if [[ "$ARCH" == "x86_64" ]]; then
+				rm ~/.local/bin/superhtml
+				gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
+				xz -dc x86_64-linux.tar.xz | tar -xf - || true
+				rm x86_64-linux-musl.tar.xz*
+				mv superhtml ~/.local/bin/
+			elif [[ "$ARCH" == "aarch64" ]]; then
+				rm ~/.local/bin/superhtml
+				gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
+				xz -dc aarch64-linux.tar.xz | tar -xf - || true
+				rm aarch64-linux.tar.xz*
+				mv superhtml ~/.local/bin/
+			fi
+		fi
 	)
 }
 
@@ -116,7 +131,7 @@ update_pm() {
 
 update_all() {
 	update_bashrc
-    source ~/.bashrc
+	source ~/.bashrc
 	update_pm
 	update_tools
 	update_config
