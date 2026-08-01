@@ -1013,7 +1013,7 @@ grbimr() {
 }
 
 gtr() {
-	if [ $# -eq 1 ]; then
+	if [ $# -eq 0 ]; then
 		echo "Usage: gtr <version> [-n|--notes 'notes'] [files...]"
 		return 1
 	fi
