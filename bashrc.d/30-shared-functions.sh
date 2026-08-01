@@ -983,33 +983,33 @@ gchmr() {
 }
 
 grbih() {
-    if [ $# -eq 0 ]; then
-        git rebase -i HEAD~1
-    else
+	if [ $# -eq 0 ]; then
+		git rebase -i HEAD~1
+	else
 		local first="$1"
 		shift
-        git rebase -i HEAD~"$first" "$@"
-    fi
+		git rebase -i HEAD~"$first" "$@"
+	fi
 }
 
 grbimn() {
-    if [ $# -eq 0 ]; then
-        git rebase -i main~1
-    else
+	if [ $# -eq 0 ]; then
+		git rebase -i main~1
+	else
 		local first="$1"
 		shift
-        git rebase -i main~"$first" "$@"
-    fi
+		git rebase -i main~"$first" "$@"
+	fi
 }
 
 grbimr() {
-    if [ $# -eq 0 ]; then
-        git rebase -i master~1
-    else
+	if [ $# -eq 0 ]; then
+		git rebase -i master~1
+	else
 		local first="$1"
 		shift
-        git rebase -i master~"$first" "$@"
-    fi
+		git rebase -i master~"$first" "$@"
+	fi
 }
 
 gtr() {
