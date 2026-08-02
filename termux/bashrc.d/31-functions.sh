@@ -112,7 +112,7 @@ update_all() {
 }
 
 pdl() {
-	cmd=(proot-distro login "$1" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+	cmd=(proot-distro login "$1" --redirect-ports --isolated --get-proot-cmd)
 	bind=(
 		"/apex"
 		"/data/app"
@@ -237,7 +237,7 @@ pdl() {
 }
 
 pdr() {
-	cmd=(proot-distro run "$1" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+	cmd=(proot-distro run "$1" --redirect-ports --isolated --get-proot-cmd)
 	shift
 	args=("$@")
 	bind=(
