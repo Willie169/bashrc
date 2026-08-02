@@ -28,6 +28,20 @@ update_latex() {
 	)
 }
 
+update_bashrc() {
+	(
+		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/install.sh | sh
+	)
+}
+
+update_config() {
+	update_vim_config
+	update_nvim_config
+	update_lizzieyzy_config
+	update_cutechess_config
+	update_sylvan_config
+}
+
 update_tools() {
 	(
 		cd ~ || exit
@@ -57,21 +71,9 @@ update_tools() {
 		unzip rclone-linux-arm64.zip
 		rm rclone-linux-arm64.zip*
 		mv rclone ~/.local/bin/
+	    update_config
+        update_nvim_config_full
 	)
-}
-
-update_bashrc() {
-	(
-		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/install.sh | sh
-	)
-}
-
-update_config() {
-	update_vim_config
-	update_nvim_config
-	update_lizzieyzy_config
-	update_cutechess_config
-	update_sylvan_config
 }
 
 update_pm() {
@@ -97,5 +99,4 @@ update_all() {
 	update_texlive
 	update_latex
 	update_tools
-	update_config
 }

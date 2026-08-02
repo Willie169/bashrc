@@ -38,6 +38,20 @@ update_latex() {
 	)
 }
 
+update_bashrc() {
+	(
+		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
+	)
+}
+
+update_config() {
+	update_vim_config
+	update_nvim_config
+	update_lizzieyzy_config
+	update_cutechess_config
+	update_sylvan_config
+}
+
 update_tools() {
 	(
 		cd ~ || exit
@@ -89,6 +103,8 @@ update_tools() {
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
 		sudo apt install ./appimagelauncher_*-*.*_amd64.deb -y
 		rm appimagelauncher_*-*.*_amd64.deb*
+	    update_config
+        update_nvim_config_full
 	)
 }
 
@@ -99,20 +115,6 @@ update_pied() {
 		sudo flatpak install com.mikeasoft.pied.flatpak -y || true
 		rm com.mikeasoft.pied.flatpak*
 	)
-}
-
-update_bashrc() {
-	(
-		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
-	)
-}
-
-update_config() {
-	update_vim_config
-	update_nvim_config
-	update_lizzieyzy_config
-	update_cutechess_config
-	update_sylvan_config
 }
 
 _update_pm() {
@@ -176,7 +178,6 @@ update_all() {
 	update_latex
 	update_tools
 	update_pied
-	update_config
 	kill "$SUDOPIDFIRST"
 	kill "$SUDOPIDSECOND"
 }

@@ -33,6 +33,17 @@ clean_disk() {
 	proot-distro clear-cache || true
 }
 
+update_bashrc() {
+	(
+		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
+	)
+}
+
+update_config() {
+	update_vim_config
+	update_nvim_config
+}
+
 update_tools() {
 	(
 		cd ~ || exit
@@ -77,18 +88,9 @@ update_tools() {
 			fi
 			mv rclone ~/.local/bin/
 		fi
-	)
-}
-
-update_bashrc() {
-	(
-		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
-	)
-}
-
-update_config() {
-	update_vim_config
-	update_nvim_config
+	    update_config
+        update_nvim_config_full
+    )
 }
 
 update_pm() {
@@ -107,7 +109,6 @@ update_all() {
 	source ~/.bashrc
 	update_pm
 	update_tools
-	update_config
 }
 
 pdl() {

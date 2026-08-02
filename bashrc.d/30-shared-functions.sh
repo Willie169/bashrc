@@ -1659,9 +1659,15 @@ update_vim_config() {
 	)
 }
 
-update_nvim_config() {
+update_nvim_config_full() {
 	(
 		bash ~/.config/nvim/full-update.sh
+	)
+}
+
+update_nvim_config() {
+	(
+		sh ~/.config/nvim/update.sh
 	)
 }
 
