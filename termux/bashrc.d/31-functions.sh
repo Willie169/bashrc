@@ -48,6 +48,7 @@ update_nvim_config() {
 update_tools() {
 	(
 		cd ~ || exit
+		ARCH=$(uname -m)
 		pip3 install pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy
 		if [ -f ~/.local/bin/yt-dlp ]; then
 			rm -f /.local/bin/yt-dlp
@@ -57,7 +58,6 @@ update_tools() {
 		fi
 		if [ -f ~/.local/bin/rclone ]; then
 			rm -f ~/.local/bin/rclone
-			ARCH=$(uname -m)
 			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
 			unzip rclone-android-all.zip
 			rm rclone-android-all.zip*
@@ -90,19 +90,30 @@ update_tools() {
 			mv rclone ~/.local/bin/
 		fi
 		if [ -f ~/.local/bin/superhtml ]; then
+			rm -f ~/.local/bin/superhtml
 			if [[ "$ARCH" == "x86_64" ]]; then
-				rm ~/.local/bin/superhtml
-				gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
-				xz -dc x86_64-linux.tar.xz | tar -xf - || true
-				rm x86_64-linux-musl.tar.xz*
-				mv superhtml ~/.local/bin/
-			elif [[ "$ARCH" == "aarch64" ]]; then
-				rm ~/.local/bin/superhtml
-				gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
-				xz -dc aarch64-linux.tar.xz | tar -xf - || true
-				rm aarch64-linux.tar.xz*
-				mv superhtml ~/.local/bin/
+				SUPERHTML="x86_64-linux-musl"
+			else
+				SUPERHTML="aarch64-linux"
 			fi
+			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml "$SUPERHTML".tar.xz
+			xz -d "$SUPERHTML".tar.xz
+			tar -xf "$SUPERHTML".tar.xz
+			rm "$SUPERHTML".tar*
+			mv superhtml ~/.local/bin/
+		fi
+		if [ -f ~/.local/bin/verible-verilog-format ]; then
+			rm ~/.local/bin/verible*
+			if [[ "$ARCH" == "x86_64" ]]; then
+				VERIBLE="verible-*-linux-static-x86_64"
+			elif [[ "$ARCH" == "aarch64" ]]; then
+				VERIBLE="verible-*-linux-static-arm64"
+			fi
+			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' chipsalliance/verible "$VERIBLE".tar.gz
+			# shellcheck disable=2086
+			tar -xzf $VERIBLE.tar.gz
+			mv verible*/bin/* ~/.local/bin/
+			rm -r verible*
 		fi
 	)
 }

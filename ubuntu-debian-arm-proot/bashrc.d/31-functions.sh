@@ -61,6 +61,10 @@ update_tools() {
 		tar -xJf aarch64-linux.tar.xz
 		rm aarch64-linux.tar.xz*
 		mv superhtml ~/.local/bin/
+		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' chipsalliance/verible verible-*-linux-static-arm64.tar.gz
+		tar -xzf verible-*-linux-static-arm64.tar.gz
+		mv verible*/bin/* ~/.local/bin/
+		rm -r verible*
 	)
 }
 
