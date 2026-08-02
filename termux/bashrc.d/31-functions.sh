@@ -51,13 +51,13 @@ update_tools() {
 		pip3 install pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy
 		if [ -f ~/.local/bin/yt-dlp ]; then
 			rm -f /.local/bin/yt-dlp
-			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+			gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 			chmod +x yt-dlp
 			mv yt-dlp ~/.local/bin/
 		fi
 		if [ -f ~/.local/bin/rclone ]; then
 			rm -f ~/.local/bin/rclone
-			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
+			gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
 			unzip rclone-android-all.zip
 			rm rclone-android-all.zip*
 			if [[ "$ARCH" == "x86_64" ]]; then

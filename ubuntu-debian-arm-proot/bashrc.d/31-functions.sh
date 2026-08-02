@@ -46,7 +46,7 @@ update_tools() {
 	(
 		cd ~ || exit
 		cargo install stylua
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 		chmod +x yt-dlp
 		mv yt-dlp ~/.local/bin/
 		rm -f /usr/local/bin/apktool || true
@@ -54,20 +54,20 @@ update_tools() {
 		chmod +x apktool
 		mv apktool /usr/local/bin/
 		rm -f /usr/local/bin/apktool_*.jar || true
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 		chmod +x apktool_*.jar
 		mv apktool_*.jar /usr/local/bin/
 		rm -r ~/jadx
 		mkdir jadx
 		cd jadx || exit
-		gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
+		gh_release -r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
 		unzip jadx*.zip
 		rm jadx*.zip
 		chmod +x bin/jadx
 		chmod +x bin/jadx-gui
 		cd ~ || exit
 		rm -f ~/.local/bin/rclone
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
 		unzip rclone-linux-arm64.zip
 		rm rclone-linux-arm64.zip*
 		mv rclone ~/.local/bin/

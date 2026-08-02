@@ -56,7 +56,7 @@ update_tools() {
 	(
 		cd ~ || exit
 		cargo install stylua
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 		chmod +x yt-dlp
 		mv yt-dlp ~/.local/bin/
 		sudo rm -f /usr/local/bin/apktool || true
@@ -64,43 +64,43 @@ update_tools() {
 		chmod +x apktool
 		sudo mv apktool /usr/local/bin/
 		sudo rm -f /usr/local/bin/apktool_*.jar || true
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 		chmod +x apktool_*.jar
 		sudo mv apktool_*.jar /usr/local/bin/
 		rm -r ~/jadx
 		mkdir jadx
 		cd jadx || exit
-		gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
+		gh_release -r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
 		unzip jadx*.zip
 		rm jadx*.zip
 		chmod +x bin/jadx
 		chmod +x bin/jadx-gui
 		cd ~ || exit
 		sudo rm -r /usr/local/java/ClipCascade-Server-JRE_21.jar
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade-Server-JRE_21.jar
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade-Server-JRE_21.jar
 		sudo mv ClipCascade-Server-JRE_21.jar /usr/local/java/
 		cp ~/ClipCascade/DATA ~/.ClipCascade.DATA || true
 		rm -r ~/ClipCascade
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade_Linux.tar.xz
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade_Linux.tar.xz
 		tar -xJf ClipCascade_Linux.tar.xz
 		rm ClipCascade_Linux.tar.xz
 		[ -f ~/.ClipCascade.DATA ] && mv ~/.ClipCascade.DATA ~/ClipCascade/DATA
 		rm -f ~/.local/bin/rclone
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-amd64.zip
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-amd64.zip
 		unzip rclone-linux-amd64.zip
 		rm rclone-linux-amd64.zip*
 		mv rclone ~/.local/bin/
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
 		sudo apt install ./rustdesk-*-x86_64.deb -y
 		rm rustdesk-*-x86_64.deb*
 		rm -f ~/.local/bin/adb
 		rm -f ~/.local/bin/scrcpy
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Genymobile/scrcpy 'scrcpy-linux-x86_64-*.tar.gz'
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Genymobile/scrcpy 'scrcpy-linux-x86_64-*.tar.gz'
 		tar -xzf scrcpy-linux-x86_64-*.tar.gz
 		mv scrcpy-linux-x86_64-*/adb ~/.local/bin/
 		mv scrcpy-linux-x86_64-*/scrcpy ~/.local/bin/
 		rm -r scrcpy-linux-x86_64-*
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
 		sudo apt install ./appimagelauncher_*-*.*_amd64.deb -y
 		rm appimagelauncher_*-*.*_amd64.deb*
 		update_config
@@ -111,7 +111,7 @@ update_tools() {
 update_pied() {
 	(
 		cd ~ || exit
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Elleo/pied com.mikeasoft.pied.flatpak
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Elleo/pied com.mikeasoft.pied.flatpak
 		sudo flatpak install com.mikeasoft.pied.flatpak -y || true
 		rm com.mikeasoft.pied.flatpak*
 	)

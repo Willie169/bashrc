@@ -5,5 +5,5 @@ shopt -s globstar
 dir="$(cd -- "$(dirname -- "$0")" && pwd)"
 
 for f in "$dir"/**/*; do
-    sed -i 's/gh_latest_r/gh_release -r/g; s/gh_latest/gh_release/g' "$f"
+	test -f "$f" && sed -i 's/gh_release -r/gh_release -r/g; s/gh_release/gh_release/g' "$f"
 done
