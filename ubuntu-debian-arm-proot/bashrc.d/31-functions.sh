@@ -2,7 +2,6 @@
 
 clean_disk() {
 	rm -rf ~/.cache/*
-	logrotate /etc/logrotate.conf
 	apt autoremove -y
 	apt clean
 	apt autoclean
@@ -43,7 +42,7 @@ update_tools() {
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 		chmod +x apktool_*.jar
 		mv apktool_*.jar /usr/local/bin/
-		rm -rf ~/jadx
+		rm -r ~/jadx
 		mkdir jadx
 		cd jadx || exit
 		gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'

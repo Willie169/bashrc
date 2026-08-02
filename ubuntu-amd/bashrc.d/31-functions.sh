@@ -52,7 +52,7 @@ update_tools() {
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 		chmod +x apktool_*.jar
 		sudo mv apktool_*.jar /usr/local/bin/
-		rm -rf ~/jadx
+		rm -r ~/jadx
 		mkdir jadx
 		cd jadx || exit
 		gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
@@ -61,11 +61,11 @@ update_tools() {
 		chmod +x bin/jadx
 		chmod +x bin/jadx-gui
 		cd ~ || exit
-		sudo rm -rf /usr/local/java/ClipCascade-Server-JRE_21.jar
+		sudo rm -r /usr/local/java/ClipCascade-Server-JRE_21.jar
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade-Server-JRE_21.jar
 		sudo mv ClipCascade-Server-JRE_21.jar /usr/local/java/
 		cp ~/ClipCascade/DATA ~/.ClipCascade.DATA || true
-		rm -rf ~/ClipCascade
+		rm -r ~/ClipCascade
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade_Linux.tar.xz
 		tar -xJf ClipCascade_Linux.tar.xz
 		rm ClipCascade_Linux.tar.xz
