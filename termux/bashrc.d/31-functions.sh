@@ -89,32 +89,6 @@ update_tools() {
 			fi
 			mv rclone ~/.local/bin/
 		fi
-		if [ -f ~/.local/bin/superhtml ]; then
-			rm -f ~/.local/bin/superhtml
-			if [[ "$ARCH" == "x86_64" ]]; then
-				SUPERHTML="x86_64-linux-musl"
-			else
-				SUPERHTML="aarch64-linux"
-			fi
-			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml "$SUPERHTML".tar.xz
-			xz -d "$SUPERHTML".tar.xz
-			tar -xf "$SUPERHTML".tar.xz
-			rm "$SUPERHTML".tar*
-			mv superhtml ~/.local/bin/
-		fi
-		if [ -f ~/.local/bin/verible-verilog-format ]; then
-			rm ~/.local/bin/verible*
-			if [[ "$ARCH" == "x86_64" ]]; then
-				VERIBLE="verible-*-linux-static-x86_64"
-			elif [[ "$ARCH" == "aarch64" ]]; then
-				VERIBLE="verible-*-linux-static-arm64"
-			fi
-			gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' chipsalliance/verible "$VERIBLE".tar.gz
-			# shellcheck disable=2086
-			tar -xzf $VERIBLE.tar.gz
-			mv verible*/bin/* ~/.local/bin/
-			rm -r verible*
-		fi
 	)
 }
 

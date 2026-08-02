@@ -75,15 +75,6 @@ update_tools() {
 		unzip rclone-linux-amd64.zip
 		rm rclone-linux-amd64.zip*
 		mv rclone ~/.local/bin/
-		rm -f ~/.local/bin/superhtml
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
-		tar -xJf x86_64-linux-musl.tar.xz
-		rm x86_64-linux-musl.tar.xz*
-		mv superhtml ~/.local/bin/
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' chipsalliance/verible verible-*-linux-static-x86_64.tar.gz
-		tar -xzf verible-*-linux-static-x86_64.tar.gz
-		mv verible*/bin/* ~/.local/bin/
-		rm -r verible*
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
 		sudo apt install ./rustdesk-*-x86_64.deb -y
 		rm rustdesk-*-x86_64.deb*

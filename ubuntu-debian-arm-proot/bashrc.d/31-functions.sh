@@ -56,15 +56,6 @@ update_tools() {
 		unzip rclone-linux-arm64.zip
 		rm rclone-linux-arm64.zip*
 		mv rclone ~/.local/bin/
-		rm -f ~/.local/bin/superhtml
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
-		tar -xJf aarch64-linux.tar.xz
-		rm aarch64-linux.tar.xz*
-		mv superhtml ~/.local/bin/
-		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' chipsalliance/verible verible-*-linux-static-arm64.tar.gz
-		tar -xzf verible-*-linux-static-arm64.tar.gz
-		mv verible*/bin/* ~/.local/bin/
-		rm -r verible*
 	)
 }
 
