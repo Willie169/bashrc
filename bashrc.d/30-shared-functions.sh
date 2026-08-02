@@ -1661,7 +1661,7 @@ update_vim_config() {
 
 update_nvim_config() {
 	(
-		sh ~/.config/nvim/update.sh
+		bash ~/.config/nvim/full-update.sh
 	)
 }
 

@@ -33,18 +33,6 @@ clean_disk() {
 	proot-distro clear-cache || true
 }
 
-update_vim_config() {
-	(
-		sh ~/.vim_runtime/update.sh
-	)
-}
-
-update_nvim_config() {
-	(
-		sh ~/.config/nvim/update.sh
-	)
-}
-
 update_tools() {
 	(
 		cd ~ || exit
