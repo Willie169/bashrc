@@ -45,7 +45,7 @@ update_config() {
 update_tools() {
 	(
 		cd ~ || exit
-        cargo install stylua --force
+		cargo install stylua --force
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 		chmod +x yt-dlp
 		mv yt-dlp ~/.local/bin/
@@ -71,8 +71,8 @@ update_tools() {
 		unzip rclone-linux-arm64.zip
 		rm rclone-linux-arm64.zip*
 		mv rclone ~/.local/bin/
-	    update_config
-        update_nvim_config_full
+		update_config
+		update_nvim_config_full
 	)
 }
 

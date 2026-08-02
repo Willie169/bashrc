@@ -55,7 +55,7 @@ update_config() {
 update_tools() {
 	(
 		cd ~ || exit
-        cargo install stylua --force
+		cargo install stylua --force
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 		chmod +x yt-dlp
 		mv yt-dlp ~/.local/bin/
@@ -103,8 +103,8 @@ update_tools() {
 		gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
 		sudo apt install ./appimagelauncher_*-*.*_amd64.deb -y
 		rm appimagelauncher_*-*.*_amd64.deb*
-	    update_config
-        update_nvim_config_full
+		update_config
+		update_nvim_config_full
 	)
 }
 

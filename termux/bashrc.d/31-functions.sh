@@ -88,9 +88,9 @@ update_tools() {
 			fi
 			mv rclone ~/.local/bin/
 		fi
-	    update_config
-        update_nvim_config_full
-    )
+		update_config
+		update_nvim_config_full
+	)
 }
 
 update_pm() {
