@@ -288,25 +288,54 @@ dl() {
 	return "$rc"
 }
 
-gh_latest() {
+gh_release() {
 	local dl_args=()
 	local out_args=()
 	local quiet=0
 	local verbose=0
+	local regex=0
+	local github=1
+	local codeberg=0
 	local repo=""
 	local file=""
 	local name=""
 	local tag=""
 	local index=""
+	local msg='Usage: gh_release [-h|--help] [-r|--regex] [-gh|--github] [-cb|--codeberg] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or repo URL> [asset pattern]
+If -r|--regex is used, all patterns are intepreted as regex, otherwise all patterns are intepreted as glob pattern.
+If repo is provided as URL, GitHub/Codeberg will be inferred from it.
+If both -g|--github and -c|--codeberg are not supplied and repo is provided as user/repo, GitHub will be assumed.
+Latest release is used if release is not specified.
+Example 0:
+gh_release cli/cli '"'"'gh_*_linux_amd64.deb'"'"'
+gh_release https://github.com/cli/cli/ '"'"'gh_*_linux_amd64.deb'"'"'
+gh_release -r cli/cli '"'"'^gh_.*_linux_amd64\.deb$'"'"'
+gh_release -r https://github.com/cli/cli/ '"'"'^gh_.*_linux_amd64\.deb$'"'"'
+gh_release cli/cli -i 4
+Example 1:
+gh_release github.com/cli/cli -n '"'"'*CLI 2.85.0*'"'"' '"'"'gh_*_linux_amd64.deb'"'"'
+gh_release -r github.com/cli/cli -n '"'"'.*CLI 2\.85\.0.*'"'"' '"'"'^gh_.*_linux_amd64\.deb$'"'"'
+Example 2:
+gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-x86_64.tar.gz'"'"''
 
 	while [ $# -gt 0 ]; do
 		case "$1" in
 		-h | --help)
-			echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]"
-			echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb"
-			echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb"
-			echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb"
-			echo "Example: gh_latest cli/cli -i 0"
+			echo "$msg"
+			shift
+			;;
+		-r | --regex)
+			regex=1
+			shift
+			;;
+		-gh | --github)
+			github=1
+			codeberg=0
+			shift
+			;;
+		-cb | --codeberg)
+			github=0
+			codeberg=1
 			shift
 			;;
 		-q | --quiet)
@@ -351,11 +380,7 @@ gh_latest() {
 			;;
 		-*)
 			echo "Unknown option: $1" >&2
-			echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-			echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb" >&2
-			echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-			echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-			echo "Example: gh_latest cli/cli -i 0" >&2
+			echo "$msg" >&2
 			return 1
 			;;
 		*)
@@ -373,60 +398,60 @@ gh_latest() {
 
 	repo="${repo#https://}"
 	repo="${repo#http://}"
-	repo="${repo#github.com/}"
 	repo="${repo%.git}"
 	repo="${repo%/}"
+	if [[ "$repo" == */*/* ]]; then
+		if [ "$repo" != "${repo#github.com/}" ]; then
+			github=1
+			codeberg=0
+			repo="${repo#github.com/}"
+		fi
+		if [ "$repo" != "${repo#codeberg.org/}" ]; then
+			github=0
+			codeberg=1
+			repo="${repo#codeberg.org/}"
+		fi
+	fi
+
+	[[ "$repo" != */* ]] && echo "Error: unsupported repo format or git host. Expect user/repo or URL" >&2
+
+	local api
+	[ "$github" -eq 1 ] && api='https://api.github.com/repos'
+	[ "$codeberg" -eq 1 ] && api='https://codeberg.org/api/v1/repos'
 
 	if [ -z "$repo" ]; then
-		echo "Error: no repo provided. Expected user/repo or URL" >&2
-		echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-		echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb" >&2
-		echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-		echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-		echo "Example: gh_latest cli/cli -i 0" >&2
+		echo "Error: no repo provided. Expect user/repo or URL" >&2
+		echo "$msg" >&2
 		return 1
 	fi
 
 	if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
-		echo "Error: invalid repo format. Expected user/repo or URL" >&2
-		echo "Usage: gh_latest [-h|--help] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-		echo "Example: gh_latest cli/cli gh_*_linux_amd64.deb" >&2
-		echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-		echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-		echo "Example: gh_latest cli/cli -i 0" >&2
+		echo "Error: invalid repo format. Expect user/repo or URL" >&2
+		echo "$msg" >&2
 		return 1
 	fi
 
-	[ "$quiet" -eq 0 ] && echo "Fetching latest release for $repo..." >&2
+	[ "$quiet" -eq 0 ] && echo "Fetching release for $repo..." >&2
 
 	local file_regex=""
-	if [ -n "$file" ]; then
-		file_regex=$(printf '%s' "$file" | sed '
-      s/\\/\\\\\\\\/g
-      s/\[/\\\\[/g
-      s/\]/\\\\]/g
-      s/\./[.]/g
-      s/\*/.*/g
-      s/\?/./g
-      s/(/\\\\(/g
-      s/)/\\\\)/g
-      s/|/\\\\|/g
-      s/+/\\\\+/g
-      s/\$/\\\\$/g
-      s/\^/\\\\^/g
-    ')
-		file_regex="^${file_regex}\$"
+	if [ "$regex" -eq 0 ]; then
+		if [ -n "$file" ]; then
+			file_regex=$(printf '%s' "$file" | sed 's/\\/\\\\\\\\/g; s/\[/\\\\[/g; s/\]/\\\\]/g; s/\./[.]/g; s/\*/.*/g; s/\?/./g; s/(/\\\\(/g; s/)/\\\\)/g; s/|/\\\\|/g; s/+/\\\\+/g; s/\$/\\\\$/g; s/\^/\\\\^/g')
+			file_regex="^${file_regex}\$"
+		fi
+	else
+		file_regex=$file
 	fi
 
 	local release_json
 	if [ -n "$name" ] || [ -n "$tag" ]; then
-		release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases" 2>/dev/null)
+		release_json=$(dl -O "${dl_args[@]}" "$api/$repo/releases" 2>/dev/null)
 		if [ -z "$release_json" ]; then
 			echo "Error: failed to fetch releases or repo not found" >&2
 			return 1
 		fi
 	else
-		release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
+		release_json=$(dl -O "${dl_args[@]}" "$api/$repo/releases/latest" 2>/dev/null)
 		if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
 			echo "Error: no releases found or repo not found" >&2
 			return 1
@@ -435,29 +460,14 @@ gh_latest() {
 
 	if [ -n "$name" ]; then
 		local name_regex
-		name_regex=$(printf '%s' "$name" | sed '
-      s/\\/\\\\\\\\/g
-      s/\[/\\\\[/g
-      s/\]/\\\\]/g
-      s/\./[.]/g
-      s/\*/.*/g
-      s/\?/./g
-      s/(/\\\\(/g
-      s/)/\\\\)/g
-      s/|/\\\\|/g
-      s/+/\\\\+/g
-      s/\$/\\\\$/g
-      s/\^/\\\\^/g
-    ')
-		name_regex="^${name_regex}\$"
+		if [ "$regex" -eq 0 ]; then
+			name_regex=$(printf '%s' "$name" | sed 's/\\/\\\\\\\\/g; s/\[/\\\\[/g; s/\]/\\\\]/g; s/\./[.]/g; s/\*/.*/g; s/\?/./g; s/(/\\\\(/g; s/)/\\\\)/g; s/|/\\\\|/g; s/+/\\\\+/g; s/\$/\\\\$/g; s/\^/\\\\^/g')
+			name_regex="^${name_regex}\$"
+		else
+			name_regex="$name"
+		fi
 
-		release_json=$(echo "$release_json" | jq -r --arg NAME "$name_regex" '
-      map(select(
-        .name != null and
-        (.name | test($NAME))
-      ))
-      | max_by(.published_at)
-    ')
+		release_json=$(echo "$release_json" | jq -r --arg NAME "$name_regex" 'map(select(.name != null and (.name | test($NAME)))) | max_by(.published_at)')
 
 		if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
 			echo "Error: no release found with name matching: $name" >&2
@@ -467,29 +477,14 @@ gh_latest() {
 
 	if [ -n "$tag" ]; then
 		local tag_regex
-		tag_regex=$(printf '%s' "$tag" | sed '
-      s/\\/\\\\\\\\/g
-      s/\[/\\\\[/g
-      s/\]/\\\\]/g
-      s/\./[.]/g
-      s/\*/.*/g
-      s/\?/./g
-      s/(/\\\\(/g
-      s/)/\\\\)/g
-      s/|/\\\\|/g
-      s/+/\\\\+/g
-      s/\$/\\\\$/g
-      s/\^/\\\\^/g
-    ')
-		tag_regex="^${tag_regex}\$"
+		if [ "$regex" -eq 0 ]; then
+			tag_regex=$(printf '%s' "$tag" | sed 's/\\/\\\\\\\\/g; s/\[/\\\\[/g; s/\]/\\\\]/g; s/\./[.]/g; s/\*/.*/g; s/\?/./g; s/(/\\\\(/g; s/)/\\\\)/g; s/|/\\\\|/g; s/+/\\\\+/g; s/\$/\\\\$/g; s/\^/\\\\^/g')
+			tag_regex="^${tag_regex}\$"
+		else
+			tag_regex="$tag"
+		fi
 
-		release_json=$(echo "$release_json" | jq -r --arg TAG "$tag_regex" '
-      map(select(
-        .tag_name != null and
-        (.tag_name | test($TAG))
-      ))
-      | max_by(.published_at)
-    ')
+		release_json=$(echo "$release_json" | jq -r --arg TAG "$tag_regex" 'map(select(.tag_name != null and (.tag_name | test($TAG)))) | max_by(.published_at)')
 
 		if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
 			echo "Error: no release found with tag name matching: $tag" >&2
@@ -498,246 +493,7 @@ gh_latest() {
 	fi
 
 	local urls
-	urls=$(echo "$release_json" | jq -r --arg FILE "$file_regex" --arg INDEX "$index" '
-    if .assets then
-      .assets
-      | map(select(
-          .name != null and
-          ($FILE == "" or (.name | test($FILE)))
-        ))
-      | if $INDEX != "" then
-          [.[($INDEX|tonumber)]?]
-        else
-          .
-        end
-      | .[]
-      | .browser_download_url
-    else
-      empty
-    end
-  ' || true)
-
-	if [ -z "$urls" ]; then
-		echo "Error: no matching assets found" >&2
-		return 1
-	fi
-
-	local count
-	count=$(echo "$urls" | grep -cve '^[[:space:]]*$')
-
-	if [ "$quiet" -eq 0 ]; then
-		# shellcheck disable=2155
-		local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
-		echo "Release: $release_name" >&2
-
-		if [ "$count" -gt 1 ]; then
-			echo "Found $count matching assets. Downloading all" >&2
-			if [ "$verbose" -eq 1 ]; then
-				echo "$urls" | nl -w2 -s': ' | sed 's/^/  /' >&2
-			fi
-		elif [ "$verbose" -eq 1 ]; then
-			echo "Found 1 matching asset:" >&2
-			# shellcheck disable=2001
-			echo "$urls" | sed 's/^/  /' >&2
-		fi
-	fi
-
-	local success=true
-	local downloaded=0
-	while IFS= read -r url; do
-		[ -z "$url" ] && continue
-
-		downloaded=$((downloaded + 1))
-		[ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
-
-		if ! dl "${dl_args[@]}" "${out_args[@]}" "$url"; then
-			echo "Error: failed to download $url" >&2
-			success=false
-		fi
-	done <<<"$urls"
-
-	if [ "$success" = false ]; then
-		return 1
-	elif [ "$quiet" -eq 0 ]; then
-		echo "Download completed successfully" >&2
-	fi
-}
-
-gh_latest_r() {
-	local dl_args=()
-	local out_args=()
-	local quiet=0
-	local verbose=0
-	local repo=""
-	local file=""
-	local name=""
-	local tag=""
-	local index=""
-
-	while [ $# -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: gh_latest_r [-h|--help] [-n|--name release_name_regex] [-t|--tag release_tag_name_regex] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]"
-			echo "Example: gh_latest_r cli/cli '^gh_.*_linux_amd64\.deb$'"
-			echo "Example: gh_latest_r https://github.com/cli/cli/ '^gh_.*_linux_amd64\.deb$'"
-			echo "Example: gh_latest_r github.com/cli/cli -n '.*CLI 2\.85\.0.*' '^gh_.*_linux_amd64\.deb$'"
-			echo "Example: gh_latest_r cli/cli -i 0"
-			shift
-			;;
-		-q | --quiet)
-			quiet=1
-			dl_args+=("$1")
-			shift
-			;;
-		-v | --verbose)
-			verbose=1
-			dl_args+=("$1")
-			shift
-			;;
-		-n | --name)
-			name="$2"
-			shift 2
-			;;
-		-t | --tag)
-			tag="$2"
-			shift 2
-			;;
-		-i | --index)
-			index="$2"
-			shift 2
-			;;
-		-a | --aria2 | -A | --no-aria2 | -c | --curl | -C | --no-curl | -w | --wget | -W | --no-wget | -w2 | --wget2 | -W2 | --no-wget2 | --no-fallback)
-			dl_args+=("$1")
-			shift
-			;;
-		--aria2_option | --curl_option | --wget_option | --wget2_option)
-			dl_args+=("$1")
-			dl_args+=("$2")
-			shift 2
-			;;
-		-O | --stdout)
-			out_args+=("$1")
-			shift
-			;;
-		-o | --output)
-			out_args+=("$1")
-			out_args+=("$2")
-			shift 2
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: gh_latest_r [-h|--help] [-n|--name release_name_regex] [-t|--tag release_tag_name_regex] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-			echo "Example: gh_latest_r cli/cli '^gh_.*_linux_amd64\.deb$'" >&2
-			echo "Example: gh_latest_r https://github.com/cli/cli/ '^gh_.*_linux_amd64\.deb$'" >&2
-			echo "Example: gh_latest_r github.com/cli/cli -n '.*CLI 2\.85\.0.*' '^gh_.*_linux_amd64\.deb$'" >&2
-			echo "Example: gh_latest_r cli/cli -i 0" >&2
-			return 1
-			;;
-		*)
-			if [ -z "$repo" ]; then
-				repo="$1"
-			else
-				file="$1"
-			fi
-			shift
-			;;
-		esac
-	done
-
-	[ "$quiet" -eq 1 ] && verbose=0
-
-	repo="${repo#https://}"
-	repo="${repo#http://}"
-	repo="${repo#github.com/}"
-	repo="${repo%.git}"
-	repo="${repo%/}"
-
-	if [ -z "$repo" ]; then
-		echo "Error: no repo provided. Expected user/repo or URL" >&2
-		echo "Usage: gh_latest_r [-h|--help] [-n|--name release_name_regex] [-t|--tag release_tag_name_regex] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-		echo "Example: gh_latest_r cli/cli '^gh_.*_linux_amd64\.deb$'" >&2
-		echo "Example: gh_latest_r https://github.com/cli/cli/ '^gh_.*_linux_amd64\.deb$'" >&2
-		echo "Example: gh_latest_r github.com/cli/cli -n '.*CLI 2\.85\.0.*' '^gh_.*_linux_amd64\.deb$'" >&2
-		echo "Example: gh_latest_r cli/cli -i 0" >&2
-		return 1
-	fi
-
-	if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
-		echo "Error: invalid repo format. Expected user/repo or URL" >&2
-		echo "Usage: gh_latest_r [-h|--help] [-n|--name release_name_regex] [-t|--tag release_tag_name_regex] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or URL> [asset pattern]" >&2
-		echo "Example: gh_latest_r cli/cli '^gh_.*_linux_amd64\.deb$'" >&2
-		echo "Example: gh_latest_r https://github.com/cli/cli/ '^gh_.*_linux_amd64\.deb$'" >&2
-		echo "Example: gh_latest_r github.com/cli/cli -n '.*CLI 2\.85\.0.*' '^gh_.*_linux_amd64\.deb$'" >&2
-		echo "Example: gh_latest_r cli/cli -i 0" >&2
-		return 1
-	fi
-
-	[ "$quiet" -eq 0 ] && echo "Fetching latest release for $repo..." >&2
-
-	local release_json
-	if [ -n "$name" ] || [ -n "$tag" ]; then
-		release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases" 2>/dev/null)
-		if [ -z "$release_json" ]; then
-			echo "Error: failed to fetch releases or repo not found" >&2
-			return 1
-		fi
-	else
-		release_json=$(dl -O "${dl_args[@]}" "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
-		if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
-			echo "Error: no releases found or repo not found" >&2
-			return 1
-		fi
-	fi
-
-	if [ -n "$name" ]; then
-		release_json=$(echo "$release_json" | jq -r --arg NAME "$name" '
-      map(select(
-        .name != null and
-        (.name | test($NAME))
-      ))
-      | max_by(.published_at)
-    ')
-
-		if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
-			echo "Error: no release found with name matching: $name" >&2
-			return 1
-		fi
-	fi
-
-	if [ -n "$tag" ]; then
-		release_json=$(echo "$release_json" | jq -r --arg TAG "$tag" '
-      map(select(
-        .tag_name != null and
-        (.tag_name | test($TAG))
-      ))
-      | max_by(.published_at)
-    ')
-
-		if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
-			echo "Error: no release found with tag name matching: $tag" >&2
-			return 1
-		fi
-	fi
-
-	local urls
-	urls=$(echo "$release_json" | jq -r --arg FILE "$file" --arg INDEX "$index" '
-    if .assets then
-      .assets
-      | map(select(
-          .name != null and
-          ($FILE == "" or (.name | test($FILE)))
-        ))
-      | if $INDEX != "" then
-          [.[($INDEX|tonumber)]?]
-        else
-          .
-        end
-      | .[]
-      | .browser_download_url
-    else
-      empty
-    end
-  ' || true)
+	urls=$(echo "$release_json" | jq -r --arg FILE "$file_regex" --arg INDEX "$index" 'if .assets then .assets | map(select(.name != null and ($FILE == "" or (.name | test($FILE))))) | if $INDEX != "" then [.[($INDEX|tonumber)]?] else . end | .[] | .browser_download_url else empty end' || true)
 
 	if [ -z "$urls" ]; then
 		echo "Error: no matching assets found" >&2
