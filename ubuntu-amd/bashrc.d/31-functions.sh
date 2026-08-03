@@ -145,12 +145,12 @@ _update_pm() {
 update_pm() {
 	sudo -v
 	while true; do
-		sudo -nv
+		sudo -v
 		sleep 29
 	done &
 	SUDOPIDFIRST=$!
 	while true; do
-		sudo -nv
+		sudo -v
 		sleep 31
 	done &
 	SUDOPIDSECOND=$!
@@ -162,12 +162,12 @@ update_pm() {
 update_all() {
 	sudo -v
 	while true; do
-		sudo -nv
+		sudo -v
 		sleep 29
 	done &
 	SUDOPIDFIRST=$!
 	while true; do
-		sudo -nv
+		sudo -v
 		sleep 31
 	done &
 	SUDOPIDSECOND=$!
