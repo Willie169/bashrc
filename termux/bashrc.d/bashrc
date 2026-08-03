@@ -35,6 +35,5 @@ if [ ! -f ~/.bashrc.pid/virgl_test_server.pid ] || ! kill -0 "$(cat ~/.bashrc.pi
 	)
 fi
 
-[ -f "$HOME/.bashrc.proot" ] && . "$HOME/.bashrc.proot"
-
-[ -f "$HOME/.bashrc.overrides" ] && . "$HOME/.bashrc.overrides"
+[ -f "$HOME/.bashrc.proot" ] && . "$HOME/.bashrc.proot" || true
+[ -f "$HOME/.bashrc.overrides" ] && . "$HOME/.bashrc.overrides" || true
