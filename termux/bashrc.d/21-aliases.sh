@@ -1,6 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-alias ping='/data/data/com.termux/files/usr/bin/ping'
 # shellcheck disable=2142
 alias dfur='df $(dirname "$PREFIX") | tail -n1 | awk '"'"'{print $3}'"'"
 alias ccp='termux-clipboard-set'
