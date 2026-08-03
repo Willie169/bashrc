@@ -117,7 +117,7 @@ update_pied() {
 	)
 }
 
-_update_pm() {
+update_pm() {
 	sudo apt update
 	sudo apt upgrade -y
 	sudo apt autoremove -y
@@ -142,44 +142,14 @@ _update_pm() {
 	npm update -g
 }
 
-update_pm() {
-	sudo -v
-	while true; do
-		sudo -v
-		sleep 29
-	done &
-	SUDOPIDFIRST=$!
-	while true; do
-		sudo -v
-		sleep 31
-	done &
-	SUDOPIDSECOND=$!
-	_update_pm
-	kill "$SUDOPIDFIRST"
-	kill "$SUDOPIDSECOND"
-}
-
 update_all() {
-	sudo -v
-	while true; do
-		sudo -v
-		sleep 29
-	done &
-	SUDOPIDFIRST=$!
-	while true; do
-		sudo -v
-		sleep 31
-	done &
-	SUDOPIDSECOND=$!
 	update_bashrc
 	source ~/.bashrc
-	_update_pm
+	update_pm
 	update_texlive
 	update_latex
 	update_tools
 	update_pied
-	kill "$SUDOPIDFIRST"
-	kill "$SUDOPIDSECOND"
 }
 
 bind_waydroid() {
