@@ -3,6 +3,7 @@
 alias vokoscreenNG='flatpak run com.github.vkohaupt.vokoscreenNG'
 alias bottles='flatpak run com.usebottles.bottles'
 alias bottles-cli='flatpak run --command=bottles-cli com.usebottles.bottles'
+alias steam='flatpak run com.valvesoftware.Steam'
 alias handbrake='flatpak run fr.handbrake.ghb'
 alias handbrake-cli='flatpak run --command=HandBrakeCLI fr.handbrake.ghb'
 alias enteauth='flatpak run io.ente.auth'
