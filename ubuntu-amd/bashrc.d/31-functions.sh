@@ -76,15 +76,6 @@ update_tools() {
 		chmod +x bin/jadx
 		chmod +x bin/jadx-gui
 		cd ~ || exit
-		sudo rm -r /usr/local/java/ClipCascade-Server-JRE_21.jar
-		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade-Server-JRE_21.jar
-		sudo mv ClipCascade-Server-JRE_21.jar /usr/local/java/
-		cp ~/ClipCascade/DATA ~/.ClipCascade.DATA || true
-		rm -r ~/ClipCascade
-		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Sathvik-Rao/ClipCascade ClipCascade_Linux.tar.xz
-		tar -xJf ClipCascade_Linux.tar.xz
-		rm ClipCascade_Linux.tar.xz
-		[ -f ~/.ClipCascade.DATA ] && mv ~/.ClipCascade.DATA ~/ClipCascade/DATA
 		rm -f ~/.local/bin/rclone
 		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-amd64.zip
 		unzip rclone-linux-amd64.zip
