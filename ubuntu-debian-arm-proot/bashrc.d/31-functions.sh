@@ -82,7 +82,7 @@ update_pm() {
 	apt autoremove -y
 	apt clean
 	apt autoclean
-    locale-gen en_US.UTF-8
+	locale-gen en_US.UTF-8
 	brew update
 	echo y | brew upgrade
 	echo y | brew autoremove
