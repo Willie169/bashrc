@@ -47,6 +47,9 @@ dl() {
 	local curl_option=""
 	local wget_option=""
 	local wget2_option=""
+	# shellcheck disable=2016
+	local msg='Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>
+Global flags: $DLFLAGS'
 
 	# shellcheck disable=2086
 	set -- ${DLFLAGS:-} "$@"
@@ -54,9 +57,7 @@ dl() {
 	while [ $# -gt 0 ]; do
 		case "$1" in
 		-h | --help)
-			echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>"
-			# shellcheck disable=2016
-			echo 'Global flags: $DLFLAGS'
+			echo "$msg"
 			return 0
 			;;
 		-o | --output)
@@ -145,9 +146,7 @@ dl() {
 			;;
 		-*)
 			echo "Unknown option: $1" >&2
-			echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>" >&2
-			# shellcheck disable=2016
-			echo 'Global flags: $DLFLAGS' >&2
+			echo "$msg" >&2
 			return 2
 			;;
 		*)
@@ -157,13 +156,9 @@ dl() {
 		esac
 	done
 
-	[ "$quiet" -eq 1 ] && verbose=0
-
 	if [ -z "$url" ]; then
 		echo "Error: no URL provided" >&2
-		echo "Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>" >&2
-		# shellcheck disable=2016
-		echo 'Global flags: $DLFLAGS' >&2
+		echo "$msg" >&2
 		return 2
 	fi
 
@@ -390,8 +385,6 @@ gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-
 		esac
 	done
 
-	[ "$quiet" -eq 1 ] && verbose=0
-
 	repo="${repo#https://}"
 	repo="${repo#http://}"
 	repo="${repo%.git}"
@@ -441,13 +434,13 @@ gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-
 
 	local release_json
 	if [ -n "$name" ] || [ -n "$tag" ]; then
-		release_json=$(dl -q -O "${dl_args[@]}" "$api/$repo/releases" 2>/dev/null)
+		release_json=$(dl -O "${dl_args[@]}" "$api/$repo/releases" 2>/dev/null)
 		if [ -z "$release_json" ]; then
 			echo "Error: failed to fetch releases or repo not found" >&2
 			return 1
 		fi
 	else
-		release_json=$(dl -q -O "${dl_args[@]}" "$api/$repo/releases/latest" 2>/dev/null)
+		release_json=$(dl -O "${dl_args[@]}" "$api/$repo/releases/latest" 2>/dev/null)
 		if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
 			echo "Error: no releases found or repo not found" >&2
 			return 1
@@ -524,7 +517,7 @@ gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-
 		downloaded=$((downloaded + 1))
 		[ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
 
-		if ! dl -q "${dl_args[@]}" "${out_args[@]}" "$url"; then
+		if ! dl "${dl_args[@]}" "${out_args[@]}" "$url"; then
 			echo "Error: failed to download $url" >&2
 			success=false
 		fi
