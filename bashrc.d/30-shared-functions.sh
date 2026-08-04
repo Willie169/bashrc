@@ -251,7 +251,6 @@ dl() {
 
 	if [ "$use_aria2" -eq 1 ]; then
 		if try_aria2; then
-			[ "$to_stdout" -eq 1 ] || [ "$verbose" -eq 1 ] && echo "aria2 used"
 			return 0
 		fi
 		rc=$?
@@ -260,7 +259,6 @@ dl() {
 
 	if [ "$use_curl" -eq 1 ]; then
 		if try_curl; then
-			[ "$to_stdout" -eq 1 ] || [ "$verbose" -eq 1 ] && echo "curl used"
 			return 0
 		fi
 		rc=$?
@@ -269,7 +267,6 @@ dl() {
 
 	if [ "$use_wget" -eq 1 ]; then
 		if try_wget; then
-			[ "$to_stdout" -eq 1 ] || [ "$verbose" -eq 1 ] && echo "wget used"
 			return 0
 		fi
 		rc=$?
@@ -278,7 +275,6 @@ dl() {
 
 	if [ "$use_wget2" -eq 1 ]; then
 		if try_wget2; then
-			[ "$to_stdout" -eq 1 ] || [ "$verbose" -eq 1 ] && echo "wget2 used"
 			return 0
 		fi
 		rc=$?
@@ -445,13 +441,13 @@ gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-
 
 	local release_json
 	if [ -n "$name" ] || [ -n "$tag" ]; then
-		release_json=$(dl -O "${dl_args[@]}" "$api/$repo/releases" 2>/dev/null)
+		release_json=$(dl -q -O "${dl_args[@]}" "$api/$repo/releases" 2>/dev/null)
 		if [ -z "$release_json" ]; then
 			echo "Error: failed to fetch releases or repo not found" >&2
 			return 1
 		fi
 	else
-		release_json=$(dl -O "${dl_args[@]}" "$api/$repo/releases/latest" 2>/dev/null)
+		release_json=$(dl -q -O "${dl_args[@]}" "$api/$repo/releases/latest" 2>/dev/null)
 		if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
 			echo "Error: no releases found or repo not found" >&2
 			return 1
@@ -528,7 +524,7 @@ gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-
 		downloaded=$((downloaded + 1))
 		[ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
 
-		if ! dl "${dl_args[@]}" "${out_args[@]}" "$url"; then
+		if ! dl -q "${dl_args[@]}" "${out_args[@]}" "$url"; then
 			echo "Error: failed to download $url" >&2
 			success=false
 		fi
@@ -561,12 +557,10 @@ gh_file() {
 			;;
 		-q | --quiet)
 			quiet=1
-			dl_args+=("$1")
 			shift
 			;;
 		-v | --verbose)
 			verbose=1
-			dl_args+=("$1")
 			shift
 			;;
 		-O | --stdout | -a | --aria2 | -A | --no-aria2 | -c | --curl | -C | --no-curl | -w | --wget | -W | --no-wget | -w2 | --wget2 | -W2 | --no-wget2 | --no-fallback)
