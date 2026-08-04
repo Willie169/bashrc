@@ -15,8 +15,6 @@ clean_disk() {
 	sudo apt clean
 	sudo apt autoclean
 	flatpak uninstall --unused -y || true
-	brew update
-	echo y | brew upgrade
 	echo y | brew autoremove
 	brew cleanup
 }
