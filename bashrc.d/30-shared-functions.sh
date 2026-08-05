@@ -1377,23 +1377,63 @@ dicepass() {
 }
 
 ccf() {
-	perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$1"
+	if [ $# -ne 0 ]; then
+		for f in "$@"; do
+			perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$f"
+		done
+	else
+		perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- *
+	fi
 }
 
 clt() {
-	rm -- *.aux *.log *.nav *.out *.snm *.toc || true
+	rm -f -- *.aux *.log *.nav *.out *.snm *.toc
+}
+
+latexci() {
+	if [ $# -eq 0 ]; then
+		echo 'latexci: At least one argument is required.' >&2
+	else
+		cmd="$1"
+		shift
+	fi
+	cwd="$(pwd)"
+	if [ $# -gt 1 ]; then
+		files=("$@")
+	else
+		mapfile -d '' -t files < <(
+			find "$cwd" -type f -name '*.tex' -print0
+		)
+	fi
+	if ((${#files[@]} == 0)); then
+		echo "latexci: No .tex file is found." >&2
+		return 0
+	fi
+	log="latexci_${cmd}_log.txt"
+	(
+		for f in "${files[@]}"; do
+			cd "$(dirname "$f")" || echo "$f: can't cd $(dirname "$f")" >>"$cwd/$log" && contunue
+			file="$(basename "$f")"
+			ccf "$file"
+			if "$cmd" -interaction=nonstopmode "$file" && "$cmd" -interaction=nonstopmode "$file"; then
+				clt
+			else
+				echo "$f: $cmd failed" >>"$cwd/$log"
+			fi
+		done
+	)
+	if [ -f "$cwd/$log" ]; then
+		cat "$cwd/$log" >&2
+		echo "Failures are logged to $cwd/$log" >&2
+	fi
 }
 
 xel() {
-	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
-	ccf "$1"
-	xelatex "$1" && xelatex "$1"
+	latexci xelatex "$@"
 }
 
 lul() {
-	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
-	ccf "$1"
-	lualatex "$1" && lualatex "$1"
+	latexci lualatex "$@"
 }
 
 update_vim_config() {
