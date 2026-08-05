@@ -806,7 +806,7 @@ gtr() {
 	git tag -a "v$version" -m "Version $version release"
 	git push origin "v$version"
 
-	repo=$(git remote -v | grep origin | grep push | sed 's/^origin[ \t]*git@github\.com://' | sed -E 's/\.git[ \t]*\(push)//')
+	repo=$(git remote -v | grep origin | grep push | sed -E 's/^origin[ \t]*git@github\.com://; s/\.git[ \t]*\(push\)//')
 
 	if [ -n "$notes" ]; then
 		gh release create "v$version" --title "Version $version release" --notes "$notes" --repo "$repo" "${files[@]}"
