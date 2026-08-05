@@ -1421,8 +1421,7 @@ latexci() {
 			fi
 			file="$(basename "$f")"
 			clean_file "$file"
-			"$cmd" -interaction=nonstopmode -halt-on-error "$file"
-			if "$cmd" -interaction=nonstopmode -halt-on-error "$file"; then
+			if "$cmd" -interaction=nonstopmode -halt-on-error "$file" && "$cmd" -interaction=nonstopmode -halt-on-error "$file"; then
 				clean_tex
 			else
 				echo "$f: $cmd failed" >>"$cwd/$log"
