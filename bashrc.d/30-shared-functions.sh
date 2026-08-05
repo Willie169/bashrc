@@ -1393,12 +1393,13 @@ clt() {
 latexci() {
 	if [ $# -eq 0 ]; then
 		echo 'latexci: At least one argument is required.' >&2
+		return 1
 	else
 		cmd="$1"
 		shift
 	fi
 	cwd="$(pwd)"
-	if [ $# -gt 1 ]; then
+	if [ $# -ne 0 ]; then
 		files=("$@")
 	else
 		mapfile -d '' -t files < <(
@@ -1412,13 +1413,15 @@ latexci() {
 	log="latexci_${cmd}_log.txt"
 	(
 		for f in "${files[@]}"; do
-			if ! cd "$(dirname "$f")"; then
-				echo "$f: can't cd $(dirname "$f")" >>"$cwd/$log"
+			dir="$(dirname "$f")"
+			if ! cd "$dir"; then
+				echo "$f: can't cd $dir" >>"$cwd/$log"
 				continue
 			fi
 			file="$(basename "$f")"
 			ccf "$file"
-			if "$cmd" -interaction=nonstopmode "$file" && "$cmd" -interaction=nonstopmode "$file"; then
+			"$cmd" -interaction=nonstopmode "$file"
+			if "$cmd" -interaction=nonstopmode "$file"; then
 				clt
 			else
 				echo "$f: $cmd failed" >>"$cwd/$log"
