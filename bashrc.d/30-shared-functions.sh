@@ -1420,8 +1420,8 @@ latexci() {
 			fi
 			file="$(basename "$f")"
 			ccf "$file"
-			"$cmd" -interaction=nonstopmode "$file"
-			if "$cmd" -interaction=nonstopmode "$file"; then
+			"$cmd" -interaction=nonstopmode -halt-on-error "$file"
+			if "$cmd" -interaction=nonstopmode -halt-on-error "$file"; then
 				clt
 			else
 				echo "$f: $cmd failed" >>"$cwd/$log"
@@ -1434,11 +1434,11 @@ latexci() {
 	fi
 }
 
-xel() {
+xelatexci() {
 	latexci xelatex "$@"
 }
 
-lul() {
+lualatexci() {
 	latexci lualatex "$@"
 }
 
