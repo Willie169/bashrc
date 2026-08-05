@@ -223,7 +223,8 @@ pdl() {
 		"/data/data/com.termux/files/home/shared	/root/shared"
 	)
 	for item in "${bind[@]}"; do
-		set -- "$item"
+		# shellcheck disable=2086
+		set -- $item
 		first=$1
 		second=$2
 		[[ -e "$first" ]] || continue
@@ -350,7 +351,8 @@ pdr() {
 		"/data/data/com.termux/files/home/shared	/root/shared"
 	)
 	for item in "${bind[@]}"; do
-		set -- "$item"
+		# shellcheck disable=2086
+		set -- $item
 		first=$1
 		second=$2
 		[[ -e "$first" ]] || continue
