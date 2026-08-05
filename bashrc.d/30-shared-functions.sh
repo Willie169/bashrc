@@ -1412,7 +1412,10 @@ latexci() {
 	log="latexci_${cmd}_log.txt"
 	(
 		for f in "${files[@]}"; do
-			cd "$(dirname "$f")" || echo "$f: can't cd $(dirname "$f")" >>"$cwd/$log" && contunue
+			if ! cd "$(dirname "$f")"; then
+				echo "$f: can't cd $(dirname "$f")" >>"$cwd/$log"
+				continue
+			fi
 			file="$(basename "$f")"
 			ccf "$file"
 			if "$cmd" -interaction=nonstopmode "$file" && "$cmd" -interaction=nonstopmode "$file"; then
