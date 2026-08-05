@@ -1430,6 +1430,7 @@ latexci() {
 		done
 	)
 	if [ -f "$cwd/$log" ]; then
+		echo "$cwd" >>"$cwd/$log"
 		date -uIs >>"$cwd/$log"
 		cat "$cwd/$log" >&2
 		echo "Failures are logged to $cwd/${log}." >&2
