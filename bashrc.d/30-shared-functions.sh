@@ -1384,13 +1384,13 @@ clt() {
 	rm -- *.aux *.log *.nav *.out *.snm *.toc || true
 }
 
-xes() {
+xel() {
 	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
 	ccf "$1"
 	xelatex "$1" && xelatex "$1"
 }
 
-lus() {
+lul() {
 	set -- "${1:-"$(find -- *.tex 2>/dev/null | head -n 1)"}"
 	ccf "$1"
 	lualatex "$1" && lualatex "$1"
