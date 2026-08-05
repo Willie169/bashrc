@@ -1411,7 +1411,7 @@ latexci() {
 		echo "latexci: No .tex file is found." >&2
 		return 0
 	fi
-	log="latexci_${cmd}_log.txt"
+	log="latexci_${cmd}_$(date +%s)_log.txt"
 	(
 		for f in "${files[@]}"; do
 			dir="$(dirname "$f")"
