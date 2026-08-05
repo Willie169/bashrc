@@ -1376,17 +1376,18 @@ dicepass() {
 	((${#passphrase} > 0)) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
 }
 
-ccf() {
+clean_file() {
 	if [ $# -ne 0 ]; then
-		for f in "$@"; do
-			perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$f"
-		done
+		files=("$@")
 	else
-		perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- *
+		files=(*)
 	fi
+	for f in "${files[@]}"; do
+		test -f "$f" && perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$f"
+	done
 }
 
-clt() {
+clean_tex() {
 	rm -f -- *.aux *.log *.nav *.out *.snm *.toc
 }
 
@@ -1419,10 +1420,10 @@ latexci() {
 				continue
 			fi
 			file="$(basename "$f")"
-			ccf "$file"
+			clean_file "$file"
 			"$cmd" -interaction=nonstopmode -halt-on-error "$file"
 			if "$cmd" -interaction=nonstopmode -halt-on-error "$file"; then
-				clt
+				clean_tex
 			else
 				echo "$f: $cmd failed" >>"$cwd/$log"
 			fi
@@ -1491,4 +1492,29 @@ lizzieyzy() {
 	(
 		cd "$HOME"/.local/share/lizzieyzy && java -jar lizzie-yzy.jar "$@"
 	)
+}
+
+expdisp() {
+	export DISPLAY="${1:-:0}"
+}
+
+undisp() {
+	unset DISPLAY
+}
+
+xdgset() {
+	export XDG_RUNTIME_DIR="$TMPDIR/runtime-root"
+	mkdir -p "$XDG_RUNTIME_DIR"
+	chmod 700 "$XDG_RUNTIME_DIR"
+	if [ $# -ne 0 ]; then
+		export DISPLAY="$1"
+	fi
+}
+
+xclean() {
+	for d in "$@"; do
+		rm -f "$TMPDIR/.X${d}-lock" || true
+		rm -f "$TMPDIR/.X11-unix/.X${d}" || true
+		rm -f "$TMPDIR/.X11-unix/X${d}" || true
+	done
 }
