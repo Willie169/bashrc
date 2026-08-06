@@ -1519,3 +1519,9 @@ xclean() {
 		rm -f "$TMPDIR/.X11-unix/X${d}" || true
 	done
 }
+
+cpsort() {
+	shopt -s expand_aliases
+	ccp -- "$(cpt | sort | uniq)"
+	shopt -u expand_aliases
+}
