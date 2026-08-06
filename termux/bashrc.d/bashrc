@@ -17,6 +17,8 @@ fi
 
 [ -f "${HOME}"/.config/broot/launcher/bash/br ] && source "${HOME}"/.config/broot/launcher/bash/br
 
+command -v luarocks >/dev/null && . <(luarocks completion bash)
+
 mkdir -p ~/.bashrc.pid
 
 if [ ! -f ~/.bashrc.pid/pulseaudio.pid ] || ! kill -0 "$(cat ~/.bashrc.pid/pulseaudio.pid)" 2>/dev/null; then
