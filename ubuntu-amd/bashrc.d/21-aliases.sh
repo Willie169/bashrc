@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 alias dfur='df --output=used / | tail -n1'
+alias dfhur='df -h --output=used / | tail -n1'
 alias typetype-up='(cd ~/typetype-stack && docker compose -f docker-compose.yml --env-file .env up)'
 alias typetype-stop='(cd ~/typetype-stack && docker compose -f docker-compose.yml stop)'
 alias typetype-down='(cd ~/typetype-stack && docker compose -f docker-compose.yml down)'
@@ -15,6 +16,4 @@ alias litellm-stop='(cd ~/.litellm && docker compose stop)'
 alias litellm-down='(cd ~/.litellm && docker compose down)'
 alias binance='/opt/Binance/binance --no-sandbox'
 alias onlyoffice='desktopeditors'
-alias ccp='wl-copy'
-alias cpt='wl-paste'
 alias dph='dolphin'

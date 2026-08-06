@@ -835,7 +835,7 @@ git_upstream_pr() {
 	git branch -D pr-"$1"
 }
 
-opv() {
+__pv() {
 	# shellcheck disable=2015
 	command -v pv >/dev/null 2>&1 && pv || cat
 }
@@ -869,9 +869,9 @@ bzip2_single() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		bzip2 -9 |
-		opv \
+		__pv \
 			>"$2.tar.bz2"
 }
 
@@ -904,9 +904,9 @@ gzip_single() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		gzip -9 |
-		opv \
+		__pv \
 			>"$2.tar.gz"
 }
 
@@ -939,9 +939,9 @@ xz_single() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		xz -9 |
-		opv \
+		__pv \
 			>"$2.tar.xz"
 }
 
@@ -1062,9 +1062,9 @@ bzip2_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		bzip2 -9 |
-		opv |
+		__pv |
 		split -b "$bytes" -d -a 3 - "$2.tar.bz2.part."
 }
 
@@ -1125,9 +1125,9 @@ gzip_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		gzip -9 |
-		opv |
+		__pv |
 		split -b "$bytes" -d -a 3 - "$2.tar.gz.part."
 }
 
@@ -1188,9 +1188,9 @@ xz_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		xz -9 |
-		opv |
+		__pv |
 		split -b "$bytes" -d -a 3 - "$2.tar.xz.part."
 }
 
@@ -1251,7 +1251,7 @@ tar_split() {
 
 	set -o pipefail
 	tar -cf - "$1" |
-		opv |
+		__pv |
 		split -b "$bytes" -d -a 3 - "$2.tar.part."
 }
 
@@ -1520,8 +1520,40 @@ xclean() {
 	done
 }
 
-cpsort() {
-	shopt -s expand_aliases
-	ccp -- "$(cpt | sort | uniq)"
-	shopt -u expand_aliases
+clean_newline_file() {
+	for f in "$@"; do
+		sed -Ez -i 's/\r\n/\n/g; s/\n+$/\n/' "$f"
+	done
+}
+
+clean_newline() {
+	sed -Ez 's/\r\n/\n/g; s/\n+$/\n/'
+}
+
+ccp() {
+	if command -v termux-clipboard-set >/dev/null 2>&1; then
+		termux-clipboard-set
+	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+		wl-copy
+	else
+		xclip -selection clipboard
+	fi
+}
+
+cpt() {
+	if command -v termux-clipboard-get >/dev/null 2>&1; then
+		termux-clipboard-get
+	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+		wl-paste
+	else
+		xclip -selection clipboard -o
+	fi
+}
+
+csort() {
+	ccp -- "$(cpt | sort | clean_newline)"
+}
+
+csortu() {
+	ccp -- "$(cpt | sort | uniq | clean_newline)"
 }
