@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-alias dfur='df --output=used / | tail -n1'
-alias dfhur='df -h --output=used / | tail -n1'
 alias typetype-up='(cd ~/typetype-stack && docker compose -f docker-compose.yml --env-file .env up)'
 alias typetype-stop='(cd ~/typetype-stack && docker compose -f docker-compose.yml stop)'
 alias typetype-down='(cd ~/typetype-stack && docker compose -f docker-compose.yml down)'

@@ -1557,3 +1557,19 @@ csort() {
 csortu() {
 	ccp -- "$(cpt | sort | uniq | clean_newline)"
 }
+
+dfur() {
+	if [ "${IS_TERMUX:-}" = '1' ]; then
+		df '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
+	else
+		df --output=used / | tail -n1
+	fi
+}
+
+dfhur() {
+	if [ "${IS_TERMUX:-}" = '1' ]; then
+		df -h '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
+	else
+		df -h --output=used / | tail -n1
+	fi
+}
