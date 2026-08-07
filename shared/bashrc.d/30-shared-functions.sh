@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-function y() {
-	command -v yazi >/dev/null 2>&1 || return 0
-	# shellcheck disable=2155
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd <"$tmp"
-	# shellcheck disable=2164
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
 __git_repo_reminder() {
 	command -v git >/dev/null 2>&1 || return 0
 	GRR=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -32,10 +21,10 @@ __git_repo_reminder() {
 PROMPT_COMMAND="__git_repo_reminder${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 
 dl() {
-	local out=""
+	local out
 	local quiet=0
 	local verbose=0
-	local url=""
+	local url
 	local to_stdout=0
 	local no_fallback=0
 	local use_aria2=1
@@ -43,10 +32,10 @@ dl() {
 	local use_wget=1
 	local use_wget2=1
 	local tmp_file
-	local aria2_option=""
-	local curl_option=""
-	local wget_option=""
-	local wget2_option=""
+	local aria2_option
+	local curl_option
+	local wget_option
+	local wget2_option
 	# shellcheck disable=2016
 	local msg='Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>
 Global flags: $DLFLAGS'
@@ -287,32 +276,37 @@ gh_release() {
 	local regex=0
 	local github=1
 	local codeberg=0
-	local repo=""
-	local file=""
-	local name=""
-	local tag=""
-	local index=""
-	local msg='Usage: gh_release [-h|--help] [-r|--regex] [-gh|--github] [-cb|--codeberg] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or repo URL> [asset pattern]
-If -r|--regex is used, all patterns are intepreted as regex, otherwise all patterns are intepreted as glob pattern.
+	local repo
+	local file
+	local name
+	local tag
+	local index
+	local msg='Usage: gh_release [-h|--help] [-g|--glob] [-r|--regex] [-gh|--github] [-cb|--codeberg] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or repo URL> [asset pattern]
+If both -g|--glob and -r|--regex are not supplied, glob will be used.
 If repo is provided as URL, GitHub/Codeberg will be inferred from it.
-If both -g|--github and -c|--codeberg are not supplied and repo is provided as user/repo, GitHub will be assumed.
-Latest release is used if release is not specified.
+If both -gh|--github and -cb|--codeberg are not supplied and repo is provided as user/repo, GitHub will be used.
+If release is not specified, latest release is used.
 Example 0:
 gh_release cli/cli '"'"'gh_*_linux_amd64.deb'"'"'
 gh_release https://github.com/cli/cli/ '"'"'gh_*_linux_amd64.deb'"'"'
 gh_release -r cli/cli '"'"'^gh_.*_linux_amd64\.deb$'"'"'
-gh_release -r https://github.com/cli/cli/ '"'"'^gh_.*_linux_amd64\.deb$'"'"'
-gh_release cli/cli -i 4
+gh_release -r github.com/cli/cli/ '"'"'^gh_.*_linux_amd64\.deb$'"'"'
 Example 1:
 gh_release github.com/cli/cli -n '"'"'*CLI 2.85.0*'"'"' '"'"'gh_*_linux_amd64.deb'"'"'
+gh_release github.com/cli/cli -n '"'"'*CLI 2.85.0*'"'"' -i 4
 gh_release -r github.com/cli/cli -n '"'"'.*CLI 2\.85\.0.*'"'"' '"'"'^gh_.*_linux_amd64\.deb$'"'"'
 Example 2:
-gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-x86_64.tar.gz'"'"''
+gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-x86_64.tar.gz'"'"'
+gh_release codeberg.org/Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-x86_64.tar.gz'"'"''
 
 	while [ $# -gt 0 ]; do
 		case "$1" in
 		-h | --help)
 			echo "$msg"
+			shift
+			;;
+		-g | --glob)
+			regex=0
 			shift
 			;;
 		-r | --regex)
@@ -422,7 +416,7 @@ gh_release --codeberg Codeberg/pages-server '"'"'codeberg-pages-server-*-debian-
 
 	[ "$quiet" -eq 0 ] && echo "Fetching release for $repo..." >&2
 
-	local file_regex=""
+	local file_regex
 	if [ "$regex" -eq 0 ]; then
 		if [ -n "$file" ]; then
 			file_regex=$(printf '%s' "$file" | sed 's/\\/\\\\\\\\/g; s/\[/\\\\[/g; s/\]/\\\\]/g; s/\./[.]/g; s/\*/.*/g; s/\?/./g; s/(/\\\\(/g; s/)/\\\\)/g; s/|/\\\\|/g; s/+/\\\\+/g; s/\$/\\\\$/g; s/\^/\\\\^/g')
@@ -535,7 +529,7 @@ gh_file() {
 	local quiet=0
 	local verbose=0
 	local print_url=0
-	local url=""
+	local url
 
 	while [ $# -gt 0 ]; do
 		case "$1" in
@@ -617,7 +611,9 @@ ghcrpv() {
 }
 
 gpul() {
-	level="${1:-0}"
+	local level="${1:-0}"
+	local repo_dir
+	local depth
 	if [ "$level" -eq 0 ]; then
 		repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
 		if [ -n "$repo_dir" ]; then
@@ -782,8 +778,8 @@ gtr() {
 	fi
 	local version="$1"
 	shift
-	local notes=""
-	local repo=""
+	local notes
+	local repo
 	local files=()
 
 	while [ $# -gt 0 ]; do
@@ -1365,7 +1361,7 @@ dicepass() {
 	local file="${HOME}/.eff_large_wordlist.txt"
 	[[ ! -f "$file" ]] && curl -fsSL "$url" -o "$file"
 	[[ ! -f "$file" ]] && printf 'ERROR: cannot download wordlist\n'
-	local passphrase=''
+	local passphrase
 	while true; do
 		local word
 		word="$(awk -v k="$(shuf -i 1-6 -n 5 | tr -d '\n')" '$1 == k { print $2; exit }' "$file")"
@@ -1397,6 +1393,7 @@ latexmkC() {
 }
 
 latexci() {
+	local engine
 	if [ $# -eq 0 ]; then
 		echo 'latexci: At least one argument is required.' >&2
 		return 1
@@ -1404,6 +1401,7 @@ latexci() {
 		engine="$1"
 		shift
 	fi
+	local cwd
 	cwd="$(pwd)"
 	if [ $# -ne 0 ]; then
 		files=("$@")
@@ -1416,14 +1414,17 @@ latexci() {
 		echo "latexci: No .tex file is found." >&2
 		return 0
 	fi
+	local log
 	log="latexci_${engine}_$(date +%s)_log.txt"
 	(
 		for f in "${files[@]}"; do
+			local dir
 			dir="$(dirname "$f")"
 			if ! cd "$dir"; then
 				echo "$f: can't cd $dir" >>"$cwd/$log"
 				continue
 			fi
+			local file
 			file="$(basename "$f")"
 			clean_file "$file"
 			if command -v latexmk >/dev/null 2>&1; then
@@ -1603,22 +1604,22 @@ npmig() {
 	npm_allow="$(echo "$npm_allow" | sort | uniq | sed -Ez 's/^\n+//; s/\n+$//' | tr '\n' ',')"
 	npm config set allow-scripts="$npm_allow" --location=user
 	[ "$#" -ne 0 ] && npm i -g "$@"
-    echo 'allow-scripts:'
-    npm config get allow-scripts
+	echo 'allow-scripts:'
+	npm config get allow-scripts
 }
 
 npmuig() {
-    [ "$#" -eq 0 ] && return
-    npm uninstall -g "$@"
+	[ "$#" -eq 0 ] && return
+	npm uninstall -g "$@"
 	local npm_allow
 	npm_allow=$(npm config get allow-scripts)
 	[[ "$npm_allow" == "undefined" ]] && npm_allow=
-    npm_allow+=','
-    for p in "$@"; do
-        npm_allow="${npm_allow//${p},/}"
-    done
-    npm_allow="${npm_allow%,}"
+	npm_allow+=','
+	for p in "$@"; do
+		npm_allow="${npm_allow//${p},/}"
+	done
+	npm_allow="${npm_allow%,}"
 	npm config set allow-scripts="$npm_allow" --location=user
-    echo 'allow-scripts:'
-    npm config get allow-scripts
+	echo 'allow-scripts:'
+	npm config get allow-scripts
 }
