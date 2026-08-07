@@ -1,8 +1,9 @@
 from pathlib import Path
 
-sdir = Path(__file__).resolve().parent
+p = Path(Path(__file__).resolve().parent / "bashrc.d/32-termux-functions.sh")
+p.touch(exist_ok=True)
 
-with open(sdir / "bashrc.d/32-termux-functions.sh", "w", encoding="utf-8") as file:
+with open(p, "w", encoding="utf-8") as file:
 
     file.write(
         "#!/data/data/com.termux/files/usr/bin/bash\n# shellcheck disable=2103\n\n")
@@ -390,8 +391,7 @@ cpiaAgcdp() {
                             H[eg][g] +
                             ' "$@"\n}\n\n')
 
-with open(sdir / "bashrc.d/32-extra-functions.sh", "rb") as file:
+with open(p, "rb") as file:
     data = file.read()
 
-p = Path(sdir / "bashrc.d/32-extra-functions.sh")
 p.write_bytes(p.read_bytes().rstrip(b"\n") + b"\n")
