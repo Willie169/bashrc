@@ -2142,6 +2142,21 @@ vncd() {
 	[ -n "$var" ] && export DISPLAY="$var"
 }
 
+ubuntu_version_id() {
+	if [ -f /etc/os-release ]; then
+		if grep -q '^NAME="Linux Mint"' /etc/os-release; then
+			inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
+		else
+			. /etc/os-release
+			echo "$VERSION_ID"
+		fi
+	fi
+}
+if [ -f /etc/os-release ]; then
+	# shellcheck disable=2155
+	export UBUNTU_VERSION_ID=$(ubuntu_version_id)
+fi
+
 update_bashrc() {
 	(
 		cd ~/.bashrc.d || exit

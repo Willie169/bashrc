@@ -62,18 +62,6 @@ export WAYDROID_HOME="$HOME/.local/share/waydroid/data/media/0"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
 export BOTTLES="$HOME/.var/app/com.usebottles.bottles/data/bottles"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
-if [ -f /etc/os-release ]; then
-	# shellcheck disable=2155
-	export UBUNTU_VERSION_ID=$(
-		if grep -q '^NAME="Linux Mint"' /etc/os-release; then
-			inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
-		else
-			. /etc/os-release
-			echo "$VERSION_ID"
-		fi
-	)
-	source /etc/os-release
-fi
 if [ "$IS_TERMUX" -eq 1 ]; then
 	export JAVA_HOME="$USR_DIR/lib/jvm/java-21-openjdk"
 	export ANDROID_HOME="$HOME/Android/Sdk"
