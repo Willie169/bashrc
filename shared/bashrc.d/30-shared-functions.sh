@@ -1589,3 +1589,36 @@ dfhur() {
 		df -h --output=used / | tail -n1
 	fi
 }
+
+npmig() {
+	local npm_allow
+	npm_allow=$(npm config get allow-scripts)
+	[[ "$npm_allow" == "undefined" ]] && npm_allow=
+	npm_allow="$(printf '%s\n' "$npm_allow" | tr ',' '\n')"
+	if [ "$#" -ne 0 ]; then
+		local npm_pkg
+		printf -v npm_pkg '%s\n' "$@"
+		npm_allow+=$'\n'"$npm_pkg"
+	fi
+	npm_allow="$(echo "$npm_allow" | sort | uniq | sed -Ez 's/^\n+//; s/\n+$//' | tr '\n' ',')"
+	npm config set allow-scripts="$npm_allow" --location=user
+	[ "$#" -ne 0 ] && npm i -g "$@"
+    echo 'allow-scripts:'
+    npm config get allow-scripts
+}
+
+npmuig() {
+    [ "$#" -eq 0 ] && return
+    npm uninstall -g "$@"
+	local npm_allow
+	npm_allow=$(npm config get allow-scripts)
+	[[ "$npm_allow" == "undefined" ]] && npm_allow=
+    npm_allow+=','
+    for p in "$@"; do
+        npm_allow="${npm_allow//${p},/}"
+    done
+    npm_allow="${npm_allow%,}"
+	npm config set allow-scripts="$npm_allow" --location=user
+    echo 'allow-scripts:'
+    npm config get allow-scripts
+}
