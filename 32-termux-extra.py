@@ -1,7 +1,7 @@
 from pathlib import Path
 
 p = Path(Path(__file__).resolve().parent /
-         "bashrc.d/32-termux-extra-functions.sh")
+         "bashrc.d/32-termux-extra.sh")
 p.touch(exist_ok=True)
 
 with open(p, "w", encoding="utf-8") as file:

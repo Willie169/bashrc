@@ -1,23 +1,8 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
-shopt -s globstar
-
-if [ -d "$HOME/.bashrc.d" ]; then
-	for f in "$HOME/.bashrc.d/"*; do
-		[ -r "$f" ] && source "$f"
-	done
+if [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]]; then
+	exit
 fi
-
-if ! shopt -oq posix; then
-	[ -f "$PREFIX"/share/bash-completion/bash_completion ] && . "$PREFIX"/share/bash-completion/bash_completion
-	[ -f "$PREFIX"/etc/bash_completion ] && . "$PREFIX"/etc/bash_completion
-fi
-
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-
-[ -f "${HOME}"/.config/broot/launcher/bash/br ] && source "${HOME}"/.config/broot/launcher/bash/br
-
-command -v luarocks >/dev/null && . <(luarocks completion bash)
 
 mkdir -p ~/.bashrc.pid
 
@@ -36,6 +21,3 @@ if [ ! -f ~/.bashrc.pid/virgl_test_server.pid ] || ! kill -0 "$(cat ~/.bashrc.pi
 		echo $! >~/.bashrc.pid/virgl_test_server.pid
 	)
 fi
-
-[ -f "$HOME/.bashrc.proot" ] && . "$HOME/.bashrc.proot" || true
-[ -f "$HOME/.bashrc.overrides" ] && . "$HOME/.bashrc.overrides" || true

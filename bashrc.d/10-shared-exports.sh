@@ -89,8 +89,6 @@ else
 	export ANDROID_HOME="${HOME}/Android/Sdk"
 fi
 export ANDROID_SDK_ROOT="${ANDROID_HOME}"
-test -r "${HOME}/.nvm" && export NVM_DIR="${HOME}/.nvm"
-test -r "${HOME}/conda" && export MAMBA_ROOT_PREFIX="${HOME}/conda"
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
 unset GIT_ASKPASS

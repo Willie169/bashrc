@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]]; then
-    exit
+	exit
 fi
 
 phice() {
@@ -371,11 +371,11 @@ pdr() {
 }
 
 tx11() {
-    termux-x11 "$@"
+	termux-x11 "$@"
 }
 
 xfce() {
-    dbus-launch --exit-with-session xfce4-session >/dev/null 2>&1
+	dbus-launch --exit-with-session xfce4-session >/dev/null 2>&1
 }
 
 xxfce() {

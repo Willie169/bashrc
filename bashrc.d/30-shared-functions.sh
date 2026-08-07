@@ -1999,7 +1999,9 @@ grbir() {
 }
 
 grbc() {
-	git add * && git rebase --continue "$@"
+	(
+		cgrr && git add . && git rebase --continue "$@"
+	)
 }
 
 grbb() {
@@ -2123,15 +2125,15 @@ dph() {
 }
 
 vnc() {
-    vncserver "$@"
+	vncserver "$@"
 }
 
 vnck() {
-    vncserver -kill "$@"
+	vncserver -kill "$@"
 }
 
 vncl() {
-    vncserver -list "$@"
+	vncserver -list "$@"
 }
 
 vncd() {
