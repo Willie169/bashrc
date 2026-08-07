@@ -1447,7 +1447,7 @@ latexci() {
 		cat "$cwd/$log" >&2
 		echo "Failures are logged to $cwd/${log}." >&2
 	fi
-	if command -v latexmk >/dev/null 2>&1; then
+	if ! command -v latexmk >/dev/null 2>&1; then
 		echo "WARNING: latexmk not exetuble, $engine used" >&2
 	fi
 }
