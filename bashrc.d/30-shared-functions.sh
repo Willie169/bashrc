@@ -1387,8 +1387,13 @@ clean_file() {
 	done
 }
 
-clean_tex() {
-	rm -f -- *.aux *.log *.nav *.out *.snm *.toc
+latexmkc() {
+	rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.dvi *.fdb_latexmk *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.synctex.gz *.tmp *.toc *.top *.tui *.vrb
+}
+
+latexmkC() {
+	latexmkc
+	rm -f -- *.pdf
 }
 
 latexci() {
@@ -1396,10 +1401,10 @@ latexci() {
 		echo 'latexci: At least one argument is required.' >&2
 		return 1
 	else
-		cmd="$1"
+		engine="$1"
 		shift
 	fi
-	cwd="$(pwd)"
+	engine="$(pwd)"
 	if [ $# -ne 0 ]; then
 		files=("$@")
 	else
@@ -1411,7 +1416,7 @@ latexci() {
 		echo "latexci: No .tex file is found." >&2
 		return 0
 	fi
-	log="latexci_${cmd}_$(date +%s)_log.txt"
+	log="latexci_${engine}_$(date +%s)_log.txt"
 	(
 		for f in "${files[@]}"; do
 			dir="$(dirname "$f")"
@@ -1421,10 +1426,18 @@ latexci() {
 			fi
 			file="$(basename "$f")"
 			clean_file "$file"
-			if "$cmd" -interaction=nonstopmode -halt-on-error "$file" && "$cmd" -interaction=nonstopmode -halt-on-error "$file"; then
-				clean_tex
-			else
-				echo "$f: $cmd failed" >>"$cwd/$log"
+			if command -v latexmk >/dev/null 2>&1; then
+				if latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
+					latexmk -c
+				else
+					echo "$f: latexmk $engine failed" >>"$cwd/$log"
+				fi
+			elif command -v "$engine" >/dev/null 2>&1; then
+				if "$engine" -interaction=nonstopmode -halt-on-error "$file" && "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
+					latexmkc
+				else
+					echo "$f: $engine failed" >>"$cwd/$log"
+				fi
 			fi
 		done
 	)
@@ -1433,6 +1446,9 @@ latexci() {
 		date -uIs >>"$cwd/$log"
 		cat "$cwd/$log" >&2
 		echo "Failures are logged to $cwd/${log}." >&2
+	fi
+	if command -v latexmk >/dev/null 2>&1; then
+		echo "WARNING: latexmk not exetuble, $engine used" >&2
 	fi
 }
 
@@ -1559,7 +1575,7 @@ csortu() {
 }
 
 dfur() {
-	if [ "${IS_TERMUX:-}" = '1' ]; then
+	if [ "${HOME}" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
 		df '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
 	else
 		df --output=used / | tail -n1
@@ -1567,7 +1583,7 @@ dfur() {
 }
 
 dfhur() {
-	if [ "${IS_TERMUX:-}" = '1' ]; then
+	if [ "${HOME}" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
 		df -h '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
 	else
 		df -h --output=used / | tail -n1
