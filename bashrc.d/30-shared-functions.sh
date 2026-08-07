@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+alert() {
+	local status=$?
+	local icon
+	local cmd
+	if [ "$status" -eq 0 ]; then
+		icon=terminal
+	else
+		icon=error
+	fi
+	cmd=$(history | tail -n1 | sed -e 's/^[[:space:]]*[0-9]\+[[:space:]]*//' -e 's/[;&|][[:space:]]*alert$//')
+	notify-send --urgency=low -i "$icon" "$cmd"
+}
+
 __git_repo_reminder() {
 	command -v git >/dev/null 2>&1 || return 0
 	GRR=$(git rev-parse --show-toplevel 2>/dev/null)
@@ -1622,4 +1635,468 @@ npmuig() {
 	npm config set allow-scripts="$npm_allow" --location=user
 	echo 'allow-scripts:'
 	npm config get allow-scripts
+}
+
+nv() {
+	nvim "$@"
+}
+
+py() {
+	python3 "$@"
+}
+
+httpp() {
+	http-server -p "$@"
+}
+
+lbtr() {
+	libretranslate & "$@"
+}
+
+yt-sub() {
+	yt-dlp --write-subs --sub-format vtt  --skip-download "$@"
+}
+
+gpp11() {
+	g++ -std=c++11 "$@"
+}
+
+cpp11() {
+	clang++ -std=c++11 "$@"
+}
+
+gpp111() {
+	g++ -std=c++11 -O1 "$@"
+}
+
+cpp111() {
+	clang++ -std=c++11 -O1 "$@"
+}
+
+gpp112() {
+	g++ -std=c++11 -O2 "$@"
+}
+
+cpp112() {
+	clang++ -std=c++11 -O2 "$@"
+}
+
+gpp113() {
+	g++ -std=c++11 -O3 "$@"
+}
+
+cpp113() {
+	clang++ -std=c++11 -O3 "$@"
+}
+
+gpp14() {
+	g++ -std=c++14 "$@"
+}
+
+cpp14() {
+	clang++ -std=c++14 "$@"
+}
+
+gpp141() {
+	g++ -std=c++14 -O1 "$@"
+}
+
+cpp141() {
+	clang++ -std=c++14 -O1 "$@"
+}
+
+gpp142() {
+	g++ -std=c++14 -O2 "$@"
+}
+
+cpp142() {
+	clang++ -std=c++14 -O2 "$@"
+}
+
+gpp143() {
+	g++ -std=c++14 -O3 "$@"
+}
+
+cpp143() {
+	clang++ -std=c++14 -O3 "$@"
+}
+
+gpp17() {
+	g++ -std=c++17 "$@"
+}
+
+cpp17() {
+	clang++ -std=c++17 "$@"
+}
+
+gpp171() {
+	g++ -std=c++17 -O1 "$@"
+}
+
+cpp171() {
+	clang++ -std=c++17 -O1 "$@"
+}
+
+gpp172() {
+	g++ -std=c++17 -O2 "$@"
+}
+
+cpp172() {
+	clang++ -std=c++17 -O2 "$@"
+}
+
+gpp173() {
+	g++ -std=c++17 -O3 "$@"
+}
+
+cpp173() {
+	clang++ -std=c++17 -O3 "$@"
+}
+
+gpp20() {
+	g++ -std=c++20 "$@"
+}
+
+cpp20() {
+	clang++ -std=c++20 "$@"
+}
+
+gpp201() {
+	g++ -std=c++20 -O1 "$@"
+}
+
+cpp201() {
+	clang++ -std=c++20 -O1 "$@"
+}
+
+gpp202() {
+	g++ -std=c++20 -O2 "$@"
+}
+
+cpp202() {
+	clang++ -std=c++20 -O2 "$@"
+}
+
+gpp203() {
+	g++ -std=c++20 -O3 "$@"
+}
+
+cpp203() {
+	clang++ -std=c++20 -O3 "$@"
+}
+
+gpp23() {
+	g++ -std=c++23 "$@"
+}
+
+cpp23() {
+	clang++ -std=c++23 "$@"
+}
+
+gpp231() {
+	g++ -std=c++23 -O1 "$@"
+}
+
+cpp231() {
+	clang++ -std=c++23 -O1 "$@"
+}
+
+gpp232() {
+	g++ -std=c++23 -O2 "$@"
+}
+
+cpp232() {
+	clang++ -std=c++23 -O2 "$@"
+}
+
+gpp233() {
+	g++ -std=c++23 -O3 "$@"
+}
+
+cpp233() {
+	clang++ -std=c++23 -O3 "$@"
+}
+
+gppg11() {
+	g++ -std=gnu++11 "$@"
+}
+
+cppg11() {
+	clang++ -std=gnu++11 "$@"
+}
+
+gppg111() {
+	g++ -std=gnu++11 -O1 "$@"
+}
+
+cppg111() {
+	clang++ -std=gnu++11 -O1 "$@"
+}
+
+gppg112() {
+	g++ -std=gnu++11 -O2 "$@"
+}
+
+cppg112() {
+	clang++ -std=gnu++11 -O2 "$@"
+}
+
+gppg113() {
+	g++ -std=gnu++11 -O3 "$@"
+}
+
+cppg113() {
+	clang++ -std=gnu++11 -O3 "$@"
+}
+
+gppg14() {
+	g++ -std=gnu++14 "$@"
+}
+
+cppg14() {
+	clang++ -std=gnu++14 "$@"
+}
+
+gppg141() {
+	g++ -std=gnu++14 -O1 "$@"
+}
+
+cppg141() {
+	clang++ -std=gnu++14 -O1 "$@"
+}
+
+gppg142() {
+	g++ -std=gnu++14 -O2 "$@"
+}
+
+cppg142() {
+	clang++ -std=gnu++14 -O2 "$@"
+}
+
+gppg143() {
+	g++ -std=gnu++14 -O3 "$@"
+}
+
+cppg143() {
+	clang++ -std=gnu++14 -O3 "$@"
+}
+
+gppg17() {
+	g++ -std=gnu++17 "$@"
+}
+
+cppg17() {
+	clang++ -std=gnu++17 "$@"
+}
+
+gppg171() {
+	g++ -std=gnu++17 -O1 "$@"
+}
+
+cppg171() {
+	clang++ -std=gnu++17 -O1 "$@"
+}
+
+gppg172() {
+	g++ -std=gnu++17 -O2 "$@"
+}
+
+cppg172() {
+	clang++ -std=gnu++17 -O2 "$@"
+}
+
+gppg173() {
+	g++ -std=gnu++17 -O3 "$@"
+}
+
+cppg173() {
+	clang++ -std=gnu++17 -O3 "$@"
+}
+
+gppg20() {
+	g++ -std=gnu++20 "$@"
+}
+
+cppg20() {
+	clang++ -std=gnu++20 "$@"
+}
+
+gppg201() {
+	g++ -std=gnu++20 -O1 "$@"
+}
+
+cppg201() {
+	clang++ -std=gnu++20 -O1 "$@"
+}
+
+gppg202() {
+	g++ -std=gnu++20 -O2 "$@"
+}
+
+cppg202() {
+	clang++ -std=gnu++20 -O2 "$@"
+}
+
+gppg203() {
+	g++ -std=gnu++20 -O3 "$@"
+}
+
+cppg203() {
+	clang++ -std=gnu++20 -O3 "$@"
+}
+
+gppg23() {
+	g++ -std=gnu++23 "$@"
+}
+
+cppg23() {
+	clang++ -std=gnu++23 "$@"
+}
+
+gppg231() {
+	g++ -std=gnu++23 -O1 "$@"
+}
+
+cppg231() {
+	clang++ -std=gnu++23 -O1 "$@"
+}
+
+gppg232() {
+	g++ -std=gnu++23 -O2 "$@"
+}
+
+cppg232() {
+	clang++ -std=gnu++23 -O2 "$@"
+}
+
+gppg233() {
+	g++ -std=gnu++23 -O3 "$@"
+}
+
+cppg233() {
+	clang++ -std=gnu++23 -O3 "$@"
+}
+
+gpus() {
+	git push "$@"
+}
+
+gstt() {
+	git status "$@"
+}
+
+gtag() {
+	git tag "$@"
+}
+
+grbi() {
+	git rebase -i "$@"
+}
+
+grbir() {
+	git rebase -i --root "$@"
+}
+
+grbc() {
+	git add * && git rebase --continue "$@"
+}
+
+grbb() {
+	git rebase --abort "$@"
+}
+
+gdif() {
+	git diff "$@"
+}
+
+exbs() {
+	exec bash "$@"
+}
+
+dtuis() {
+	date -uIs "$@"
+}
+
+dtis() {
+	date -Is "$@"
+}
+
+dtnix() {
+	date +%s "$@"
+}
+
+dtYmd() {
+	date +%Y/%m/%d "$@"
+}
+
+dtymd() {
+	date +%y/%m/%d "$@"
+}
+
+xelt() {
+	xelatex -interaction=nonstopmode -halt-on-error "$@"
+}
+
+lualt() {
+	lualatex -interaction=nonstopmode -halt-on-error "$@"
+}
+
+ltmk() {
+    latexmk -latexoption='-interaction=nonstopmode -halt-on-error' "$@"
+}
+
+shch() {
+	shellcheck -e 1090,1091 "$@"
+}
+
+cfm() {
+	clang-format -i "$@"
+}
+
+cppfm() {
+	clang-format -i "$@"
+}
+
+cssfm() {
+	prettier --write "$@"
+}
+
+jsfm() {
+	prettier --write "$@"
+}
+
+tsfm() {
+	prettier --write "$@"
+}
+
+htmlfm() {
+	prettier --write "$@"
+}
+
+mdfm() {
+	prettier --write "$@"
+}
+
+jsonfm() {
+	prettier --write "$@"
+}
+
+ymlfm() {
+	prettier --write "$@"
+}
+
+shfm() {
+	shfmt -w "$@"
+}
+
+luafm() {
+	stylua "$@"
+}
+
+pyfm() {
+	autopep8 --in-place --aggressive --aggressive "$@"
+}
+
+svfm() {
+	verible-verilog-format --inplace "$@"
 }
