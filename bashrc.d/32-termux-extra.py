@@ -118,11 +118,11 @@ with open(p, "w", encoding="utf-8") as file:
                     localStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     local[k] +
-                    " || exit\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
+                    " || exit\n\t\tcwd=$(pwd)\n\t\tcd \"" +
                     remote[j] +
                     "\" || exit\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
-                    " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
+                    " -- \"$f\" \"$cwd\"/\n\t\tdone\n\t)\n}\n\n")
             for k in lr(tlocal):
                 file.write(
                     aopStr[i] +
@@ -131,11 +131,11 @@ with open(p, "w", encoding="utf-8") as file:
                     tlocalStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     tlocal[k] +
-                    " || exit\n\t\tLOCAL=$(pwd)\n\t\tcd \"" +
+                    " || exit\n\t\tcwd=$(pwd)\n\t\tcd \"" +
                     remote[j] +
                     "\" || exit\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
-                    " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
+                    " -- \"$f\" \"$cwd\"/\n\t\tdone\n\t)\n}\n\n")
 
     for i in lr(iop):
         for j in lr(remote):
@@ -202,11 +202,11 @@ with open(p, "w", encoding="utf-8") as file:
                     tlocalStr[k] +
                     "() {\n\t(\n\t\tcd " +
                     tlocal[k] +
-                    " || exit\n\t\tLOCAL=$(pwd)\n\t\tcd " +
+                    " || exit\n\t\tcwd=$(pwd)\n\t\tcd " +
                     local[j] +
                     " || exit\n\t\tfor f in *; do\n\t\t\t" +
                     aop[i] +
-                    " -- \"$f\" \"$LOCAL\"/\n\t\tdone\n\t)\n}\n\n")
+                    " -- \"$f\" \"$cwd\"/\n\t\tdone\n\t)\n}\n\n")
 
     file.write("""rmp() {
 \trm -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
@@ -227,6 +227,7 @@ mkdirp() {
 mkdirpp() {
 \tmkdir -p -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root/$2"
 }
+
 """)
 
     for i in lr(pop):
@@ -237,19 +238,14 @@ mkdirpp() {
                     remoteStr[j] +
                     "p" +
                     prootStr[k] +
-                    "() {\n\tif [ -n \"$" +
-                    'PROOT_' + proot[k].upper() +
-                    "\" ]; then\n\t\t" +
+                    "() {\n\t" +
                     pop[i] +
                     remoteStr[j] +
-                    "p \"$" +
-                    'PROOT_' + proot[k].upper() +
-                    "\" \"$1\"\n\telse\n\t\t" +
-                    pop[i] +
-                    remoteStr[j] +
-                    "p \"" +
+                    "p \"${PROOT_" +
+                    proot[k].upper() +
+                    ":-" +
                     proot[k] +
-                    "\" \"$1\"\n\tfi\n}\n\n")
+                    "}\" \"$1\"\n}\n\n")
 
     for i in lr(npop):
         for k in lr(proot):
@@ -257,17 +253,13 @@ mkdirpp() {
                 npop[i] +
                 "p" +
                 prootStr[k] +
-                "() {\n\tif [ -n \"$" +
-                'PROOT_' + proot[k].upper() +
-                "\" ]; then\n\t\t" +
+                "() {\n\t" +
                 npop[i] +
-                "p \"$" +
-                'PROOT_' + proot[k].upper() +
-                "\" \"$1\"\n\telse\n\t\t" +
-                npop[i] +
-                "p \"" +
+                "p \"${PROOT_" +
+                proot[k].upper() +
+                ":-" +
                 proot[k] +
-                "\" \"$1\"\n\tfi\n}\n\n")
+                "}\" \"$1\"\n}\n\n")
 
     for i in lr(pup):
         for j in lr(local):
@@ -277,19 +269,24 @@ mkdirpp() {
                     remoteStr[j] +
                     "p" +
                     prootStr[k] +
-                    "() {\n\tif [ -n \"$" +
-                    'PROOT_' + proot[k].upper() +
-                    "\" ]; then\n\t\t" +
+                    "() {\n\t" +
                     pup[i] +
                     localStr[j] +
-                    "p \"$" +
-                    'PROOT_' + proot[k].upper() +
-                    "\" \"$1\"\n\telse\n\t\t" +
-                    pup[i] +
-                    localStr[j] +
-                    "p \"" +
+                    "p \"${PROOT_" +
+                    proot[k].upper() +
+                    ":-" +
                     proot[k] +
-                    "\" \"$1\"\n\tfi\n}\n\n")
+                    "}\" \"$1\"\n}\n\n")
+
+    for k in lr(proot):
+        file.write(
+            "pdc" +
+            prootStr[k] +
+            "() {\n\tcd \"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_" +
+            proot[k].upper() +
+            ":-" +
+            proot[k] +
+            "}/rootfs/root\" || return\n}\n\n")
 
     gacp = """mvaAgcp() {
 \tmvaAic "$1"
@@ -350,6 +347,7 @@ cpiaAgcdp() {
 \tcpiaAc "*"
 \tgacdp "$1"
 }
+
 """
 
     for i in remoteStr:
