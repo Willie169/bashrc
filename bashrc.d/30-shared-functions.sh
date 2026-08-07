@@ -843,483 +843,158 @@ git_upstream_pr() {
 }
 
 __pv() {
-	# shellcheck disable=2015
-	command -v pv >/dev/null 2>&1 && pv || cat
+	if command -v pv >/dev/null 2>&1; then
+		pv
+	else
+		cat
+	fi
 }
 
-bzip2_single() {
+compress_single() {
+	local msg='Usage: compress_single [-h|--help]
+compress_single [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
+no tar by default'
+	local tar=0
 	while [ "$#" -gt 0 ]; do
 		case "$1" in
 		-h | --help)
-			echo "Usage: bzip2_single [-h|--help] SOURCE TARGET"
+			echo "$msg"
 			return 0
+			;;
+		-t | --tar)
+			tar=1
+			shift
+			;;
+		-n | --no-tar)
+			tar=0
+			shift
 			;;
 		--)
 			shift
 			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: bzip2_single [-h|--help] SOURCE TARGET" >&2
-			return 1
 			;;
 		*)
 			break
 			;;
 		esac
 	done
+	if [ "$#" -ne 3 ]; then
+		echo "$msg" >&2
+		return 1
+	fi
 
-	[ "$#" -eq 2 ] || {
-		echo "Usage: bzip2_single [-h|--help] SOURCE TARGET" >&2
-		return 2
-	}
-
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		bzip2 -9 |
-		__pv \
-			>"$2.tar.bz2"
+	if [ "$tar" -eq 1 ]; then
+		(
+			set -o pipefail
+			tar -cf - "$2" | __pv | sh -c "$1" | __pv >"$3"
+		)
+	else
+		(
+			set -o pipefail
+			__pv <"$2" | sh -c "$1" | __pv >"$3"
+		)
+	fi
 }
 
-gzip_single() {
+compress_split() {
+	local msg='Usage: compress_split [-h|--help]
+compress_single [-b BYTES|--bytes BYTES] [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
+no tar by default
+BYTES=$SPLIT_SIZE if set and 4000M if not by default'
+	local bytes
+	if [ -n "${SPLIT_SIZE:-}" ]; then
+		bytes="$SPLIT_SIZE"
+	else
+		bytes="4000M"
+	fi
+	local tar=0
 	while [ "$#" -gt 0 ]; do
 		case "$1" in
 		-h | --help)
-			echo "Usage: gzip_single [-h|--help] SOURCE TARGET"
+			echo "$msg"
 			return 0
+			;;
+		-t | --tar)
+			tar=1
+			shift
+			;;
+		-n | --no-tar)
+			tar=0
+			shift
+			;;
+		-b | --bytes)
+			if [ "$#" -lt 2 ]; then
+				echo "$msg" >&2
+				return 1
+			fi
+			bytes="$2"
+			shift 2
 			;;
 		--)
 			shift
 			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: gzip_single [-h|--help] SOURCE TARGET" >&2
-			return 1
 			;;
 		*)
 			break
 			;;
 		esac
 	done
+	if [ "$#" -ne 3 ]; then
+		echo "$msg" >&2
+		return 1
+	fi
 
-	[ "$#" -eq 2 ] || {
-		echo "Usage: gzip_single [-h|--help] SOURCE TARGET" >&2
-		return 2
-	}
+	if [ "$tar" -eq 1 ]; then
+		(
+			set -o pipefail
+			tar -cf - "$2" | __pv | sh -c "$1" | __pv | split -b "$bytes" -d -a 3 - "$3.part."
+		)
+	else
+		(
+			set -o pipefail
+			__pv <"$2" | sh -c "$1" | __pv | split -b "$bytes" -d -a 3 - "$3.part."
+		)
+	fi
+}
 
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		gzip -9 |
-		__pv \
-			>"$2.tar.gz"
+bz2_single() {
+	compress_single --tar 'bzip2 -9' "$1" "${2:-"$1.tar.bz2"}"
+}
+
+gz_single() {
+	compress_single --tar 'gzip -9' "$1" "${2:-"$1.tar.gz"}"
 }
 
 xz_single() {
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: xz_single [-h|--help] SOURCE TARGET"
-			return 0
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: xz_single [-h|--help] SOURCE TARGET" >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: xz_single [-h|--help] SOURCE TARGET" >&2
-		return 2
-	}
-
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		xz -9 |
-		__pv \
-			>"$2.tar.xz"
+	compress_single --tar 'xz -9' "$1" "${2:-"$1.tar.xz"}"
 }
 
 tar_single() {
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: tar_single [-h|--help] SOURCE TARGET"
-			return 0
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: tar_single [-h|--help] SOURCE TARGET" >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: tar_single [-h|--help] SOURCE TARGET" >&2
-		return 2
-	}
-
-	tar -cf "$2.tar" "$1"
+	compress_single --no-tar 'tar -cf -' "$1" "${2:-"$1.tar"}"
 }
 
 zip_single() {
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: zip_single [-h|--help] SOURCE TARGET"
-			return 0
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: zip_single [-h|--help] SOURCE TARGET" >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: zip_single [-h|--help] SOURCE TARGET" >&2
-		return 2
-	}
-
-	zip -r "$2.zip" "$1"
+	compress_single --no-tar 'zip -r -9 -' "$1" "${2:-"$1.zip"}"
 }
 
-bzip2_split() {
-	local bytes
-	if [ -n "${SPLIT_SIZE:-}" ]; then
-		bytes="$SPLIT_SIZE"
-	else
-		bytes="4000M"
-	fi
-
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
-			return 0
-			;;
-		-b)
-			if [ -z "$2" ]; then
-				echo "Option -b requires an argument" >&2
-				echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-				# shellcheck disable=2016
-				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-				return 1
-			fi
-			bytes="$2"
-			shift 2
-			;;
-		--bytes=*)
-			bytes="${1#*=}"
-			shift
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: bzip2_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-		# shellcheck disable=2016
-		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-		return 2
-	}
-
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		bzip2 -9 |
-		__pv |
-		split -b "$bytes" -d -a 3 - "$2.tar.bz2.part."
+bz2_split() {
+	compress_split --tar 'bzip2 -9' "$1" "${2:-"$1.tar.bz2"}"
 }
 
-gzip_split() {
-	local bytes
-	if [ -n "${SPLIT_SIZE:-}" ]; then
-		bytes="$SPLIT_SIZE"
-	else
-		bytes="4000M"
-	fi
-
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
-			return 0
-			;;
-		-b)
-			if [ -z "$2" ]; then
-				echo "Option -b requires an argument" >&2
-				echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-				# shellcheck disable=2016
-				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-				return 1
-			fi
-			bytes="$2"
-			shift 2
-			;;
-		--bytes=*)
-			bytes="${1#*=}"
-			shift
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: gzip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-		# shellcheck disable=2016
-		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-		return 2
-	}
-
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		gzip -9 |
-		__pv |
-		split -b "$bytes" -d -a 3 - "$2.tar.gz.part."
+gz_split() {
+	compress_split --tar 'gzip -9' "$1" "${2:-"$1.tar.gz"}"
 }
 
 xz_split() {
-	local bytes
-	if [ -n "${SPLIT_SIZE:-}" ]; then
-		bytes="$SPLIT_SIZE"
-	else
-		bytes="4000M"
-	fi
-
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
-			return 0
-			;;
-		-b)
-			if [ -z "$2" ]; then
-				echo "Option -b requires an argument" >&2
-				echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-				# shellcheck disable=2016
-				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-				return 1
-			fi
-			bytes="$2"
-			shift 2
-			;;
-		--bytes=*)
-			bytes="${1#*=}"
-			shift
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: xz_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-		# shellcheck disable=2016
-		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-		return 2
-	}
-
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		xz -9 |
-		__pv |
-		split -b "$bytes" -d -a 3 - "$2.tar.xz.part."
+	compress_split --tar 'xz -9' "$1" "${2:-"$1.tar.xz"}"
 }
 
 tar_split() {
-	local bytes
-	if [ -n "${SPLIT_SIZE:-}" ]; then
-		bytes="$SPLIT_SIZE"
-	else
-		bytes="4000M"
-	fi
-
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
-			return 0
-			;;
-		-b)
-			if [ -z "$2" ]; then
-				echo "Option -b requires an argument" >&2
-				echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-				# shellcheck disable=2016
-				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-				return 1
-			fi
-			bytes="$2"
-			shift 2
-			;;
-		--bytes=*)
-			bytes="${1#*=}"
-			shift
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: tar_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-		# shellcheck disable=2016
-		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-		return 2
-	}
-
-	set -o pipefail
-	tar -cf - "$1" |
-		__pv |
-		split -b "$bytes" -d -a 3 - "$2.tar.part."
+	compress_split --no-tar 'tar -cf -' "$1" "${2:-"$1.tar"}"
 }
 
 zip_split() {
-	local bytes
-	if [ -n "${SPLIT_SIZE:-}" ]; then
-		bytes="$SPLIT_SIZE"
-	else
-		bytes="4000M"
-	fi
-
-	while [ "$#" -gt 0 ]; do
-		case "$1" in
-		-h | --help)
-			echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET"
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not'
-			return 0
-			;;
-		-b)
-			if [ -z "$2" ]; then
-				echo "Option -b requires an argument" >&2
-				echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-				# shellcheck disable=2016
-				echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-				return 1
-			fi
-			bytes="$2"
-			shift 2
-			;;
-		--bytes=*)
-			bytes="${1#*=}"
-			shift
-			;;
-		--)
-			shift
-			break
-			;;
-		-*)
-			echo "Unknown option: $1" >&2
-			echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-			# shellcheck disable=2016
-			echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-			return 1
-			;;
-		*)
-			break
-			;;
-		esac
-	done
-
-	[ "$#" -eq 2 ] || {
-		echo "Usage: zip_split [-h|--help] [-b SIZE | --bytes=SIZE] SOURCE TARGET" >&2
-		# shellcheck disable=2016
-		echo 'Default size: $SPLIT_SIZE if set and 4000M if not' >&2
-		return 2
-	}
-
-	zip -r "$2.zip" "$1" || return
-	split -b "$bytes" -d -a 3 "$2.zip" "$2.zip.part."
-	rm -f "$2.zip"
+	compress_split --no-tar 'zip -r -9 -' "$1" "${2:-"$1.zip"}"
 }
 
 dfssh() {
