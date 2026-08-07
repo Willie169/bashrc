@@ -17,15 +17,15 @@ __git_repo_reminder() {
 	command -v git >/dev/null 2>&1 || return 0
 	GRR=$(git rev-parse --show-toplevel 2>/dev/null)
 	if [ -n "$GRR" ]; then
-		if [[ "$__LAST_GRR" != "$GRR" ]]; then
-			if [ -n "$__LAST_GRR" ]; then
+		if [[ "${__LAST_GRR:-}" != "$GRR" ]]; then
+			if [ -n "${__LAST_GRR:-}" ]; then
 				echo "Leaving Git repository: consider running 'git push'"
 			fi
 			echo "Entered Git repository: consider running 'git pull'"
 			__LAST_GRR="$GRR"
 		fi
 	else
-		if [ -n "$__LAST_GRR" ]; then
+		if [ -n "${__LAST_GRR:-}" ]; then
 			echo "Leaving Git repository: consider running 'git push'"
 			unset __LAST_GRR
 		fi
@@ -34,21 +34,21 @@ __git_repo_reminder() {
 PROMPT_COMMAND="__git_repo_reminder${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 
 dl() {
-	local out
+	local out=''
 	local quiet=0
 	local verbose=0
-	local url
+	local url=''
 	local to_stdout=0
 	local no_fallback=0
 	local use_aria2=1
 	local use_curl=1
 	local use_wget=1
 	local use_wget2=1
-	local tmp_file
-	local aria2_option
-	local curl_option
-	local wget_option
-	local wget2_option
+	local tmp_file=''
+	local aria2_option=''
+	local curl_option=''
+	local wget_option=''
+	local wget2_option=''
 	# shellcheck disable=2016
 	local msg='Usage: dl [-h|--help] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <URL>
 Global flags: $DLFLAGS'
@@ -289,11 +289,11 @@ gh_release() {
 	local regex=0
 	local github=1
 	local codeberg=0
-	local repo
-	local file
-	local name
-	local tag
-	local index
+	local repo=''
+	local file=''
+	local name=''
+	local tag=''
+	local index=''
 	local msg='Usage: gh_release [-h|--help] [-g|--glob] [-r|--regex] [-gh|--github] [-cb|--codeberg] [-n|--name release_name_pattern] [-t|--tag release_tag_name_pattern] [-i|--index asset_index] [-o|--output output file] [-O|--stdout] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [-w2|--wget2] [-W2|--no-wget2] [--no-fallback] [--aria2_option <options to be passed to aria2c>] [--curl_option <options to be passed to curl>] [--wget_option <options to be passed to wget>] [--wget2_option <options to be passed to wget2>] <user/repo or repo URL> [asset pattern]
 If both -g|--glob and -r|--regex are not supplied, glob will be used.
 If repo is provided as URL, GitHub/Codeberg will be inferred from it.
@@ -500,9 +500,7 @@ gh_release codeberg.org/Codeberg/pages-server '"'"'codeberg-pages-server-*-debia
 	count=$(echo "$urls" | grep -cve '^[[:space:]]*$')
 
 	if [ "$quiet" -eq 0 ]; then
-		# shellcheck disable=2155
-		local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
-		echo "Release: $release_name" >&2
+		echo "Release: $(echo "$release_json" | jq -r '.name // .tag_name')" >&2
 
 		if [ "$count" -gt 1 ]; then
 			echo "Found $count matching assets. Downloading all" >&2
@@ -542,7 +540,7 @@ gh_file() {
 	local quiet=0
 	local verbose=0
 	local print_url=0
-	local url
+	local url=''
 
 	while [ $# -gt 0 ]; do
 		case "$1" in
@@ -610,7 +608,7 @@ gh_file() {
 
 cgrr() {
 	# shellcheck disable=2164
-	[ -n "$GRR" ] && cd "$GRR" || true
+	[ -n "${GRR:-}" ] && cd "$GRR" || true
 }
 
 ghcrpb() {
@@ -625,8 +623,7 @@ ghcrpv() {
 
 gpul() {
 	local level="${1:-0}"
-	local repo_dir
-	local depth
+	local repo_dir=''
 	if [ "$level" -eq 0 ]; then
 		repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
 		if [ -n "$repo_dir" ]; then
@@ -636,6 +633,7 @@ gpul() {
 			echo "Not in a Git repo."
 		fi
 	else
+		local depth
 		depth=$((level + 1))
 		find . -mindepth "$depth" -maxdepth "$depth" -type d -name .git | while read -r gitdir; do
 			repo_dir=$(dirname "$gitdir")
@@ -791,8 +789,8 @@ gtr() {
 	fi
 	local version="$1"
 	shift
-	local notes
-	local repo
+	local notes=''
+	local repo=''
 	local files=()
 
 	while [ $# -gt 0 ]; do
@@ -1016,7 +1014,7 @@ zip_single() {
 
 bzip2_split() {
 	local bytes
-	if [ -n "$SPLIT_SIZE" ]; then
+	if [ -n "${SPLIT_SIZE:-}" ]; then
 		bytes="$SPLIT_SIZE"
 	else
 		bytes="4000M"
@@ -1079,7 +1077,7 @@ bzip2_split() {
 
 gzip_split() {
 	local bytes
-	if [ -n "$SPLIT_SIZE" ]; then
+	if [ -n "${SPLIT_SIZE:-}" ]; then
 		bytes="$SPLIT_SIZE"
 	else
 		bytes="4000M"
@@ -1142,7 +1140,7 @@ gzip_split() {
 
 xz_split() {
 	local bytes
-	if [ -n "$SPLIT_SIZE" ]; then
+	if [ -n "${SPLIT_SIZE:-}" ]; then
 		bytes="$SPLIT_SIZE"
 	else
 		bytes="4000M"
@@ -1205,7 +1203,7 @@ xz_split() {
 
 tar_split() {
 	local bytes
-	if [ -n "$SPLIT_SIZE" ]; then
+	if [ -n "${SPLIT_SIZE:-}" ]; then
 		bytes="$SPLIT_SIZE"
 	else
 		bytes="4000M"
@@ -1266,7 +1264,7 @@ tar_split() {
 
 zip_split() {
 	local bytes
-	if [ -n "$SPLIT_SIZE" ]; then
+	if [ -n "${SPLIT_SIZE:-}" ]; then
 		bytes="$SPLIT_SIZE"
 	else
 		bytes="4000M"
@@ -1374,7 +1372,7 @@ dicepass() {
 	local file="${HOME}/.eff_large_wordlist.txt"
 	[[ ! -f "$file" ]] && curl -fsSL "$url" -o "$file"
 	[[ ! -f "$file" ]] && printf 'ERROR: cannot download wordlist\n'
-	local passphrase
+	local passphrase=''
 	while true; do
 		local word
 		word="$(awk -v k="$(shuf -i 1-6 -n 5 | tr -d '\n')" '$1 == k { print $2; exit }' "$file")"
@@ -2137,8 +2135,8 @@ vncl() {
 }
 
 vncd() {
-	# shellcheck disable=2155
-	local var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
+	local var
+	var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
 	[ -n "$var" ] && export DISPLAY="$var" && echo "DISPLAY: $var" || true
 }
 
