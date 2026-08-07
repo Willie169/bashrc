@@ -109,6 +109,10 @@ update_all() {
 	update_tools
 }
 
+pdc() {
+	cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/$1/rootfs/root" || return
+}
+
 pdl() {
 	cmd=(proot-distro login "$1" --redirect-ports --isolated --get-proot-cmd)
 	bind=(
