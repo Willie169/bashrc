@@ -9,13 +9,6 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/10-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/20-shared-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/30-shared-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/40-shared-color.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/00-env.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/11-exports.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/21-aliases.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/22-vnc.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/23-flatpak.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/31-functions.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/41-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/install.sh
 cd ~ || exit
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-amd/bashrc -O .bashrc

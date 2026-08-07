@@ -9,12 +9,6 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/10-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/20-shared-aliases.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/30-shared-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/40-shared-color.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/11-exports.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-aliases.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/22-vnc.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/31-functions.sh
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/32-extra-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/install.sh
 cd ~ || exit
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/termux/bashrc -O .bashrc
