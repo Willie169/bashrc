@@ -233,12 +233,12 @@ mkdirpp() {
                     "p" +
                     prootStr[k] +
                     "() {\n\tif [ -n \"$" +
-                    proot[k].upper() +
+                    'PROOT_' + proot[k].upper() +
                     "\" ]; then\n\t\t" +
                     pop[i] +
                     remoteStr[j] +
                     "p \"$" +
-                    proot[k].upper() +
+                    'PROOT_' + proot[k].upper() +
                     "\" \"$1\"\n\telse\n\t\t" +
                     pop[i] +
                     remoteStr[j] +
@@ -253,11 +253,11 @@ mkdirpp() {
                 "p" +
                 prootStr[k] +
                 "() {\n\tif [ -n \"$" +
-                proot[k].upper() +
+                'PROOT_' + proot[k].upper() +
                 "\" ]; then\n\t\t" +
                 npop[i] +
                 "p \"$" +
-                proot[k].upper() +
+                'PROOT_' + proot[k].upper() +
                 "\" \"$1\"\n\telse\n\t\t" +
                 npop[i] +
                 "p \"" +
@@ -273,12 +273,12 @@ mkdirpp() {
                     "p" +
                     prootStr[k] +
                     "() {\n\tif [ -n \"$" +
-                    proot[k].upper() +
+                    'PROOT_' + proot[k].upper() +
                     "\" ]; then\n\t\t" +
                     pup[i] +
                     localStr[j] +
                     "p \"$" +
-                    proot[k].upper() +
+                    'PROOT_' + proot[k].upper() +
                     "\" \"$1\"\n\telse\n\t\t" +
                     pup[i] +
                     localStr[j] +
