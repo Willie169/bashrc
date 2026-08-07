@@ -9,28 +9,22 @@ for f in "$dir"/**/*.py; do
 	python3 "$f"
 done
 
-arr=("termux" "ubuntu-amd" "ubuntu-debian-arm-proot")
-for d in "${arr[@]}"; do
-	u="$dir/$d"/install.sh
-	echo '#!/usr/bin/env sh
-
-cd ~ || exit
-rm -f .bashrc 2>/dev/null || true
-rm -rf .bashrc.d 2>/dev/null || true
-mkdir .bashrc.d
-cd .bashrc.d || exit' >"$u"
-	for f in "$dir"/bashrc.d/*.sh; do
-		echo 'wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/'"$(basename "$f")" >>"$u"
-	done
-	for f in "$dir/$d"/bashrc.d/*.sh; do
-		echo 'wget https://raw.githubusercontent.com/Willie169/bashrc/main/'"$d"'/bashrc.d/'"$(basename "$f")" >>"$u"
-	done
-	echo 'cd ~ || exit
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/'"$d"'/bashrc.d/bashrc -O .bashrc' >>"$u"
-done
-
 for f in "$dir"/**/*.sh "$dir"/**/bashrc; do
 	chmod +x "$f"
 	shfmt -w "$f"
 	shellcheck -e 1090,1091 "$f"
+done
+
+arr=("termux" "ubuntu-amd" "ubuntu-debian-arm-proot")
+for d in "${arr[@]}"; do
+	u="$dir/bashrc.d/$d/install.sh"
+	echo $'#!/usr/bin/env sh\n\ncd ~ || exit\nrm -f .bashrc 2>/dev/null || true\nrm -rf .bashrc.d 2>/dev/null || true\nmkdir .bashrc.d\ncd .bashrc.d || exit' >"$u"
+	for f in "$dir"/bashrc.d/shared/*.sh; do
+		echo 'wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/'"$(basename "$f")" >>"$u"
+	done
+	for f in "$dir/bashrc.d/$d"/*.sh; do
+		echo 'wget https://raw.githubusercontent.com/Willie169/bashrc/main/'"$d"'/bashrc.d/'"$(basename "$f")" >>"$u"
+	done
+	echo 'cd ~ || exit' >>"$u"
+	echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/$d/bashrc -O .bashrc" >>"$u"
 done
