@@ -10,7 +10,9 @@ for f in "$dir"/*.py; do
 done
 
 for f in "$dir"/**/*.sh "$dir"/**/bashrc; do
-	chmod +x "$f"
-	shfmt -w "$f"
-	shellcheck -e 1090,1091 "$f"
+	if [ -f "$f" ]; then
+		chmod +x "$f"
+		shfmt -w "$f"
+		shellcheck -e 1090,1091 "$f"
+	fi
 done
