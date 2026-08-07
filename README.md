@@ -18,15 +18,15 @@ Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted. wget is require
 
 - Ubuntu derivatives AMD64:
   ```
-  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
+  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-amd/install.sh | sh
   ```
 - Ubuntu or Debian ARM64 proot-distro:
   ```
-  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/install.sh | sh
+  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-debian-arm-proot/install.sh | sh
   ```
 - Termux:
   ```
-  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
+  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/termux/install.sh | sh
   ```
 
 `source ~/.bashrc` to make it take effect in current shell.
