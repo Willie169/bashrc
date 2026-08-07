@@ -80,5 +80,5 @@ unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
 unset GIT_ASKPASS
 export PATH="$HOME/shizuku:$HOME/jadx/bin:$HOME/rar:$GOPATH/bin:$HOME/.cargo/bin:$JAVA_HOME/bin:$HOME/eclipse.jdt.ls/bin:$HOME/ktlsp/server/bin:$HOME/.opencode/bin:$HOME/dev/llm/llama.cpp/build/bin:$HOME/KataGo/cpp:$HOME/Sylvan/projects/gui:$HOME/Sylvan/projects/cli:/opt/TurboVNC/bin:$HOME/intelFPGA/20.1/modelsim_ase/bin:/opt/Binance:$USR_DIR/local/texlive/2026/bin/aarch64-linux:$USR_DIR/local/texlive/2025/bin/aarch64-linux:$USR_DIR/local/texlive/2026/bin/x86_64-linux:$USR_DIR/local/texlive/2025/bin/x86_64-linux:$USR_DIR/local/cuda/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:$HOME/.local/bin:$HOME/.local/sbin:$GOROOT/bin:$USR_DIR/local/bin:$USR_DIR/local/sbin:$USR_DIR/bin:$USR_DIR/sbin:/bin:/sbin:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$HOME/Applications:$USR_DIR/games:/system/bin:${PATH:-}"
-[ -n "$ANDROID_NDK_HOME" ] && export PATH="$PATH:$ANDROID_NDK_HOME"
-[ -n "$ANDROID_NDK_TOOLCHAINS" ] && export PATH="$PATH:$ANDROID_NDK_TOOLCHAINS/bin"
+[ -n "${ANDROID_NDK_HOME:-}" ] && export PATH="$PATH:$ANDROID_NDK_HOME"
+[ -n "${ANDROID_NDK_TOOLCHAINS:-}" ] && export PATH="$PATH:$ANDROID_NDK_TOOLCHAINS/bin"

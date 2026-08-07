@@ -2152,10 +2152,6 @@ ubuntu_version_id() {
 		fi
 	fi
 }
-if [ -f /etc/os-release ]; then
-	# shellcheck disable=2155
-	export UBUNTU_VERSION_ID=$(ubuntu_version_id)
-fi
 
 update_bashrc() {
 	(
