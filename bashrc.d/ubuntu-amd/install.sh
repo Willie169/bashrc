@@ -11,4 +11,4 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/bas
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/bashrc.d/40-shared-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/bashrc.d/install.sh
 cd ~ || exit
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-amd/bashrc -O .bashrc
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-amd/bashrc.d/bashrc -O .bashrc

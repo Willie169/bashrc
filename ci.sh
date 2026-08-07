@@ -26,6 +26,6 @@ for d in "${arr[@]}"; do
 		echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/$d/bashrc.d/$(basename "$f")" >>"$u"
 	done
 	echo 'cd ~ || exit' >>"$u"
-	echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/$d/bashrc -O .bashrc" >>"$u"
+	echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/$d/bashrc.d/bashrc -O .bashrc" >>"$u"
 	chmod +x "$u"
 done

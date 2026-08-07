@@ -11,4 +11,4 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/bas
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/bashrc.d/40-shared-color.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/install.sh
 cd ~ || exit
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-debian-arm-proot/bashrc -O .bashrc
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-debian-arm-proot/bashrc.d/bashrc -O .bashrc
