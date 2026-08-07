@@ -19,11 +19,11 @@ arr=("termux" "ubuntu-amd" "ubuntu-debian-arm-proot")
 for d in "${arr[@]}"; do
 	u="$dir/bashrc.d/$d/install.sh"
 	echo $'#!/usr/bin/env sh\n\ncd ~ || exit\nrm -f .bashrc 2>/dev/null || true\nrm -rf .bashrc.d 2>/dev/null || true\nmkdir .bashrc.d\ncd .bashrc.d || exit' >"$u"
-	for f in "$dir"/bashrc.d/shared/*.sh; do
-		echo 'wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/'"$(basename "$f")" >>"$u"
+	for f in "$dir"/bashrc.d/shared/bashrc.d/*.sh; do
+		echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/bashrc.d/$(basename "$f")" >>"$u"
 	done
 	for f in "$dir/bashrc.d/$d"/*.sh; do
-		echo 'wget https://raw.githubusercontent.com/Willie169/bashrc/main/'"$d"'/bashrc.d/'"$(basename "$f")" >>"$u"
+		echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/$d/bashrc.d/$(basename "$f")" >>"$u"
 	done
 	echo 'cd ~ || exit' >>"$u"
 	echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/$d/bashrc -O .bashrc" >>"$u"
