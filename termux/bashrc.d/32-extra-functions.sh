@@ -1,6 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # shellcheck disable=2103
 
+[ "${HOME}" != '/data/data/com.termux/files/home' ] && [ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ] && exit
 mvic() {
 	mv -- "$DOW"/"$1" ./
 }

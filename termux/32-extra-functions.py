@@ -6,6 +6,9 @@ with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as fil
 
     file.write(
         "#!/data/data/com.termux/files/usr/bin/bash\n# shellcheck disable=2103\n\n")
+    file.write(
+        r'''[ "${HOME}" != '/data/data/com.termux/files/home' ] && [ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ] && exit''' +
+        '\n\n')
 
     def lr(x):
         return range(0, len(x))
