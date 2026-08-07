@@ -1404,7 +1404,7 @@ latexci() {
 		engine="$1"
 		shift
 	fi
-	engine="$(pwd)"
+	cwd="$(pwd)"
 	if [ $# -ne 0 ]; then
 		files=("$@")
 	else
