@@ -14,20 +14,13 @@ Put your prependings in `~/.bashrc.prepend` and your overrides in `~/.bashrc.ove
 
 ### Installation
 
-Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted. wget is required.
+Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted. git is required.
 
-- Ubuntu derivatives AMD64:
-  ```
-  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-amd/install.sh | sh
-  ```
-- Ubuntu or Debian ARM64 proot-distro:
-  ```
-  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/ubuntu-debian-arm-proot/install.sh | sh
-  ```
-- Termux:
-  ```
-  wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/termux/install.sh | sh
-  ```
+```
+rm -rf ~/.bashrc ~/.bashrc.d
+git clone --depth=1 https://github.com/Willie169/bashrc ~/.bashrc.d
+ln -sf "${HOME}"/.bashrc.d/bashrc.d/bashrc "${HOME}"/.bashrc
+```
 
 `source ~/.bashrc` to make it take effect in current shell.
 
