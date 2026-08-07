@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ "$HOME" = '/data/data/com.termux/files/home' ]] || [[ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]]; then
+if [[ "$HOME" == '/data/data/com.termux/files/home' ]] || [[ "${PREFIX:-}" == '/data/data/com.termux/files/usr' ]]; then
 	export IS_TERMUX=1
 	export TMPDIR="$PREFIX/tmp"
 	export USR_DIR="$PREFIX"
@@ -12,11 +12,16 @@ if [[ "$HOME" = '/data/data/com.termux/files/home' ]] || [[ "${PREFIX:-}" = '/da
 	export DOW="/storage/emulated/0/Download"
 	export DOC="/storage/emulated/0/Documents"
 	export SCR="/storage/emulated/0/Scripts"
+	export JAVA_HOME="$USR_DIR/lib/jvm/java-21-openjdk"
+	export ANDROID_HOME="$HOME/Android/Sdk"
+	export ANDROID_NDK_HOME="$HOME/Android/Sdk/ndk/android-ndk-r29"
+	export ANDROID_NDK_TOOLCHAINS="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-aarch64"
 else
 	export IS_TERMUX=0
 	export TMPDIR="/tmp"
 	export USR_DIR="/usr"
 	export ETC_DIR="/etc"
+	export ANDROID_HOME="$HOME/Android/Sdk"
 fi
 if [ "$EUID" -eq 0 ]; then
 	export IS_ROOT=1
@@ -25,6 +30,14 @@ else
 fi
 # shellcheck disable=2155
 export ARCH=$(uname -m)
+if [ "$IS_TERMUX" -eq 0 ]; then
+	if [[ "$ARCH" == "x86_64" || "$ARCH" == "amd64" ]]; then
+		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+		export LD_LIBRARY_PATH="/usr/local/cuda-13.0/lib64:/usr/local/cuda-13.1/lib64:/usr/local/cuda-13.2/lib64:/usr/local/cuda-13.3/lib64:/usr/local/cuda-13.4/lib64:/usr/local/cuda-13.5/lib64:/usr/local/cuda-13.6/lib64:/usr/local/cuda-13.7/lib64:/usr/local/cuda-13.8/lib64:/usr/local/cuda-13.9/lib64:${LD_LIBRARY_PATH:-}"
+	else
+		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
+	fi
+fi
 if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
 	export IS_CONTAINER=1
 	export GALLIUM_DRIVER=zink
@@ -62,20 +75,6 @@ export WAYDROID_HOME="$HOME/.local/share/waydroid/data/media/0"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
 export BOTTLES="$HOME/.var/app/com.usebottles.bottles/data/bottles"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
-if [ "$IS_TERMUX" -eq 1 ]; then
-	export JAVA_HOME="$USR_DIR/lib/jvm/java-21-openjdk"
-	export ANDROID_HOME="$HOME/Android/Sdk"
-	export ANDROID_NDK_HOME="$HOME/Android/Sdk/ndk/android-ndk-r29"
-	export ANDROID_NDK_TOOLCHAINS="${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-aarch64"
-else
-	if [[ "$ARCH" == "x86_64" || "$ARCH" == "amd64" ]]; then
-		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
-		export LD_LIBRARY_PATH="/usr/local/cuda-13.0/lib64:/usr/local/cuda-13.1/lib64:/usr/local/cuda-13.2/lib64:/usr/local/cuda-13.3/lib64:/usr/local/cuda-13.4/lib64:/usr/local/cuda-13.5/lib64:/usr/local/cuda-13.6/lib64:/usr/local/cuda-13.7/lib64:/usr/local/cuda-13.8/lib64:/usr/local/cuda-13.9/lib64:${LD_LIBRARY_PATH:-}"
-	elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
-	fi
-	export ANDROID_HOME="$HOME/Android/Sdk"
-fi
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
