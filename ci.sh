@@ -22,7 +22,7 @@ for d in "${arr[@]}"; do
 	for f in "$dir"/bashrc.d/shared/bashrc.d/*.sh; do
 		echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/bashrc.d/shared/bashrc.d/$(basename "$f")" >>"$u"
 	done
-	for f in "$dir/bashrc.d/$d"/*.sh; do
+	for f in "$dir/bashrc.d/$d"/bashrc.d/*.sh; do
 		echo "wget https://raw.githubusercontent.com/Willie169/bashrc/main/$d/bashrc.d/$(basename "$f")" >>"$u"
 	done
 	echo 'cd ~ || exit' >>"$u"
