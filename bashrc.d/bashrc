@@ -3,9 +3,10 @@
 [ -f "$HOME/.bashrc.prepend" ] && . "$HOME/.bashrc.prepend" || true
 
 if [ -d "$HOME/.bashrc.d" ]; then
-	for f in "$HOME/.bashrc.d/"*; do
-		[ -r "$f" ] && source "$f"
+	for f in "$HOME/.bashrc.d/bashrc.d/"*.sh; do
+		[ -f "$f" ] && source "$f"
 	done
 fi
 
+[ -f "$HOME/.bashrc.proot" ] && . "$HOME/.bashrc.proot" || true
 [ -f "$HOME/.bashrc.overrides" ] && . "$HOME/.bashrc.overrides" || true
