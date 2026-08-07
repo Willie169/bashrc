@@ -1,12 +1,13 @@
 from pathlib import Path
 
-p = Path(Path(__file__).resolve().parent / "bashrc.d/32-termux-functions.sh")
+p = Path(Path(__file__).resolve().parent /
+         "bashrc.d/32-termux-extra-functions.sh")
 p.touch(exist_ok=True)
 
 with open(p, "w", encoding="utf-8") as file:
 
     file.write(
-        "#!/data/data/com.termux/files/usr/bin/bash\n# shellcheck disable=2103\n\n")
+        "#!/usr/bin/env bash\n# shellcheck disable=2103\n\n")
     file.write(
         r'''[ "${HOME}" != '/data/data/com.termux/files/home' ] && [ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ] && exit''' +
         '\n\n')

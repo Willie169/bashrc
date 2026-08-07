@@ -2,8 +2,15 @@
 
 case $- in
 *i*) ;;
-*) return ;;
+*) exit ;;
 esac
+
+shopt -s histappend
+shopt -s checkwinsize
+shopt -s globstar
+HISTCONTROL=ignoreboth
+HISTSIZE=5000
+HISTFILESIZE=10000
 
 if command -v dircolors >/dev/null 2>&1; then
 	# shellcheck disable=2015
