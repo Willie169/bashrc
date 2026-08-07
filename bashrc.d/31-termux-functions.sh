@@ -37,12 +37,6 @@ clean_disk() {
 	proot-distro clear-cache || true
 }
 
-update_bashrc() {
-	(
-		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
-	)
-}
-
 update_config() {
 	update_vim_config
 	update_nvim_config

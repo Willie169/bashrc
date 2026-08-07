@@ -2141,3 +2141,12 @@ vncd() {
 	local var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
 	[ -n "$var" ] && export DISPLAY="$var"
 }
+
+update_bashrc() {
+	(
+		cd ~/.bashrc.d || exit
+		git reset --hard
+		git pull --rebase
+		git clean -fd
+	)
+}

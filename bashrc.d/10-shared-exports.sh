@@ -39,7 +39,7 @@ if [ "$IS_TERMUX" -eq 0 ] && [ "$IS_CONTAINER" -eq 1 ]; then
 	export PULSE_SERVER=127.0.0.1
 fi
 export VISUAL=nvim
-export EDITOR="${VISUAL}"
+export EDITOR="$VISUAL"
 export SHD="$HOME/shared"
 export GTK_USE_PORTAL=1
 export GOPROXY='direct'
@@ -57,11 +57,11 @@ export HOMEBREW_TAPS='/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps'
 export DLFLAGS='-A'
 export KIT="$USR_DIR/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
-export WAYDROID_ROOT="${HOME}/.local/share/waydroid"
-export WAYDROID_HOME="${HOME}/.local/share/waydroid/data/media/0"
-export MINETEST="${HOME}/.var/app/org.luanti.luanti/.minetest"
-export BOTTLES="${HOME}/.var/app/com.usebottles.bottles/data/bottles"
-export MINETEST="${HOME}/.var/app/org.luanti.luanti/.minetest"
+export WAYDROID_ROOT="$HOME/.local/share/waydroid"
+export WAYDROID_HOME="$HOME/.local/share/waydroid/data/media/0"
+export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
+export BOTTLES="$HOME/.var/app/com.usebottles.bottles/data/bottles"
+export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
 if [ -f /etc/os-release ]; then
 	# shellcheck disable=2155
 	export UBUNTU_VERSION_ID=$(
@@ -86,9 +86,9 @@ else
 	elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
 		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
 	fi
-	export ANDROID_HOME="${HOME}/Android/Sdk"
+	export ANDROID_HOME="$HOME/Android/Sdk"
 fi
-export ANDROID_SDK_ROOT="${ANDROID_HOME}"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
 unset GIT_ASKPASS

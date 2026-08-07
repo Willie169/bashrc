@@ -40,12 +40,6 @@ update_latex() {
 	)
 }
 
-update_bashrc() {
-	(
-		wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-amd/install.sh | sh
-	)
-}
-
 update_config() {
 	update_vim_config
 	update_nvim_config

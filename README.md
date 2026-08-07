@@ -27,6 +27,15 @@ ln -sf "${HOME}"/.bashrc.d/bashrc.d/bashrc "${HOME}"/.bashrc
 ### Update
 
 ```
+(
+    cd ~/.bashrc.d
+    git reset --hard
+    git pull --rebase
+    git clean -fd
+)
+```
+or
+```
 source ~/.bashrc
 update_bashrc
 ```
