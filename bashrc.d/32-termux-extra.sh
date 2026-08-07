@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=2103
 
-[[ "${HOME}" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]] && exit
+[[ "${HOME}" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]] && return
 
 mvic() {
 	mv -- "$DOW"/"$1" ./
