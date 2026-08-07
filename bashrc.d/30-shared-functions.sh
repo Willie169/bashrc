@@ -891,7 +891,7 @@ no tar by default'
 	else
 		(
 			set -o pipefail
-			sh -c "$1" "$2" | __pv >"$3"
+			sh -c "$1$2" | __pv >"$3"
 		)
 	fi
 }
@@ -952,7 +952,7 @@ BYTES=$SPLIT_SIZE if set and 4000M if not by default'
 	else
 		(
 			set -o pipefail
-			sh -c "$1" "$2" | __pv | split -b "$bytes" -d -a 3 - "$3.part."
+			sh -c "$1$2" | __pv | split -b "$bytes" -d -a 3 - "$3.part."
 		)
 	fi
 }
