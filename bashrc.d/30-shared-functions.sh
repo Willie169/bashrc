@@ -610,7 +610,7 @@ gh_file() {
 
 cgrr() {
 	# shellcheck disable=2164
-	[ -n "$GRR" ] && cd "$GRR"
+	[ -n "$GRR" ] && cd "$GRR" || true
 }
 
 ghcrpb() {
@@ -1379,7 +1379,7 @@ dicepass() {
 		local word
 		word="$(awk -v k="$(shuf -i 1-6 -n 5 | tr -d '\n')" '$1 == k { print $2; exit }' "$file")"
 		((${#passphrase} + ${#word} + ${#sep} > n)) && break
-		[[ -n "$passphrase" ]] && passphrase+="$sep"
+		[[ -n "$passphrase" ]] && passphrase+="$sep" || true
 		passphrase+="$word"
 	done
 	((${#passphrase} > 0)) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
@@ -2139,7 +2139,7 @@ vncl() {
 vncd() {
 	# shellcheck disable=2155
 	local var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
-	[ -n "$var" ] && export DISPLAY="$var"
+	[ -n "$var" ] && export DISPLAY="$var" && echo "DISPLAY: $var" || true
 }
 
 ubuntu_version_id() {
