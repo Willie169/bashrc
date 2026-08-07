@@ -28,7 +28,7 @@ if [ -r "${HOME}/conda" ]; then
 fi
 
 # shellcheck disable=2155,2164
-if command yazi >/dev/null 2>&1; then
+if command -v yazi >/dev/null 2>&1; then
 	function y() {
 		local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 		command yazi "$@" --cwd-file="$tmp"

@@ -2,7 +2,7 @@
 
 case $- in
 *i*) ;;
-*) exit ;;
+*) return ;;
 esac
 
 HISTCONTROL=ignoreboth

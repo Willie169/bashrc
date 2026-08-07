@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]]; then
-	exit
+	return
 fi
 
 phice() {
