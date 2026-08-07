@@ -4,7 +4,7 @@ shopt -s globstar
 
 dir="$(cd -- "$(dirname -- "$0")" && pwd)"
 
-for f in "$dir"/**/*.py; do
+for f in "$dir"/*.py; do
 	autopep8 --in-place --aggressive --aggressive "$f"
 	python3 "$f"
 done

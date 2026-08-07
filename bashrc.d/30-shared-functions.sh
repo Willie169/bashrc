@@ -2100,3 +2100,11 @@ pyfm() {
 svfm() {
 	verible-verilog-format --inplace "$@"
 }
+
+getprop() {
+    if [ -f '/system/bin/getprop' ]; then
+        /system/bin/getprop "$@"
+    else
+        command getprop "$@"
+    fi
+}

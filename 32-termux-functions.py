@@ -2,7 +2,7 @@ from pathlib import Path
 
 sdir = Path(__file__).resolve().parent
 
-with open(sdir / "bashrc.d/32-extra-functions.sh", "w", encoding="utf-8") as file:
+with open(sdir / "bashrc.d/32-termux-functions.sh", "w", encoding="utf-8") as file:
 
     file.write(
         "#!/data/data/com.termux/files/usr/bin/bash\n# shellcheck disable=2103\n\n")
