@@ -1,4 +1,8 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
+
+if [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]]; then
+    exit
+fi
 
 phice() {
 	(
@@ -60,7 +64,7 @@ update_tools() {
 			gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
 			unzip rclone-android-all.zip
 			rm rclone-android-all.zip*
-			if [[ "$ARCH" == "x86_64" ]]; then
+			if [[ "$ARCH" == "x86_64" || "$ARCH" == "amd64" ]]; then
 				rm rclone-android-386
 				mv rclone-android-amd64 rclone
 				rm rclone-android-arm
@@ -364,4 +368,20 @@ pdr() {
 	done
 	cmd+=(-- "${args[@]}")
 	bash <("${cmd[@]}")
+}
+
+tx11() {
+    termux-x11 "$@"
+}
+
+xfce() {
+    dbus-launch --exit-with-session xfce4-session >/dev/null 2>&1
+}
+
+xxfce() {
+	if [ $# -ne 0 ]; then
+		termux-x11 "$1" -xstartup "dbus-launch --exit-with-session xfce4-session"
+	else
+		termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"
+	fi
 }

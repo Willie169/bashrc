@@ -17,7 +17,7 @@ __git_repo_reminder() {
 	command -v git >/dev/null 2>&1 || return 0
 	GRR=$(git rev-parse --show-toplevel 2>/dev/null)
 	if [ -n "$GRR" ]; then
-		if [ "$__LAST_GRR" != "$GRR" ]; then
+		if [[ "$__LAST_GRR" != "$GRR" ]]; then
 			if [ -n "$__LAST_GRR" ]; then
 				echo "Leaving Git repository: consider running 'git push'"
 			fi
@@ -246,8 +246,8 @@ Global flags: $DLFLAGS'
 
 	local rc=1
 
-	if [ "$use_aria2" -eq 1 ]; then
-		if try_aria2; then
+	if [ "$use_wget" -eq 1 ]; then
+		if try_wget; then
 			return 0
 		fi
 		rc=$?
@@ -262,16 +262,16 @@ Global flags: $DLFLAGS'
 		[ "$no_fallback" -eq 1 ] && return "$rc"
 	fi
 
-	if [ "$use_wget" -eq 1 ]; then
-		if try_wget; then
+	if [ "$use_wget2" -eq 1 ]; then
+		if try_wget2; then
 			return 0
 		fi
 		rc=$?
 		[ "$no_fallback" -eq 1 ] && return "$rc"
 	fi
 
-	if [ "$use_wget2" -eq 1 ]; then
-		if try_wget2; then
+	if [ "$use_aria2" -eq 1 ]; then
+		if try_aria2; then
 			return 0
 		fi
 		rc=$?
@@ -397,12 +397,12 @@ gh_release codeberg.org/Codeberg/pages-server '"'"'codeberg-pages-server-*-debia
 	repo="${repo%.git}"
 	repo="${repo%/}"
 	if [[ "$repo" == */*/* ]]; then
-		if [ "$repo" != "${repo#github.com/}" ]; then
+		if [[ "$repo" != "${repo#github.com/}" ]]; then
 			github=1
 			codeberg=0
 			repo="${repo#github.com/}"
 		fi
-		if [ "$repo" != "${repo#codeberg.org/}" ]; then
+		if [[ "$repo" != "${repo#codeberg.org/}" ]]; then
 			github=0
 			codeberg=1
 			repo="${repo#codeberg.org/}"
@@ -1650,11 +1650,12 @@ httpp() {
 }
 
 lbtr() {
-	libretranslate & "$@"
+	libretranslate &
+	"$@"
 }
 
 yt-sub() {
-	yt-dlp --write-subs --sub-format vtt  --skip-download "$@"
+	yt-dlp --write-subs --sub-format vtt --skip-download "$@"
 }
 
 gpp11() {
@@ -2042,7 +2043,7 @@ lualt() {
 }
 
 ltmk() {
-    latexmk -latexoption='-interaction=nonstopmode -halt-on-error' "$@"
+	latexmk -latexoption='-interaction=nonstopmode -halt-on-error' "$@"
 }
 
 shch() {
@@ -2102,11 +2103,11 @@ svfm() {
 }
 
 getprop() {
-    if [ -f '/system/bin/getprop' ]; then
-        /system/bin/getprop "$@"
-    else
-        command getprop "$@"
-    fi
+	if [ -f '/system/bin/getprop' ]; then
+		/system/bin/getprop "$@"
+	else
+		command getprop "$@"
+	fi
 }
 
 binance() {
@@ -2119,4 +2120,22 @@ onlyoffice() {
 
 dph() {
 	dolphin "$@"
+}
+
+vnc() {
+    vncserver "$@"
+}
+
+vnck() {
+    vncserver -kill "$@"
+}
+
+vncl() {
+    vncserver -list "$@"
+}
+
+vncd() {
+	# shellcheck disable=2155
+	local var=$(vncserver 2>&1 | grep "desktop is" | sed -E 's/New.+desktop.+:/:/')
+	[ -n "$var" ] && export DISPLAY="$var"
 }

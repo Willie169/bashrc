@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" == "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]] || [[ "$HOME" == '/data/data/com.termux/files/home' ]] || [[ "${PREFIX:-}" == '/data/data/com.termux/files/usr' ]]; then
+    exit
+fi
+
 clean_disk() {
 	rm -rf ~/.cache/*
 	apt autoremove -y
@@ -100,4 +104,12 @@ update_all() {
 	update_texlive
 	update_latex
 	update_tools
+}
+
+xfce() {
+	unset DBUS_SESSION_BUS_ADDRESS
+	unset SESSION_MANAGER
+	export GALLIUM_DRIVER=zink
+	export MESA_GL_VERSION_OVERRIDE=4.3
+	dbus-launch --exit-with-session xfce4-session
 }

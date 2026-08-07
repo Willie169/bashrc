@@ -8,9 +8,9 @@
 - Ubuntu or Debian ARM proot-distro: designed for Ubuntu and Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - Termux: designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
-### Overrides
+### Customization
 
-Put your overrides in `~/.bashrc.overrides`.
+Put your prependings in `~/.bashrc.prepend` and your overrides in `~/.bashrc.overrides`.
 
 ### Installation
 

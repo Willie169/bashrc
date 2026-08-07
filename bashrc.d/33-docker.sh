@@ -29,7 +29,7 @@ open_notebook_up() {
 }
 
 open_notebook_stop() {
-(cd ~/open-notebook && docker compose stop "$@")
+	(cd ~/open-notebook && docker compose stop "$@")
 }
 
 open_notebook_down() {

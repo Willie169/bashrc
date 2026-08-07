@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]] || [[ "$HOME" == '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" == '/data/data/com.termux/files/usr' ]] || [[ $(uname -m) != "x86_64" && $(uname -m) != "amd64" ]]; then
+    exit
+fi
+
 phice() {
 	(
 		local port="${1:-5001}"
