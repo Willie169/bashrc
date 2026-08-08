@@ -897,6 +897,7 @@ no tar by default'
 }
 
 compress_split() {
+	# shellcheck disable=2016
 	local msg='Usage: compress_split [-h|--help]
 compress_single [-b BYTES|--bytes BYTES] [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
 no tar by default
