@@ -1070,12 +1070,12 @@ clean_file() {
 }
 
 latexmkc() {
-	rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.dvi *.fdb_latexmk *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.synctex.gz *.tmp *.toc *.top *.tui *.vrb
+	rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.fdb_latexmk *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.tmp *.toc *.top *.tui *.vrb
 }
 
 latexmkC() {
 	latexmkc
-	rm -f -- *.pdf
+	rm -f -- *.dvi *.hnt *.pdf *.ps *.synctex *.synctex.gz
 }
 
 latexci() {
@@ -1145,6 +1145,21 @@ xelatexci() {
 
 lualatexci() {
 	latexci lualatex "$@"
+}
+
+match_round() {
+	awk '{ n = gsub(/\(/, "("); m = gsub(/\)/, ")"); balance += n - m; printf "%2d %5d %s\n", balance, NR, $0
+}' "$1"
+}
+
+match_square() {
+	awk '{ n = gsub(/\[/, "["); m = gsub(/\]/, "]"); balance += n - m; printf "%2d %5d %s\n", balance, NR, $0
+}' "$1"
+}
+
+match_curly() {
+	awk '{ n = gsub(/\{/, "{"); m = gsub(/\}/, "}"); balance += n - m; printf "%2d %5d %s\n", balance, NR, $0
+}' "$1"
 }
 
 update_vim_config() {
