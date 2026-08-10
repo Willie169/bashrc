@@ -68,6 +68,10 @@ egrep() {
 	command grep -EI "$color" "$@"
 }
 
+gp() {
+	command grep -I "$color" "$@"
+}
+
 gpr() {
 	command grep -rI "$color" "$@"
 }
