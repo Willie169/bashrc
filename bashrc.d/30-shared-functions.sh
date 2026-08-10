@@ -1071,12 +1071,20 @@ clean_file() {
 }
 
 latexmkc() {
-	rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.fdb_latexmk *.fls *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.tmp *.toc *.top *.tui *.vrb
+	if command -v latexmk >/dev/null 2>&1; then
+		latexmk -c
+	else
+		rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.fdb_latexmk *.fls *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.tmp *.toc *.top *.tui *.vrb
+	fi
 }
 
 latexmkC() {
-	latexmkc
-	rm -f -- *.dvi *.hnt *.pdf *.ps *.synctex *.synctex.gz
+	if command -v latexmk >/dev/null 2>&1; then
+		latexmk -C
+	else
+		latexmkc
+		rm -f -- *.dvi *.hnt *.pdf *.ps *.synctex *.synctex.gz
+	fi
 }
 
 latexci() {
@@ -1134,6 +1142,8 @@ latexci() {
 		date -uIs >>"$cwd/$log"
 		cat "$cwd/$log" >&2
 		echo "Failures are logged to $cwd/${log}." >&2
+	else
+		rm "$cwd"/latexci_xelatex_*_log.txt
 	fi
 	if ! command -v latexmk >/dev/null 2>&1; then
 		echo "WARNING: latexmk not exetuble, $engine used" >&2
