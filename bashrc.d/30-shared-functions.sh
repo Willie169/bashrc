@@ -1157,7 +1157,7 @@ latexci() {
 		echo "Failures are logged to $cwd/${log}." >&2
 		return 1
 	else
-		rm "$cwd"/latexci_xelatex_*_log.txt
+		rm -f "$cwd"/latexci_xelatex_*_log.txt
 	fi
 	if ! command -v latexmk >/dev/null 2>&1; then
 		echo "WARNING: latexmk not exetuble, $engine used" >&2
@@ -1274,7 +1274,7 @@ clean_newline() {
 }
 
 ccp() {
-    if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
+	if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
 		termux-clipboard-set
 	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		wl-copy
@@ -1284,7 +1284,7 @@ ccp() {
 }
 
 cpt() {
-    if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
+	if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
 		termux-clipboard-get
 	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		wl-paste
