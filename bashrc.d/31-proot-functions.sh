@@ -69,6 +69,11 @@ update_tools() {
 		unzip rclone-linux-arm64.zip
 		rm rclone-linux-arm64.zip*
 		mv rclone ~/.local/bin/
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-aarch64-unknown-linux-gnu
+		cp mozlz4-aarch64-unknown-linux-gnu mozlz4
+		chmod +x mozlz4
+		mv mozlz4 ~/.local/bin/
+		rm mozlz4-aarch64-unknown-linux-gnu*
 		update_config
 		update_nvim_config_full
 	)

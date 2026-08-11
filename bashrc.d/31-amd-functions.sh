@@ -77,6 +77,11 @@ update_tools() {
 		unzip rclone-linux-amd64.zip
 		rm rclone-linux-amd64.zip*
 		mv rclone ~/.local/bin/
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-x86_64-unknown-linux-gnu
+		cp mozlz4-x86_64-unknown-linux-gnu mozlz4
+		chmod +x mozlz4
+		mv mozlz4 ~/.local/bin/
+		rm mozlz4-x86_64-unknown-linux-gnu*
 		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
 		sudo apt install ./rustdesk-*-x86_64.deb -y
 		rm rustdesk-*-x86_64.deb*
