@@ -1264,7 +1264,7 @@ clean_newline() {
 }
 
 ccp() {
-	if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
+    if command -v termux-clipboard-set >/dev/null 2>&1; then
 		termux-clipboard-set
 	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		wl-copy
@@ -1274,7 +1274,7 @@ ccp() {
 }
 
 cpt() {
-	if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
+    if command -v termux-clipboard-get >/dev/null 2>&1; then
 		termux-clipboard-get
 	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		wl-paste
