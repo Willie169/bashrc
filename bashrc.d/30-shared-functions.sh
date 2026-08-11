@@ -1129,11 +1129,24 @@ latexci() {
 					echo "$f: latexmk $engine failed" >>"$cwd/$log"
 				fi
 			elif command -v "$engine" >/dev/null 2>&1; then
-				if "$engine" -interaction=nonstopmode -halt-on-error "$file" && "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
-					latexmkc
-				else
-					echo "$f: $engine failed" >>"$cwd/$log"
-				fi
+				sha=''
+				pdf=$(echo "$file" | sed -E 's\.tex$/.pdf/')
+				while true; do
+					if "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
+						if [ -f "$pdf" ]; then
+							newsha=$(sha256sum "$pdf")
+							if [[ "$newsha" == "$sha" ]]; then
+								latexmkc
+								break
+							fi
+						fi
+					else
+						echo "$f: $engine failed" >>"$cwd/$log"
+					fi
+				done
+			else
+				echo "ERROR: latexmk and $engine not executable" >&2
+				return 1
 			fi
 		done
 	)
@@ -1142,6 +1155,7 @@ latexci() {
 		date -uIs >>"$cwd/$log"
 		cat "$cwd/$log" >&2
 		echo "Failures are logged to $cwd/${log}." >&2
+		return 1
 	else
 		rm "$cwd"/latexci_xelatex_*_log.txt
 	fi
