@@ -86,21 +86,6 @@ update_tools() {
 			fi
 			mv rclone ~/.local/bin/
 		fi
-		if [ -f ~/.local/bin/mozlz4 ]; then
-			if [[ "$ARCH" == "x86_64" ]]; then
-				gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-x86_64-linux-android
-				cp mozlz4-x86_64-linux-android mozlz4
-				chmod +x mozlz4
-				mv mozlz4 ~/.local/bin/
-				rm mozlz4-x86_64-linux-android*
-			elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-				gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-aarch64-linux-android
-				cp mozlz4-aarch64-linux-android mozlz4
-				chmod +x mozlz4
-				mv mozlz4 ~/.local/bin/
-				rm mozlz4-aarch64-linux-android*
-			fi
-		fi
 		update_config
 		update_nvim_config_full
 	)
