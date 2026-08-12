@@ -1901,54 +1901,58 @@ remove_extension() {
 }
 
 ffmpeg_video_lossy() {
-	if [ "$#" -lt 3 ]; then
+	if [ "$#" -lt 4 ]; then
 		return
 	fi
-	ffmpeg -i "$3" -c:v libsvtav1 -crf "$1" -preset 6 -c:a libopus -b:a "$2" "${4:-"$(echo "$3" | remove_extension)_ffmpeg.mkv"}"
+	ffmpeg -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg.mkv"}"
 }
 
 ffmpeg_video_0() {
-	ffmpeg_video_lossy 20 160k "$@"
+	ffmpeg_video_lossy 3 20 160k "$@"
 }
 
 ffmpeg_video_1() {
-	ffmpeg_video_lossy 24 128k "$@"
+	ffmpeg_video_lossy 4 24 128k "$@"
 }
 
 ffmpeg_video_2() {
-	ffmpeg_video_lossy 28 96k "$@"
+	ffmpeg_video_lossy 4 28 96k "$@"
 }
 
 ffmpeg_video_3() {
-	ffmpeg_video_lossy 32 64k "$@"
+	ffmpeg_video_lossy 5 32 64k "$@"
 }
 
 ffmpeg_video_4() {
-	ffmpeg_video_lossy 36 32k "$@"
+	ffmpeg_video_lossy 5 36 32k "$@"
 }
 
 ffmpeg_video_5() {
-	ffmpeg_video_lossy 40 24k "$@"
+	ffmpeg_video_lossy 6 40 24k "$@"
 }
 
 ffmpeg_video_6() {
-	ffmpeg_video_lossy 44 24k "$@"
+	ffmpeg_video_lossy 6 44 24k "$@"
 }
 
 ffmpeg_video_7() {
-	ffmpeg_video_lossy 48 24k "$@"
+	ffmpeg_video_lossy 7 48 24k "$@"
 }
 
 ffmpeg_video_8() {
-	ffmpeg_video_lossy 52 24k "$@"
+	ffmpeg_video_lossy 7 52 24k "$@"
 }
 
 ffmpeg_video_9() {
-	ffmpeg_video_lossy 56 24k "$@"
+	ffmpeg_video_lossy 8 56 24k "$@"
+}
+
+ffmpeg_video_10() {
+	ffmpeg_video_lossy 8 60 24k "$@"
 }
 
 ffmpeg_video_lossless() {
-	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset 0 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.mkv"}"
+	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.mkv"}"
 }
 
 ffmpeg_audio_lossy() {
