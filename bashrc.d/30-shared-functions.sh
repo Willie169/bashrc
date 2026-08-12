@@ -1896,6 +1896,75 @@ aes_cbc_dec_file() {
 	openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass file:"$3" "${@:4}"
 }
 
-ffmpeg_av1() {
-	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset medium -c:a libopus -b:a 128k "${2:-"ffmpeg_av1_$1"}"
+remove_extension() {
+	sed -E 's/^(.+)\.[^.]+$/\1/'
+}
+
+ffmpeg_video_lossy() {
+	if [ "$#" -lt 3 ]; then
+		return
+	fi
+	ffmpeg -i "$3" -c:v libsvtav1 -crf "$1" -preset 4 -c:a libopus -b:a "$2" "${4:-"$(echo "$3" | remove_extension)_ffmpeg.mkv"}"
+}
+
+ffmpeg_video_1() {
+	ffmpeg_video_lossy 24 128k "$@"
+}
+
+ffmpeg_video_2() {
+	ffmpeg_video_lossy 28 96k "$@"
+}
+
+ffmpeg_video_3() {
+	ffmpeg_video_lossy 32 64k "$@"
+}
+
+ffmpeg_video_4() {
+	ffmpeg_video_lossy 36 32k "$@"
+}
+
+ffmpeg_video_5() {
+	ffmpeg_video_lossy 40 22k "$@"
+}
+
+ffmpeg_video_lossless() {
+	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset 0 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.mkv"}"
+}
+
+ffmpeg_audio_lossy() {
+	if [ "$#" -lt 2 ]; then
+		return
+	fi
+	ffmpeg -i "$2" -c:a libopus -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg.opus"}"
+}
+
+ffmpeg_audio_1() {
+	ffmpeg_audio_lossy 128k "$@"
+}
+
+ffmpeg_audio_2() {
+	ffmpeg_audio_lossy 96k "$@"
+}
+
+ffmpeg_audio_3() {
+	ffmpeg_audio_lossy 64k "$@"
+}
+
+ffmpeg_audio_4() {
+	ffmpeg_audio_lossy 32k "$@"
+}
+
+ffmpeg_audio_5() {
+	ffmpeg_audio_lossy 22k "$@"
+}
+
+ffmpeg_audio_lossless() {
+	ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.flac"}"
+}
+
+jxld() {
+	if [ "$#" -lt 2 ]; then
+		return
+	fi
+	cjxl -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension)"}"
 }
