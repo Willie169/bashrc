@@ -1962,9 +1962,16 @@ ffmpeg_audio_lossless() {
 	ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.flac"}"
 }
 
-jxld() {
+jxl_lossy() {
 	if [ "$#" -lt 2 ]; then
 		return
 	fi
-	cjxl -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension)"}"
+	cjxl -j 0 -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension)"}"
+}
+
+jxl_lossless() {
+	if [ "$#" -lt 2 ]; then
+		return
+	fi
+	cjxl -j 1 -e 10 -d 0 "$2" "${3:-"$(echo "$2" | remove_extension)"}"
 }
