@@ -907,7 +907,7 @@ split_file() {
 	else
 		bytes="4000M"
 	fi
-    split -b "$bytes" -d -a 3 "$1" "$1.part."
+	split -b "$bytes" -d -a 3 "$1" "$1.part."
 }
 
 compress_split() {
@@ -1881,17 +1881,17 @@ update_bashrc() {
 }
 
 aes_cbc_enc_pass() {
-    openssl enc -aes-256-cbc -pbkdf2 -salt -in "$1" -out "$2" -pass pass:"$3" "${@:4}"
+	openssl enc -aes-256-cbc -pbkdf2 -salt -in "$1" -out "$2" -pass pass:"$3" "${@:4}"
 }
 
 aes_cbc_enc_file() {
-    openssl enc -aes-256-cbc -pbkdf2 -salt -in "$1" -out "$2" -pass file:"$3" "${@:4}"
+	openssl enc -aes-256-cbc -pbkdf2 -salt -in "$1" -out "$2" -pass file:"$3" "${@:4}"
 }
 
 aes_cbc_dec_pass() {
-    openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass pass:"$3" "${@:4}"
+	openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass pass:"$3" "${@:4}"
 }
 
 aes_cbc_dec_file() {
-    openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass file:"$3" "${@:4}"
+	openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass file:"$3" "${@:4}"
 }
