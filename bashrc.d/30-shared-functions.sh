@@ -1895,3 +1895,7 @@ aes_cbc_dec_pass() {
 aes_cbc_dec_file() {
 	openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass file:"$3" "${@:4}"
 }
+
+ffmpeg_av1() {
+	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset medium -c:a libopus -b:a 128k "${2:-"ffmpeg_av1_$1"}"
+}
