@@ -1284,13 +1284,15 @@ cpt() {
 
 # termux-clipboard-set and termux-clipboard-get can't run concurrently
 clipsort() {
-	local text="$(cpt | sort | clean_newline)"
+	local text=''
+	text="$(cpt | sort | clean_newline)"
 	echo "$text" | ccp
 }
 
 # termux-clipboard-set and termux-clipboard-get can't run concurrently
 clipsortuniq() {
-	local text="$(cpt | sort | uniq | clean_newline)"
+	local text=''
+	text="$(cpt | sort | uniq | clean_newline)"
 	echo "$text" | ccp
 }
 
