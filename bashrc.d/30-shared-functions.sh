@@ -1966,7 +1966,7 @@ jxl_lossy() {
 	if [ "$#" -lt 2 ]; then
 		return
 	fi
-	cjxl -j 0 -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension)"}"
+	cjxl -j 0 -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension).jxl"}"
 }
 
 jxld() {
@@ -1977,5 +1977,5 @@ jxl_lossless() {
 	if [ "$#" -lt 2 ]; then
 		return
 	fi
-	cjxl -j 1 -e 10 -d 0 "$2" "${3:-"$(echo "$2" | remove_extension)"}"
+	cjxl -j 1 -e 10 -d 0 "$2" "${3:-"$(echo "$2" | remove_extension).jxl"}"
 }
