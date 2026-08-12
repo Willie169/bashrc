@@ -1282,12 +1282,16 @@ cpt() {
 	fi
 }
 
-csort() {
-	ccp -- "$(cpt | sort | clean_newline)"
+# termux-clipboard-set and termux-clipboard-get can't run concurrently
+clipsort() {
+	local text = "$(cpt | sort | clean_newline)"
+    ccp -- "$text"
 }
 
-csortu() {
-	ccp -- "$(cpt | sort | uniq | clean_newline)"
+# termux-clipboard-set and termux-clipboard-get can't run concurrently
+clipsortuniq() {
+	local text = "$(cpt | sort | uniq | clean_newline)"
+    ccp -- "$text"
 }
 
 dfur() {
