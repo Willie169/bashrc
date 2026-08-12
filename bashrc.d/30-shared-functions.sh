@@ -900,10 +900,20 @@ no tar by default'
 	fi
 }
 
+split_file() {
+	local bytes
+	if [ -n "${SPLIT_SIZE:-}" ]; then
+		bytes="$SPLIT_SIZE"
+	else
+		bytes="4000M"
+	fi
+    split -b "$bytes" -d -a 3 "$1" "$1.part."
+}
+
 compress_split() {
 	# shellcheck disable=2016
 	local msg='Usage: compress_split [-h|--help]
-compress_single [-b BYTES|--bytes BYTES] [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
+compress_split [-b BYTES|--bytes BYTES] [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
 no tar by default
 BYTES=$SPLIT_SIZE if set and 4000M if not by default'
 	local bytes
@@ -1868,4 +1878,20 @@ update_bashrc() {
 		git pull --rebase
 		git clean -fd
 	)
+}
+
+aes_cbc_enc_pass() {
+    openssl enc -aes-256-cbc -pbkdf2 -salt -in "$1" -out "$2" -pass pass:"$3" "${@:4}"
+}
+
+aes_cbc_enc_file() {
+    openssl enc -aes-256-cbc -pbkdf2 -salt -in "$1" -out "$2" -pass file:"$3" "${@:4}"
+}
+
+aes_cbc_dec_pass() {
+    openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass pass:"$3" "${@:4}"
+}
+
+aes_cbc_dec_file() {
+    openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass file:"$3" "${@:4}"
 }
