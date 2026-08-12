@@ -1969,6 +1969,10 @@ jxl_lossy() {
 	cjxl -j 0 -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension)"}"
 }
 
+jxld() {
+    jxl_lossy "$@"
+}
+
 jxl_lossless() {
 	if [ "$#" -lt 2 ]; then
 		return
