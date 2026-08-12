@@ -606,9 +606,13 @@ gh_file() {
 	fi
 }
 
+# shellcheck disable=2120
 cgrr() {
-	# shellcheck disable=2164
-	[ -n "${GRR:-}" ] && cd "$GRR" || true
+	if [ -n "${GRR:-}" ]; then
+		cd "$GRR" || return
+		# shellcheck disable=2086,2164
+		[ -n "$1" ] && cd $1
+	fi
 }
 
 ghcrpb() {
@@ -1031,14 +1035,9 @@ dfsftp() {
 }
 
 csd() {
-	if (($# == 1)); then
-		cd ~/shared || return
-		# shellcheck disable=2086,2164
-		cd $1
-	else
-		# shellcheck disable=2164
-		cd ~/shared
-	fi
+	cd ~/shared || return
+	# shellcheck disable=2086,2164
+	[ -n "$1" ] && cd $1
 }
 
 dicepass() {
@@ -1264,7 +1263,7 @@ clean_newline() {
 }
 
 ccp() {
-    if command -v termux-clipboard-set >/dev/null 2>&1; then
+	if command -v termux-clipboard-set >/dev/null 2>&1; then
 		termux-clipboard-set
 	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		wl-copy
@@ -1274,7 +1273,7 @@ ccp() {
 }
 
 cpt() {
-    if command -v termux-clipboard-get >/dev/null 2>&1; then
+	if command -v termux-clipboard-get >/dev/null 2>&1; then
 		termux-clipboard-get
 	elif [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 		wl-paste
