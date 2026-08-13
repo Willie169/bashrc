@@ -1245,20 +1245,23 @@ default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s
 			echo "$f: all allowed methods not executable" >>"$cwd/$log"
 		fi
 	done
+	if [ "$mk" -eq 0 ] && ! command -v latexmk >/dev/null 2>&1; then
+		echo "latexci warning: latexmk not executable, $engine used" >&2
+	fi
 	if [ -f "$cwd/$log" ]; then
+		echo "latexci log" >>"$cwd/$log"
 		echo "$cwd" >>"$cwd/$log"
 		date -uIs >>"$cwd/$log"
 		cat "$cwd/$log" >&2
 		echo "latexci warning: failures logged to $cwd/${log}." >&2
+        # shellcheck disable=2164
+        cd "$cwd"
 		return 1
 	else
 		[ "$clean" -eq 1 ] && rm -f "$cwd/latexci_${engine}"_*_log.txt
+        # shellcheck disable=2164
+        cd "$cwd"
 	fi
-	if [ "$mk" -eq 0 ] && ! command -v latexmk >/dev/null 2>&1; then
-		echo "latexci warning: latexmk not executable, $engine used" >&2
-	fi
-	# shellcheck disable=2164
-	cd "$cwd"
 }
 
 xelatexci() {
