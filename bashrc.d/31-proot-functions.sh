@@ -6,7 +6,7 @@ fi
 
 clean_disk() {
 	rm -rf ~/.cache/*
-	apt autoremove -y
+	DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef --force-confnew"
 	apt clean
 	apt autoclean
 	brew update
@@ -76,8 +76,8 @@ update_tools() {
 
 update_pm() {
 	apt update
-	apt upgrade -y
-	apt autoremove -y
+	DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef --force-confnew"
+	DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef --force-confnew"
 	apt clean
 	apt autoclean
 	locale-gen en_US.UTF-8

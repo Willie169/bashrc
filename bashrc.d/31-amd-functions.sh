@@ -15,7 +15,7 @@ clean_disk() {
 	sudo journalctl --vacuum-time=7d
 	sudo systemd-tmpfiles --clean
 	rm -rf ~/.cache/*
-	sudo apt autoremove -y
+	sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef --force-confnew"
 	sudo apt clean
 	sudo apt autoclean
 	flatpak uninstall --unused -y || true
@@ -106,8 +106,8 @@ update_pied() {
 
 update_pm() {
 	sudo apt update
-	sudo apt upgrade -y
-	sudo apt autoremove -y
+	sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef --force-confnew"
+	sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef --force-confnew"
 	sudo apt clean
 	sudo apt autoclean
 	echo y | sudo ubuntu-drivers install || true
