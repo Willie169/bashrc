@@ -15,7 +15,7 @@ clean_disk() {
 	sudo journalctl --vacuum-time=7d
 	sudo systemd-tmpfiles --clean
 	rm -rf ~/.cache/*
-	sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew"
+	sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	sudo apt clean
 	sudo apt autoclean
 	flatpak uninstall --unused -y || true
@@ -106,16 +106,22 @@ update_pied() {
 
 update_pm() {
 	sudo apt update
-	sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew"
-	sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew"
+	sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+	sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	sudo apt clean
 	sudo apt autoclean
 	echo y | sudo ubuntu-drivers install || true
+    sudo apt install -f -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	echo y | sudo ubuntu-drivers install || true
+    sudo apt install -f -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	echo y | sudo ubuntu-drivers install || true
+    sudo apt install -f -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	echo y | sudo ubuntu-drivers autoinstall || true
+    sudo apt install -f -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	echo y | sudo ubuntu-drivers autoinstall || true
+    sudo apt install -f -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	echo y | sudo ubuntu-drivers autoinstall || true
+    sudo apt install -f -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	flatpak update -y || true
 	flatpak uninstall --unused -y || true
 	sudo snap refresh || true
