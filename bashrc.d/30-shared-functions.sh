@@ -625,6 +625,10 @@ ghcrpv() {
 	gh repo clone "$1"
 }
 
+ghcl() {
+    gh repo clone "$1"
+}
+
 gpul() {
 	local level="${1:-0}"
 	local repo_dir=''
