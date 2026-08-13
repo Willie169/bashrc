@@ -1103,8 +1103,9 @@ latexmkC() {
 latexci() {
 	# shellcheck disable=2016
 	local msg='latexci [-h|--help] [-m|--latexmk] [-n|--no-latexmk] [-o|--auto-latexmk] [-r|--reproducible] [-s|--no-reproducible] [-t|--auto-reproducible] [-l|--log log_file] [-e|--engine-times] engine [files]
-engine-times: How many times to run engine if not using latexmk.
-default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s)_log.txt, engine-times: 2, files: **/*.tex'
+engine-times: times to run engine if not using latexmk.
+default: auto-latexmk, auto-reproducible, log_file: latexci_$engine_$(date +%s)_log.txt, engine-times: 2, files: **/*.tex
+latexci_$engine_*_log.txt will be cleaned if compiled successfully.'
 	# mk (latexmk), rp (reproducible): 0 auto, 1 must, 2 no
 	local mk=0
 	local rp=0
@@ -1163,6 +1164,7 @@ default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s
 	local engine
 	if [ "${#args[@]}" -eq 0 ]; then
 		echo 'latexci error: engine is required.' >&2
+		echo "$msg" >&2
 		return 1
 	else
 		engine="${args[0]}"
@@ -1178,9 +1180,10 @@ default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s
 	fi
 	if [ "${#files[@]}" -eq 0 ]; then
 		echo "latexci warning: no .tex file found." >&2
+		echo "$msg" >&2
 		return 0
 	fi
-	[ -z "$log" ] && log="latexci_${engine}_$(date +%s)_log.txt"
+	[ -z "$log" ] && log="latexci_$engine_$(date +%s)_log.txt"
 	for f in "${files[@]}"; do
 		local dir
 		dir="$(dirname "$f")"
@@ -1192,7 +1195,8 @@ default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s
 		file="$(basename "$f")"
 		if [ "$rp" -eq 1 ]; then
 			if ! command -v git >/dev/null 2>&1 || ! git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
-				echo "latexci error: git log failed and reproducible required"
+				echo "latexci error: $f git log failed and reproducible required" >&2
+				echo "$msg" >&2
 			fi
 		elif [ "$rp" -eq 0 ]; then
 			if command -v git >/dev/null 2>&1 && git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
@@ -1252,7 +1256,7 @@ default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s
 		echo "latexci warning: failures logged to $cwd/${log}." >&2
 		return 1
 	else
-		rm -f "$cwd"/latexci_xelatex_*_log.txt
+		rm -f "$cwd/latexci_$engine_*_log.txt"
 	fi
 	if [ "$mk" -eq 0 ] && ! command -v latexmk >/dev/null 2>&1; then
 		echo "latexci warning: latexmk not exetuble, $engine used" >&2
