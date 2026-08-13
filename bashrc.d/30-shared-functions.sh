@@ -1256,18 +1256,20 @@ files (default: all **/*.tex): LaTeX files to compile.'
 		echo "latexci warning: latexmk not executable, $engine used" >&2
 	fi
 	if [ -f "$cwd/$log" ]; then
-		echo "latexci log" >>"$cwd/$log"
-		echo "$cwd" >>"$cwd/$log"
-		date -uIs >>"$cwd/$log"
+		{
+			echo "latexci log"
+			echo "$cwd"
+			date -uIs
+		} >>"$cwd/$log"
 		cat "$cwd/$log" >&2
 		echo "latexci warning: failures logged to $cwd/${log}." >&2
-        # shellcheck disable=2164
-        cd "$cwd"
+		# shellcheck disable=2164
+		cd "$cwd"
 		return 1
 	else
 		[ "$clean" -eq 1 ] && rm -f "$cwd/latexci_${engine}"_*_log.txt
-        # shellcheck disable=2164
-        cd "$cwd"
+		# shellcheck disable=2164
+		cd "$cwd"
 	fi
 }
 
