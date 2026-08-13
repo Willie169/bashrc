@@ -1249,13 +1249,13 @@ default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s
 		echo "$cwd" >>"$cwd/$log"
 		date -uIs >>"$cwd/$log"
 		cat "$cwd/$log" >&2
-		echo "Failures are logged to $cwd/${log}." >&2
+		echo "latexci warning: failures logged to $cwd/${log}." >&2
 		return 1
 	else
 		rm -f "$cwd"/latexci_xelatex_*_log.txt
 	fi
-	if ! command -v latexmk >/dev/null 2>&1; then
-		echo "WARNING: latexmk not exetuble, $engine used" >&2
+	if [ "$mk" -eq 0 ] && ! command -v latexmk >/dev/null 2>&1; then
+		echo "latexci warning: latexmk not exetuble, $engine used" >&2
 	fi
 	# shellcheck disable=2164
 	cd "$cwd"
