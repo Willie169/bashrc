@@ -1134,7 +1134,7 @@ latexci() {
 			fi
 			local file
 			file="$(basename "$f")"
-			if git log -1 --format=%ct -- "$file"; then
+			if git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
 				# shellcheck disable=2034,2155
 				local SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file")
 			fi
