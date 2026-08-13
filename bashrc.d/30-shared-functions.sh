@@ -1101,62 +1101,150 @@ latexmkC() {
 }
 
 latexci() {
+	# shellcheck disable=2016
+	local msg='latexci [-h|--help] [-m|--latexmk] [-n|--no-latexmk] [-o|--auto-latexmk] [-r|--reproducible] [-s|--no-reproducible] [-t|--auto-reproducible] [-l|--log log_file] [-e|--engine-times] engine [files]
+engine-times: How many times to run engine if not using latexmk.
+default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s)_log.txt, engine-times: 2, files: **/*.tex'
+	# mk (latexmk), rp (reproducible): 0 auto, 1 must, 2 no
+	local mk=0
+	local rp=0
+	local et=2
+	local log=''
+	local args=()
+	while [ $# -gt 0 ]; do
+		case "$1" in
+		-h | --help)
+			echo "$msg"
+			return 0
+			;;
+		-m | --latexmk)
+			mk=1
+			shift
+			;;
+		-n | --no-latexmk)
+			mk=2
+			shift
+			;;
+		-o | --auto-latexmk)
+			mk=0
+			shift
+			;;
+		-r | --reproducible)
+			rp=1
+			shift
+			;;
+		-s | --no-reproducible)
+			rp=2
+			shift
+			;;
+		-t | --auto-reproducible)
+			rp=0
+			shift
+			;;
+		-l | --log)
+			log="$2"
+			shift 2
+			;;
+		-e | --engine-times)
+			et="$2"
+			shift 2
+			;;
+		--)
+			shift
+			args+=("$@")
+			break
+			;;
+		*)
+			args+=("$1")
+			shift
+			;;
+		esac
+	done
 	local engine
-	if [ $# -eq 0 ]; then
-		echo 'latexci: At least one argument is required.' >&2
+	if [ "${#args[@]}" -eq 0 ]; then
+		echo 'latexci error: engine is required.' >&2
 		return 1
 	else
-		engine="$1"
-		shift
+		engine="${args[0]}"
 	fi
 	local cwd
 	cwd="$(pwd)"
-	if [ $# -ne 0 ]; then
-		files=("$@")
+	if [ "${#args[@]}" -ne 1 ]; then
+		files=("${args[@]:1}")
 	else
 		mapfile -d '' -t files < <(
 			find "$cwd" -type f -name '*.tex' -print0
 		)
 	fi
-	if ((${#files[@]} == 0)); then
-		echo "latexci: No .tex file is found." >&2
+	if [ "${#files[@]}" -eq 0 ]; then
+		echo "latexci warning: no .tex file found." >&2
 		return 0
 	fi
-	local log
-	log="latexci_${engine}_$(date +%s)_log.txt"
-	(
-		for f in "${files[@]}"; do
-			local dir
-			dir="$(dirname "$f")"
-			if ! cd "$dir"; then
-				echo "$f: can't cd $dir" >>"$cwd/$log"
-				continue
+	[ -z "$log" ] && log="latexci_${engine}_$(date +%s)_log.txt"
+	for f in "${files[@]}"; do
+		local dir
+		dir="$(dirname "$f")"
+		if ! cd "$dir"; then
+			echo "$f: can't cd $dir" >>"$cwd/$log"
+			continue
+		fi
+		local file
+		file="$(basename "$f")"
+		if [ "$rp" -eq 1 ]; then
+			if ! command -v git >/dev/null 2>&1 || ! git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
+				echo "latexci error: git log failed and reproducible required"
 			fi
-			local file
-			file="$(basename "$f")"
-			if git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
-				# shellcheck disable=2034,2155
-				local SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file")
+		elif [ "$rp" -eq 0 ]; then
+			if command -v git >/dev/null 2>&1 && git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
+				rp=1
 			fi
-			clean_file "$file"
-			if command -v latexmk >/dev/null 2>&1; then
+		fi
+		if [ "$mk" -ne 2 ] && command -v latexmk >/dev/null 2>&1; then
+			if [ "$rp" -eq 1 ]; then
+				if SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file") latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
+					latexmk -c
+				else
+					echo "$f: latexmk $engine failed" >>"$cwd/$log"
+				fi
+			else
 				if latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
 					latexmk -c
 				else
 					echo "$f: latexmk $engine failed" >>"$cwd/$log"
 				fi
-			elif command -v "$engine" >/dev/null 2>&1; then
-				if "$engine" -interaction=nonstopmode -halt-on-error "$file" && "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
+			fi
+		elif [ "$mk" -ne 1 ] && command -v "$engine" >/dev/null 2>&1; then
+			local fail=0
+			if [ "$rp" -eq 1 ]; then
+				while ((et > 0)); do
+					if ! SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file") "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
+						echo "$f: $engine failed" >>"$cwd/$log"
+						fail=1
+						break
+					fi
+					et=$((et - 1))
+				done
+				if [ "$fail" -eq 0 ]; then
 					latexmkc
-				else
-					echo "$f: $engine failed" >>"$cwd/$log"
 				fi
 			else
-				echo "ERROR: latexmk and $engine not executable" >&2
-				return 1
+				while ((et > 0)); do
+					if ! "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
+						echo "$f: $engine failed" >>"$cwd/$log"
+						fail=1
+						break
+					fi
+					et=$((et - 1))
+				done
+				if [ "$fail" -eq 0 ]; then
+					latexmkc
+				fi
 			fi
-		done
-	)
+		else
+			echo "latexci error: all allowed methods not executable" >&2
+			return 1
+		fi
+	done
 	if [ -f "$cwd/$log" ]; then
 		echo "$cwd" >>"$cwd/$log"
 		date -uIs >>"$cwd/$log"
@@ -1169,6 +1257,8 @@ latexci() {
 	if ! command -v latexmk >/dev/null 2>&1; then
 		echo "WARNING: latexmk not exetuble, $engine used" >&2
 	fi
+	# shellcheck disable=2164
+	cd "$cwd"
 }
 
 xelatexci() {
