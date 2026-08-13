@@ -1900,94 +1900,26 @@ remove_extension() {
 	sed -E 's/^(.+)\.[^.]+$/\1/'
 }
 
-ffmpeg_video_lossy() {
+ffmpeg_av1_opus() {
 	if [ "$#" -lt 4 ]; then
 		return
 	fi
-	ffmpeg -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg.mkv"}"
+	ffmpeg -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
 }
 
-ffmpeg_video_0() {
-	ffmpeg_video_lossy 3 20 160k "$@"
+ffmpeg_av1_lossless_flac() {
+	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
 }
 
-ffmpeg_video_1() {
-	ffmpeg_video_lossy 4 24 128k "$@"
-}
-
-ffmpeg_video_2() {
-	ffmpeg_video_lossy 4 28 96k "$@"
-}
-
-ffmpeg_video_3() {
-	ffmpeg_video_lossy 5 32 64k "$@"
-}
-
-ffmpeg_video_4() {
-	ffmpeg_video_lossy 5 36 32k "$@"
-}
-
-ffmpeg_video_5() {
-	ffmpeg_video_lossy 6 40 24k "$@"
-}
-
-ffmpeg_video_6() {
-	ffmpeg_video_lossy 6 44 24k "$@"
-}
-
-ffmpeg_video_7() {
-	ffmpeg_video_lossy 7 48 24k "$@"
-}
-
-ffmpeg_video_8() {
-	ffmpeg_video_lossy 7 52 24k "$@"
-}
-
-ffmpeg_video_9() {
-	ffmpeg_video_lossy 8 56 24k "$@"
-}
-
-ffmpeg_video_10() {
-	ffmpeg_video_lossy 8 60 24k "$@"
-}
-
-ffmpeg_video_lossless() {
-	ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.mkv"}"
-}
-
-ffmpeg_audio_lossy() {
+ffmpeg_opus() {
 	if [ "$#" -lt 2 ]; then
 		return
 	fi
-	ffmpeg -i "$2" -c:a libopus -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg.opus"}"
+	ffmpeg -i "$2" -c:a libopus -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
 }
 
-ffmpeg_audio_0() {
-	ffmpeg_audio_lossy 160k "$@"
-}
-
-ffmpeg_audio_1() {
-	ffmpeg_audio_lossy 128k "$@"
-}
-
-ffmpeg_audio_2() {
-	ffmpeg_audio_lossy 96k "$@"
-}
-
-ffmpeg_audio_3() {
-	ffmpeg_audio_lossy 64k "$@"
-}
-
-ffmpeg_audio_4() {
-	ffmpeg_audio_lossy 32k "$@"
-}
-
-ffmpeg_audio_5() {
-	ffmpeg_audio_lossy 24k "$@"
-}
-
-ffmpeg_audio_lossless() {
-	ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg.flac"}"
+ffmpeg_flac() {
+	ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
 }
 
 jxl_lossy() {
@@ -1995,10 +1927,6 @@ jxl_lossy() {
 		return
 	fi
 	cjxl -j 0 -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension).jxl"}"
-}
-
-jxld() {
-	jxl_lossy "$@"
 }
 
 jxl_lossless() {
