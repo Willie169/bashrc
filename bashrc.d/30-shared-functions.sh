@@ -626,7 +626,7 @@ ghcrpv() {
 }
 
 ghcl() {
-    gh repo clone "$1"
+	gh repo clone "$1"
 }
 
 gpul() {
@@ -1134,6 +1134,10 @@ latexci() {
 			fi
 			local file
 			file="$(basename "$f")"
+			if git log -1 --format=%ct -- "$file"; then
+                # shellcheck disable=2034,2155
+				local SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file")
+			fi
 			clean_file "$file"
 			if command -v latexmk >/dev/null 2>&1; then
 				if latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
