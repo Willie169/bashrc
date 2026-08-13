@@ -1102,16 +1102,18 @@ latexmkC() {
 
 latexci() {
 	# shellcheck disable=2016
-	local msg='latexci [-h|--help] [-m|--latexmk] [-n|--no-latexmk] [-o|--auto-latexmk] [-r|--reproducible] [-s|--no-reproducible] [-t|--auto-reproducible] [-l|--log log_file] [-e|--engine-times] engine [files]
-engine-times: times to run engine if not using latexmk.
-default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s)_log.txt, engine-times: 2, files: **/*.tex
-latexci_${engine}_*_log.txt will be cleaned if compiled successfully.'
+	local msg='latexci [-h|--help] [-m|--latexmk] [-n|--no-latexmk] [-o|--auto-latexmk] [-r|--reproducible] [-s|--no-reproducible] [-t|--auto-reproducible] [-l|--log log_file] [-c|--clean] [-d|--no-clean] [-e|--engine-times engine-times] engine [files]
+clean: clean auxiliary files of each file after successful compilation and remove latexci_${engine}_*_log.txt if the whole run succeeds
+engine-times: times to run engine if not using latexmk
+default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s)_log.txt, engine-times: 2, clean, files: **/*.tex'
 	# mk (latexmk), rp (reproducible): 0 auto, 1 must, 2 no
 	local mk=0
 	local rp=0
-	local et=2
+	local times=2
+	local clean=1
 	local log=''
 	local args=()
+	local files=()
 	while [ $# -gt 0 ]; do
 		case "$1" in
 		-h | --help)
@@ -1147,8 +1149,20 @@ latexci_${engine}_*_log.txt will be cleaned if compiled successfully.'
 			shift 2
 			;;
 		-e | --engine-times)
-			et="$2"
+			if [[ ! $2 =~ ^[0-9]+$ ]] || (($2 < 1)); then
+				echo "latexci error: engine-times must be a positive integer." >&2
+				return 1
+			fi
+			times="$2"
 			shift 2
+			;;
+		-c | --clean)
+			clean=1
+			shift
+			;;
+		-d | --no-clean)
+			clean=0
+			shift
 			;;
 		--)
 			shift
@@ -1163,8 +1177,7 @@ latexci_${engine}_*_log.txt will be cleaned if compiled successfully.'
 	done
 	local engine
 	if [ "${#args[@]}" -eq 0 ]; then
-		echo 'latexci error: engine is required.' >&2
-		echo "$msg" >&2
+		echo 'latexci error: engine required.' >&2
 		return 1
 	else
 		engine="${args[0]}"
@@ -1180,10 +1193,10 @@ latexci_${engine}_*_log.txt will be cleaned if compiled successfully.'
 	fi
 	if [ "${#files[@]}" -eq 0 ]; then
 		echo "latexci warning: no .tex file found." >&2
-		echo "$msg" >&2
 		return 0
 	fi
 	[ -z "$log" ] && log="latexci_${engine}_$(date +%s)_log.txt"
+	rm -f "$log"
 	for f in "${files[@]}"; do
 		local dir
 		dir="$(dirname "$f")"
@@ -1193,60 +1206,43 @@ latexci_${engine}_*_log.txt will be cleaned if compiled successfully.'
 		fi
 		local file
 		file="$(basename "$f")"
+		local env_args=()
+		local epoch=''
 		if [ "$rp" -eq 1 ]; then
-			if ! command -v git >/dev/null 2>&1 || ! git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
-				echo "latexci error: $f git log failed and reproducible required" >&2
-				echo "$msg" >&2
+			epoch=$(command -v git >/dev/null 2>&1 && git log -1 --format=%ct -- "$file" 2>/dev/null)
+			if [ -n "$epoch" ]; then
+				env_args=(SOURCE_DATE_EPOCH="$epoch")
+			else
+				echo "$f: git log failed for and reproducible required" >>"$cwd/$log"
 			fi
 		elif [ "$rp" -eq 0 ]; then
-			if command -v git >/dev/null 2>&1 && git log -1 --format=%ct -- "$file" >/dev/null 2>&1; then
-				rp=1
+			epoch=$(command -v git >/dev/null 2>&1 && git log -1 --format=%ct -- "$file" 2>/dev/null)
+			if [ -n "$epoch" ]; then
+				env_args=(SOURCE_DATE_EPOCH="$epoch")
 			fi
 		fi
 		if [ "$mk" -ne 2 ] && command -v latexmk >/dev/null 2>&1; then
-			if [ "$rp" -eq 1 ]; then
-				if SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file") latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
-					latexmk -c
-				else
-					echo "$f: latexmk $engine failed" >>"$cwd/$log"
-				fi
+			if env "${env_args[@]}" latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
+				[ "$clean" -eq 1 ] && latexmkc
 			else
-				if latexmk -"$engine" -latexoption='-interaction=nonstopmode -halt-on-error' "$file"; then
-					latexmk -c
-				else
-					echo "$f: latexmk $engine failed" >>"$cwd/$log"
-				fi
+				echo "$f: latexmk $engine failed" >>"$cwd/$log"
 			fi
 		elif [ "$mk" -ne 1 ] && command -v "$engine" >/dev/null 2>&1; then
 			local fail=0
-			if [ "$rp" -eq 1 ]; then
-				while ((et > 0)); do
-					if ! SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- "$file") "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
-						echo "$f: $engine failed" >>"$cwd/$log"
-						fail=1
-						break
-					fi
-					et=$((et - 1))
-				done
-				if [ "$fail" -eq 0 ]; then
-					latexmkc
+			local et="$times"
+			while ((et > 0)); do
+				if ! env "${env_args[@]}" "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
+					echo "$f: $engine failed" >>"$cwd/$log"
+					fail=1
+					break
 				fi
-			else
-				while ((et > 0)); do
-					if ! "$engine" -interaction=nonstopmode -halt-on-error "$file"; then
-						echo "$f: $engine failed" >>"$cwd/$log"
-						fail=1
-						break
-					fi
-					et=$((et - 1))
-				done
-				if [ "$fail" -eq 0 ]; then
-					latexmkc
-				fi
+				((et--))
+			done
+			if [ "$fail" -eq 0 ]; then
+				[ "$clean" -eq 1 ] && latexmkc
 			fi
 		else
-			echo "latexci error: all allowed methods not executable" >&2
-			return 1
+			echo "$f: all allowed methods not executable" >>"$cwd/$log"
 		fi
 	done
 	if [ -f "$cwd/$log" ]; then
@@ -1256,10 +1252,10 @@ latexci_${engine}_*_log.txt will be cleaned if compiled successfully.'
 		echo "latexci warning: failures logged to $cwd/${log}." >&2
 		return 1
 	else
-		rm -f "$cwd/latexci_${engine}"_*_log.txt
+		[ "$clean" -eq 1 ] && rm -f "$cwd/latexci_${engine}"_*_log.txt
 	fi
 	if [ "$mk" -eq 0 ] && ! command -v latexmk >/dev/null 2>&1; then
-		echo "latexci warning: latexmk not exetuble, $engine used" >&2
+		echo "latexci warning: latexmk not executable, $engine used" >&2
 	fi
 	# shellcheck disable=2164
 	cd "$cwd"
