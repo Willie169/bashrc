@@ -1900,6 +1900,10 @@ remove_extension() {
 	sed -E 's/^(.+)\.[^.]+$/\1/'
 }
 
+get_extension() {
+	sed -E 's/^.*\.([^.]+)$/\1/'
+}
+
 ffmpeg_av1_opus() {
 	if [ "$#" -lt 4 ]; then
 		return
@@ -1920,6 +1924,10 @@ ffmpeg_opus() {
 
 ffmpeg_flac() {
 	ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
+}
+
+ffmpeg_split() {
+	ffmpeg -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
 }
 
 jxl_lossy() {
