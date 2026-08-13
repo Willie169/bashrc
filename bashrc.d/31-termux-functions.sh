@@ -31,7 +31,7 @@ stirlingpdf() {
 
 clean_disk() {
 	rm -rf ~/.cache/*
-	DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef --force-confnew"
+	DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew"
 	apt clean
 	apt autoclean
 	proot-distro clear-cache || true
@@ -93,8 +93,8 @@ update_tools() {
 
 update_pm() {
 	pkg update
-	DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef --force-confnew"
-	DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef --force-confnew"
+	DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew"
 	apt clean
 	apt autoclean
 	uv self update
