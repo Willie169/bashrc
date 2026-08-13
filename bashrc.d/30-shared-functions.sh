@@ -1103,7 +1103,7 @@ latexmkC() {
 latexci() {
 	# shellcheck disable=2016
 	local msg='latexci [-h|--help] [-m|--latexmk] [-n|--no-latexmk] [-o|--auto-latexmk] [-r|--reproducible] [-s|--no-reproducible] [-t|--auto-reproducible] [-l|--log log_file] [-c|--clean] [-d|--no-clean] [-e|--engine-times engine-times] engine [files]
-clean: clean auxiliary files of each file after successful compilation and remove latexci_${engine}_*_log.txt if the whole run succeeds
+clean: whether to clean auxiliary files of each file after successful compilation and remove latexci_${engine}_*_log.txt if the whole run succeeds
 engine-times: times to run engine if not using latexmk
 default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s)_log.txt, engine-times: 2, clean, files: **/*.tex'
 	# mk (latexmk), rp (reproducible): 0 auto, 1 must, 2 no
