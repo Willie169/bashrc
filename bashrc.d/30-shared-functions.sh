@@ -1103,12 +1103,19 @@ latexmkC() {
 latexci() {
 	# shellcheck disable=2016
 	local msg='latexci [-h|--help] [-m|--latexmk] [-n|--no-latexmk] [-o|--auto-latexmk] [-r|--reproducible] [-s|--no-reproducible] [-t|--auto-reproducible] [-l|--log log_file] [-c|--clean] [-d|--no-clean] [-e|--engine-times engine-times] engine [files]
-clean: whether to clean auxiliary files of each file after successful compilation and remove latexci_${engine}_*_log.txt if the whole run succeeds
-engine-times: times to run engine if not using latexmk
-default: auto-latexmk, auto-reproducible, log_file: latexci_${engine}_$(date +%s)_log.txt, engine-times: 2, clean, files: **/*.tex'
+--latexmk (default): Use latexmk -"$engine".
+--no-latexmk: Use "$engine".
+--auto-latexmk: Prefer latexmk -"$engine" and fallback to "$engine".
+--reproducible (default): Compile reproducibly.
+--no-reproducible: Compile normally.
+--auto-reproducible: Prefer to compile reproducibly and fallback to compile normally.
+--clean: Clean auxiliary files of each file after successful compilation and remove latexci_${engine}_*_log.txt if the whole run succeeds.
+engine-times (default: 2): times to run "$engine" when not using latexmk.
+log_file (default: latexci_${engine}_$(date +%s)_log.txt): name of log file. It is only used when there are warnings or errors. If file of the same name has existed, it will be deleted.
+files (default: all **/*.tex): LaTeX files to compile.'
 	# mk (latexmk), rp (reproducible): 0 auto, 1 must, 2 no
-	local mk=0
-	local rp=0
+	local mk=1
+	local rp=1
 	local times=2
 	local clean=1
 	local log=''
