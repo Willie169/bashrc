@@ -2047,7 +2047,7 @@ remove_extension() {
 }
 
 get_extension() {
-	sed -E 's/^.+\.([^.]+)$/\1/'
+	sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/'
 }
 
 ffmpeg_av1_opus() {
