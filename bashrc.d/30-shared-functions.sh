@@ -1433,35 +1433,72 @@ dfhur() {
 }
 
 npmig() {
+	local args=()
+	local opt=''
+	while [ $# -gt 0 ]; do
+		case "$1" in
+		-o | --opt)
+			opt="$2"
+			shift 2
+			;;
+		--)
+			shift
+			args+=("$@")
+			break
+			;;
+		*)
+			args+=("$1")
+			shift
+			;;
+		esac
+	done
 	local npm_allow
 	npm_allow=$(npm config get allow-scripts)
 	[[ "$npm_allow" == "undefined" ]] && npm_allow=
 	npm_allow="$(printf '%s\n' "$npm_allow" | tr ',' '\n')"
-	if [ "$#" -ne 0 ]; then
+	if [ "${#args[@]}" -ne 0 ]; then
 		local npm_pkg
-		printf -v npm_pkg '%s\n' "$@"
+		printf -v npm_pkg '%s\n' "${args[@]}"
 		npm_allow+=$'\n'"$npm_pkg"
 	fi
 	npm_allow="$(echo "$npm_allow" | sort | uniq | sed -Ez 's/^\n+//; s/\n+$//' | tr '\n' ',')"
 	npm config set allow-scripts="$npm_allow" --location=user
-	[ "$#" -ne 0 ] && npm i -g "$@"
-	echo 'allow-scripts:'
+	[ "${#args[@]}" -ne 0 ] && npm i -g "$opt" "${args[@]}"
 	npm config get allow-scripts
 }
 
 npmuig() {
 	[ "$#" -eq 0 ] && return
-	npm uninstall -g "$@"
+	local args=()
+	local opt=''
+	while [ $# -gt 0 ]; do
+		case "$1" in
+		-o | --opt)
+			opt="$2"
+			shift 2
+			;;
+		--)
+			shift
+			args+=("$@")
+			break
+			;;
+		*)
+			args+=("$1")
+			shift
+			;;
+		esac
+	done
+	[ "${#args[@]}" -eq 0 ] && return
+	npm uninstall -g "$opt" "${args[@]}"
 	local npm_allow
 	npm_allow=$(npm config get allow-scripts)
 	[[ "$npm_allow" == "undefined" ]] && npm_allow=
 	npm_allow+=','
-	for p in "$@"; do
+	for p in "${args[@]}"; do
 		npm_allow="${npm_allow//${p},/}"
 	done
 	npm_allow="${npm_allow%,}"
 	npm config set allow-scripts="$npm_allow" --location=user
-	echo 'allow-scripts:'
 	npm config get allow-scripts
 }
 
@@ -1478,8 +1515,7 @@ httpp() {
 }
 
 lbtr() {
-	libretranslate &
-	"$@"
+	libretranslate "$@" &
 }
 
 yt-sub() {
