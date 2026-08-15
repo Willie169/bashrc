@@ -2072,7 +2072,7 @@ ffmpeg_flac() {
 	ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
 }
 
-ffmpeg_split() {
+ffmpeg_segment() {
 	ffmpeg -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
 }
 
