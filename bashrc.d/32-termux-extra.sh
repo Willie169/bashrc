@@ -4,27 +4,39 @@
 [[ "${HOME}" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]] && return
 
 mvic() {
-	mv -- "$DOW"/"$1" ./
+	for f in "$@"; do
+		mv -- "$DOW"/"$f" ./
+	done
 }
 
 mvoc() {
-	mv -- ./"$1" "$DOW"/
+	for f in "$@"; do
+		mv -- ./"$f" "$DOW"/
+	done
 }
 
 mvih() {
-	mv -- "$DOW"/"$1" ~/
+	for f in "$@"; do
+		mv -- "$DOW"/"$f" ~/
+	done
 }
 
 mvoh() {
-	mv -- ~/"$1" "$DOW"/
+	for f in "$@"; do
+		mv -- ~/"$f" "$DOW"/
+	done
 }
 
 mvib() {
-	mv -- "$DOW"/"$1" ../
+	for f in "$@"; do
+		mv -- "$DOW"/"$f" ../
+	done
 }
 
 mvob() {
-	mv -- ../"$1" "$DOW"/
+	for f in "$@"; do
+		mv -- ../"$f" "$DOW"/
+	done
 }
 
 mvir() {
@@ -44,27 +56,39 @@ mvop() {
 }
 
 mvidc() {
-	mv -- "$DOC"/"$1" ./
+	for f in "$@"; do
+		mv -- "$DOC"/"$f" ./
+	done
 }
 
 mvodc() {
-	mv -- ./"$1" "$DOC"/
+	for f in "$@"; do
+		mv -- ./"$f" "$DOC"/
+	done
 }
 
 mvidh() {
-	mv -- "$DOC"/"$1" ~/
+	for f in "$@"; do
+		mv -- "$DOC"/"$f" ~/
+	done
 }
 
 mvodh() {
-	mv -- ~/"$1" "$DOC"/
+	for f in "$@"; do
+		mv -- ~/"$f" "$DOC"/
+	done
 }
 
 mvidb() {
-	mv -- "$DOC"/"$1" ../
+	for f in "$@"; do
+		mv -- "$DOC"/"$f" ../
+	done
 }
 
 mvodb() {
-	mv -- ../"$1" "$DOC"/
+	for f in "$@"; do
+		mv -- ../"$f" "$DOC"/
+	done
 }
 
 mvidr() {
@@ -84,27 +108,39 @@ mvodp() {
 }
 
 mvisc() {
-	mv -- "$SCR"/"$1" ./
+	for f in "$@"; do
+		mv -- "$SCR"/"$f" ./
+	done
 }
 
 mvosc() {
-	mv -- ./"$1" "$SCR"/
+	for f in "$@"; do
+		mv -- ./"$f" "$SCR"/
+	done
 }
 
 mvish() {
-	mv -- "$SCR"/"$1" ~/
+	for f in "$@"; do
+		mv -- "$SCR"/"$f" ~/
+	done
 }
 
 mvosh() {
-	mv -- ~/"$1" "$SCR"/
+	for f in "$@"; do
+		mv -- ~/"$f" "$SCR"/
+	done
 }
 
 mvisb() {
-	mv -- "$SCR"/"$1" ../
+	for f in "$@"; do
+		mv -- "$SCR"/"$f" ../
+	done
 }
 
 mvosb() {
-	mv -- ../"$1" "$SCR"/
+	for f in "$@"; do
+		mv -- ../"$f" "$SCR"/
+	done
 }
 
 mvisr() {
@@ -124,27 +160,39 @@ mvosp() {
 }
 
 mviec() {
-	mv -- "$EMU"/"$1" ./
+	for f in "$@"; do
+		mv -- "$EMU"/"$f" ./
+	done
 }
 
 mvoec() {
-	mv -- ./"$1" "$EMU"/
+	for f in "$@"; do
+		mv -- ./"$f" "$EMU"/
+	done
 }
 
 mvieh() {
-	mv -- "$EMU"/"$1" ~/
+	for f in "$@"; do
+		mv -- "$EMU"/"$f" ~/
+	done
 }
 
 mvoeh() {
-	mv -- ~/"$1" "$EMU"/
+	for f in "$@"; do
+		mv -- ~/"$f" "$EMU"/
+	done
 }
 
 mvieb() {
-	mv -- "$EMU"/"$1" ../
+	for f in "$@"; do
+		mv -- "$EMU"/"$f" ../
+	done
 }
 
 mvoeb() {
-	mv -- ../"$1" "$EMU"/
+	for f in "$@"; do
+		mv -- ../"$f" "$EMU"/
+	done
 }
 
 mvier() {
@@ -164,27 +212,39 @@ mvoep() {
 }
 
 cpic() {
-	cp -- "$DOW"/"$1" ./
+	for f in "$@"; do
+		cp -- "$DOW"/"$f" ./
+	done
 }
 
 cpoc() {
-	cp -- ./"$1" "$DOW"/
+	for f in "$@"; do
+		cp -- ./"$f" "$DOW"/
+	done
 }
 
 cpih() {
-	cp -- "$DOW"/"$1" ~/
+	for f in "$@"; do
+		cp -- "$DOW"/"$f" ~/
+	done
 }
 
 cpoh() {
-	cp -- ~/"$1" "$DOW"/
+	for f in "$@"; do
+		cp -- ~/"$f" "$DOW"/
+	done
 }
 
 cpib() {
-	cp -- "$DOW"/"$1" ../
+	for f in "$@"; do
+		cp -- "$DOW"/"$f" ../
+	done
 }
 
 cpob() {
-	cp -- ../"$1" "$DOW"/
+	for f in "$@"; do
+		cp -- ../"$f" "$DOW"/
+	done
 }
 
 cpir() {
@@ -204,27 +264,39 @@ cpop() {
 }
 
 cpidc() {
-	cp -- "$DOC"/"$1" ./
+	for f in "$@"; do
+		cp -- "$DOC"/"$f" ./
+	done
 }
 
 cpodc() {
-	cp -- ./"$1" "$DOC"/
+	for f in "$@"; do
+		cp -- ./"$f" "$DOC"/
+	done
 }
 
 cpidh() {
-	cp -- "$DOC"/"$1" ~/
+	for f in "$@"; do
+		cp -- "$DOC"/"$f" ~/
+	done
 }
 
 cpodh() {
-	cp -- ~/"$1" "$DOC"/
+	for f in "$@"; do
+		cp -- ~/"$f" "$DOC"/
+	done
 }
 
 cpidb() {
-	cp -- "$DOC"/"$1" ../
+	for f in "$@"; do
+		cp -- "$DOC"/"$f" ../
+	done
 }
 
 cpodb() {
-	cp -- ../"$1" "$DOC"/
+	for f in "$@"; do
+		cp -- ../"$f" "$DOC"/
+	done
 }
 
 cpidr() {
@@ -244,27 +316,39 @@ cpodp() {
 }
 
 cpisc() {
-	cp -- "$SCR"/"$1" ./
+	for f in "$@"; do
+		cp -- "$SCR"/"$f" ./
+	done
 }
 
 cposc() {
-	cp -- ./"$1" "$SCR"/
+	for f in "$@"; do
+		cp -- ./"$f" "$SCR"/
+	done
 }
 
 cpish() {
-	cp -- "$SCR"/"$1" ~/
+	for f in "$@"; do
+		cp -- "$SCR"/"$f" ~/
+	done
 }
 
 cposh() {
-	cp -- ~/"$1" "$SCR"/
+	for f in "$@"; do
+		cp -- ~/"$f" "$SCR"/
+	done
 }
 
 cpisb() {
-	cp -- "$SCR"/"$1" ../
+	for f in "$@"; do
+		cp -- "$SCR"/"$f" ../
+	done
 }
 
 cposb() {
-	cp -- ../"$1" "$SCR"/
+	for f in "$@"; do
+		cp -- ../"$f" "$SCR"/
+	done
 }
 
 cpisr() {
@@ -284,27 +368,39 @@ cposp() {
 }
 
 cpiec() {
-	cp -- "$EMU"/"$1" ./
+	for f in "$@"; do
+		cp -- "$EMU"/"$f" ./
+	done
 }
 
 cpoec() {
-	cp -- ./"$1" "$EMU"/
+	for f in "$@"; do
+		cp -- ./"$f" "$EMU"/
+	done
 }
 
 cpieh() {
-	cp -- "$EMU"/"$1" ~/
+	for f in "$@"; do
+		cp -- "$EMU"/"$f" ~/
+	done
 }
 
 cpoeh() {
-	cp -- ~/"$1" "$EMU"/
+	for f in "$@"; do
+		cp -- ~/"$f" "$EMU"/
+	done
 }
 
 cpieb() {
-	cp -- "$EMU"/"$1" ../
+	for f in "$@"; do
+		cp -- "$EMU"/"$f" ../
+	done
 }
 
 cpoeb() {
-	cp -- ../"$1" "$EMU"/
+	for f in "$@"; do
+		cp -- ../"$f" "$EMU"/
+	done
 }
 
 cpier() {
@@ -324,27 +420,39 @@ cpoep() {
 }
 
 cpric() {
-	cp -r -- "$DOW"/"$1" ./
+	for f in "$@"; do
+		cp -r -- "$DOW"/"$f" ./
+	done
 }
 
 cproc() {
-	cp -r -- ./"$1" "$DOW"/
+	for f in "$@"; do
+		cp -r -- ./"$f" "$DOW"/
+	done
 }
 
 cprih() {
-	cp -r -- "$DOW"/"$1" ~/
+	for f in "$@"; do
+		cp -r -- "$DOW"/"$f" ~/
+	done
 }
 
 cproh() {
-	cp -r -- ~/"$1" "$DOW"/
+	for f in "$@"; do
+		cp -r -- ~/"$f" "$DOW"/
+	done
 }
 
 cprib() {
-	cp -r -- "$DOW"/"$1" ../
+	for f in "$@"; do
+		cp -r -- "$DOW"/"$f" ../
+	done
 }
 
 cprob() {
-	cp -r -- ../"$1" "$DOW"/
+	for f in "$@"; do
+		cp -r -- ../"$f" "$DOW"/
+	done
 }
 
 cprir() {
@@ -364,27 +472,39 @@ cprop() {
 }
 
 cpridc() {
-	cp -r -- "$DOC"/"$1" ./
+	for f in "$@"; do
+		cp -r -- "$DOC"/"$f" ./
+	done
 }
 
 cprodc() {
-	cp -r -- ./"$1" "$DOC"/
+	for f in "$@"; do
+		cp -r -- ./"$f" "$DOC"/
+	done
 }
 
 cpridh() {
-	cp -r -- "$DOC"/"$1" ~/
+	for f in "$@"; do
+		cp -r -- "$DOC"/"$f" ~/
+	done
 }
 
 cprodh() {
-	cp -r -- ~/"$1" "$DOC"/
+	for f in "$@"; do
+		cp -r -- ~/"$f" "$DOC"/
+	done
 }
 
 cpridb() {
-	cp -r -- "$DOC"/"$1" ../
+	for f in "$@"; do
+		cp -r -- "$DOC"/"$f" ../
+	done
 }
 
 cprodb() {
-	cp -r -- ../"$1" "$DOC"/
+	for f in "$@"; do
+		cp -r -- ../"$f" "$DOC"/
+	done
 }
 
 cpridr() {
@@ -404,27 +524,39 @@ cprodp() {
 }
 
 cprisc() {
-	cp -r -- "$SCR"/"$1" ./
+	for f in "$@"; do
+		cp -r -- "$SCR"/"$f" ./
+	done
 }
 
 cprosc() {
-	cp -r -- ./"$1" "$SCR"/
+	for f in "$@"; do
+		cp -r -- ./"$f" "$SCR"/
+	done
 }
 
 cprish() {
-	cp -r -- "$SCR"/"$1" ~/
+	for f in "$@"; do
+		cp -r -- "$SCR"/"$f" ~/
+	done
 }
 
 cprosh() {
-	cp -r -- ~/"$1" "$SCR"/
+	for f in "$@"; do
+		cp -r -- ~/"$f" "$SCR"/
+	done
 }
 
 cprisb() {
-	cp -r -- "$SCR"/"$1" ../
+	for f in "$@"; do
+		cp -r -- "$SCR"/"$f" ../
+	done
 }
 
 cprosb() {
-	cp -r -- ../"$1" "$SCR"/
+	for f in "$@"; do
+		cp -r -- ../"$f" "$SCR"/
+	done
 }
 
 cprisr() {
@@ -444,27 +576,39 @@ cprosp() {
 }
 
 cpriec() {
-	cp -r -- "$EMU"/"$1" ./
+	for f in "$@"; do
+		cp -r -- "$EMU"/"$f" ./
+	done
 }
 
 cproec() {
-	cp -r -- ./"$1" "$EMU"/
+	for f in "$@"; do
+		cp -r -- ./"$f" "$EMU"/
+	done
 }
 
 cprieh() {
-	cp -r -- "$EMU"/"$1" ~/
+	for f in "$@"; do
+		cp -r -- "$EMU"/"$f" ~/
+	done
 }
 
 cproeh() {
-	cp -r -- ~/"$1" "$EMU"/
+	for f in "$@"; do
+		cp -r -- ~/"$f" "$EMU"/
+	done
 }
 
 cprieb() {
-	cp -r -- "$EMU"/"$1" ../
+	for f in "$@"; do
+		cp -r -- "$EMU"/"$f" ../
+	done
 }
 
 cproeb() {
-	cp -r -- ../"$1" "$EMU"/
+	for f in "$@"; do
+		cp -r -- ../"$f" "$EMU"/
+	done
 }
 
 cprier() {

@@ -63,25 +63,25 @@ with open(p, "w", encoding="utf-8") as file:
                     "i" +
                     remoteStr[j] +
                     localStr[k] +
-                    "() {\n\t" +
+                    "() {\n\tfor f in \"$@\"; do\n\t\t" +
                     op[i] +
                     " -- \"" +
                     remote[j] +
-                    "\"/\"$1\" " +
+                    "\"/\"$f\" " +
                     local[k] +
-                    "/\n}\n\n")
+                    "/\n\tdone\n}\n\n")
                 file.write(
                     opStr[i] +
                     "o" +
                     remoteStr[j] +
                     localStr[k] +
-                    "() {\n\t" +
+                    "() {\n\tfor f in \"$@\"; do\n\t\t" +
                     op[i] +
                     " -- " +
                     local[k] +
-                    "/\"$1\" \"" +
+                    "/\"$f\" \"" +
                     remote[j] +
-                    "\"/\n}\n\n")
+                    "\"/\n\tdone\n}\n\n")
             for k in lr(tlocal):
                 file.write(
                     opStr[i] +
