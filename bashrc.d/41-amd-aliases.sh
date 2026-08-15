@@ -4,6 +4,7 @@ if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5
 	return
 fi
 
+# flatpak
 alias vokoscreenNG='flatpak run com.github.vkohaupt.vokoscreenNG'
 alias bottles='flatpak run com.usebottles.bottles'
 alias bottles-cli='flatpak run --command=bottles-cli com.usebottles.bottles'
@@ -21,3 +22,7 @@ alias luanti='flatpak run org.luanti.luanti'
 alias musescore='flatpak run org.musescore.MuseScore'
 alias vlc='flatpak run org.videolan.VLC'
 alias pied='flatpak run com.mikeasoft.pied'
+
+# ~/Applications
+alias altersend='AlterSend.AppImage'
+alias kiwix='kiwix-desktop_x86_64.appimage'
