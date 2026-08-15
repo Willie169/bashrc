@@ -3273,36 +3273,6 @@ cpiagc() {
 	gac "$1"
 }
 
-mvagcd() {
-	mvaic "$1"
-	gacd "$2"
-}
-
-cpagcd() {
-	cpaic "$1"
-	gacd "$2"
-}
-
-mvigcd() {
-	mvic "$1"
-	gacd "$2"
-}
-
-cpigcd() {
-	cpric "$1"
-	gacd "$2"
-}
-
-mviagcd() {
-	mviac
-	gacd "$1"
-}
-
-cpiagcd() {
-	cpiac "*"
-	gacd "$1"
-}
-
 mvagcp() {
 	mvaic "$1"
 	gacp "$2"
@@ -3333,34 +3303,64 @@ cpiagcp() {
 	gacp "$1"
 }
 
+mvagcd() {
+	mvaic "$1"
+	gacd
+}
+
+cpagcd() {
+	cpaic "$1"
+	gacd
+}
+
+mvigcd() {
+	mvic "$1"
+	gacd
+}
+
+cpigcd() {
+	cpric "$1"
+	gacd
+}
+
+mviagcd() {
+	mviac
+	gacd
+}
+
+cpiagcd() {
+	cpiac "*"
+	gacd
+}
+
 mvagcdp() {
 	mvaic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpagcdp() {
 	cpaic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mvigcdp() {
 	mvic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpigcdp() {
 	cpric "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mviagcdp() {
 	mviac
-	gacdp "$1"
+	gacdp
 }
 
 cpiagcdp() {
 	cpiac "*"
-	gacdp "$1"
+	gacdp
 }
 
 mvadgc() {
@@ -3393,36 +3393,6 @@ cpiadgc() {
 	gac "$1"
 }
 
-mvadgcd() {
-	mvadic "$1"
-	gacd "$2"
-}
-
-cpadgcd() {
-	cpadic "$1"
-	gacd "$2"
-}
-
-mvidgcd() {
-	mvidc "$1"
-	gacd "$2"
-}
-
-cpidgcd() {
-	cpridc "$1"
-	gacd "$2"
-}
-
-mviadgcd() {
-	mviadc
-	gacd "$1"
-}
-
-cpiadgcd() {
-	cpiadc "*"
-	gacd "$1"
-}
-
 mvadgcp() {
 	mvadic "$1"
 	gacp "$2"
@@ -3453,34 +3423,64 @@ cpiadgcp() {
 	gacp "$1"
 }
 
+mvadgcd() {
+	mvadic "$1"
+	gacd
+}
+
+cpadgcd() {
+	cpadic "$1"
+	gacd
+}
+
+mvidgcd() {
+	mvidc "$1"
+	gacd
+}
+
+cpidgcd() {
+	cpridc "$1"
+	gacd
+}
+
+mviadgcd() {
+	mviadc
+	gacd
+}
+
+cpiadgcd() {
+	cpiadc "*"
+	gacd
+}
+
 mvadgcdp() {
 	mvadic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpadgcdp() {
 	cpadic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mvidgcdp() {
 	mvidc "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpidgcdp() {
 	cpridc "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mviadgcdp() {
 	mviadc
-	gacdp "$1"
+	gacdp
 }
 
 cpiadgcdp() {
 	cpiadc "*"
-	gacdp "$1"
+	gacdp
 }
 
 mvasgc() {
@@ -3513,36 +3513,6 @@ cpiasgc() {
 	gac "$1"
 }
 
-mvasgcd() {
-	mvasic "$1"
-	gacd "$2"
-}
-
-cpasgcd() {
-	cpasic "$1"
-	gacd "$2"
-}
-
-mvisgcd() {
-	mvisc "$1"
-	gacd "$2"
-}
-
-cpisgcd() {
-	cprisc "$1"
-	gacd "$2"
-}
-
-mviasgcd() {
-	mviasc
-	gacd "$1"
-}
-
-cpiasgcd() {
-	cpiasc "*"
-	gacd "$1"
-}
-
 mvasgcp() {
 	mvasic "$1"
 	gacp "$2"
@@ -3573,34 +3543,64 @@ cpiasgcp() {
 	gacp "$1"
 }
 
+mvasgcd() {
+	mvasic "$1"
+	gacd
+}
+
+cpasgcd() {
+	cpasic "$1"
+	gacd
+}
+
+mvisgcd() {
+	mvisc "$1"
+	gacd
+}
+
+cpisgcd() {
+	cprisc "$1"
+	gacd
+}
+
+mviasgcd() {
+	mviasc
+	gacd
+}
+
+cpiasgcd() {
+	cpiasc "*"
+	gacd
+}
+
 mvasgcdp() {
 	mvasic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpasgcdp() {
 	cpasic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mvisgcdp() {
 	mvisc "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpisgcdp() {
 	cprisc "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mviasgcdp() {
 	mviasc
-	gacdp "$1"
+	gacdp
 }
 
 cpiasgcdp() {
 	cpiasc "*"
-	gacdp "$1"
+	gacdp
 }
 
 mvaegc() {
@@ -3633,36 +3633,6 @@ cpiaegc() {
 	gac "$1"
 }
 
-mvaegcd() {
-	mvaeic "$1"
-	gacd "$2"
-}
-
-cpaegcd() {
-	cpaeic "$1"
-	gacd "$2"
-}
-
-mviegcd() {
-	mviec "$1"
-	gacd "$2"
-}
-
-cpiegcd() {
-	cpriec "$1"
-	gacd "$2"
-}
-
-mviaegcd() {
-	mviaec
-	gacd "$1"
-}
-
-cpiaegcd() {
-	cpiaec "*"
-	gacd "$1"
-}
-
 mvaegcp() {
 	mvaeic "$1"
 	gacp "$2"
@@ -3693,34 +3663,64 @@ cpiaegcp() {
 	gacp "$1"
 }
 
+mvaegcd() {
+	mvaeic "$1"
+	gacd
+}
+
+cpaegcd() {
+	cpaeic "$1"
+	gacd
+}
+
+mviegcd() {
+	mviec "$1"
+	gacd
+}
+
+cpiegcd() {
+	cpriec "$1"
+	gacd
+}
+
+mviaegcd() {
+	mviaec
+	gacd
+}
+
+cpiaegcd() {
+	cpiaec "*"
+	gacd
+}
+
 mvaegcdp() {
 	mvaeic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpaegcdp() {
 	cpaeic "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mviegcdp() {
 	mviec "$1"
-	gacdp "$2"
+	gacdp
 }
 
 cpiegcdp() {
 	cpriec "$1"
-	gacdp "$2"
+	gacdp
 }
 
 mviaegcdp() {
 	mviaec
-	gacdp "$1"
+	gacdp
 }
 
 cpiaegcdp() {
 	cpiaec "*"
-	gacdp "$1"
+	gacdp
 }
 
 scnnn() {

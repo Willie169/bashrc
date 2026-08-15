@@ -320,11 +320,43 @@ cpiaAgB() {
 
 """
 
-    gbStr = ["c", "cd", "cp", "cdp"]
+    gacdp = """mvaAgB() {
+\tmvaAic "$1"
+\tgaB
+}
+
+cpaAgB() {
+\tcpaAic "$1"
+\tgaB
+}
+
+mviAgB() {
+\tmviAc "$1"
+\tgaB
+}
+
+cpiAgB() {
+\tcpriAc "$1"
+\tgaB
+}
+
+mviaAgB() {
+\tmviaAc
+\tgaB
+}
+
+cpiaAgB() {
+\tcpiaAc "*"
+\tgaB
+}
+
+"""
 
     for i in remoteStr:
-        for j in gbStr:
-            file.write(gacp.replace("A", i).replace("B", j))
+        file.write(gacp.replace("A", i).replace("B", "c"))
+        file.write(gacp.replace("A", i).replace("B", "cp"))
+        file.write(gacdp.replace("A", i).replace("B", "cd"))
+        file.write(gacdp.replace("A", i).replace("B", "cdp"))
 
     A = ["n", "d", "z", "f"]
     B = [
