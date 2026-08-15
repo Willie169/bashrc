@@ -2076,6 +2076,14 @@ ffmpeg_split() {
 	ffmpeg -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
 }
 
+ffmpeg_concat_auto() {
+	printf "file '%s'\n" "$@" | ffmpeg -f concat -safe 0 -i pipe:0 -c copy "$(echo "$1" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "$1" | get_extension)"
+}
+
+ffmpeg_concat() {
+	printf "file '%s'\n" "${@:2}" | ffmpeg -f concat -safe 0 -i pipe:0 -c copy "$1"
+}
+
 jxl_lossy() {
 	if [ "$#" -lt 2 ]; then
 		return

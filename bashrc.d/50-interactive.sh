@@ -21,11 +21,11 @@ else
 fi
 
 rm() {
-    command rm -i "$@"
+	command rm -i "$@"
 }
 
 rmo() {
-    command rm "$@"
+	command rm "$@"
 }
 
 ls() {
