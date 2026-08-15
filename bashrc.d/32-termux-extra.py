@@ -288,70 +288,43 @@ mkdirpp() {
             proot[k] +
             "}/rootfs/root\" || return\n}\n\n")
 
-    gacp = """mvaAgcp() {
+    gacp = """mvaAgB() {
 \tmvaAic "$1"
-\tgacp "$2"
+\tgaB "$2"
 }
 
-cpaAgcp() {
+cpaAgB() {
 \tcpaAic "$1"
-\tgacp "$2"
+\tgaB "$2"
 }
 
-mviAgcp() {
+mviAgB() {
 \tmviAc "$1"
-\tgacp "$2"
+\tgaB "$2"
 }
 
-cpiAgcp() {
+cpiAgB() {
 \tcpriAc "$1"
-\tgacp "$2"
+\tgaB "$2"
 }
 
-mviaAgcp() {
+mviaAgB() {
 \tmviaAc
-\tgacp "$1"
+\tgaB "$1"
 }
 
-cpiaAgcp() {
+cpiaAgB() {
 \tcpiaAc "*"
-\tgacp "$1"
-}
-
-mvaAgcdp() {
-\tmvaAic "$1"
-\tgacdp "$2"
-}
-
-cpaAgcdp() {
-\tcpaAic "$1"
-\tgacdp "$2"
-}
-
-mviAgcdp() {
-\tmviAc "$1"
-\tgacdp "$2"
-}
-
-cpiAgcdp() {
-\tcpriAc "$1"
-\tgacdp "$2"
-}
-
-mviaAgcdp() {
-\tmviaAc
-\tgacdp "$1"
-}
-
-cpiaAgcdp() {
-\tcpiaAc "*"
-\tgacdp "$1"
+\tgaB "$1"
 }
 
 """
 
+    gbStr = ["c", "cd", "cp", "cdp"]
+
     for i in remoteStr:
-        file.write(gacp.replace("A", i))
+        for j in gbStr:
+            file.write(gacp.replace("A", i).replace("B", j))
 
     A = ["n", "d", "z", "f"]
     B = [

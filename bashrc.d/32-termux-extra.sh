@@ -3243,6 +3243,66 @@ pdcdb() {
 	cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_DEBIANBOX:-debianbox}/rootfs/root" || return
 }
 
+mvagc() {
+	mvaic "$1"
+	gac "$2"
+}
+
+cpagc() {
+	cpaic "$1"
+	gac "$2"
+}
+
+mvigc() {
+	mvic "$1"
+	gac "$2"
+}
+
+cpigc() {
+	cpric "$1"
+	gac "$2"
+}
+
+mviagc() {
+	mviac
+	gac "$1"
+}
+
+cpiagc() {
+	cpiac "*"
+	gac "$1"
+}
+
+mvagcd() {
+	mvaic "$1"
+	gacd "$2"
+}
+
+cpagcd() {
+	cpaic "$1"
+	gacd "$2"
+}
+
+mvigcd() {
+	mvic "$1"
+	gacd "$2"
+}
+
+cpigcd() {
+	cpric "$1"
+	gacd "$2"
+}
+
+mviagcd() {
+	mviac
+	gacd "$1"
+}
+
+cpiagcd() {
+	cpiac "*"
+	gacd "$1"
+}
+
 mvagcp() {
 	mvaic "$1"
 	gacp "$2"
@@ -3301,6 +3361,66 @@ mviagcdp() {
 cpiagcdp() {
 	cpiac "*"
 	gacdp "$1"
+}
+
+mvadgc() {
+	mvadic "$1"
+	gac "$2"
+}
+
+cpadgc() {
+	cpadic "$1"
+	gac "$2"
+}
+
+mvidgc() {
+	mvidc "$1"
+	gac "$2"
+}
+
+cpidgc() {
+	cpridc "$1"
+	gac "$2"
+}
+
+mviadgc() {
+	mviadc
+	gac "$1"
+}
+
+cpiadgc() {
+	cpiadc "*"
+	gac "$1"
+}
+
+mvadgcd() {
+	mvadic "$1"
+	gacd "$2"
+}
+
+cpadgcd() {
+	cpadic "$1"
+	gacd "$2"
+}
+
+mvidgcd() {
+	mvidc "$1"
+	gacd "$2"
+}
+
+cpidgcd() {
+	cpridc "$1"
+	gacd "$2"
+}
+
+mviadgcd() {
+	mviadc
+	gacd "$1"
+}
+
+cpiadgcd() {
+	cpiadc "*"
+	gacd "$1"
 }
 
 mvadgcp() {
@@ -3363,6 +3483,66 @@ cpiadgcdp() {
 	gacdp "$1"
 }
 
+mvasgc() {
+	mvasic "$1"
+	gac "$2"
+}
+
+cpasgc() {
+	cpasic "$1"
+	gac "$2"
+}
+
+mvisgc() {
+	mvisc "$1"
+	gac "$2"
+}
+
+cpisgc() {
+	cprisc "$1"
+	gac "$2"
+}
+
+mviasgc() {
+	mviasc
+	gac "$1"
+}
+
+cpiasgc() {
+	cpiasc "*"
+	gac "$1"
+}
+
+mvasgcd() {
+	mvasic "$1"
+	gacd "$2"
+}
+
+cpasgcd() {
+	cpasic "$1"
+	gacd "$2"
+}
+
+mvisgcd() {
+	mvisc "$1"
+	gacd "$2"
+}
+
+cpisgcd() {
+	cprisc "$1"
+	gacd "$2"
+}
+
+mviasgcd() {
+	mviasc
+	gacd "$1"
+}
+
+cpiasgcd() {
+	cpiasc "*"
+	gacd "$1"
+}
+
 mvasgcp() {
 	mvasic "$1"
 	gacp "$2"
@@ -3421,6 +3601,66 @@ mviasgcdp() {
 cpiasgcdp() {
 	cpiasc "*"
 	gacdp "$1"
+}
+
+mvaegc() {
+	mvaeic "$1"
+	gac "$2"
+}
+
+cpaegc() {
+	cpaeic "$1"
+	gac "$2"
+}
+
+mviegc() {
+	mviec "$1"
+	gac "$2"
+}
+
+cpiegc() {
+	cpriec "$1"
+	gac "$2"
+}
+
+mviaegc() {
+	mviaec
+	gac "$1"
+}
+
+cpiaegc() {
+	cpiaec "*"
+	gac "$1"
+}
+
+mvaegcd() {
+	mvaeic "$1"
+	gacd "$2"
+}
+
+cpaegcd() {
+	cpaeic "$1"
+	gacd "$2"
+}
+
+mviegcd() {
+	mviec "$1"
+	gacd "$2"
+}
+
+cpiegcd() {
+	cpriec "$1"
+	gacd "$2"
+}
+
+mviaegcd() {
+	mviaec
+	gacd "$1"
+}
+
+cpiaegcd() {
+	cpiaec "*"
+	gacd "$1"
 }
 
 mvaegcp() {
