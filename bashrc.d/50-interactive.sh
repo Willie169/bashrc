@@ -20,6 +20,14 @@ else
 	color=''
 fi
 
+rm() {
+    command rm -i "$@"
+}
+
+rmo() {
+    command rm "$@"
+}
+
 ls() {
 	command ls "$color" "$@"
 }
