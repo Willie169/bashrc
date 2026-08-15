@@ -2077,11 +2077,11 @@ ffmpeg_segment() {
 }
 
 ffmpeg_concat_auto() {
-	printf "file '%s'\n" "$@" | ffmpeg -f concat -safe 0 -i pipe:0 -c copy "$(echo "$1" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "$1" | get_extension)"
+	printf "file '%s'\n" "$@" | ffmpeg -f concat -safe 0 -i - pipe:0 -c copy "$(echo "$1" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "$1" | get_extension)"
 }
 
 ffmpeg_concat() {
-	printf "file '%s'\n" "${@:2}" | ffmpeg -f concat -safe 0 -i pipe:0 -c copy "$1"
+	printf "file '%s'\n" "${@:2}" | ffmpeg -f concat -safe 0 -i - pipe:0 -c copy "$1"
 }
 
 jxl_lossy() {
