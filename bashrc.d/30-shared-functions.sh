@@ -616,17 +616,17 @@ cgrr() {
 }
 
 ghcrpb() {
-	gh repo create "$1" --public
+	gh repo create --public "$@"
 	gh repo clone "$1"
 }
 
 ghcrpv() {
-	gh repo create "$1" --private
+	gh repo create --private "$@"
 	gh repo clone "$1"
 }
 
 ghcl() {
-	gh repo clone "$1"
+	gh repo clone "$@"
 }
 
 gpul() {
