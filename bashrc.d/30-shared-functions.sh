@@ -653,7 +653,7 @@ gpul() {
 
 gauth() {
 	unset GITHUB_TOKEN
-	gh auth login --scopes repo,read:org,admin:org,workflow,gist,notifications,delete_repo,write:packages,read:packages
+	gh auth login -p ssh --s repo,workflow,write:packages,delete:packages,admin:org,admin:public_key,admin:repo_hook,admin:org_hook,gist,notifications,user,delete_repo,write:discussion,admin:enterprise,audit_log,codespace,copilot,write:network_configurations,project,admin:gpg_key,admin:ssh_signing_key --with-token
 }
 
 gh_delete_runs() {
