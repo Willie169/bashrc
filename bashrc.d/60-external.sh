@@ -2,7 +2,7 @@
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-[ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 [ -n "${MAMBA_ROOT_PREFIX:-}" ] && source "$MAMBA_ROOT_PREFIX/etc/profile.d/conda.sh"
 [ -n "${MAMBA_ROOT_PREFIX:-}" ] && source "$MAMBA_ROOT_PREFIX/etc/profile.d/mamba.sh"
