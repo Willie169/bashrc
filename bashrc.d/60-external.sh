@@ -15,11 +15,13 @@ fi
 
 [ -f "${HOME}"/.config/broot/launcher/bash/br ] && source "${HOME}"/.config/broot/launcher/bash/br
 
-command -v luarocks >/dev/null 2>&1 && . <(luarocks completion bash)
+command -v luarocks >/dev/null 2>&1 && eval <(luarocks completion bash)
 
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 
 command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
+
+command -v llama-cli >/dev/null 2>&1 && eval "$(llama-cli --completion-bash)"
 
 if [ -r "${HOME}/conda" ]; then
 	export MAMBA_ROOT_PREFIX="${HOME}/conda"
