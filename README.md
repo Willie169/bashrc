@@ -19,7 +19,7 @@ Original `~/.bashrc` and `~/.bashrc.d` (if any) will be deleted. git is required
 ```
 rm -rf ~/.bashrc ~/.bashrc.d
 git clone --depth=1 https://github.com/Willie169/bashrc ~/.bashrc.d
-ln -sf "${HOME}"/.bashrc.d/bashrc.d/bashrc "${HOME}"/.bashrc
+ln -sf "$HOME/.bashrc.d/bashrc.d/bashrc" "$HOME/.bashrc"
 ```
 
 `source ~/.bashrc` to make it take effect in current shell.
