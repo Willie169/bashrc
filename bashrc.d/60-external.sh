@@ -7,7 +7,7 @@
 [ -n "${MAMBA_ROOT_PREFIX:-}" ] && source "$MAMBA_ROOT_PREFIX/etc/profile.d/conda.sh"
 [ -n "${MAMBA_ROOT_PREFIX:-}" ] && source "$MAMBA_ROOT_PREFIX/etc/profile.d/mamba.sh"
 
-[ -f "${HOME}"/.config/broot/launcher/bash/br ] && source "${HOME}"/.config/broot/launcher/bash/br
+[ -f "$HOME/.config/broot/launcher/bash/br" ] && source "$HOME/.config/broot/launcher/bash/br"
 
 # shellcheck disable=2155,2164
 if command -v yazi >/dev/null 2>&1; then

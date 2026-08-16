@@ -1058,7 +1058,7 @@ dicepass() {
 	local n="$1"
 	local sep="${2:--}"
 	local url="https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt"
-	local file="${HOME}/.eff_large_wordlist.txt"
+	local file="$HOME/.eff_large_wordlist.txt"
 	[[ ! -f "$file" ]] && curl -fsSL "$url" -o "$file"
 	[[ ! -f "$file" ]] && printf 'ERROR: cannot download wordlist\n'
 	local passphrase=''
@@ -1417,7 +1417,7 @@ clipsortuniq() {
 }
 
 dfur() {
-	if [ "${HOME}" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
+	if [ "$HOME" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
 		df '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
 	else
 		df --output=used / | tail -n1
@@ -1425,7 +1425,7 @@ dfur() {
 }
 
 dfhur() {
-	if [ "${HOME}" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
+	if [ "$HOME" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
 		df -h '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
 	else
 		df -h --output=used / | tail -n1

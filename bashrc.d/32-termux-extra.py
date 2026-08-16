@@ -9,7 +9,7 @@ with open(p, "w", encoding="utf-8") as file:
     file.write(
         "#!/usr/bin/env bash\n# shellcheck disable=2103\n\n")
     file.write(
-        r'''[[ "${HOME}" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]] && return''' +
+        r'''[[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]] && return''' +
         '\n\n')
 
     def lr(x):
