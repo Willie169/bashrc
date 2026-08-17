@@ -1917,9 +1917,12 @@ shch() {
 }
 
 shchc() {
-  for f in **/*.sh; do
-    test -f "$f" && shellcheck -e 1090,1091 "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.sh; do
+      test -f "$f" && shellcheck -e 1090,1091 "$f"
+    done
+  )
 }
 
 cfm() {
@@ -1927,9 +1930,12 @@ cfm() {
 }
 
 cfmc() {
-  for f in **/*.c **/*.h; do
-    test -f "$f" && clang-format -i "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.c **/*.h; do
+      test -f "$f" && clang-format -i "$f"
+    done
+  )
 }
 
 cppfm() {
@@ -1937,9 +1943,12 @@ cppfm() {
 }
 
 cppfmc() {
-  for f in **/*.cpp **/*.hpp; do
-    test -f "$f" && clang-format -i "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.cpp **/*.hpp; do
+      test -f "$f" && clang-format -i "$f"
+    done
+  )
 }
 
 javafm() {
@@ -1947,9 +1956,12 @@ javafm() {
 }
 
 javafmc() {
-  for f in **/*.java; do
-    test -f "$f" && clang-format -i "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.java; do
+      test -f "$f" && clang-format -i "$f"
+    done
+  )
 }
 
 cssfm() {
@@ -1957,9 +1969,12 @@ cssfm() {
 }
 
 cssfmc() {
-  for f in **/*.css; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.css; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 jsfm() {
@@ -1967,9 +1982,12 @@ jsfm() {
 }
 
 jsfmc() {
-  for f in **/*.js; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.js; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 tsfm() {
@@ -1977,9 +1995,12 @@ tsfm() {
 }
 
 tsfmc() {
-  for f in **/*.ts; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.ts; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 htmlfm() {
@@ -1987,9 +2008,12 @@ htmlfm() {
 }
 
 htmlfmc() {
-  for f in **/*.html; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.html; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 mdfm() {
@@ -1997,9 +2021,12 @@ mdfm() {
 }
 
 mdfmc() {
-  for f in **/*.md; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.md; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 jsonfm() {
@@ -2007,9 +2034,12 @@ jsonfm() {
 }
 
 jsonfmc() {
-  for f in **/*.json; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.json; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 ymlfm() {
@@ -2017,9 +2047,12 @@ ymlfm() {
 }
 
 ymlfmc() {
-  for f in **/*.yml; do
-    test -f "$f" && prettier --write "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.yml; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
 }
 
 shfm() {
@@ -2027,9 +2060,12 @@ shfm() {
 }
 
 shfmc() {
-  for f in **/*.sh; do
-    test -f "$f" && shfmt -i 2 -ci -w "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.sh; do
+      test -f "$f" && shfmt -i 2 -ci -w "$f"
+    done
+  )
 }
 
 luafm() {
@@ -2037,9 +2073,12 @@ luafm() {
 }
 
 luafmc() {
-  for f in **/*.lua; do
-    test -f "$f" && stylua "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.lua; do
+      test -f "$f" && stylua "$f"
+    done
+  )
 }
 
 pyfm() {
@@ -2047,9 +2086,12 @@ pyfm() {
 }
 
 pyfmc() {
-  for f in **/*.py; do
-    test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.py; do
+      test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
+    done
+  )
 }
 
 vfm() {
@@ -2057,9 +2099,12 @@ vfm() {
 }
 
 vfmc() {
-  for f in **/*.v **/*.sv **/*.verilog **/*.systemverilog; do
-    verible-verilog-format --inplace "$f"
-  done
+  (
+    shopt -s globstar
+    for f in **/*.v **/*.sv **/*.verilog **/*.systemverilog; do
+      verible-verilog-format --inplace "$f"
+    done
+  )
 }
 
 getprop() {
@@ -2214,5 +2259,14 @@ jxl_lossless() {
 
 mkcd() {
   mkdir -p "$1"
-  cd "$1"
+  cd "$1" || return
+}
+
+cesh() {
+  (
+    shopt -s globstar
+    for f in **/.sh; do
+      test -f "$f" && chmod +x "$f"
+    done
+  )
 }
