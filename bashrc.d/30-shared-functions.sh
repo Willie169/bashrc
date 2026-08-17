@@ -2188,14 +2188,14 @@ ffmpeg_concat_auto() {
   else
     files=("$@")
   fi
-  ffmpeg -f concat -safe 0 -i <(printf "file $PWD/'%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
+  ffmpeg -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
 }
 
 ffmpeg_concat() {
   if [ "$#" -lt 2 ]; then
     return
   fi
-  ffmpeg -f concat -safe 0 -i <(printf "file $PWD/'%s'\n" "${@:2}") -c copy "$1"
+  ffmpeg -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${@:2}") -c copy "$1"
 }
 
 jxl_lossy() {
