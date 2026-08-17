@@ -11,23 +11,23 @@
 
 # shellcheck disable=2155,2164
 if command -v yazi >/dev/null 2>&1; then
-	function y() {
-		local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-		command yazi "$@" --cwd-file="$tmp"
-		IFS= read -r -d '' cwd <"$tmp"
-		[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-		command rm -f -- "$tmp"
-	}
+  function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+    command rm -f -- "$tmp"
+  }
 fi
 
 case $- in
-*i*) ;;
-*) return ;;
+  *i*) ;;
+  *) return ;;
 esac
 
 if ! shopt -oq posix; then
-	[ -f "$USR_DIR"/share/bash-completion/bash_completion ] && . "$USR_DIR"/share/bash-completion/bash_completion
-	[ -f "$ETC_DIR"/bash_completion ] && . "$ETC_DIR"/bash_completion
+  [ -f "$USR_DIR"/share/bash-completion/bash_completion ] && . "$USR_DIR"/share/bash-completion/bash_completion
+  [ -f "$ETC_DIR"/bash_completion ] && . "$ETC_DIR"/bash_completion
 fi
 
 [ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

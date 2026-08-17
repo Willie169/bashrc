@@ -1,55 +1,55 @@
 #!/usr/bin/env bash
 
 if [[ "$HOME" == '/data/data/com.termux/files/home' ]] || [[ "${PREFIX:-}" == '/data/data/com.termux/files/usr' ]]; then
-	export IS_TERMUX=1
-	export TMPDIR="$PREFIX/tmp"
-	export USR_DIR="$PREFIX"
-	export ETC_DIR="$PREFIX/etc"
-	export PROOT_NO_SECCOMP=1
-	export PROOT_DISTRO_CONTAINERS="$USR_DIR/var/lib/proot-distro/containers"
-	export PDC="$PROOT_DISTRO_CONTAINERS"
-	export EMU="/storage/emulated/0"
-	export DOW="/storage/emulated/0/Download"
-	export DOC="/storage/emulated/0/Documents"
-	export SCR="/storage/emulated/0/Scripts"
-	export JAVA_HOME="$USR_DIR/lib/jvm/java-21-openjdk"
-	export ANDROID_HOME="$HOME/Android/Sdk"
-	export ANDROID_NDK_HOME="$HOME/Android/Sdk/ndk/android-ndk-r29"
-	export ANDROID_NDK_TOOLCHAINS="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-aarch64"
+  export IS_TERMUX=1
+  export TMPDIR="$PREFIX/tmp"
+  export USR_DIR="$PREFIX"
+  export ETC_DIR="$PREFIX/etc"
+  export PROOT_NO_SECCOMP=1
+  export PROOT_DISTRO_CONTAINERS="$USR_DIR/var/lib/proot-distro/containers"
+  export PDC="$PROOT_DISTRO_CONTAINERS"
+  export EMU="/storage/emulated/0"
+  export DOW="/storage/emulated/0/Download"
+  export DOC="/storage/emulated/0/Documents"
+  export SCR="/storage/emulated/0/Scripts"
+  export JAVA_HOME="$USR_DIR/lib/jvm/java-21-openjdk"
+  export ANDROID_HOME="$HOME/Android/Sdk"
+  export ANDROID_NDK_HOME="$HOME/Android/Sdk/ndk/android-ndk-r29"
+  export ANDROID_NDK_TOOLCHAINS="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-aarch64"
 else
-	export IS_TERMUX=0
-	export TMPDIR="/tmp"
-	export USR_DIR="/usr"
-	export ETC_DIR="/etc"
-	export ANDROID_HOME="$HOME/Android/Sdk"
+  export IS_TERMUX=0
+  export TMPDIR="/tmp"
+  export USR_DIR="/usr"
+  export ETC_DIR="/etc"
+  export ANDROID_HOME="$HOME/Android/Sdk"
 fi
 if [ "$EUID" -eq 0 ]; then
-	export IS_ROOT=1
+  export IS_ROOT=1
 else
-	export IS_ROOT=0
+  export IS_ROOT=0
 fi
 # shellcheck disable=2155
 export ARCH=$(uname -m)
 if [ "$IS_TERMUX" -eq 0 ]; then
-	if [[ "$ARCH" == "x86_64" || "$ARCH" == "amd64" ]]; then
-		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
-		export LD_LIBRARY_PATH="/usr/local/cuda-13.9/lib64:/usr/local/cuda-13.8/lib64:/usr/local/cuda-13.7/lib64:/usr/local/cuda-13.6/lib64:/usr/local/cuda-13.5/lib64:/usr/local/cuda-13.4/lib64:/usr/local/cuda-13.3/lib64:/usr/local/cuda-13.2/lib64:/usr/local/cuda-13.1/lib64:/usr/local/cuda-13.0/lib64:${LD_LIBRARY_PATH:-}"
-	else
-		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
-	fi
+  if [[ "$ARCH" == "x86_64" || "$ARCH" == "amd64" ]]; then
+    export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+    export LD_LIBRARY_PATH="/usr/local/cuda-13.9/lib64:/usr/local/cuda-13.8/lib64:/usr/local/cuda-13.7/lib64:/usr/local/cuda-13.6/lib64:/usr/local/cuda-13.5/lib64:/usr/local/cuda-13.4/lib64:/usr/local/cuda-13.3/lib64:/usr/local/cuda-13.2/lib64:/usr/local/cuda-13.1/lib64:/usr/local/cuda-13.0/lib64:${LD_LIBRARY_PATH:-}"
+  else
+    export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
+  fi
 fi
 if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
-	export IS_CONTAINER=1
-	export GALLIUM_DRIVER=zink
-	export MESA_GL_VERSION_OVERRIDE=4.3
+  export IS_CONTAINER=1
+  export GALLIUM_DRIVER=zink
+  export MESA_GL_VERSION_OVERRIDE=4.3
 else
-	export IS_CONTAINER=0
+  export IS_CONTAINER=0
 fi
 if [ "$IS_TERMUX" -eq 0 ] && [ "$IS_CONTAINER" -eq 1 ]; then
-	export LANG=en_US.UTF-8
-	export LC_CTYPE=en_US.UTF-8
-	export LC_ALL=en_US.UTF-8
-	export PULSE_SERVER=127.0.0.1
+  export LANG=en_US.UTF-8
+  export LC_CTYPE=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
+  export PULSE_SERVER=127.0.0.1
 fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
