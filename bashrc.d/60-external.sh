@@ -38,4 +38,4 @@ command -v luarocks >/dev/null 2>&1 && source <(luarocks completion bash)
 
 command -v fzf >/dev/null 2>&1 && source <(fzf --bash)
 
-command -v llama-cli >/dev/null 2>&1 && source <(llama-cli --completion-bash)
+command -v llama-cli >/dev/null 2>&1 && source <(llama-cli --completion-bash >/dev/null 2>&1)
