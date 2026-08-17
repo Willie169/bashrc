@@ -2211,3 +2211,8 @@ jxl_lossless() {
   fi
   cjxl -j 1 -e 10 -d 0 "$2" "${3:-"$(echo "$2" | remove_extension).jxl"}"
 }
+
+mkcd() {
+  mkdir -p "$1"
+  cd "$1"
+}
