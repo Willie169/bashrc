@@ -33,7 +33,7 @@ export ARCH=$(uname -m)
 if [ "$IS_TERMUX" -eq 0 ]; then
 	if [[ "$ARCH" == "x86_64" || "$ARCH" == "amd64" ]]; then
 		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
-		export LD_LIBRARY_PATH="/usr/local/cuda-13.0/lib64:/usr/local/cuda-13.1/lib64:/usr/local/cuda-13.2/lib64:/usr/local/cuda-13.3/lib64:/usr/local/cuda-13.4/lib64:/usr/local/cuda-13.5/lib64:/usr/local/cuda-13.6/lib64:/usr/local/cuda-13.7/lib64:/usr/local/cuda-13.8/lib64:/usr/local/cuda-13.9/lib64:${LD_LIBRARY_PATH:-}"
+		export LD_LIBRARY_PATH="/usr/local/cuda-13.9/lib64:/usr/local/cuda-13.8/lib64:/usr/local/cuda-13.7/lib64:/usr/local/cuda-13.6/lib64:/usr/local/cuda-13.5/lib64:/usr/local/cuda-13.4/lib64:/usr/local/cuda-13.3/lib64:/usr/local/cuda-13.2/lib64:/usr/local/cuda-13.1/lib64:/usr/local/cuda-13.0/lib64:${LD_LIBRARY_PATH:-}"
 	else
 		export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-arm64"
 	fi
