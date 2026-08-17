@@ -2180,10 +2180,15 @@ ffmpeg_segment() {
 }
 
 ffmpeg_concat_auto() {
+  local files=()
   if [ "$#" -eq 0 ]; then
-    return
+    for f in *; do
+      test -f "$f" && files+=("$f")
+    done
+  else
+    files=("$@")
   fi
-  ffmpeg -f concat -safe 0 -i <(printf "file $PWD/'%s'\n" "$@") -c copy "$(echo "$1" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "$1" | get_extension)"
+  ffmpeg -f concat -safe 0 -i <(printf "file $PWD/'%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
 }
 
 ffmpeg_concat() {
