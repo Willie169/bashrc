@@ -2028,7 +2028,7 @@ shfm() {
 
 shfmc() {
   for f in **/*.sh; do
-    test -f "$f" && shfmt -i 2 -ci -w "$@"
+    test -f "$f" && shfmt -i 2 -ci -w "$f"
   done
 }
 
@@ -2058,7 +2058,7 @@ vfm() {
 
 vfmc() {
   for f in **/*.v **/*.sv **/*.verilog **/*.systemverilog; do
-    verible-verilog-format --inplace "$@"
+    verible-verilog-format --inplace "$f"
   done
 }
 
