@@ -14,7 +14,6 @@ phice() {
 clean_disk() {
   sudo journalctl --vacuum-time=7d
   sudo systemd-tmpfiles --clean
-  rm -rf ~/.cache/*
   sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   sudo apt clean
   sudo apt autoclean

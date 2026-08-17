@@ -5,7 +5,6 @@ if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" == "$(awk '$5
 fi
 
 clean_disk() {
-  rm -rf ~/.cache/*
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   apt clean
   apt autoclean
