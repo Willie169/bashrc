@@ -76,7 +76,6 @@ export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
 export BOTTLES="$HOME/.var/app/com.usebottles.bottles/data/bottles"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
-export HF_HOME="$HOME/hf-models"
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
 unset GIT_ASKPASS
