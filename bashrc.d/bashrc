@@ -8,6 +8,5 @@ if [ -d "$HOME/.bashrc.d" ]; then
   done
 fi
 
-[ -f "$HOME/.local-llm-setup/bashrc.sh" ] && . "$HOME/.local-llm-setup/bashrc.sh"
 [ -f "$HOME/.bashrc.proot" ] && . "$HOME/.bashrc.proot" || true
 [ -f "$HOME/.bashrc.overrides" ] && . "$HOME/.bashrc.overrides" || true
