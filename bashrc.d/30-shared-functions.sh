@@ -1418,17 +1418,9 @@ clipsortuniq() {
 
 dfur() {
   if [ "$HOME" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
-    df '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
+    df '/data/data/com.termux/files' "$@" | tail -n1 | awk '{print $3}'
   else
-    df --output=used / | tail -n1
-  fi
-}
-
-dfhur() {
-  if [ "$HOME" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
-    df -h '/data/data/com.termux/files' "$@" | tail -n1 | awk '{print $3}'
-  else
-    df -h --output=used "$@" / | tail -n1
+    df --output=used "$@" / | tail -n1
   fi
 }
 
