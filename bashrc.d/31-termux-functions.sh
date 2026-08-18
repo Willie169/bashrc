@@ -30,6 +30,7 @@ stirlingpdf() {
 }
 
 clean_disk() {
+  rm -rf ~/.cache/*
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   apt clean
   apt autoclean
