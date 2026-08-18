@@ -18,10 +18,16 @@ alias freecadcmd='flatpak run --command=FreeCADCmd org.freecad.FreeCAD'
 alias gimp='flatpak run org.gimp.GIMP'
 alias kdenlive='flatpak run org.kde.kdenlive'
 alias localsend='flatpak run org.localsend.localsend_app'
-alias luanti='flatpak run org.luanti.luanti'
 alias musescore='flatpak run org.musescore.MuseScore'
 alias vlc='flatpak run org.videolan.VLC'
 alias pied='flatpak run com.mikeasoft.pied'
+if command -v nvidia-smi >/dev/null 2>&1; then
+  alias steam='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only flatpak run com.valvesoftware.Steam'
+  alias luanti='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only flatpak run org.luanti.luanti'
+else
+  alias steam='flatpak run com.valvesoftware.Steam'
+  alias luanti='flatpak run org.luanti.luanti'
+fi
 
 # ~/Applications
 alias altersend='AlterSend.AppImage'
