@@ -4,6 +4,8 @@
 
 [ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && source <(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)
+
 [ -n "${MAMBA_ROOT_PREFIX:-}" ] && source "$MAMBA_ROOT_PREFIX/etc/profile.d/conda.sh"
 [ -n "${MAMBA_ROOT_PREFIX:-}" ] && source "$MAMBA_ROOT_PREFIX/etc/profile.d/mamba.sh"
 
@@ -20,24 +22,22 @@ if command -v yazi >/dev/null 2>&1; then
   }
 fi
 
-case $- in
-  *i*) ;;
-  *) return ;;
-esac
-
-if ! shopt -oq posix; then
-  [ -f "$USR_DIR"/share/bash-completion/bash_completion ] && . "$USR_DIR"/share/bash-completion/bash_completion
-  [ -f "$ETC_DIR"/bash_completion ] && . "$ETC_DIR"/bash_completion
-fi
-
-[ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && source <(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)
-
-command -v fzf >/dev/null 2>&1 && source <(fzf --bash)
-
+# case $- in
+#   *i*) ;;
+#   *) return ;;
+# esac
+#
+# if ! shopt -oq posix; then
+#   [ -f "$USR_DIR"/share/bash-completion/bash_completion ] && . "$USR_DIR"/share/bash-completion/bash_completion
+#   [ -f "$ETC_DIR"/bash_completion ] && . "$ETC_DIR"/bash_completion
+# fi
+#
+# [ -n "${NVM_DIR:-}" ] && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+#
+# command -v fzf >/dev/null 2>&1 && source <(fzf --bash)
+#
 # command -v luarocks >/dev/null 2>&1 && source <(luarocks completion bash)
-
+#
 # command -v llama-cli >/dev/null 2>&1 && source <(llama-cli --completion-bash 2>/dev/null)
-
+#
 # command -v hf >/dev/null 2>&1 && source <(hf --show-completion)
