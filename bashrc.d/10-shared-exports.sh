@@ -59,11 +59,6 @@ export GOPROXY='direct'
 export GOROOT="$USR_DIR/lib/go"
 export GOPATH="$HOME/go"
 export GOSUMDB="sum.golang.org"
-export OLLAMA_API_BASE='http://127.0.0.1:11434'
-export OLLAMA_API_HOST='http://127.0.0.1:11434'
-export OLLAMA_BASE_URL='http://127.0.0.1:11434'
-export OLLAMA_HOST='0.0.0.0'
-export LITELLM_PROXY_URL='http://localhost:4000'
 export HOMEBREW_UPDATE_TO_TAG=1
 export HOMEBREW_AUTO_UPDATE_SECS=86400
 export HOMEBREW_TAPS='/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps'
@@ -79,7 +74,7 @@ export ANDROID_SDK_ROOT="$ANDROID_HOME"
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
 unset GIT_ASKPASS
-export PATH="$HOME/shizuku:$HOME/jadx/bin:$HOME/rar:$GOPATH/bin:$HOME/.cargo/bin:$JAVA_HOME/bin:$HOME/eclipse.jdt.ls/bin:$HOME/ktlsp/server/bin:$HOME/.opencode/bin:$HOME/llama.cpp/build/bin:$HOME/KataGo/cpp:$HOME/Sylvan/projects/gui:$HOME/Sylvan/projects/cli:/opt/TurboVNC/bin:$HOME/intelFPGA/20.1/modelsim_ase/bin:/opt/Binance:$USR_DIR/local/texlive/2026/bin/aarch64-linux:$USR_DIR/local/texlive/2025/bin/aarch64-linux:$USR_DIR/local/texlive/2026/bin/x86_64-linux:$USR_DIR/local/texlive/2025/bin/x86_64-linux:$USR_DIR/local/cuda/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:$HOME/.local/bin:$HOME/.local/sbin:$GOROOT/bin:$USR_DIR/local/bin:$USR_DIR/local/sbin:$USR_DIR/bin:$USR_DIR/sbin:/bin:/sbin:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$HOME/Applications:$USR_DIR/games:/system/bin:${PATH:-}"
+export PATH="$HOME/shizuku:$HOME/jadx/bin:$HOME/rar:$GOPATH/bin:$HOME/.cargo/bin:$JAVA_HOME/bin:$HOME/eclipse.jdt.ls/bin:$HOME/ktlsp/server/bin:$HOME/.opencode/bin:$HOME/KataGo/cpp:$HOME/Sylvan/projects/gui:$HOME/Sylvan/projects/cli:/opt/TurboVNC/bin:$HOME/intelFPGA/20.1/modelsim_ase/bin:/opt/Binance:$USR_DIR/local/texlive/2026/bin/aarch64-linux:$USR_DIR/local/texlive/2025/bin/aarch64-linux:$USR_DIR/local/texlive/2026/bin/x86_64-linux:$USR_DIR/local/texlive/2025/bin/x86_64-linux:$USR_DIR/local/cuda/bin:$HOME/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:$HOME/.local/bin:$HOME/.local/sbin:$GOROOT/bin:$USR_DIR/local/bin:$USR_DIR/local/sbin:$USR_DIR/bin:$USR_DIR/sbin:/bin:/sbin:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$HOME/Applications:$USR_DIR/games:/system/bin:${PATH:-}"
 [ -n "${ANDROID_NDK_HOME:-}" ] && export PATH="$PATH:$ANDROID_NDK_HOME" || true
 [ -n "${ANDROID_NDK_TOOLCHAINS:-}" ] && export PATH="$PATH:$ANDROID_NDK_TOOLCHAINS/bin" || true
 [ -r "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
