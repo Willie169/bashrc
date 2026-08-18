@@ -1426,9 +1426,9 @@ dfur() {
 
 dfhur() {
   if [ "$HOME" = '/data/data/com.termux/files/home' ] || [ "${PREFIX:-}" = '/data/data/com.termux/files/usr' ]; then
-    df -h '/data/data/com.termux/files' | tail -n1 | awk '{print $3}'
+    df -h '/data/data/com.termux/files' "$@" | tail -n1 | awk '{print $3}'
   else
-    df -h --output=used / | tail -n1
+    df -h --output=used "$@" / | tail -n1
   fi
 }
 
