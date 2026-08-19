@@ -5,7 +5,6 @@ if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5
 fi
 
 # flatpak
-alias vokoscreenNG='flatpak run com.github.vkohaupt.vokoscreenNG'
 alias bottles='flatpak run com.usebottles.bottles'
 alias bottles-cli='flatpak run --command=bottles-cli com.usebottles.bottles'
 alias handbrake='flatpak run fr.handbrake.ghb'
