@@ -1904,201 +1904,6 @@ ltmk() {
   latexmk -latexoption='-interaction=nonstopmode -halt-on-error' "$@"
 }
 
-shch() {
-  shellcheck -e 1090,1091 "$@"
-}
-
-shchc() {
-  (
-    shopt -s globstar
-    for f in **/*.sh; do
-      test -f "$f" && shellcheck -e 1090,1091 "$f"
-    done
-  )
-}
-
-cfm() {
-  clang-format -style=llvm -i "$@"
-}
-
-cfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.c **/*.h; do
-      test -f "$f" && clang-format -i "$f"
-    done
-  )
-}
-
-cppfm() {
-  clang-format -i "$@"
-}
-
-cppfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.cpp **/*.hpp; do
-      test -f "$f" && clang-format -i "$f"
-    done
-  )
-}
-
-javafm() {
-  clang-format -style=llvm -i "$@"
-}
-
-javafmc() {
-  (
-    shopt -s globstar
-    for f in **/*.java; do
-      test -f "$f" && clang-format -i "$f"
-    done
-  )
-}
-
-cssfm() {
-  prettier --write "$@"
-}
-
-cssfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.css; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-jsfm() {
-  prettier --write "$@"
-}
-
-jsfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.js; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-tsfm() {
-  prettier --write "$@"
-}
-
-tsfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.ts; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-htmlfm() {
-  prettier --write "$@"
-}
-
-htmlfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.html; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-mdfm() {
-  prettier --write "$@"
-}
-
-mdfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.md; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-jsonfm() {
-  prettier --write "$@"
-}
-
-jsonfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.json; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-ymlfm() {
-  prettier --write "$@"
-}
-
-ymlfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.yml; do
-      test -f "$f" && prettier --write "$f"
-    done
-  )
-}
-
-shfm() {
-  shfmt -i 2 -ci -w "$@"
-}
-
-shfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.sh; do
-      test -f "$f" && shfmt -i 2 -ci -w "$f"
-    done
-  )
-}
-
-luafm() {
-  stylua "$@"
-}
-
-luafmc() {
-  (
-    shopt -s globstar
-    for f in **/*.lua; do
-      test -f "$f" && stylua "$f"
-    done
-  )
-}
-
-pyfm() {
-  autopep8 --in-place --aggressive --aggressive "$@"
-}
-
-pyfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.py; do
-      test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
-    done
-  )
-}
-
-vfm() {
-  verible-verilog-format --inplace "$@"
-}
-
-vfmc() {
-  (
-    shopt -s globstar
-    for f in **/*.v **/*.sv **/*.verilog **/*.systemverilog; do
-      verible-verilog-format --inplace "$f"
-    done
-  )
-}
-
 getprop() {
   if [ -f '/system/bin/getprop' ]; then
     /system/bin/getprop "$@"
@@ -2265,4 +2070,244 @@ cesh() {
 
 fortune_cow() {
   fortune | fmt -40 -s | "$(shuf -n 1 -e cowsay cowthink)" -"$(shuf -n 1 -e b d g p s t w y)" -f "$(shuf -n 1 -e "$(cowsay -l | tail -n +2)")" -n
+}
+
+shch() {
+  for f in "$@"; do
+    test -f "$f" && shellcheck -e 1090,1091 "$f"
+  done
+}
+
+shchc() {
+  (
+    shopt -s globstar
+    for f in **/*.sh; do
+      test -f "$f" && shellcheck -e 1090,1091 "$f"
+    done
+  )
+}
+
+cfm() {
+  for f in "$@"; do
+    test -f "$f" && clang-format -style=llvm -i "$f"
+  done
+}
+
+cfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.c **/*.h; do
+      test -f "$f" && clang-format -i "$f"
+    done
+  )
+}
+
+cppfm() {
+  for f in "$@"; do
+    test -f "$f" && clang-format -i "$f"
+  done
+}
+
+cppfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.cpp **/*.hpp; do
+      test -f "$f" && clang-format -i "$f"
+    done
+  )
+}
+
+javafm() {
+  for f in "$@"; do
+    test -f "$f" && clang-format -style=llvm -i "$f"
+  done
+}
+
+javafmc() {
+  (
+    shopt -s globstar
+    for f in **/*.java; do
+      test -f "$f" && clang-format -i "$f"
+    done
+  )
+}
+
+cssfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+cssfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.css; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+jsfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+jsfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.js; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+tsfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+tsfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.ts; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+htmlfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+htmlfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.html; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+mdfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+mdfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.md; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+jsonfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+jsonfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.json; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+ymlfm() {
+  for f in "$@"; do
+    test -f "$f" && prettier --write "$f"
+  done
+}
+
+ymlfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.yml; do
+      test -f "$f" && prettier --write "$f"
+    done
+  )
+}
+
+shfm() {
+  for f in "$@"; do
+    test -f "$f" && shfmt -i 2 -ci -w "$f"
+  done
+}
+
+shfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.sh; do
+      test -f "$f" && shfmt -i 2 -ci -w "$f"
+    done
+  )
+}
+
+rustfm() {
+  for f in "$@"; do
+    test -f "$f" && rustfmt "$f"
+  done
+}
+
+rustfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.rust; do
+      test -f "$f" && rustfmt "$f"
+    done
+  )
+}
+
+luafm() {
+  for f in "$@"; do
+    test -f "$f" && stylua "$f"
+  done
+}
+
+luafmc() {
+  (
+    shopt -s globstar
+    for f in **/*.lua; do
+      test -f "$f" && stylua "$f"
+    done
+  )
+}
+
+pyfm() {
+  for f in "$@"; do
+    test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
+  done
+}
+
+pyfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.py; do
+      test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
+    done
+  )
+}
+
+vfm() {
+  for f in "$@"; do
+    test -f "$f" && verible-verilog-format --inplace "$f"
+  done
+}
+
+vfmc() {
+  (
+    shopt -s globstar
+    for f in **/*.v **/*.sv **/*.verilog **/*.systemverilog; do
+      verible-verilog-format --inplace "$f"
+    done
+  )
 }
