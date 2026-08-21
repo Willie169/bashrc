@@ -90,6 +90,12 @@ update_tools() {
     gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
     sudo apt install ./appimagelauncher_*-*.*_amd64.deb -y
     rm appimagelauncher_*-*.*_amd64.deb*
+    cd ~/Applications || exit
+    rm kiwix-desktop_x86_64.appimage
+    wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_x86_64.appimage
+    chmod +x kiwix-desktop_x86_64.appimage
+    ail-cli integrate kiwix-desktop_x86_64.appimage
+    cd ~ || exit
     update_config
     update_nvim_config_full
   )
