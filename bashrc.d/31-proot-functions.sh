@@ -9,8 +9,6 @@ clean_disk() {
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   apt clean
   apt autoclean
-  brew update
-  echo y | brew upgrade
   echo y | brew autoremove
   brew cleanup
 }
