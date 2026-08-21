@@ -2097,14 +2097,14 @@ cfmc() {
   (
     shopt -s globstar
     for f in **/*.c **/*.h; do
-      test -f "$f" && clang-format -i "$f"
+      test -f "$f" && clang-format -style=llvm -i "$f"
     done
   )
 }
 
 cppfm() {
   for f in "$@"; do
-    test -f "$f" && clang-format -i "$f"
+    test -f "$f" && clang-format -style=llvm -i "$f"
   done
 }
 
@@ -2112,7 +2112,7 @@ cppfmc() {
   (
     shopt -s globstar
     for f in **/*.cpp **/*.hpp; do
-      test -f "$f" && clang-format -i "$f"
+      test -f "$f" && clang-format -style=llvm -i "$f"
     done
   )
 }
@@ -2127,7 +2127,7 @@ javafmc() {
   (
     shopt -s globstar
     for f in **/*.java; do
-      test -f "$f" && clang-format -i "$f"
+      test -f "$f" && clang-format -style=llvm -i "$f"
     done
   )
 }
