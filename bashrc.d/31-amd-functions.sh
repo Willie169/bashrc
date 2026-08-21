@@ -96,6 +96,7 @@ update_tools() {
     chmod +x kiwix-desktop_x86_64.appimage
     ail-cli integrate kiwix-desktop_x86_64.appimage
     cd ~ || exit
+    kiwix-zim-updater -d ~/kiwix-zims
     update_config
     update_nvim_config_full
   )
