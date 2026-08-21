@@ -2311,3 +2311,7 @@ vfmc() {
     done
   )
 }
+
+apkrenamer() {
+  java -jar ~/ApkRenamer/renamer.jar "$@"
+}
