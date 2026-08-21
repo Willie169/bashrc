@@ -1455,7 +1455,13 @@ npmig() {
   fi
   npm_allow="$(echo "$npm_allow" | sort | uniq | sed -Ez 's/^\n+//; s/\n+$//' | tr '\n' ',')"
   npm config set allow-scripts="$npm_allow" --location=user
-  [ "${#args[@]}" -ne 0 ] && npm i -g "$opt" "${args[@]}"
+  if [ "${#args[@]}" -ne 0 ]; then
+    if [ -n "$opt" ]; then
+      npm i -g "$opt" "${args[@]}"
+    else
+      npm i -g "${args[@]}"
+    fi
+  fi
   npm config get allow-scripts
 }
 
@@ -1481,7 +1487,11 @@ npmuig() {
     esac
   done
   [ "${#args[@]}" -eq 0 ] && return
-  npm uninstall -g "$opt" "${args[@]}"
+  if [ -n "$opt" ]; then
+    npm uninstall -g "$opt" "${args[@]}"
+  else
+    npm uninstall -g "${args[@]}"
+  fi
   local npm_allow
   npm_allow=$(npm config get allow-scripts)
   [[ "$npm_allow" == "undefined" ]] && npm_allow=
