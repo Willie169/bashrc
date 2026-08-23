@@ -1878,6 +1878,12 @@ gdif() {
   git diff "$@"
 }
 
+gfup() {
+  git reset --hard
+  git pull --rebase
+  git clean -fd
+}
+
 exbs() {
   exec bash "$@"
 }
