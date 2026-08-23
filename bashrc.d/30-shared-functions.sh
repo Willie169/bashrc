@@ -2328,6 +2328,14 @@ vfmc() {
   )
 }
 
-apkrenamer() {
-  java -jar ~/ApkRenamer/renamer.jar "$@"
+mkgwf() {
+  mkdir -p .github/workflows
+}
+
+cgwf() {
+  if [ -n "$GRR" ]; then
+    cd "$GRR"/.github/workflows || return
+  else
+    cd .github/workflows || return
+  fi
 }
