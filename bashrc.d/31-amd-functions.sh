@@ -77,6 +77,11 @@ update_tools() {
     unzip rclone-linux-amd64.zip
     rm rclone-linux-amd64.zip*
     mv rclone ~/.local/bin/
+    rm ~/.local/bin/bnkextr
+    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-linux-glibc-x86_64.zip
+    unzip bnkextr-linux-glibc-x86_64.zip
+    rm bnkextr-linux-glibc-x86_64.zip*
+    mv bnkextr ~/.local/bin/
     gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
     sudo apt install ./rustdesk-*-x86_64.deb -y
     rm rustdesk-*-x86_64.deb*

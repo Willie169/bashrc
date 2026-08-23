@@ -86,6 +86,20 @@ update_tools() {
       fi
       mv rclone ~/.local/bin/
     fi
+    if [ -f ~/.local/bin/bnkextr ]; then
+      rm ~/.local/bin/bnkextr
+      if [[ "$ARCH" == "x86_64" ]]; then
+        gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-android-x86_64.zip
+        unzip bnkextr-android-x86_64.zip
+        rm bnkextr-android-x86_64.zip*
+        mv bnkextr ~/.local/bin/
+      elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+        gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-android-aarch64.zip
+        unzip bnkextr-android-aarch64.zip
+        rm bnkextr-android-aarch64.zip*
+        mv bnkextr ~/.local/bin/
+      fi
+    fi
     update_config
     update_nvim_config_full
   )

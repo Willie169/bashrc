@@ -67,6 +67,11 @@ update_tools() {
     unzip rclone-linux-arm64.zip
     rm rclone-linux-arm64.zip*
     mv rclone ~/.local/bin/
+    rm ~/.local/bin/bnkextr
+    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-linux-glibc-aarch64.zip
+    unzip bnkextr-linux-glibc-aarch64.zip
+    rm bnkextr-linux-glibc-aarch64.zip*
+    mv bnkextr ~/.local/bin/
     update_config
     update_nvim_config_full
   )
