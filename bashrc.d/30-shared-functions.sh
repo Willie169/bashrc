@@ -2339,3 +2339,12 @@ cgwf() {
     cd .github/workflows || return
   fi
 }
+
+nvgwf() {
+  # shellcheck disable=2086
+  if [ -n "$GRR" ]; then
+    nvim "$GRR"/.github/workflows/$1
+  else
+    nvim .github/workflows/$1
+  fi
+}
