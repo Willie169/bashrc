@@ -2348,3 +2348,15 @@ nvgwf() {
     nvim .github/workflows/$1
   fi
 }
+
+snapper_rm_all() {
+  local cmd=(sudo snapper)
+  if [ "$#" -ne 0 ]; then
+    cmd+=(-c "$1")
+  fi
+  "${cmd[@]}" list |
+    awk 'NR > 2 {print $1}' |
+    while read -r i; do
+      "${cmd[@]}" rm "$i"
+    done
+}
