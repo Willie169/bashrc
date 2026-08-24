@@ -2056,6 +2056,54 @@ ffmpeg_concat() {
   ffmpeg -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${@:2}") -c copy "$1"
 }
 
+echo_non_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "${f,,}" in
+      *ffmpeg_*)
+        ;;
+      *)
+        echo "$f"
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+remove_non_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "${f,,}" in
+      *ffmpeg_*)
+        ;;
+      *)
+        rm -f "$f"
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+echo_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "${f,,}" in
+      *ffmpeg_*)
+        echo "$f"
+        ;;
+      *)
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+remove_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "${f,,}" in
+      *ffmpeg_*)
+        rm -f "$f"
+        ;;
+      *)
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
 jxl_lossy() {
   if [ "$#" -lt 2 ]; then
     return
