@@ -2355,7 +2355,7 @@ snapper_rm_all() {
     cmd+=(-c "$1")
   fi
   "${cmd[@]}" list |
-    awk 'NR > 2 {print $1}' |
+    awk '$1 != 0 && $1 ~ /^[0-9]+$/ {print $1}' |
     while read -r i; do
       "${cmd[@]}" rm "$i"
     done
