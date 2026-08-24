@@ -651,6 +651,34 @@ gpul() {
   fi
 }
 
+gfup() {
+  local level="${1:-0}"
+  local repo_dir=''
+  if [ "$level" -eq 0 ]; then
+    repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [ -n "$repo_dir" ]; then
+      echo "$repo_dir"
+      (cd "$repo_dir" && git pull origin)
+    else
+      echo "Not in a Git repo."
+    fi
+  else
+    local depth
+    depth=$((level + 1))
+    find . -mindepth "$depth" -maxdepth "$depth" -type d -name .git | while read -r gitdir; do
+      repo_dir=$(dirname "$gitdir")
+      echo "$repo_dir"
+      (
+        cd "$repo_dir" && {
+          git reset --hard
+          git pull --rebase
+          git clean -fd
+        }
+      )
+    done
+  fi
+}
+
 gauth() {
   unset GITHUB_TOKEN
   gh auth login -p ssh --with-token
@@ -1876,12 +1904,6 @@ grbb() {
 
 gdif() {
   git diff "$@"
-}
-
-gfup() {
-  git reset --hard
-  git pull --rebase
-  git clean -fd
 }
 
 exbs() {
