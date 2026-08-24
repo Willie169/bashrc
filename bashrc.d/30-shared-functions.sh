@@ -2104,6 +2104,28 @@ remove_ffmpeg() {
   done < <(find . -type f -print0)
 }
 
+mv_space_underscore() {
+  while IFS= read -r -d '' f; do
+    new="${f// /_}"
+    [[ -e "$new" ]] && {
+      echo "skipping '$f', '$new' exists"
+      continue
+    }
+    mv -- "$f" "$new"
+  done < <(find . -depth -name '* *' -print0)
+}
+
+mv_space_hyphen() {
+  while IFS= read -r -d '' f; do
+    new="${f// /-}"
+    [[ -e "$new" ]] && {
+      echo "skipping '$f', '$new' exists"
+      continue
+    }
+    mv -- "$f" "$new"
+  done < <(find . -depth -name '* *' -print0)
+}
+
 jxl_lossy() {
   if [ "$#" -lt 2 ]; then
     return
