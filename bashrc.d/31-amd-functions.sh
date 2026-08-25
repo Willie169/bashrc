@@ -21,6 +21,7 @@ clean_disk() {
   flatpak uninstall --unused -y || true
   echo y | brew autoremove
   brew cleanup
+  docker system prune -a -f --volumes
 }
 
 update_texlive() {
