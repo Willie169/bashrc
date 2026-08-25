@@ -2028,7 +2028,7 @@ ffmpeg_av1_opus() {
   if [ "$#" -lt 4 ]; then
     return
   fi
-  ffmpeg -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
+  ffmpeg -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -ac 2 -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
 }
 
 ffmpeg_av1_lossless_flac() {
@@ -2042,7 +2042,7 @@ ffmpeg_opus() {
   if [ "$#" -lt 2 ]; then
     return
   fi
-  ffmpeg -i "$2" -c:a libopus -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
+  ffmpeg -i "$2" -c:a libopus -vbr:a 1 -ac 2 -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
 }
 
 ffmpeg_flac() {
