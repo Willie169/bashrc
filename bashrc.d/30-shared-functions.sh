@@ -2463,3 +2463,7 @@ snapper_rm_all() {
       "${cmd[@]}" rm "$i"
     done
 }
+
+nvsmi() {
+  nvidia-smi "$@"
+}
