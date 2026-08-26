@@ -1053,7 +1053,7 @@ rar_to_xz() {
       # shellcheck disable=2001,2155
       local unrar="$(echo "$rar" | sed 's/\.rar$//')"
       (
-        cd "$(dirname "$f")" && unrar x "$rar" && rm "$rar" && xz_single "$unrar" && rm "$unrar"
+        cd "$(dirname "$f")" && unrar x "$rar" && rm "$rar" && xz_single "$unrar" && rm -r "$unrar"
       )
     done
   )
