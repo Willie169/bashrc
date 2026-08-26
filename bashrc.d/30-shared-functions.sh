@@ -1044,6 +1044,21 @@ zip_split() {
   compress_split --no-tar 'zip -r -9 -' "$1" "${2:-"$1.zip"}"
 }
 
+rar_to_xz() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*.rar; do
+      # shellcheck disable=2155
+      local rar="$(basename "$f")"
+      # shellcheck disable=2001,2155
+      local unrar="$(echo "$rar" | sed 's/\.rar$//')"
+      (
+        cd "$(dirname "$f")" && unrar x "$rar" && rm "$rar" && xz_single "$unrar" && rm "$unrar"
+      )
+    done
+  )
+}
+
 dfssh() {
   if (($# == 1)); then
     ssh "$1"
@@ -2165,7 +2180,7 @@ mkcd() {
 
 cesh() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/.sh; do
       test -f "$f" && chmod +x "$f"
     done
@@ -2184,7 +2199,7 @@ shch() {
 
 shchc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.sh; do
       test -f "$f" && shellcheck -e 1090,1091 "$f"
     done
@@ -2199,7 +2214,7 @@ cfm() {
 
 cfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.c **/*.h; do
       test -f "$f" && clang-format -style=llvm -i "$f"
     done
@@ -2214,7 +2229,7 @@ cppfm() {
 
 cppfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.cpp **/*.hpp; do
       test -f "$f" && clang-format -style=llvm -i "$f"
     done
@@ -2229,7 +2244,7 @@ javafm() {
 
 javafmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.java; do
       test -f "$f" && clang-format -style=llvm -i "$f"
     done
@@ -2244,7 +2259,7 @@ cssfm() {
 
 cssfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.css; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2259,7 +2274,7 @@ jsfm() {
 
 jsfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.js; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2274,7 +2289,7 @@ tsfm() {
 
 tsfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.ts; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2289,7 +2304,7 @@ htmlfm() {
 
 htmlfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.html; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2304,7 +2319,7 @@ mdfm() {
 
 mdfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.md; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2319,7 +2334,7 @@ jsonfm() {
 
 jsonfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.json; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2334,7 +2349,7 @@ ymlfm() {
 
 ymlfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.yml; do
       test -f "$f" && prettier --write "$f"
     done
@@ -2349,7 +2364,7 @@ shfm() {
 
 shfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.sh; do
       test -f "$f" && shfmt -i 2 -ci -w "$f"
     done
@@ -2364,7 +2379,7 @@ rustfm() {
 
 rustfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.rust; do
       test -f "$f" && rustfmt "$f"
     done
@@ -2379,7 +2394,7 @@ luafm() {
 
 luafmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.lua; do
       test -f "$f" && stylua "$f"
     done
@@ -2394,7 +2409,7 @@ pyfm() {
 
 pyfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.py; do
       test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
     done
@@ -2409,7 +2424,7 @@ vfm() {
 
 vfmc() {
   (
-    shopt -s globstar
+    shopt -s globstar nullglob
     for f in **/*.v **/*.sv **/*.verilog **/*.systemverilog; do
       verible-verilog-format --inplace "$f"
     done
