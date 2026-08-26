@@ -1048,6 +1048,7 @@ rar_to_xz() {
   (
     shopt -s globstar nullglob
     for f in **/*.rar; do
+      test -f "$f" || continue
       # shellcheck disable=2155
       local rar="$(basename "$f")"
       # shellcheck disable=2001,2155
