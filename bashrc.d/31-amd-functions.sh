@@ -103,6 +103,7 @@ update_tools() {
     ail-cli integrate kiwix-desktop_x86_64.appimage
     cd ~ || exit
     kiwix-zim-updater -d ~/kiwix-zims
+    rm download.log
     update_config
     update_nvim_config_full
   )
