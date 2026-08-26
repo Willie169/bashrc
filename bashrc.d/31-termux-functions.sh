@@ -129,7 +129,7 @@ pdc() {
 }
 
 pdl() {
-  cmd=(proot-distro login "$1" --redirect-ports --isolated --get-proot-cmd)
+  cmd=(proot-distro login "$1" --redirect-ports --isolated)
   bind=(
     "/apex"
     "/data/app"
@@ -161,11 +161,11 @@ pdl() {
       cmd+=(--bind "$first")
     fi
   done
-  bash <("${cmd[@]}")
+  "${cmd[@]}"
 }
 
 pdr() {
-  cmd=(proot-distro run "$1" --redirect-ports --isolated --get-proot-cmd)
+  cmd=(proot-distro run "$1" --redirect-ports --isolated)
   shift
   args=("$@")
   bind=(
@@ -200,7 +200,7 @@ pdr() {
     fi
   done
   cmd+=(-- "${args[@]}")
-  bash <("${cmd[@]}")
+  "${cmd[@]}"
 }
 
 tx11() {

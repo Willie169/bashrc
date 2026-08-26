@@ -2081,8 +2081,7 @@ ffmpeg_concat() {
 echo_non_ffmpeg() {
   while IFS= read -r -d '' f; do
     case "${f,,}" in
-      *ffmpeg_*)
-        ;;
+      *ffmpeg_*) ;;
       *)
         echo "$f"
         ;;
@@ -2093,8 +2092,7 @@ echo_non_ffmpeg() {
 remove_non_ffmpeg() {
   while IFS= read -r -d '' f; do
     case "${f,,}" in
-      *ffmpeg_*)
-        ;;
+      *ffmpeg_*) ;;
       *)
         rm -f "$f"
         ;;
@@ -2108,8 +2106,7 @@ echo_ffmpeg() {
       *ffmpeg_*)
         echo "$f"
         ;;
-      *)
-        ;;
+      *) ;;
     esac
   done < <(find . -type f -print0)
 }
@@ -2120,8 +2117,7 @@ remove_ffmpeg() {
       *ffmpeg_*)
         rm -f "$f"
         ;;
-      *)
-        ;;
+      *) ;;
     esac
   done < <(find . -type f -print0)
 }
