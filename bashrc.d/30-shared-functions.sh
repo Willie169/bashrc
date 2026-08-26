@@ -2167,10 +2167,10 @@ jxl_lossy() {
 }
 
 jxl_lossless() {
-  if [ "$#" -lt 2 ]; then
+  if [ "$#" -eq 0 ]; then
     return
   fi
-  cjxl -j 1 -e 10 -d 0 "$2" "${3:-"$(echo "$2" | remove_extension).jxl"}"
+  cjxl -j 1 -e 10 -d 0 "$1" "${2:-"$(echo "$1" | remove_extension).jxl"}"
 }
 
 mkcd() {
