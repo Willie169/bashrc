@@ -2372,7 +2372,7 @@ multimedia_convert() {
             fi
           )
           ;;
-        *.avif | *.bmp | *.heic | *.heif | *.jbg | *.jbig | *.jp2 | *.tif | *.webp)
+        *.avif | *.bmp | *.heic | *.heif | *.jp2 | *.tif | *.webp)
           local png="${file%.*}.png"
           if [[ -e "$dir/$png" ]]; then
             printf 'Skipping: intermediate png exists: %s\n' "$f" >&2
