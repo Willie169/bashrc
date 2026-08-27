@@ -2342,13 +2342,13 @@ multimedia_convert() {
       local dir=${f%/*}
       [[ $dir == "$f" ]] && dir=.
       case ${file,,} in
-        *.gif)
-          if [[ ${file##*.} != gif ]]; then
-            if [[ -e "${f%.*}.gif" ]]; then
+        *.ico)
+          if [[ ${file##*.} != ico ]]; then
+            if [[ -e "${f%.*}.ico" ]]; then
               printf 'Skipping: output exists: %s\n' "$f" >&2
               continue
             fi
-            mv -- "$f" "${f%.*}.gif"
+            mv -- "$f" "${f%.*}.ico"
           fi
           ;;
         *.flac)
@@ -2358,6 +2358,15 @@ multimedia_convert() {
               continue
             fi
             mv -- "$f" "${f%.*}.flac"
+          fi
+          ;;
+        *.gif)
+          if [[ ${file##*.} != gif ]]; then
+            if [[ -e "${f%.*}.gif" ]]; then
+              printf 'Skipping: output exists: %s\n' "$f" >&2
+              continue
+            fi
+            mv -- "$f" "${f%.*}.gif"
           fi
           ;;
         *.jpg | *.jpeg | *.png)
@@ -2372,7 +2381,7 @@ multimedia_convert() {
               rm -- "$file"
           )
           ;;
-        *.avif | *.bmp | *.heic | *.heif | *.ico | *.jbg | *.jbig | *.jp2 | *.tif | *.webp)
+        *.avif | *.bmp | *.heic | *.heif | *.jbg | *.jbig | *.jp2 | *.tif | *.webp)
           local png="${file%.*}.png"
           if [[ -e "$dir/$png" ]]; then
             printf 'Skipping: intermediate png exists: %s\n' "$f" >&2
