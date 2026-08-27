@@ -2379,9 +2379,13 @@ multimedia_convert() {
             continue
           fi
           (
-            cd "$dir" &&
-              jxl_lossy 1 "./$file" "./$jxl" &&
-              rm -- "$file"
+            if cd "$dir"; then
+              if jxl_lossy 1 "./$file" "./$jxl"; then
+                rm -- "$file"
+              else
+                rm -f -- "$jxl"
+              fi
+            fi
           )
           ;;
         *.avif | *.bmp | *.heic | *.heif | *.jbg | *.jbig | *.jp2 | *.tif | *.webp)
@@ -2396,13 +2400,16 @@ multimedia_convert() {
             continue
           fi
           (
-            cd "$dir" &&
-              magick "./$file" "./$png" && {
-              jxl_lossy 1 "./$png" "./$jxl" &&
-                rm -- "$file" ||
-                true
-            } &&
+            if cd "$dir"; then
+              if magick "./$file" "./$png"; then
+                if jxl_lossy 1 "./$png" "./$jxl"; then
+                  rm -- "$file"
+                else
+                  rm -f -- "$jxl"
+                fi
+              fi
               rm -f -- "$png"
+            fi
           )
           ;;
         *.3gp | *.mov | *.vob | *.wmv)
