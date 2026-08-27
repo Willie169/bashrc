@@ -203,3 +203,7 @@ prime-run() {
     __VK_LAYER_NV_optimus=NVIDIA_only \
     "$@"
 }
+
+fff() {
+  sudo systemctl restart firefox-apparmor
+}
