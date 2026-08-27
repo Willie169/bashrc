@@ -1077,20 +1077,78 @@ zip_split() {
   compress_split --no-tar 'zip -r -9 -' "$1" "${2:-"$1.zip"}"
 }
 
-rar_to_xz() {
+extract_all_and() {
   (
     shopt -s globstar nullglob
-    for f in **/*.rar; do
-      test -f "$f" || continue
-      # shellcheck disable=2155
-      local rar="$(basename "$f")"
-      # shellcheck disable=2001,2155
-      local unrar="$(echo "$rar" | sed 's/\.rar$//')"
+    for f in **/*; do
+      [[ -f $f ]] || continue
+      local file=${f##*/}
+      local dir=${f%/*}
+      [[ $dir == "$f" ]] && dir=.
+      local un=''
+      local cmd=()
+      case $f in
+        *.rar)
+          un=${file%.rar}
+          cmd=(unrar x)
+          ;;
+        *.zip)
+          un=${file%.zip}
+          cmd=(unzip)
+          ;;
+        *.tar.gz)
+          un=${file%.tar.gz}
+          cmd=(tar -xzf)
+          ;;
+        *.tgz)
+          un=${file%.tgz}
+          cmd=(tar -xzf)
+          ;;
+        *.gz)
+          un=${file%.gz}
+          cmd=(gzip -d)
+          ;;
+        *.tar.bz2)
+          un=${file%.tar.bz2}
+          cmd=(tar -xjf)
+          ;;
+        *.tbz2)
+          un=${file%.tbz2}
+          cmd=(tar -xjf)
+          ;;
+        *.bz2)
+          un=${file%.bz2}
+          cmd=(bzip2 -d)
+          ;;
+        *.tar.xz)
+          un=${file%.tar.xz}
+          cmd=(tar -xJf)
+          ;;
+        *.txz)
+          un=${file%.txz}
+          cmd=(tar -xJf)
+          ;;
+        *.xz)
+          un=${file%.xz}
+          cmd=(xz -d)
+          ;;
+        *)
+          continue
+          ;;
+      esac
       (
-        cd "$(dirname "$f")" && unrar x "$rar" && rm "$rar" && xz_single "$unrar" && rm -r "$unrar"
+        cd "$dir" &&
+          "${cmd[@]}" "$file" &&
+          rm -- "$file" &&
+          "$@" "$un" &&
+          rm -rf -- "$un"
       )
     done
   )
+}
+
+extract_all() {
+  extract_all_and 'false'
 }
 
 dfssh() {
