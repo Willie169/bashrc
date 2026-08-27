@@ -755,7 +755,7 @@ gacdp() {
 }
 
 grm() {
-  git rm -rf "${1:-*}"
+  git rm -rf -- "${1:-*}"
 }
 
 gdifh() {
@@ -1115,7 +1115,7 @@ extract_all_and() {
       [[ $dir == "$f" ]] && dir=.
       local un=''
       local cmd=()
-      case $f in
+      case $file in
         *.rar)
           un=${file%.rar}
           cmd=(unrar x)
@@ -1406,7 +1406,7 @@ files (default: all **/*.tex): LaTeX files to compile.'
     return 0
   fi
   [ -z "$log" ] && log="latexci_${engine}_$(date +%s)_log.txt"
-  rm -f "$log"
+  rm -f -- "$log"
   for f in "${files[@]}"; do
     local dir
     dir="$(dirname "$f")"
@@ -1470,7 +1470,7 @@ files (default: all **/*.tex): LaTeX files to compile.'
     cd "$cwd"
     return 1
   else
-    [ "$clean" -eq 1 ] && rm -f "$cwd/latexci_${engine}"_*_log.txt
+    [ "$clean" -eq 1 ] && rm -f -- "$cwd/latexci_${engine}"_*_log.txt
     # shellcheck disable=2164
     cd "$cwd"
   fi
@@ -2191,112 +2191,6 @@ aes_cbc_dec_file() {
   openssl enc -d -aes-256-cbc -pbkdf2 -in "$1" -out "$2" -pass file:"$3" "${@:4}"
 }
 
-remove_extension() {
-  sed -E 's/^(.+)\.[^.]+$/\1/'
-}
-
-get_extension() {
-  sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/'
-}
-
-ffmpeg_av1_opus() {
-  if [ "$#" -lt 4 ]; then
-    return
-  fi
-  ffmpeg -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
-}
-
-ffmpeg_av1_lossless_flac() {
-  if [ "$#" -eq 0 ]; then
-    return
-  fi
-  ffmpeg -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
-}
-
-ffmpeg_opus() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  ffmpeg -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
-}
-
-ffmpeg_flac() {
-  if [ "$#" -eq 0 ]; then
-    return
-  fi
-  ffmpeg -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
-}
-
-ffmpeg_segment() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  ffmpeg -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
-}
-
-ffmpeg_concat_auto() {
-  local files=()
-  if [ "$#" -eq 0 ]; then
-    for f in *; do
-      test -f "$f" && files+=("$f")
-    done
-  else
-    files=("$@")
-  fi
-  ffmpeg -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
-}
-
-ffmpeg_concat() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  ffmpeg -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${@:2}") -c copy "$1"
-}
-
-echo_non_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*) ;;
-      *)
-        echo "$f"
-        ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-remove_non_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*) ;;
-      *)
-        rm -f "$f"
-        ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-echo_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*)
-        echo "$f"
-        ;;
-      *) ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-remove_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*)
-        rm -f "$f"
-        ;;
-      *) ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
 mv_space_underscore() {
   while IFS= read -r -d '' f; do
     new="${f// /_}"
@@ -2319,6 +2213,112 @@ mv_space_hyphen() {
   done < <(find . -depth -name '* *' -print0)
 }
 
+remove_extension() {
+  sed -E 's/^(.+)\.[^.]+$/\1/'
+}
+
+get_extension() {
+  sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/'
+}
+
+ffmpeg_av1_opus() {
+  if [ "$#" -lt 4 ]; then
+    return
+  fi
+  ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
+}
+
+ffmpeg_av1_lossless_flac() {
+  if [ "$#" -eq 0 ]; then
+    return
+  fi
+  ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
+}
+
+ffmpeg_opus() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
+}
+
+ffmpeg_flac() {
+  if [ "$#" -eq 0 ]; then
+    return
+  fi
+  ffmpeg -n -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
+}
+
+ffmpeg_segment() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  ffmpeg -n -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
+}
+
+ffmpeg_concat_auto() {
+  local files=()
+  if [ "$#" -eq 0 ]; then
+    for f in *; do
+      test -f "$f" && files+=("$f")
+    done
+  else
+    files=("$@")
+  fi
+  ffmpeg -n -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
+}
+
+ffmpeg_concat() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  ffmpeg -n -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${@:2}") -c copy "$1"
+}
+
+echo_non_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*) ;;
+      *)
+        echo "$f"
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+remove_non_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*) ;;
+      *)
+        rm -f -- "$f"
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+echo_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*)
+        echo "$f"
+        ;;
+      *) ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+remove_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*)
+        rm -f -- "$f"
+        ;;
+      *) ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
 jxl_lossy() {
   if [ "$#" -lt 2 ]; then
     return
@@ -2331,6 +2331,102 @@ jxl_lossless() {
     return
   fi
   cjxl -j 1 -e 10 -d 0 "$1" "${2:-"$(echo "$1" | remove_extension).jxl"}"
+}
+
+multimedia_convert() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      [[ -f $f ]] || continue
+      local file=${f##*/}
+      local dir=${f%/*}
+      [[ $dir == "$f" ]] && dir=.
+      case ${file,,} in
+        *.gif)
+          if [[ ${file##*.} != gif ]]; then
+            if [[ -e "${f%.*}.gif" ]]; then
+              printf 'Skipping: output exists: %s\n' "$f" >&2
+              continue
+            fi
+            mv -- "$f" "${f%.*}.gif"
+          fi
+          ;;
+        *.flac)
+          if [[ ${file##*.} != flac ]]; then
+            if [[ -e "${f%.*}.flac" ]]; then
+              printf 'Skipping: output exists: %s\n' "$f" >&2
+              continue
+            fi
+            mv -- "$f" "${f%.*}.flac"
+          fi
+          ;;
+        *.jpg | *.jpeg | *.png)
+          local jxl="${file%.*}.jxl"
+          if [[ -e "$dir/$jxl" ]]; then
+            printf 'Skipping: output exists: %s\n' "$f" >&2
+            continue
+          fi
+          (
+            cd "$dir" &&
+              jxl_lossy 1 "./$file" "./$jxl" &&
+              rm -- "$file"
+          )
+          ;;
+        *.bmp | *.ico | *.tif | *.webp)
+          local png="${file%.*}.png"
+          if [[ -e "$dir/$png" ]]; then
+            printf 'Skipping: intermediate png exists: %s\n' "$f" >&2
+            continue
+          fi
+          local jxl="${file%.*}.jxl"
+          if [[ -e "$dir/$jxl" ]]; then
+            printf 'Skipping: output exists: %s\n' "$f" >&2
+            continue
+          fi
+          (
+            cd "$dir" &&
+              magick "./$file" "./$png" && {
+              jxl_lossy 1 "./$png" "./$jxl" &&
+                rm -- "$file" ||
+                true
+            } &&
+              rm -f -- "$png"
+          )
+          ;;
+        *.3gp | *.mov | *.vob | *.wmv)
+          (
+            cd "$dir" &&
+              ffmpeg_av1_opus 4 40 24k "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *.avi | *.mkv | *.mp4)
+          (
+            cd "$dir" &&
+              ffmpeg_av1_opus 4 32 72k "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *.aac | *.mp3 | *.m4a | *.ogg)
+          (
+            cd "$dir" &&
+              ffmpeg_opus 96k "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *.wav)
+          (
+            cd "$dir" &&
+              ffmpeg_flac "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *)
+          continue
+          ;;
+      esac
+    done
+  )
 }
 
 mkcd() {
