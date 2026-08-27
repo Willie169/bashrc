@@ -615,9 +615,22 @@ cgrr() {
   fi
 }
 
+ghauth() {
+  gh auth login -p ssh -h github.com --with-token
+}
+
+glauth() {
+  glab auth login -g ssh --hostname gitlab.com --stdin
+}
+
 ghcrpb() {
   gh repo create --public "$@"
   gh repo clone "${@: -1}"
+}
+
+glcrpb() {
+  GLAB_NO_PROMPT=1 glab repo create -P -s "$@"
+  glab repo clone "${@: -1}"
 }
 
 ghcrpv() {
@@ -625,8 +638,17 @@ ghcrpv() {
   gh repo clone "${@: -1}"
 }
 
+glcrpv() {
+  GLAB_NO_PROMPT=1 glab repo create -p -s "$@"
+  glab repo clone "${@: -1}"
+}
+
 ghcl() {
   gh repo clone "$@"
+}
+
+glcl() {
+  glab repo clone "$@"
 }
 
 gpul() {
@@ -677,11 +699,6 @@ gfup() {
       )
     done
   fi
-}
-
-gauth() {
-  unset GITHUB_TOKEN
-  gh auth login -p ssh --with-token
 }
 
 gh_delete_runs() {

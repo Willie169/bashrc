@@ -70,6 +70,7 @@ export WAYDROID_HOME="$HOME/.local/share/waydroid/data/media/0"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
 export BOTTLES="$HOME/.var/app/com.usebottles.bottles/data/bottles"
 export MINETEST="$HOME/.var/app/org.luanti.luanti/.minetest"
+export GLAB_NO_PROMPT=1
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 unset SSH_ASKPASS
 unset SSH_ASKPASS_REQUIRE
