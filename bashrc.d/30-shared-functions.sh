@@ -921,9 +921,12 @@ __pv() {
 
 compress_single() {
   local msg='Usage: compress_single [-h|--help]
-compress_single [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
-no tar by default'
+compress_single [-t|--tar] [-n|--no-tar] [-p|--pad PAD] COMMAND SOURCE [TARGET]
+If TARGET is not provided and PAD is provided, SOURCE concatenating PAD is used.
+No tar is used by default.'
   local tar=0
+  local pad=''
+  local target=''
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -h | --help)
@@ -938,6 +941,14 @@ no tar by default'
         tar=0
         shift
         ;;
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          echo "$msg" >&2
+          return 1
+        fi
+        pad="$2"
+        shift 2
+        ;;
       --)
         shift
         break
@@ -947,20 +958,23 @@ no tar by default'
         ;;
     esac
   done
-  if [ "$#" -ne 3 ]; then
+  if [ "$#" -eq 3 ]; then
+    target="$3"
+  elif [ "$#" -eq 2 ] && [ -n "$pad" ]; then
+    target="${2}${pad}"
+  else
     echo "$msg" >&2
     return 1
   fi
-
   if [ "$tar" -eq 1 ]; then
     (
       set -o pipefail
-      tar -cf - "$2" | __pv | sh -c "$1" | __pv >"$3"
+      tar -cf - "$2" | __pv | $1 | __pv >"$target"
     )
   else
     (
       set -o pipefail
-      sh -c "$1 $2" | __pv >"$3"
+      $1 "$2" | __pv >"$target"
     )
   fi
 }
@@ -978,10 +992,13 @@ split_file() {
 compress_split() {
   # shellcheck disable=2016
   local msg='Usage: compress_split [-h|--help]
-compress_split [-b BYTES|--bytes BYTES] [-t|--tar] [-n|--no-tar] COMMAND SOURCE TARGET
-no tar by default
-BYTES=$SPLIT_SIZE if set and 4000M if not by default'
+compress_split [-t|--tar] [-n|--no-tar] [-p|--pad PAD] [-b BYTES|--bytes BYTES] COMMAND SOURCE [TARGET]
+If TARGET is not provided and PAD is provided, SOURCE concatenating PAD is used.
+No tar is used by default.
+If BYTES is not provided, $SPLIT_SIZE is used if set and 4000M is used otherwise.'
   local bytes
+  local pad=''
+  local target=''
   if [ -n "${SPLIT_SIZE:-}" ]; then
     bytes="$SPLIT_SIZE"
   else
@@ -1001,6 +1018,14 @@ BYTES=$SPLIT_SIZE if set and 4000M if not by default'
       -n | --no-tar)
         tar=0
         shift
+        ;;
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          echo "$msg" >&2
+          return 1
+        fi
+        pad="$2"
+        shift 2
         ;;
       -b | --bytes)
         if [ "$#" -lt 2 ]; then
@@ -1019,62 +1044,65 @@ BYTES=$SPLIT_SIZE if set and 4000M if not by default'
         ;;
     esac
   done
-  if [ "$#" -ne 3 ]; then
+  if [ "$#" -eq 3 ]; then
+    target="$3"
+  elif [ "$#" -eq 2 ] && [ -n "$pad" ]; then
+    target="${2}${pad}"
+  else
     echo "$msg" >&2
     return 1
   fi
-
   if [ "$tar" -eq 1 ]; then
     (
       set -o pipefail
-      tar -cf - "$2" | __pv | sh -c "$1" | __pv | split -b "$bytes" -d -a 3 - "$3.part."
+      tar -cf - "$2" | __pv | sh -c "$1" | __pv | split -b "$bytes" -d -a 3 - "$target.part."
     )
   else
     (
       set -o pipefail
-      sh -c "$1 $2" | __pv | split -b "$bytes" -d -a 3 - "$3.part."
+      sh -c "$1 $2" | __pv | split -b "$bytes" -d -a 3 - "$target.part."
     )
   fi
 }
 
 bz2_single() {
-  compress_single --tar 'bzip2 -9' "$1" "${2:-"$1.tar.bz2"}"
+  compress_single --tar --pad '.tar.bz2' 'bzip2 -9' "$@"
 }
 
 gz_single() {
-  compress_single --tar 'gzip -9' "$1" "${2:-"$1.tar.gz"}"
+  compress_single --tar --pad '.tar.gz' 'gzip -9' "$@"
 }
 
 xz_single() {
-  compress_single --tar 'xz -9' "$1" "${2:-"$1.tar.xz"}"
+  compress_single --tar --pad '.tar.xz' 'xz -9' "$@"
 }
 
 tar_single() {
-  compress_single --no-tar 'tar -cf -' "$1" "${2:-"$1.tar"}"
+  compress_single --no-tar --pad '.tar' 'tar -cf -' "$@"
 }
 
 zip_single() {
-  compress_single --no-tar 'zip -r -9 -' "$1" "${2:-"$1.zip"}"
+  compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$@"
 }
 
 bz2_split() {
-  compress_split --tar 'bzip2 -9' "$1" "${2:-"$1.tar.bz2"}"
+  compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$@"
 }
 
 gz_split() {
-  compress_split --tar 'gzip -9' "$1" "${2:-"$1.tar.gz"}"
+  compress_split --tar --pad '.tar.gz' 'gzip -9' "$@"
 }
 
 xz_split() {
-  compress_split --tar 'xz -9' "$1" "${2:-"$1.tar.xz"}"
+  compress_split --tar --pad '.tar.xz' 'xz -9' "$@"
 }
 
 tar_split() {
-  compress_split --no-tar 'tar -cf -' "$1" "${2:-"$1.tar"}"
+  compress_split --no-tar --pad '.tar' 'tar -cf -' "$@"
 }
 
 zip_split() {
-  compress_split --no-tar 'zip -r -9 -' "$1" "${2:-"$1.zip"}"
+  compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$@"
 }
 
 extract_all_and() {
@@ -1148,7 +1176,47 @@ extract_all_and() {
 }
 
 extract_all() {
-  extract_all_and 'false'
+  extract_all_and false
+}
+
+extract_all_and_bz2() {
+  extract_all_and bz2_single
+}
+
+extract_all_and_gz() {
+  extract_all_and gz_single
+}
+
+extract_all_and_xz() {
+  extract_all_and xz_single
+}
+
+extract_all_and_tar() {
+  extract_all_and tar_single
+}
+
+extract_all_and_zip() {
+  extract_all_and zip_single
+}
+
+extract_all_and_bz2_split() {
+  extract_all_and bz2_split "$@"
+}
+
+extract_all_and_gz_split() {
+  extract_all_and gz_split "$@"
+}
+
+extract_all_and_xz_split() {
+  extract_all_and xz_split "$@"
+}
+
+extract_all_and_tar_split() {
+  extract_all_and tar_split "$@"
+}
+
+extract_all_and_zip_split() {
+  extract_all_and zip_split "$@"
 }
 
 dfssh() {
