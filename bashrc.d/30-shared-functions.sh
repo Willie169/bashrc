@@ -1055,12 +1055,12 @@ If BYTES is not provided, $SPLIT_SIZE is used if set and 4000M is used otherwise
   if [ "$tar" -eq 1 ]; then
     (
       set -o pipefail
-      tar -cf - "$2" | __pv | sh -c "$1" | __pv | split -b "$bytes" -d -a 3 - "$target.part."
+      tar -cf - "$2" | __pv | $1 | __pv | split -b "$bytes" -d -a 3 - "$target.part."
     )
   else
     (
       set -o pipefail
-      sh -c "$1 $2" | __pv | split -b "$bytes" -d -a 3 - "$target.part."
+      $1 "$2" | __pv | split -b "$bytes" -d -a 3 - "$target.part."
     )
   fi
 }
