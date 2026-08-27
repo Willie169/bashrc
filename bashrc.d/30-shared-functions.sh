@@ -1613,9 +1613,9 @@ clipsort() {
 }
 
 # termux-clipboard-set and termux-clipboard-get can't run concurrently
-clipsortuniq() {
+clipsortu() {
   local text=''
-  text="$(cpt | sort | uniq | clean_newline)"
+  text="$(cpt | sort -u | clean_newline)"
   echo "$text" | ccp
 }
 
@@ -1656,7 +1656,7 @@ npmig() {
     printf -v npm_pkg '%s\n' "${args[@]}"
     npm_allow+=$'\n'"$npm_pkg"
   fi
-  npm_allow="$(echo "$npm_allow" | sort | uniq | sed -Ez 's/^\n+//; s/\n+$//' | tr '\n' ',')"
+  npm_allow="$(echo "$npm_allow" | sort -u | sed -Ez 's/^\n+//; s/\n+$//' | tr '\n' ',')"
   npm config set allow-scripts="$npm_allow" --location=user
   if [ "${#args[@]}" -ne 0 ]; then
     if [ -n "$opt" ]; then
@@ -2445,6 +2445,13 @@ multimedia_convert() {
           ;;
       esac
     done
+  )
+}
+
+ls_extension() {
+  (
+    shopt -s globstar nullglob
+    printf '%s\n' **/* | sed -n 's/.*\(\.[^.]*\)$/\1/p' | sort -u
   )
 }
 
