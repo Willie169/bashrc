@@ -2342,6 +2342,9 @@ multimedia_convert() {
       local dir=${f%/*}
       [[ $dir == "$f" ]] && dir=.
       case ${file,,} in
+        *_ffmpeg_av1_*_*_opus_*.mkv | *_ffmpeg_av1_lossless_flac*.mkv | *_ffmpeg_opus_*.opus | *_ffmpeg_flac*.flac)
+          continue
+          ;;
         *.ico)
           if [[ ${file##*.} != ico ]]; then
             if [[ -e "${f%.*}.ico" ]]; then
