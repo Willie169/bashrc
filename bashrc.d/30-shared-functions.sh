@@ -625,20 +625,36 @@ glauth() {
 
 ghcrpb() {
   gh repo create --public "$@"
-  gh repo clone "${@: -1}"
 }
 
 glcrpb() {
   GLAB_NO_PROMPT=1 glab repo create -P -s "$@"
-  glab repo clone "${@: -1}"
 }
 
 ghcrpv() {
   gh repo create --private "$@"
-  gh repo clone "${@: -1}"
 }
 
 glcrpv() {
+  GLAB_NO_PROMPT=1 glab repo create -p -s "$@"
+}
+
+ghcrpbcl() {
+  gh repo create --public "$@"
+  gh repo clone "${@: -1}"
+}
+
+glcrpbcl() {
+  GLAB_NO_PROMPT=1 glab repo create -P -s "$@"
+  glab repo clone "${@: -1}"
+}
+
+ghcrpvcl() {
+  gh repo create --private "$@"
+  gh repo clone "${@: -1}"
+}
+
+glcrpvcl() {
   GLAB_NO_PROMPT=1 glab repo create -p -s "$@"
   glab repo clone "${@: -1}"
 }
