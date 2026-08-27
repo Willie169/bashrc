@@ -2345,31 +2345,15 @@ multimedia_convert() {
         *_ffmpeg_av1_*_*_opus_*.mkv | *_ffmpeg_av1_lossless_flac*.mkv)
           continue
           ;;
-        *.ico)
-          if [[ ${file##*.} != ico ]]; then
-            if [[ -e "${f%.*}.ico" ]]; then
+        *.ico | *.flac | *.gif | *.opus)
+          local ext="${file##*.}"
+          ext="${ext,,}"
+          if [[ ${file##*.} != "$ext" ]]; then
+            if [[ -e "${f%.*}.${ext}" ]]; then
               printf 'Skipping: output exists: %s\n' "$f" >&2
               continue
             fi
-            mv -- "$f" "${f%.*}.ico"
-          fi
-          ;;
-        *.flac)
-          if [[ ${file##*.} != flac ]]; then
-            if [[ -e "${f%.*}.flac" ]]; then
-              printf 'Skipping: output exists: %s\n' "$f" >&2
-              continue
-            fi
-            mv -- "$f" "${f%.*}.flac"
-          fi
-          ;;
-        *.gif)
-          if [[ ${file##*.} != gif ]]; then
-            if [[ -e "${f%.*}.gif" ]]; then
-              printf 'Skipping: output exists: %s\n' "$f" >&2
-              continue
-            fi
-            mv -- "$f" "${f%.*}.gif"
+            mv -- "$f" "${f%.*}.${ext}"
           fi
           ;;
         *.jpg | *.jpeg | *.png)
