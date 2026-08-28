@@ -2733,3 +2733,7 @@ snapper_rm_all() {
 slns() {
   (sleep "${1:-10}" && nvidia-smi) &
 }
+
+gwv() {
+  gwenview "$@"
+}
