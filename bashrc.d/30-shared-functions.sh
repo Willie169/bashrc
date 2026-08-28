@@ -2730,6 +2730,6 @@ snapper_rm_all() {
     done
 }
 
-nvsmi() {
-  nvidia-smi "$@"
+slns() {
+  (sleep 5 && nvidia-smi "$@") &
 }
