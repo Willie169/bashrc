@@ -2731,5 +2731,5 @@ snapper_rm_all() {
 }
 
 slns() {
-  (sleep 5 && nvidia-smi "$@") &
+  (sleep "${1:-10}" && nvidia-smi) &
 }
