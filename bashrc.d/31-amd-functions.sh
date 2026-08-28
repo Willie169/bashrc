@@ -152,6 +152,7 @@ update_all() {
   update_bashrc
   source ~/.bashrc
   update_pm
+  update_drivers
   update_texlive
   update_latex
   update_tools
