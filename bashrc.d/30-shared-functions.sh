@@ -2433,10 +2433,7 @@ multimedia_convert() {
 }
 
 ls_extension() {
-  (
-    shopt -s globstar nullglob
-    find . -type f -print0 | sed -n 's/.*\(\.[^.]*\)$/\1/p' | sort -u
-  )
+  find . -type f | sed -n 's/.*\(\.[^.\/]*\)$/\1/p' | sort -u
 }
 
 mkcd() {
