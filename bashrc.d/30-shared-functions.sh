@@ -2435,7 +2435,7 @@ multimedia_convert() {
 ls_extension() {
   (
     shopt -s globstar nullglob
-    printf '%s\n' **/* | sed -n 's/.*\(\.[^.]*\)$/\1/p' | sort -u
+    find . -type f -print0 | sed -n 's/.*\(\.[^.]*\)$/\1/p' | sort -u
   )
 }
 
