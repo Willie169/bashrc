@@ -2315,28 +2315,40 @@ ffmpeg_av1_opus() {
   if [ "$#" -lt 4 ]; then
     return
   fi
-  ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
+  local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
+  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "$new"; then
+    rm -- "$new"
+  fi
 }
 
 ffmpeg_av1_lossless_flac() {
   if [ "$#" -eq 0 ]; then
     return
   fi
-  ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
+  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
+  if ! ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "$new"; then
+    rm -- "$new"
+  fi
 }
 
 ffmpeg_opus() {
   if [ "$#" -lt 2 ]; then
     return
   fi
-  ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
+  local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
+  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "$new"; then
+    rm -- "$new"
+  fi
 }
 
 ffmpeg_flac() {
   if [ "$#" -eq 0 ]; then
     return
   fi
-  ffmpeg -n -i "$1" -c:a flac "${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
+  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
+  if ! ffmpeg -n -i "$1" -c:a flac "$new"; then
+    rm -- "$new"
+  fi
 }
 
 ffmpeg_segment() {
