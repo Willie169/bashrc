@@ -170,7 +170,7 @@ Global flags: $DLFLAGS'
 
   try_aria2() {
     command -v aria2c >/dev/null 2>&1 || return 127
-    local opts=()
+    local -a opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
@@ -210,7 +210,7 @@ Global flags: $DLFLAGS'
 
   try_wget() {
     command -v wget >/dev/null 2>&1 || return 127
-    local opts=()
+    local -a opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
@@ -228,7 +228,7 @@ Global flags: $DLFLAGS'
 
   try_wget2() {
     command -v wget2 >/dev/null 2>&1 || return 127
-    local opts=()
+    local -a opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
 
@@ -282,8 +282,8 @@ Global flags: $DLFLAGS'
 }
 
 gh_release() {
-  local dl_args=()
-  local out_args=()
+  local -a dl_args=()
+  local -a out_args=()
   local quiet=0
   local verbose=0
   local regex=0
@@ -536,7 +536,7 @@ gh_release codeberg.org/Codeberg/pages-server '"'"'codeberg-pages-server-*-debia
 }
 
 gh_file() {
-  local dl_args=()
+  local -a dl_args=()
   local quiet=0
   local verbose=0
   local print_url=0
@@ -860,7 +860,7 @@ gtr() {
   shift
   local notes=''
   local repo=''
-  local files=()
+  local -a files=()
 
   while [ $# -gt 0 ]; do
     case "$1" in
@@ -1109,8 +1109,7 @@ bz2_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --tar --pad '.tar.bz2' 'bzip2 -9' "$f" "$@"
-      rm -- "$f"
+      compress_single --tar --pad '.tar.bz2' 'bzip2 -9' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1119,8 +1118,7 @@ gz_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --tar --pad '.tar.gz' 'gzip -9' "$f" "$@"
-      rm -- "$f"
+      compress_single --tar --pad '.tar.gz' 'gzip -9' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1129,8 +1127,7 @@ xz_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --tar --pad '.tar.xz' 'xz -9' "$f" "$@"
-      rm -- "$f"
+      compress_single --tar --pad '.tar.xz' 'xz -9' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1139,8 +1136,7 @@ tar_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --no-tar --pad '.tar' 'tar -cf -' "$f" "$@"
-      rm -- "$f"
+      compress_single --no-tar --pad '.tar' 'tar -cf -' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1149,8 +1145,7 @@ zip_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@"
-      rm -- "$f"
+      compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1159,8 +1154,7 @@ bz2_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$f" "$@"
-      rm -- "$f"
+      compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1169,8 +1163,7 @@ gz_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --tar --pad '.tar.gz' 'gzip -9' "$f" "$@"
-      rm -- "$f"
+      compress_split --tar --pad '.tar.gz' 'gzip -9' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1179,8 +1172,7 @@ xz_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --tar --pad '.tar.xz' 'xz -9' "$f" "$@"
-      rm -- "$f"
+      compress_split --tar --pad '.tar.xz' 'xz -9' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1189,8 +1181,7 @@ tar_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --no-tar --pad '.tar' 'tar -cf -' "$f" "$@"
-      rm -- "$f"
+      compress_split --no-tar --pad '.tar' 'tar -cf -' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1199,8 +1190,7 @@ zip_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@"
-      rm -- "$f"
+      compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1219,47 +1209,47 @@ extract_all_and() {
   local exz=0
   while [ "$#" -gt 0 ]; do
     case "$1" in
-      --erar)
+      --erar | --exclude-rar)
         erar=1
         shift
         ;;
-      --ezip)
+      --ezip | --exclude-zip)
         ezip=1
         shift
         ;;
-      --etargz)
+      --etargz | --exclude-targz)
         etargz=1
         shift
         ;;
-      --etgz)
+      --etgz | --exclude-tgz)
         etgz=1
         shift
         ;;
-      --egz)
+      --egz | --exclude-gz)
         egz=1
         shift
         ;;
-      --etarbz2)
+      --etarbz2 | --exclude-tarbz2)
         etarbz2=1
         shift
         ;;
-      --etbz2)
+      --etbz2 | --exclude-tbz2)
         etbz2=1
         shift
         ;;
-      --ebz2)
+      --ebz2 | --exclude-bz2)
         ebz2=1
         shift
         ;;
-      --etarxz)
+      --etarxz | --exclude-tarxz)
         etarxz=1
         shift
         ;;
-      --etxz)
+      --etxz | --exclude-txz)
         etxz=1
         shift
         ;;
-      --exz)
+      --exz | --exclude-xz)
         exz=1
         shift
         ;;
@@ -1281,7 +1271,7 @@ extract_all_and() {
       local dir=${f%/*}
       [[ $dir == "$f" ]] && dir=.
       local un=''
-      local cmd=()
+      local -a cmd=()
       case $file in
         *.rar)
           [ "$erar" -eq 1 ] && continue
@@ -1345,8 +1335,8 @@ extract_all_and() {
       (
         cd "$dir" &&
           "${cmd[@]}" "$file" &&
-          rm -- "$file" &&
           "${@:2}" "$un" &&
+          rm -- "$file" &&
           rm -rf -- "$un"
       )
     done
@@ -1358,7 +1348,7 @@ extract_all() {
 }
 
 extract_all_and_bz2() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1381,7 +1371,7 @@ extract_all_and_bz2() {
 }
 
 extract_all_and_gz() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1404,7 +1394,7 @@ extract_all_and_gz() {
 }
 
 extract_all_and_xz() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1427,7 +1417,7 @@ extract_all_and_xz() {
 }
 
 extract_all_and_tar() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1450,7 +1440,7 @@ extract_all_and_tar() {
 }
 
 extract_all_and_zip() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1473,7 +1463,7 @@ extract_all_and_zip() {
 }
 
 extract_all_and_bz2_split() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1503,7 +1493,7 @@ extract_all_and_bz2_split() {
 }
 
 extract_all_and_gz_split() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1533,7 +1523,7 @@ extract_all_and_gz_split() {
 }
 
 extract_all_and_xz_split() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1563,7 +1553,7 @@ extract_all_and_xz_split() {
 }
 
 extract_all_and_tar_split() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1593,7 +1583,7 @@ extract_all_and_tar_split() {
 }
 
 extract_all_and_zip_split() {
-  local args=()
+  local -a args=()
   while [ "$#" -gt 0 ]; do
     case "$1" in
       -p | --pad)
@@ -1686,7 +1676,7 @@ ffmpeg_segment() {
 }
 
 ffmpeg_concat_auto() {
-  local files=()
+  local -a files=()
   if [ "$#" -eq 0 ]; then
     for f in *; do
       test -f "$f" && files+=("$f")
@@ -1908,8 +1898,8 @@ files (default: all **/*.tex): LaTeX files to compile.'
   local times=2
   local clean=1
   local log=''
-  local args=()
-  local files=()
+  local -a args=()
+  local -a files=()
   while [ $# -gt 0 ]; do
     case "$1" in
       -h | --help)
@@ -2002,7 +1992,7 @@ files (default: all **/*.tex): LaTeX files to compile.'
     fi
     local file
     file="$(basename "$f")"
-    local env_args=()
+    local -a env_args=()
     local epoch=''
     if [ "$rp" -eq 1 ]; then
       epoch=$(command -v git >/dev/null 2>&1 && git log -1 --format=%ct -- "$file" 2>/dev/null)
@@ -2214,7 +2204,7 @@ dfur() {
 }
 
 npmig() {
-  local args=()
+  local -a args=()
   local opt=''
   while [ $# -gt 0 ]; do
     case "$1" in
@@ -2256,7 +2246,7 @@ npmig() {
 
 npmuig() {
   [ "$#" -eq 0 ] && return
-  local args=()
+  local -a args=()
   local opt=''
   while [ $# -gt 0 ]; do
     case "$1" in
