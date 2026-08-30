@@ -2493,7 +2493,7 @@ multimedia_convert() {
               rm -- "$file"
           )
           ;;
-        *.avi | *.mkv | *.mp4 | *.webm)
+        *.avi | *.mkv | *.mp4 | *.mts | *.webm)
           (
             cd "$dir" &&
               ffmpeg_av1_opus 4 32 72k "./$file" &&
