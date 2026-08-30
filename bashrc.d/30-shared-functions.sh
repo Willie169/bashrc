@@ -1105,6 +1105,96 @@ zip_split() {
   compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$@"
 }
 
+bz2_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --tar --pad '.tar.bz2' 'bzip2 -9' "$f"
+    done
+  )
+}
+
+gz_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --tar --pad '.tar.gz' 'gzip -9' "$f"
+    done
+  )
+}
+
+xz_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --tar --pad '.tar.xz' 'xz -9' "$f"
+    done
+  )
+}
+
+tar_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --no-tar --pad '.tar' 'tar -cf -' "$f"
+    done
+  )
+}
+
+zip_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$f"
+    done
+  )
+}
+
+bz2_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$f"
+    done
+  )
+}
+
+gz_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --tar --pad '.tar.gz' 'gzip -9' "$f"
+    done
+  )
+}
+
+xz_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --tar --pad '.tar.xz' 'xz -9' "$f"
+    done
+  )
+}
+
+tar_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --no-tar --pad '.tar' 'tar -cf -' "$f"
+    done
+  )
+}
+
+zip_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$f"
+    done
+  )
+}
+
 extract_all_and() {
   (
     shopt -s globstar nullglob
