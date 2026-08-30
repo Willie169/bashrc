@@ -4,13 +4,6 @@ if [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/
   return
 fi
 
-phice() {
-  (
-    local port="${1:-5001}"
-    cd ~/phice && uv run gunicorn -b 127.0.0.1:"$port" -w 4 "app:app"
-  )
-}
-
 cyberchef() {
   (
     local port="${1:-8081}"

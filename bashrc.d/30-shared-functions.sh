@@ -3124,22 +3124,29 @@ nvgwf() {
   fi
 }
 
-snapper_rm_all() {
-  local cmd=(sudo snapper)
-  if [ "$#" -ne 0 ]; then
-    cmd+=(-c "$1")
-  fi
-  "${cmd[@]}" list |
-    awk '$1 != 0 && $1 ~ /^[0-9]+$/ {print $1}' |
-    while read -r i; do
-      "${cmd[@]}" rm "$i"
-    done
-}
-
-slns() {
-  (sleep "${1:-10}" && nvidia-smi) &
-}
-
 gwv() {
   gwenview "$@"
+}
+
+phice() {
+  (
+    local port="${1:-5001}"
+    cd ~/phice && uv run gunicorn -b 127.0.0.1:"$port" -w 4 "app:app"
+  )
+}
+
+update_combinedfox() {
+  ./prefsCleaner.sh -s && ./overrides-updater.sh -su && ./updater.sh -su
+}
+
+rvs() {
+  if (($# == 0)); then
+    remote-viewer spice://127.0.0.1:5930
+  else
+    remote-viewer spice://127.0.0.1:"$1"
+  fi
+}
+
+nhr() {
+  HOME=/dev/null XDG_CONFIG_HOME=/dev/null "$@"
 }

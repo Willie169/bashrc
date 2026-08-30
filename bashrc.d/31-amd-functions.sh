@@ -4,13 +4,6 @@ if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5
   return
 fi
 
-phice() {
-  (
-    local port="${1:-5001}"
-    cd ~/phice && uv run gunicorn -b 127.0.0.1:"$port" -w 4 "app:app"
-  )
-}
-
 clean_disk() {
   sudo journalctl --vacuum-time=7d
   sudo systemd-tmpfiles --clean
@@ -170,14 +163,6 @@ bind_waydroid() {
   )
 }
 
-rvs() {
-  if (($# == 0)); then
-    remote-viewer spice://127.0.0.1:5930
-  else
-    remote-viewer spice://127.0.0.1:"$1"
-  fi
-}
-
 dns_down() {
   sudo tee /etc/systemd/resolved.conf.d/resolved.conf >/dev/null <<'EOF'
 [Resolve]
@@ -196,8 +181,16 @@ EOF
   sudo systemctl restart systemd-resolved
 }
 
-update_combinedfox() {
-  ./prefsCleaner.sh -s && ./overrides-updater.sh -su && ./updater.sh -su
+snapper_rm_all() {
+  local cmd=(sudo snapper)
+  if [ "$#" -ne 0 ]; then
+    cmd+=(-c "$1")
+  fi
+  "${cmd[@]}" list |
+    awk '$1 != 0 && $1 ~ /^[0-9]+$/ {print $1}' |
+    while read -r i; do
+      "${cmd[@]}" rm "$i"
+    done
 }
 
 prime-run() {
@@ -205,6 +198,10 @@ prime-run() {
     __GLX_VENDOR_LIBRARY_NAME=nvidia \
     __VK_LAYER_NV_optimus=NVIDIA_only \
     "$@"
+}
+
+slns() {
+  (sleep "${1:-10}" && nvidia-smi) &
 }
 
 fff() {
