@@ -1319,60 +1319,243 @@ extract_all_and_zip_split() {
   extract_all_and zip_split "$@"
 }
 
-dfssh() {
-  if (($# == 1)); then
-    ssh "$1"
-  elif (($# >= 2)); then
-    local host="$1"
-    local port="$2"
-    shift 2
-    ssh -p "$port" "$host" "$@"
-  else
-    echo "Usage:"
-    echo "  dfssh host"
-    echo "  dfssh host port [extra ssh args...]"
+remove_extension() {
+  sed -E 's/^(.+)\.[^.]+$/\1/'
+}
+
+get_extension() {
+  sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/'
+}
+
+ls_extension() {
+  find . -type f | sed -n 's/.*\(\.[^.\/]*\)$/\1/p' | sort -u
+}
+
+ffmpeg_av1_opus() {
+  if [ "$#" -lt 4 ]; then
+    return
+  fi
+  local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
+  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "$new"; then
+    rm -f -- "$new"
     return 1
   fi
 }
 
-dfsftp() {
-  if (($# == 1)); then
-    sftp "$1"
-  elif (($# >= 2)); then
-    local host="$1"
-    local port="$2"
-    shift 2
-    sftp -P "$port" "$host" "$@"
-  else
-    echo "Usage:"
-    echo "  dfsftp host"
-    echo "  dfsftp host port [extra ssh args...]"
+ffmpeg_av1_lossless_flac() {
+  if [ "$#" -eq 0 ]; then
+    return
+  fi
+  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
+  if ! ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "$new"; then
+    rm -f -- "$new"
     return 1
   fi
 }
 
-csd() {
-  cd ~/shared || return
-  # shellcheck disable=2086,2164
-  [ -n "$1" ] && cd $1
+ffmpeg_opus() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
+  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
 }
 
-dicepass() {
-  local n="$1"
-  local sep="${2:--}"
-  local url="https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt"
-  local file="$HOME/.eff_large_wordlist.txt"
-  [[ ! -f "$file" ]] && curl -fsSL "$url" -o "$file"
-  [[ ! -f "$file" ]] && printf 'ERROR: cannot download wordlist\n'
-  local passphrase=''
-  while true; do
-    local word
-    word="$(awk -v k="$(shuf -i 1-6 -n 5 | tr -d '\n')" '$1 == k { print $2; exit }' "$file")"
-    ((${#passphrase} + ${#word} + ${#sep} > n)) && break
-    [[ -n "$passphrase" ]] && passphrase+="$sep" || true
-    passphrase+="$word"
-  done
-  ((${#passphrase} > 0)) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
+ffmpeg_flac() {
+  if [ "$#" -eq 0 ]; then
+    return
+  fi
+  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
+  if ! ffmpeg -n -i "$1" -c:a flac "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
+}
+
+ffmpeg_segment() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  ffmpeg -n -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
+}
+
+ffmpeg_concat_auto() {
+  local files=()
+  if [ "$#" -eq 0 ]; then
+    for f in *; do
+      test -f "$f" && files+=("$f")
+    done
+  else
+    files=("$@")
+  fi
+  ffmpeg -n -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
+}
+
+ffmpeg_concat() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  ffmpeg -n -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${@:2}") -c copy "$1"
+}
+
+echo_non_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*) ;;
+      *)
+        echo "$f"
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+remove_non_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*) ;;
+      *)
+        rm -f -- "$f"
+        ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+echo_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*)
+        echo "$f"
+        ;;
+      *) ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+remove_ffmpeg() {
+  while IFS= read -r -d '' f; do
+    case "$f" in
+      *ffmpeg_*)
+        rm -f -- "$f"
+        ;;
+      *) ;;
+    esac
+  done < <(find . -type f -print0)
+}
+
+jxl_lossy() {
+  if [ "$#" -lt 2 ]; then
+    return
+  fi
+  local new="${3:-"$(echo "$2" | remove_extension).jxl"}"
+  if ! cjxl -j 0 -e 10 -d "$1" "$2" "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
+}
+
+jxl_lossless() {
+  if [ "$#" -eq 0 ]; then
+    return
+  fi
+  local new="${2:-"$(echo "$1" | remove_extension).jxl"}"
+  if ! cjxl -j 1 -e 10 -d 0 "$1" "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
+}
+
+multimedia_convert() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      [[ -f $f ]] || continue
+      local file=${f##*/}
+      local dir=${f%/*}
+      [[ $dir == "$f" ]] && dir=.
+      case ${file,,} in
+        *_ffmpeg_av1_*_*_opus_*.mkv | *_ffmpeg_av1_lossless_flac*.mkv)
+          continue
+          ;;
+        *.ico | *.flac | *.gif | *.opus)
+          local ext="${file##*.}"
+          ext="${ext,,}"
+          if [[ ${file##*.} != "$ext" ]]; then
+            if [[ -e "${f%.*}.${ext}" ]]; then
+              printf 'Skipping: output exists: %s\n' "$f" >&2
+              continue
+            fi
+            mv -- "$f" "${f%.*}.${ext}"
+          fi
+          ;;
+        *.jpg | *.jpeg | *.png)
+          local jxl="${file%.*}.jxl"
+          if [[ -e "$dir/$jxl" ]]; then
+            printf 'Skipping: output exists: %s\n' "$f" >&2
+            continue
+          fi
+          (
+            cd "$dir" &&
+              jxl_lossy 1 "./$file" "./$jxl" &&
+              rm -- "$file"
+          )
+          ;;
+        *.avif | *.bmp | *.heic | *.heif | *.jp2 | *.tif | *.webp)
+          local png="${file%.*}.png"
+          if [[ -e "$dir/$png" ]]; then
+            printf 'Skipping: intermediate png exists: %s\n' "$f" >&2
+            continue
+          fi
+          local jxl="${file%.*}.jxl"
+          if [[ -e "$dir/$jxl" ]]; then
+            printf 'Skipping: output exists: %s\n' "$f" >&2
+            continue
+          fi
+          (
+            if cd "$dir"; then
+              magick "./$file" "./$png" &&
+                jxl_lossy 1 "./$png" "./$jxl" &&
+                rm -- "$file"
+              rm -f -- "$png"
+            fi
+          )
+          ;;
+        *.3gp | *.mov | *.vob | *.wmv)
+          (
+            cd "$dir" &&
+              ffmpeg_av1_opus 4 40 24k "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *.avi | *.mkv | *.mp4 | *.mts | *.webm)
+          (
+            cd "$dir" &&
+              ffmpeg_av1_opus 4 32 72k "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *.aac | *.mp3 | *.m4a | *.ogg)
+          (
+            cd "$dir" &&
+              ffmpeg_opus 96k "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *.wav)
+          (
+            cd "$dir" &&
+              ffmpeg_flac "./$file" &&
+              rm -- "$file"
+          )
+          ;;
+        *)
+          continue
+          ;;
+      esac
+    done
+  )
 }
 
 clean_file() {
@@ -2313,245 +2496,6 @@ mv_space_hyphen() {
   done < <(find . -depth -name '* *' -print0)
 }
 
-remove_extension() {
-  sed -E 's/^(.+)\.[^.]+$/\1/'
-}
-
-get_extension() {
-  sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/'
-}
-
-ffmpeg_av1_opus() {
-  if [ "$#" -lt 4 ]; then
-    return
-  fi
-  local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
-  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "$new"; then
-    rm -f -- "$new"
-    return 1
-  fi
-}
-
-ffmpeg_av1_lossless_flac() {
-  if [ "$#" -eq 0 ]; then
-    return
-  fi
-  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
-  if ! ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "$new"; then
-    rm -f -- "$new"
-    return 1
-  fi
-}
-
-ffmpeg_opus() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
-  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "$new"; then
-    rm -f -- "$new"
-    return 1
-  fi
-}
-
-ffmpeg_flac() {
-  if [ "$#" -eq 0 ]; then
-    return
-  fi
-  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
-  if ! ffmpeg -n -i "$1" -c:a flac "$new"; then
-    rm -f -- "$new"
-    return 1
-  fi
-}
-
-ffmpeg_segment() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  ffmpeg -n -i "$2" -c copy -map 0 -segment_time "$1" -f segment -reset_timestamps 1 "${3:-"$(echo "$2" | remove_extension)_ffmpeg_%04d.$(echo "$2" | get_extension)"}"
-}
-
-ffmpeg_concat_auto() {
-  local files=()
-  if [ "$#" -eq 0 ]; then
-    for f in *; do
-      test -f "$f" && files+=("$f")
-    done
-  else
-    files=("$@")
-  fi
-  ffmpeg -n -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${files[@]}") -c copy "$(echo "${files[0]}" | remove_extension | sed -E 's/_ffmpeg_[0-9]+$//').$(echo "${files[0]}" | get_extension)"
-}
-
-ffmpeg_concat() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  ffmpeg -n -f concat -safe 0 -i <(printf "file '$PWD/%s'\n" "${@:2}") -c copy "$1"
-}
-
-echo_non_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*) ;;
-      *)
-        echo "$f"
-        ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-remove_non_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*) ;;
-      *)
-        rm -f -- "$f"
-        ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-echo_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*)
-        echo "$f"
-        ;;
-      *) ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-remove_ffmpeg() {
-  while IFS= read -r -d '' f; do
-    case "$f" in
-      *ffmpeg_*)
-        rm -f -- "$f"
-        ;;
-      *) ;;
-    esac
-  done < <(find . -type f -print0)
-}
-
-jxl_lossy() {
-  if [ "$#" -lt 2 ]; then
-    return
-  fi
-  local new="${3:-"$(echo "$2" | remove_extension).jxl"}"
-  if ! cjxl -j 0 -e 10 -d "$1" "$2" "$new"; then
-    rm -f -- "$new"
-    return 1
-  fi
-}
-
-jxl_lossless() {
-  if [ "$#" -eq 0 ]; then
-    return
-  fi
-  local new="${2:-"$(echo "$1" | remove_extension).jxl"}"
-  if ! cjxl -j 1 -e 10 -d 0 "$1" "$new"; then
-    rm -f -- "$new"
-    return 1
-  fi
-}
-
-multimedia_convert() {
-  (
-    shopt -s globstar nullglob
-    for f in **/*; do
-      [[ -f $f ]] || continue
-      local file=${f##*/}
-      local dir=${f%/*}
-      [[ $dir == "$f" ]] && dir=.
-      case ${file,,} in
-        *_ffmpeg_av1_*_*_opus_*.mkv | *_ffmpeg_av1_lossless_flac*.mkv)
-          continue
-          ;;
-        *.ico | *.flac | *.gif | *.opus)
-          local ext="${file##*.}"
-          ext="${ext,,}"
-          if [[ ${file##*.} != "$ext" ]]; then
-            if [[ -e "${f%.*}.${ext}" ]]; then
-              printf 'Skipping: output exists: %s\n' "$f" >&2
-              continue
-            fi
-            mv -- "$f" "${f%.*}.${ext}"
-          fi
-          ;;
-        *.jpg | *.jpeg | *.png)
-          local jxl="${file%.*}.jxl"
-          if [[ -e "$dir/$jxl" ]]; then
-            printf 'Skipping: output exists: %s\n' "$f" >&2
-            continue
-          fi
-          (
-            cd "$dir" &&
-              jxl_lossy 1 "./$file" "./$jxl" &&
-              rm -- "$file"
-          )
-          ;;
-        *.avif | *.bmp | *.heic | *.heif | *.jp2 | *.tif | *.webp)
-          local png="${file%.*}.png"
-          if [[ -e "$dir/$png" ]]; then
-            printf 'Skipping: intermediate png exists: %s\n' "$f" >&2
-            continue
-          fi
-          local jxl="${file%.*}.jxl"
-          if [[ -e "$dir/$jxl" ]]; then
-            printf 'Skipping: output exists: %s\n' "$f" >&2
-            continue
-          fi
-          (
-            if cd "$dir"; then
-              magick "./$file" "./$png" &&
-                jxl_lossy 1 "./$png" "./$jxl" &&
-                rm -- "$file"
-              rm -f -- "$png"
-            fi
-          )
-          ;;
-        *.3gp | *.mov | *.vob | *.wmv)
-          (
-            cd "$dir" &&
-              ffmpeg_av1_opus 4 40 24k "./$file" &&
-              rm -- "$file"
-          )
-          ;;
-        *.avi | *.mkv | *.mp4 | *.mts | *.webm)
-          (
-            cd "$dir" &&
-              ffmpeg_av1_opus 4 32 72k "./$file" &&
-              rm -- "$file"
-          )
-          ;;
-        *.aac | *.mp3 | *.m4a | *.ogg)
-          (
-            cd "$dir" &&
-              ffmpeg_opus 96k "./$file" &&
-              rm -- "$file"
-          )
-          ;;
-        *.wav)
-          (
-            cd "$dir" &&
-              ffmpeg_flac "./$file" &&
-              rm -- "$file"
-          )
-          ;;
-        *)
-          continue
-          ;;
-      esac
-    done
-  )
-}
-
-ls_extension() {
-  find . -type f | sed -n 's/.*\(\.[^.\/]*\)$/\1/p' | sort -u
-}
-
 mkcd() {
   mkdir -p "$1"
   cd "$1" || return
@@ -2808,6 +2752,62 @@ vfmc() {
       verible-verilog-format --inplace "$f"
     done
   )
+}
+
+dfssh() {
+  if (($# == 1)); then
+    ssh "$1"
+  elif (($# >= 2)); then
+    local host="$1"
+    local port="$2"
+    shift 2
+    ssh -p "$port" "$host" "$@"
+  else
+    echo "Usage:"
+    echo "  dfssh host"
+    echo "  dfssh host port [extra ssh args...]"
+    return 1
+  fi
+}
+
+dfsftp() {
+  if (($# == 1)); then
+    sftp "$1"
+  elif (($# >= 2)); then
+    local host="$1"
+    local port="$2"
+    shift 2
+    sftp -P "$port" "$host" "$@"
+  else
+    echo "Usage:"
+    echo "  dfsftp host"
+    echo "  dfsftp host port [extra ssh args...]"
+    return 1
+  fi
+}
+
+csd() {
+  cd ~/shared || return
+  # shellcheck disable=2086,2164
+  [ -n "$1" ] && cd $1
+}
+
+dicepass() {
+  local n="$1"
+  local sep="${2:--}"
+  local url="https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt"
+  local file="$HOME/.eff_large_wordlist.txt"
+  [[ ! -f "$file" ]] && curl -fsSL "$url" -o "$file"
+  [[ ! -f "$file" ]] && printf 'ERROR: cannot download wordlist\n'
+  local passphrase=''
+  while true; do
+    local word
+    word="$(awk -v k="$(shuf -i 1-6 -n 5 | tr -d '\n')" '$1 == k { print $2; exit }' "$file")"
+    ((${#passphrase} + ${#word} + ${#sep} > n)) && break
+    [[ -n "$passphrase" ]] && passphrase+="$sep" || true
+    passphrase+="$word"
+  done
+  ((${#passphrase} > 0)) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
 }
 
 mkgwf() {
