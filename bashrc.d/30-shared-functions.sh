@@ -1206,6 +1206,72 @@ zip_split_all() {
 }
 
 extract_all_and() {
+  local erar=0
+  local ezip=0
+  local etargz=0
+  local etgz=0
+  local egz=0
+  local etarbz2=0
+  local etbz2=0
+  local ebz2=0
+  local etarxz=0
+  local etxz=0
+  local exz=0
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --erar)
+        erar=1
+        shift
+        ;;
+      --ezip)
+        ezip=1
+        shift
+        ;;
+      --etargz)
+        etargz=1
+        shift
+        ;;
+      --etgz)
+        etgz=1
+        shift
+        ;;
+      --egz)
+        egz=1
+        shift
+        ;;
+      --etarbz2)
+        etarbz2=1
+        shift
+        ;;
+      --etbz2)
+        etbz2=1
+        shift
+        ;;
+      --ebz2)
+        ebz2=1
+        shift
+        ;;
+      --etarxz)
+        etarxz=1
+        shift
+        ;;
+      --etxz)
+        etxz=1
+        shift
+        ;;
+      --exz)
+        exz=1
+        shift
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
   [ "$#" -lt 2 ] && return 1
   (
     shopt -s globstar nullglob
@@ -1218,46 +1284,57 @@ extract_all_and() {
       local cmd=()
       case $file in
         *.rar)
+          [ "$erar" -eq 1 ] && continue
           un=${file%.rar}
           cmd=(unrar x)
           ;;
         *.zip)
+          [ "$ezip" -eq 1 ] && continue
           un=${file%.zip}
           cmd=(unzip)
           ;;
         *.tar.gz)
+          [ "$etargz" -eq 1 ] && continue
           un=${file%.tar.gz}
           cmd=(tar -xzf)
           ;;
         *.tgz)
+          [ "$etgz" -eq 1 ] && continue
           un=${file%.tgz}
           cmd=(tar -xzf)
           ;;
         *.gz)
+          [ "$egz" -eq 1 ] && continue
           un=${file%.gz}
           cmd=(gzip -d)
           ;;
         *.tar.bz2)
+          [ "$etarbz2" -eq 1 ] && continue
           un=${file%.tar.bz2}
           cmd=(tar -xjf)
           ;;
         *.tbz2)
+          [ "$etbz2" -eq 1 ] && continue
           un=${file%.tbz2}
           cmd=(tar -xjf)
           ;;
         *.bz2)
+          [ "$ebz2" -eq 1 ] && continue
           un=${file%.bz2}
           cmd=(bzip2 -d)
           ;;
         *.tar.xz)
+          [ "$etarxz" -eq 1 ] && continue
           un=${file%.tar.xz}
           cmd=(tar -xJf)
           ;;
         *.txz)
+          [ "$etxz" -eq 1 ] && continue
           un=${file%.txz}
           cmd=(tar -xJf)
           ;;
         *.xz)
+          [ "$exz" -eq 1 ] && continue
           un=${file%.xz}
           cmd=(xz -d)
           ;;
@@ -1269,7 +1346,7 @@ extract_all_and() {
         cd "$dir" &&
           "${cmd[@]}" "$file" &&
           rm -- "$file" &&
-          "$@" "$un" &&
+          "${@:2}" "$un" &&
           rm -rf -- "$un"
       )
     done
@@ -1277,47 +1354,272 @@ extract_all_and() {
 }
 
 extract_all() {
-  extract_all_and "$1" false
+  extract_all_and "$@" false
 }
 
 extract_all_and_bz2() {
-  extract_all_and "$1" bz2_single "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" bz2_single "${args[@]}"
 }
 
 extract_all_and_gz() {
-  extract_all_and "$1" gz_single "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" gz_single "${args[@]}"
 }
 
 extract_all_and_xz() {
-  extract_all_and "$1" xz_single "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" xz_single "${args[@]}"
 }
 
 extract_all_and_tar() {
-  extract_all_and "$1" tar_single "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" tar_single "${args[@]}"
 }
 
 extract_all_and_zip() {
-  extract_all_and "$1" zip_single "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" zip_single "${args[@]}"
 }
 
 extract_all_and_bz2_split() {
-  extract_all_and "$1" bz2_split "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      -b | --bytes)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" bz2_split "${args[@]}"
 }
 
 extract_all_and_gz_split() {
-  extract_all_and "$1" gz_split "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      -b | --bytes)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" gz_split "${args[@]}"
 }
 
 extract_all_and_xz_split() {
-  extract_all_and "$1" xz_split "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      -b | --bytes)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" xz_split "${args[@]}"
 }
 
 extract_all_and_tar_split() {
-  extract_all_and "$1" tar_split "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      -b | --bytes)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" tar_split "${args[@]}"
 }
 
 extract_all_and_zip_split() {
-  extract_all_and "$1" zip_split "${@:2}"
+  local args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      -b | --bytes)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" zip_split "${args[@]}"
 }
 
 remove_extension() {
