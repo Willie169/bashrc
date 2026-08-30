@@ -2327,7 +2327,7 @@ ffmpeg_av1_opus() {
   fi
   local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
   if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "$new"; then
-    rm -- "$new"
+    rm -f -- "$new"
     return 1
   fi
 }
@@ -2338,7 +2338,7 @@ ffmpeg_av1_lossless_flac() {
   fi
   local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless_flac.mkv"}"
   if ! ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -c:a flac "$new"; then
-    rm -- "$new"
+    rm -f -- "$new"
     return 1
   fi
 }
@@ -2349,7 +2349,7 @@ ffmpeg_opus() {
   fi
   local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
   if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "$new"; then
-    rm -- "$new"
+    rm -f -- "$new"
     return 1
   fi
 }
@@ -2360,7 +2360,7 @@ ffmpeg_flac() {
   fi
   local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_flac.flac"}"
   if ! ffmpeg -n -i "$1" -c:a flac "$new"; then
-    rm -- "$new"
+    rm -f -- "$new"
     return 1
   fi
 }
@@ -2439,14 +2439,22 @@ jxl_lossy() {
   if [ "$#" -lt 2 ]; then
     return
   fi
-  cjxl -j 0 -e 10 -d "$1" "$2" "${3:-"$(echo "$2" | remove_extension).jxl"}"
+  local new="${3:-"$(echo "$2" | remove_extension).jxl"}"
+  if ! cjxl -j 0 -e 10 -d "$1" "$2" "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
 }
 
 jxl_lossless() {
   if [ "$#" -eq 0 ]; then
     return
   fi
-  cjxl -j 1 -e 10 -d 0 "$1" "${2:-"$(echo "$1" | remove_extension).jxl"}"
+  local new="${2:-"$(echo "$1" | remove_extension).jxl"}"
+  if ! cjxl -j 1 -e 10 -d 0 "$1" "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
 }
 
 multimedia_convert() {
@@ -2479,13 +2487,9 @@ multimedia_convert() {
             continue
           fi
           (
-            if cd "$dir"; then
-              if jxl_lossy 1 "./$file" "./$jxl"; then
-                rm -- "$file"
-              else
-                rm -f -- "$jxl"
-              fi
-            fi
+            cd "$dir" &&
+              jxl_lossy 1 "./$file" "./$jxl" &&
+              rm -- "$file"
           )
           ;;
         *.avif | *.bmp | *.heic | *.heif | *.jp2 | *.tif | *.webp)
@@ -2501,13 +2505,9 @@ multimedia_convert() {
           fi
           (
             if cd "$dir"; then
-              if magick "./$file" "./$png"; then
-                if jxl_lossy 1 "./$png" "./$jxl"; then
-                  rm -- "$file"
-                else
-                  rm -f -- "$jxl"
-                fi
-              fi
+              magick "./$file" "./$png" &&
+                jxl_lossy 1 "./$png" "./$jxl" &&
+                rm -- "$file"
               rm -f -- "$png"
             fi
           )
