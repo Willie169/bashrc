@@ -1206,9 +1206,10 @@ zip_split_all() {
 }
 
 extract_all_and() {
+  [ "$#" -lt 2 ] && return 1
   (
     shopt -s globstar nullglob
-    for f in **/*; do
+    for f in "$1"/**/*; do
       [[ -f $f ]] || continue
       local file=${f##*/}
       local dir=${f%/*}
@@ -1276,47 +1277,47 @@ extract_all_and() {
 }
 
 extract_all() {
-  extract_all_and false
+  extract_all_and "$1" false
 }
 
 extract_all_and_bz2() {
-  extract_all_and bz2_single "$@"
+  extract_all_and "$1" bz2_single "${@:2}"
 }
 
 extract_all_and_gz() {
-  extract_all_and gz_single "$@"
+  extract_all_and "$1" gz_single "${@:2}"
 }
 
 extract_all_and_xz() {
-  extract_all_and xz_single "$@"
+  extract_all_and "$1" xz_single "${@:2}"
 }
 
 extract_all_and_tar() {
-  extract_all_and tar_single "$@"
+  extract_all_and "$1" tar_single "${@:2}"
 }
 
 extract_all_and_zip() {
-  extract_all_and zip_single "$@"
+  extract_all_and "$1" zip_single "${@:2}"
 }
 
 extract_all_and_bz2_split() {
-  extract_all_and bz2_split "$@"
+  extract_all_and "$1" bz2_split "${@:2}"
 }
 
 extract_all_and_gz_split() {
-  extract_all_and gz_split "$@"
+  extract_all_and "$1" gz_split "${@:2}"
 }
 
 extract_all_and_xz_split() {
-  extract_all_and xz_split "$@"
+  extract_all_and "$1" xz_split "${@:2}"
 }
 
 extract_all_and_tar_split() {
-  extract_all_and tar_split "$@"
+  extract_all_and "$1" tar_split "${@:2}"
 }
 
 extract_all_and_zip_split() {
-  extract_all_and zip_split "$@"
+  extract_all_and "$1" zip_split "${@:2}"
 }
 
 remove_extension() {
