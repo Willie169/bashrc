@@ -1335,8 +1335,8 @@ extract_all_and() {
       (
         cd "$dir" &&
           "${cmd[@]}" "$file" &&
-          "${@:2}" "$un" &&
           rm -- "$file" &&
+          "${@:2}" "$un" &&
           rm -rf -- "$un"
       )
     done
