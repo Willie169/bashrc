@@ -20,6 +20,7 @@ alias onionshare='flatpak run org.onionshare.OnionShare'
 alias pied='flatpak run com.mikeasoft.pied'
 alias pysolfc='flatpak run io.sourceforge.pysolfc.PySolFC'
 alias vlc='flatpak run org.videolan.VLC'
+alias voyager='flatpak run app.vger.voyager'
 if command -v nvidia-smi >/dev/null 2>&1; then
   alias bottles='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only flatpak run com.usebottles.bottles'
   alias bottles-cli='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only flatpak run --command=bottles-cli com.usebottles.bottles'
