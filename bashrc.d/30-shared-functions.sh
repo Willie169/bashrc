@@ -1265,7 +1265,7 @@ extract_all_and() {
   [ "$#" -lt 2 ] && return 1
   (
     shopt -s globstar nullglob
-    for f in "$1"/**/*; do
+    for f in "$1" "$1"/**/*; do
       [[ -f $f ]] || continue
       local file=${f##*/}
       local dir=${f%/*}
