@@ -91,6 +91,7 @@ update_pm() {
   brew cleanup
   uv self update
   uv tool upgrade --all
+  conda update -n base -c conda-forge conda -y
   npm i -g npm
   npm update -g
 }
