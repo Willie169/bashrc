@@ -88,13 +88,13 @@ with open(p, "w", encoding="utf-8") as file:
                     "i" +
                     remoteStr[j] +
                     tlocalStr[k] +
-                    "() {\n  " +
+                    "() {\n  for f in \"${@:2}\"; do\n    " +
                     op[i] +
                     " -- \"" +
                     remote[j] +
-                    "\"/\"$2\" " +
+                    "\"/\"$f\" " +
                     tlocal[k] +
-                    "/\n}\n\n")
+                    "\"/\n  done\n}\n\n")
                 file.write(
                     opStr[i] +
                     "o" +
