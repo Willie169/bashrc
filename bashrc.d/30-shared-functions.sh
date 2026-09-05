@@ -911,6 +911,16 @@ git_upstream_pr() {
   git branch -D pr-"$1"
 }
 
+split_file() {
+  local bytes
+  if [ -n "${SPLIT_SIZE:-}" ]; then
+    bytes="$SPLIT_SIZE"
+  else
+    bytes="4000M"
+  fi
+  split -b "$bytes" -d -a 3 "$1" "$1.part."
+}
+
 __pv() {
   if command -v pv >/dev/null 2>&1; then
     pv
@@ -977,16 +987,6 @@ No tar is used by default.'
       $1 "$2" | __pv >"$target"
     )
   fi
-}
-
-split_file() {
-  local bytes
-  if [ -n "${SPLIT_SIZE:-}" ]; then
-    bytes="$SPLIT_SIZE"
-  else
-    bytes="4000M"
-  fi
-  split -b "$bytes" -d -a 3 "$1" "$1.part."
 }
 
 compress_split() {
@@ -1085,6 +1085,14 @@ zip_single() {
   compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$@"
 }
 
+7z_single() {
+  compress_single --no-tar --pad '.7z' '7z a -so -mx=9' "$@"
+}
+
+7z_non_solid_single() {
+  compress_single --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$@"
+}
+
 bz2_split() {
   compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$@"
 }
@@ -1103,6 +1111,14 @@ tar_split() {
 
 zip_split() {
   compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$@"
+}
+
+7z_split() {
+  compress_split --no-tar --pad '.7z' '7z a -so -mx=9' "$@"
+}
+
+7z_non_solid_split() {
+  compress_split --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$@"
 }
 
 bz2_single_all() {
@@ -1146,6 +1162,24 @@ zip_single_all() {
     shopt -s nullglob
     for f in *; do
       compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --no-tar --pad '.7z' '7z a -so -mx=9' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_non_solid_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1195,9 +1229,28 @@ zip_split_all() {
   )
 }
 
+7z_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --no-tar --pad '.7z' '7z a -so -mx=9' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_non_solid_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
 extract_all_and() {
   local erar=0
   local ezip=0
+  local e7z=0
   local etargz=0
   local etgz=0
   local egz=0
@@ -1215,6 +1268,10 @@ extract_all_and() {
         ;;
       --ezip | --exclude-zip)
         ezip=1
+        shift
+        ;;
+      --e7z | --exclude-7z)
+        e7z=1
         shift
         ;;
       --etargz | --exclude-targz)
@@ -1282,6 +1339,11 @@ extract_all_and() {
           [ "$ezip" -eq 1 ] && continue
           un=${file%.zip}
           cmd=(unzip)
+          ;;
+        *.7z)
+          [ "$e7z" -eq 1 ] && continue
+          un=${file%.7z}
+          cmd=(7z x)
           ;;
         *.tar.gz)
           [ "$etargz" -eq 1 ] && continue
@@ -1462,6 +1524,52 @@ extract_all_and_zip() {
   extract_all_and "$@" zip_single "${args[@]}"
 }
 
+extract_all_and_7z() {
+  local -a args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" 7z_single "${args[@]}"
+}
+
+extract_all_and_7z_non_solid() {
+  local -a args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" 7z_non_solid_single "${args[@]}"
+}
+
 extract_all_and_bz2_split() {
   local -a args=()
   while [ "$#" -gt 0 ]; do
@@ -1610,6 +1718,52 @@ extract_all_and_zip_split() {
     esac
   done
   extract_all_and "$@" zip_split "${args[@]}"
+}
+
+extract_all_and_7z_split() {
+  local -a args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" 7z_split "${args[@]}"
+}
+
+extract_all_and_7z_non_solid_split() {
+  local -a args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" 7z_non_solid_split "${args[@]}"
 }
 
 remove_extension() {
