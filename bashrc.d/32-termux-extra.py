@@ -104,7 +104,7 @@ with open(p, "w", encoding="utf-8") as file:
                     op[i] +
                     " -- " +
                     tlocal[k] +
-                    "/\"$2\" \"" +
+                    "/\"$f\" \"" +
                     remote[j] +
                     "\"/\n  done\n}\n\n")
 
@@ -245,7 +245,7 @@ mkdirpp() {
                     proot[k].upper() +
                     ":-" +
                     proot[k] +
-                    "}\" \"$1\"\n}\n\n")
+                    "}\" \"$@\"\n}\n\n")
 
     for i in lr(npop):
         for k in lr(proot):
@@ -259,7 +259,7 @@ mkdirpp() {
                 proot[k].upper() +
                 ":-" +
                 proot[k] +
-                "}\" \"$1\"\n}\n\n")
+                "}\" \"$@\"\n}\n\n")
 
     for i in lr(pup):
         for j in lr(local):
@@ -276,7 +276,7 @@ mkdirpp() {
                     proot[k].upper() +
                     ":-" +
                     proot[k] +
-                    "}\" \"$1\"\n}\n\n")
+                    "}\" \"$@\"\n}\n\n")
 
     for k in lr(proot):
         file.write(

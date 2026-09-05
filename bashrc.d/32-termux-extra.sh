@@ -47,7 +47,7 @@ mvir() {
 
 mvor() {
   for f in "${@:2}"; do
-    mv -- "$1"/"$2" "$DOW"/
+    mv -- "$1"/"$f" "$DOW"/
   done
 }
 
@@ -59,7 +59,7 @@ mvip() {
 
 mvop() {
   for f in "${@:2}"; do
-    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$DOW"/
   done
 }
 
@@ -107,7 +107,7 @@ mvidr() {
 
 mvodr() {
   for f in "${@:2}"; do
-    mv -- "$1"/"$2" "$DOC"/
+    mv -- "$1"/"$f" "$DOC"/
   done
 }
 
@@ -119,7 +119,7 @@ mvidp() {
 
 mvodp() {
   for f in "${@:2}"; do
-    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$DOC"/
   done
 }
 
@@ -167,7 +167,7 @@ mvisr() {
 
 mvosr() {
   for f in "${@:2}"; do
-    mv -- "$1"/"$2" "$SCR"/
+    mv -- "$1"/"$f" "$SCR"/
   done
 }
 
@@ -179,7 +179,7 @@ mvisp() {
 
 mvosp() {
   for f in "${@:2}"; do
-    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$SCR"/
   done
 }
 
@@ -227,7 +227,7 @@ mvier() {
 
 mvoer() {
   for f in "${@:2}"; do
-    mv -- "$1"/"$2" "$EMU"/
+    mv -- "$1"/"$f" "$EMU"/
   done
 }
 
@@ -239,7 +239,7 @@ mviep() {
 
 mvoep() {
   for f in "${@:2}"; do
-    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$EMU"/
   done
 }
 
@@ -287,7 +287,7 @@ cpir() {
 
 cpor() {
   for f in "${@:2}"; do
-    cp -- "$1"/"$2" "$DOW"/
+    cp -- "$1"/"$f" "$DOW"/
   done
 }
 
@@ -299,7 +299,7 @@ cpip() {
 
 cpop() {
   for f in "${@:2}"; do
-    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$DOW"/
   done
 }
 
@@ -347,7 +347,7 @@ cpidr() {
 
 cpodr() {
   for f in "${@:2}"; do
-    cp -- "$1"/"$2" "$DOC"/
+    cp -- "$1"/"$f" "$DOC"/
   done
 }
 
@@ -359,7 +359,7 @@ cpidp() {
 
 cpodp() {
   for f in "${@:2}"; do
-    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$DOC"/
   done
 }
 
@@ -407,7 +407,7 @@ cpisr() {
 
 cposr() {
   for f in "${@:2}"; do
-    cp -- "$1"/"$2" "$SCR"/
+    cp -- "$1"/"$f" "$SCR"/
   done
 }
 
@@ -419,7 +419,7 @@ cpisp() {
 
 cposp() {
   for f in "${@:2}"; do
-    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$SCR"/
   done
 }
 
@@ -467,7 +467,7 @@ cpier() {
 
 cpoer() {
   for f in "${@:2}"; do
-    cp -- "$1"/"$2" "$EMU"/
+    cp -- "$1"/"$f" "$EMU"/
   done
 }
 
@@ -479,7 +479,7 @@ cpiep() {
 
 cpoep() {
   for f in "${@:2}"; do
-    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$EMU"/
   done
 }
 
@@ -527,7 +527,7 @@ cprir() {
 
 cpror() {
   for f in "${@:2}"; do
-    cp -r -- "$1"/"$2" "$DOW"/
+    cp -r -- "$1"/"$f" "$DOW"/
   done
 }
 
@@ -539,7 +539,7 @@ cprip() {
 
 cprop() {
   for f in "${@:2}"; do
-    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$DOW"/
   done
 }
 
@@ -587,7 +587,7 @@ cpridr() {
 
 cprodr() {
   for f in "${@:2}"; do
-    cp -r -- "$1"/"$2" "$DOC"/
+    cp -r -- "$1"/"$f" "$DOC"/
   done
 }
 
@@ -599,7 +599,7 @@ cpridp() {
 
 cprodp() {
   for f in "${@:2}"; do
-    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$DOC"/
   done
 }
 
@@ -647,7 +647,7 @@ cprisr() {
 
 cprosr() {
   for f in "${@:2}"; do
-    cp -r -- "$1"/"$2" "$SCR"/
+    cp -r -- "$1"/"$f" "$SCR"/
   done
 }
 
@@ -659,7 +659,7 @@ cprisp() {
 
 cprosp() {
   for f in "${@:2}"; do
-    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$SCR"/
   done
 }
 
@@ -707,7 +707,7 @@ cprier() {
 
 cproer() {
   for f in "${@:2}"; do
-    cp -r -- "$1"/"$2" "$EMU"/
+    cp -r -- "$1"/"$f" "$EMU"/
   done
 }
 
@@ -719,7 +719,7 @@ cpriep() {
 
 cproep() {
   for f in "${@:2}"; do
-    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$f" "$EMU"/
   done
 }
 
@@ -1820,1503 +1820,1503 @@ mkdirpp() {
 }
 
 mvipt() {
-  mvip "${PROOT_TERMUX:-termux}" "$1"
+  mvip "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvipu() {
-  mvip "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvip "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvipd() {
-  mvip "${PROOT_DEBIAN:-debian}" "$1"
+  mvip "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvipub() {
-  mvip "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvip "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvipdb() {
-  mvip "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvip "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvidpt() {
-  mvidp "${PROOT_TERMUX:-termux}" "$1"
+  mvidp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvidpu() {
-  mvidp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvidp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvidpd() {
-  mvidp "${PROOT_DEBIAN:-debian}" "$1"
+  mvidp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvidpub() {
-  mvidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvidpdb() {
-  mvidp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvidp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvispt() {
-  mvisp "${PROOT_TERMUX:-termux}" "$1"
+  mvisp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvispu() {
-  mvisp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvisp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvispd() {
-  mvisp "${PROOT_DEBIAN:-debian}" "$1"
+  mvisp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvispub() {
-  mvisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvispdb() {
-  mvisp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvisp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mviept() {
-  mviep "${PROOT_TERMUX:-termux}" "$1"
+  mviep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mviepu() {
-  mviep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mviep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mviepd() {
-  mviep "${PROOT_DEBIAN:-debian}" "$1"
+  mviep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mviepub() {
-  mviep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mviep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mviepdb() {
-  mviep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mviep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvopt() {
-  mvop "${PROOT_TERMUX:-termux}" "$1"
+  mvop "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvopu() {
-  mvop "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvop "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvopd() {
-  mvop "${PROOT_DEBIAN:-debian}" "$1"
+  mvop "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvopub() {
-  mvop "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvop "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvopdb() {
-  mvop "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvop "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvodpt() {
-  mvodp "${PROOT_TERMUX:-termux}" "$1"
+  mvodp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvodpu() {
-  mvodp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvodp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvodpd() {
-  mvodp "${PROOT_DEBIAN:-debian}" "$1"
+  mvodp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvodpub() {
-  mvodp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvodp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvodpdb() {
-  mvodp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvodp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvospt() {
-  mvosp "${PROOT_TERMUX:-termux}" "$1"
+  mvosp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvospu() {
-  mvosp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvosp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvospd() {
-  mvosp "${PROOT_DEBIAN:-debian}" "$1"
+  mvosp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvospub() {
-  mvosp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvosp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvospdb() {
-  mvosp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvosp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvoept() {
-  mvoep "${PROOT_TERMUX:-termux}" "$1"
+  mvoep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvoepu() {
-  mvoep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvoep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvoepd() {
-  mvoep "${PROOT_DEBIAN:-debian}" "$1"
+  mvoep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvoepub() {
-  mvoep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvoep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvoepdb() {
-  mvoep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvoep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpipt() {
-  cpip "${PROOT_TERMUX:-termux}" "$1"
+  cpip "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpipu() {
-  cpip "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpip "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpipd() {
-  cpip "${PROOT_DEBIAN:-debian}" "$1"
+  cpip "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpipub() {
-  cpip "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpip "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpipdb() {
-  cpip "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpip "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpidpt() {
-  cpidp "${PROOT_TERMUX:-termux}" "$1"
+  cpidp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpidpu() {
-  cpidp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpidp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpidpd() {
-  cpidp "${PROOT_DEBIAN:-debian}" "$1"
+  cpidp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpidpub() {
-  cpidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpidpdb() {
-  cpidp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpidp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpispt() {
-  cpisp "${PROOT_TERMUX:-termux}" "$1"
+  cpisp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpispu() {
-  cpisp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpisp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpispd() {
-  cpisp "${PROOT_DEBIAN:-debian}" "$1"
+  cpisp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpispub() {
-  cpisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpispdb() {
-  cpisp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpisp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpiept() {
-  cpiep "${PROOT_TERMUX:-termux}" "$1"
+  cpiep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpiepu() {
-  cpiep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpiep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpiepd() {
-  cpiep "${PROOT_DEBIAN:-debian}" "$1"
+  cpiep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpiepub() {
-  cpiep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpiep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpiepdb() {
-  cpiep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpiep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpopt() {
-  cpop "${PROOT_TERMUX:-termux}" "$1"
+  cpop "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpopu() {
-  cpop "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpop "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpopd() {
-  cpop "${PROOT_DEBIAN:-debian}" "$1"
+  cpop "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpopub() {
-  cpop "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpop "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpopdb() {
-  cpop "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpop "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpodpt() {
-  cpodp "${PROOT_TERMUX:-termux}" "$1"
+  cpodp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpodpu() {
-  cpodp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpodp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpodpd() {
-  cpodp "${PROOT_DEBIAN:-debian}" "$1"
+  cpodp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpodpub() {
-  cpodp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpodp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpodpdb() {
-  cpodp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpodp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpospt() {
-  cposp "${PROOT_TERMUX:-termux}" "$1"
+  cposp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpospu() {
-  cposp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cposp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpospd() {
-  cposp "${PROOT_DEBIAN:-debian}" "$1"
+  cposp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpospub() {
-  cposp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cposp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpospdb() {
-  cposp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cposp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpoept() {
-  cpoep "${PROOT_TERMUX:-termux}" "$1"
+  cpoep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpoepu() {
-  cpoep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpoep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpoepd() {
-  cpoep "${PROOT_DEBIAN:-debian}" "$1"
+  cpoep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpoepub() {
-  cpoep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpoep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpoepdb() {
-  cpoep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpoep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpript() {
-  cprip "${PROOT_TERMUX:-termux}" "$1"
+  cprip "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpripu() {
-  cprip "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprip "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpripd() {
-  cprip "${PROOT_DEBIAN:-debian}" "$1"
+  cprip "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpripub() {
-  cprip "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprip "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpripdb() {
-  cprip "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprip "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpridpt() {
-  cpridp "${PROOT_TERMUX:-termux}" "$1"
+  cpridp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpridpu() {
-  cpridp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpridp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpridpd() {
-  cpridp "${PROOT_DEBIAN:-debian}" "$1"
+  cpridp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpridpub() {
-  cpridp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpridp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpridpdb() {
-  cpridp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpridp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprispt() {
-  cprisp "${PROOT_TERMUX:-termux}" "$1"
+  cprisp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprispu() {
-  cprisp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprisp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprispd() {
-  cprisp "${PROOT_DEBIAN:-debian}" "$1"
+  cprisp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprispub() {
-  cprisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprispdb() {
-  cprisp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprisp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpriept() {
-  cpriep "${PROOT_TERMUX:-termux}" "$1"
+  cpriep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpriepu() {
-  cpriep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpriep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpriepd() {
-  cpriep "${PROOT_DEBIAN:-debian}" "$1"
+  cpriep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpriepub() {
-  cpriep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpriep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpriepdb() {
-  cpriep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpriep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpropt() {
-  cprop "${PROOT_TERMUX:-termux}" "$1"
+  cprop "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpropu() {
-  cprop "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprop "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpropd() {
-  cprop "${PROOT_DEBIAN:-debian}" "$1"
+  cprop "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpropub() {
-  cprop "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprop "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpropdb() {
-  cprop "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprop "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprodpt() {
-  cprodp "${PROOT_TERMUX:-termux}" "$1"
+  cprodp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprodpu() {
-  cprodp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprodp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprodpd() {
-  cprodp "${PROOT_DEBIAN:-debian}" "$1"
+  cprodp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprodpub() {
-  cprodp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprodp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprodpdb() {
-  cprodp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprodp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprospt() {
-  cprosp "${PROOT_TERMUX:-termux}" "$1"
+  cprosp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprospu() {
-  cprosp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprosp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprospd() {
-  cprosp "${PROOT_DEBIAN:-debian}" "$1"
+  cprosp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprospub() {
-  cprosp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprosp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprospdb() {
-  cprosp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprosp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cproept() {
-  cproep "${PROOT_TERMUX:-termux}" "$1"
+  cproep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cproepu() {
-  cproep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cproep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cproepd() {
-  cproep "${PROOT_DEBIAN:-debian}" "$1"
+  cproep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cproepub() {
-  cproep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cproep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cproepdb() {
-  cproep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cproep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mviapt() {
-  mviap "${PROOT_TERMUX:-termux}" "$1"
+  mviap "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mviapu() {
-  mviap "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mviap "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mviapd() {
-  mviap "${PROOT_DEBIAN:-debian}" "$1"
+  mviap "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mviapub() {
-  mviap "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mviap "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mviapdb() {
-  mviap "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mviap "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mviadpt() {
-  mviadp "${PROOT_TERMUX:-termux}" "$1"
+  mviadp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mviadpu() {
-  mviadp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mviadp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mviadpd() {
-  mviadp "${PROOT_DEBIAN:-debian}" "$1"
+  mviadp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mviadpub() {
-  mviadp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mviadp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mviadpdb() {
-  mviadp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mviadp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mviaspt() {
-  mviasp "${PROOT_TERMUX:-termux}" "$1"
+  mviasp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mviaspu() {
-  mviasp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mviasp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mviaspd() {
-  mviasp "${PROOT_DEBIAN:-debian}" "$1"
+  mviasp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mviaspub() {
-  mviasp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mviasp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mviaspdb() {
-  mviasp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mviasp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mviaept() {
-  mviaep "${PROOT_TERMUX:-termux}" "$1"
+  mviaep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mviaepu() {
-  mviaep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mviaep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mviaepd() {
-  mviaep "${PROOT_DEBIAN:-debian}" "$1"
+  mviaep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mviaepub() {
-  mviaep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mviaep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mviaepdb() {
-  mviaep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mviaep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpiapt() {
-  cpiap "${PROOT_TERMUX:-termux}" "$1"
+  cpiap "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpiapu() {
-  cpiap "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpiap "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpiapd() {
-  cpiap "${PROOT_DEBIAN:-debian}" "$1"
+  cpiap "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpiapub() {
-  cpiap "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpiap "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpiapdb() {
-  cpiap "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpiap "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpiadpt() {
-  cpiadp "${PROOT_TERMUX:-termux}" "$1"
+  cpiadp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpiadpu() {
-  cpiadp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpiadp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpiadpd() {
-  cpiadp "${PROOT_DEBIAN:-debian}" "$1"
+  cpiadp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpiadpub() {
-  cpiadp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpiadp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpiadpdb() {
-  cpiadp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpiadp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpiaspt() {
-  cpiasp "${PROOT_TERMUX:-termux}" "$1"
+  cpiasp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpiaspu() {
-  cpiasp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpiasp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpiaspd() {
-  cpiasp "${PROOT_DEBIAN:-debian}" "$1"
+  cpiasp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpiaspub() {
-  cpiasp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpiasp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpiaspdb() {
-  cpiasp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpiasp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpiaept() {
-  cpiaep "${PROOT_TERMUX:-termux}" "$1"
+  cpiaep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpiaepu() {
-  cpiaep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpiaep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpiaepd() {
-  cpiaep "${PROOT_DEBIAN:-debian}" "$1"
+  cpiaep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpiaepub() {
-  cpiaep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpiaep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpiaepdb() {
-  cpiaep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpiaep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvaipt() {
-  mvaip "${PROOT_TERMUX:-termux}" "$1"
+  mvaip "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvaipu() {
-  mvaip "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvaip "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvaipd() {
-  mvaip "${PROOT_DEBIAN:-debian}" "$1"
+  mvaip "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvaipub() {
-  mvaip "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvaip "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvaipdb() {
-  mvaip "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvaip "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvaidpt() {
-  mvaidp "${PROOT_TERMUX:-termux}" "$1"
+  mvaidp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvaidpu() {
-  mvaidp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvaidp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvaidpd() {
-  mvaidp "${PROOT_DEBIAN:-debian}" "$1"
+  mvaidp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvaidpub() {
-  mvaidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvaidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvaidpdb() {
-  mvaidp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvaidp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvaispt() {
-  mvaisp "${PROOT_TERMUX:-termux}" "$1"
+  mvaisp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvaispu() {
-  mvaisp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvaisp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvaispd() {
-  mvaisp "${PROOT_DEBIAN:-debian}" "$1"
+  mvaisp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvaispub() {
-  mvaisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvaisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvaispdb() {
-  mvaisp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvaisp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvaiept() {
-  mvaiep "${PROOT_TERMUX:-termux}" "$1"
+  mvaiep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvaiepu() {
-  mvaiep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvaiep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvaiepd() {
-  mvaiep "${PROOT_DEBIAN:-debian}" "$1"
+  mvaiep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvaiepub() {
-  mvaiep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvaiep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvaiepdb() {
-  mvaiep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvaiep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpaipt() {
-  cpaip "${PROOT_TERMUX:-termux}" "$1"
+  cpaip "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpaipu() {
-  cpaip "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpaip "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpaipd() {
-  cpaip "${PROOT_DEBIAN:-debian}" "$1"
+  cpaip "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpaipub() {
-  cpaip "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpaip "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpaipdb() {
-  cpaip "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpaip "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpaidpt() {
-  cpaidp "${PROOT_TERMUX:-termux}" "$1"
+  cpaidp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpaidpu() {
-  cpaidp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpaidp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpaidpd() {
-  cpaidp "${PROOT_DEBIAN:-debian}" "$1"
+  cpaidp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpaidpub() {
-  cpaidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpaidp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpaidpdb() {
-  cpaidp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpaidp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpaispt() {
-  cpaisp "${PROOT_TERMUX:-termux}" "$1"
+  cpaisp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpaispu() {
-  cpaisp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpaisp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpaispd() {
-  cpaisp "${PROOT_DEBIAN:-debian}" "$1"
+  cpaisp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpaispub() {
-  cpaisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpaisp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpaispdb() {
-  cpaisp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpaisp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpaiept() {
-  cpaiep "${PROOT_TERMUX:-termux}" "$1"
+  cpaiep "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpaiepu() {
-  cpaiep "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpaiep "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpaiepd() {
-  cpaiep "${PROOT_DEBIAN:-debian}" "$1"
+  cpaiep "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpaiepub() {
-  cpaiep "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpaiep "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpaiepdb() {
-  cpaiep "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpaiep "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 rmpt() {
-  rmp "${PROOT_TERMUX:-termux}" "$1"
+  rmp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 rmpu() {
-  rmp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  rmp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 rmpd() {
-  rmp "${PROOT_DEBIAN:-debian}" "$1"
+  rmp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 rmpub() {
-  rmp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  rmp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 rmpdb() {
-  rmp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  rmp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 rmrpt() {
-  rmrp "${PROOT_TERMUX:-termux}" "$1"
+  rmrp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 rmrpu() {
-  rmrp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  rmrp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 rmrpd() {
-  rmrp "${PROOT_DEBIAN:-debian}" "$1"
+  rmrp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 rmrpub() {
-  rmrp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  rmrp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 rmrpdb() {
-  rmrp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  rmrp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 rmrfpt() {
-  rmrfp "${PROOT_TERMUX:-termux}" "$1"
+  rmrfp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 rmrfpu() {
-  rmrfp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  rmrfp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 rmrfpd() {
-  rmrfp "${PROOT_DEBIAN:-debian}" "$1"
+  rmrfp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 rmrfpub() {
-  rmrfp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  rmrfp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 rmrfpdb() {
-  rmrfp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  rmrfp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mkdirpt() {
-  mkdirp "${PROOT_TERMUX:-termux}" "$1"
+  mkdirp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mkdirpu() {
-  mkdirp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mkdirp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mkdirpd() {
-  mkdirp "${PROOT_DEBIAN:-debian}" "$1"
+  mkdirp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mkdirpub() {
-  mkdirp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mkdirp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mkdirpdb() {
-  mkdirp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mkdirp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mkdirppt() {
-  mkdirpp "${PROOT_TERMUX:-termux}" "$1"
+  mkdirpp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mkdirppu() {
-  mkdirpp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mkdirpp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mkdirppd() {
-  mkdirpp "${PROOT_DEBIAN:-debian}" "$1"
+  mkdirpp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mkdirppub() {
-  mkdirpp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mkdirpp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mkdirppdb() {
-  mkdirpp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mkdirpp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvypt() {
-  mvycp "${PROOT_TERMUX:-termux}" "$1"
+  mvycp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvypu() {
-  mvycp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvycp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvypd() {
-  mvycp "${PROOT_DEBIAN:-debian}" "$1"
+  mvycp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvypub() {
-  mvycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvypdb() {
-  mvycp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvycp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvydpt() {
-  mvyhp "${PROOT_TERMUX:-termux}" "$1"
+  mvyhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvydpu() {
-  mvyhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvyhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvydpd() {
-  mvyhp "${PROOT_DEBIAN:-debian}" "$1"
+  mvyhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvydpub() {
-  mvyhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvyhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvydpdb() {
-  mvyhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvyhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvyspt() {
-  mvybp "${PROOT_TERMUX:-termux}" "$1"
+  mvybp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvyspu() {
-  mvybp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvybp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvyspd() {
-  mvybp "${PROOT_DEBIAN:-debian}" "$1"
+  mvybp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvyspub() {
-  mvybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvyspdb() {
-  mvybp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvybp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvupt() {
-  mvucp "${PROOT_TERMUX:-termux}" "$1"
+  mvucp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvupu() {
-  mvucp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvucp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvupd() {
-  mvucp "${PROOT_DEBIAN:-debian}" "$1"
+  mvucp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvupub() {
-  mvucp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvucp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvupdb() {
-  mvucp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvucp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvudpt() {
-  mvuhp "${PROOT_TERMUX:-termux}" "$1"
+  mvuhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvudpu() {
-  mvuhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvuhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvudpd() {
-  mvuhp "${PROOT_DEBIAN:-debian}" "$1"
+  mvuhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvudpub() {
-  mvuhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvuhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvudpdb() {
-  mvuhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvuhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvuspt() {
-  mvubp "${PROOT_TERMUX:-termux}" "$1"
+  mvubp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvuspu() {
-  mvubp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvubp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvuspd() {
-  mvubp "${PROOT_DEBIAN:-debian}" "$1"
+  mvubp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvuspub() {
-  mvubp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvubp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvuspdb() {
-  mvubp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvubp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpypt() {
-  cpycp "${PROOT_TERMUX:-termux}" "$1"
+  cpycp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpypu() {
-  cpycp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpycp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpypd() {
-  cpycp "${PROOT_DEBIAN:-debian}" "$1"
+  cpycp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpypub() {
-  cpycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpypdb() {
-  cpycp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpycp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpydpt() {
-  cpyhp "${PROOT_TERMUX:-termux}" "$1"
+  cpyhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpydpu() {
-  cpyhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpyhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpydpd() {
-  cpyhp "${PROOT_DEBIAN:-debian}" "$1"
+  cpyhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpydpub() {
-  cpyhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpyhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpydpdb() {
-  cpyhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpyhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpyspt() {
-  cpybp "${PROOT_TERMUX:-termux}" "$1"
+  cpybp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpyspu() {
-  cpybp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpybp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpyspd() {
-  cpybp "${PROOT_DEBIAN:-debian}" "$1"
+  cpybp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpyspub() {
-  cpybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpyspdb() {
-  cpybp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpybp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpupt() {
-  cpucp "${PROOT_TERMUX:-termux}" "$1"
+  cpucp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpupu() {
-  cpucp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpucp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpupd() {
-  cpucp "${PROOT_DEBIAN:-debian}" "$1"
+  cpucp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpupub() {
-  cpucp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpucp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpupdb() {
-  cpucp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpucp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpudpt() {
-  cpuhp "${PROOT_TERMUX:-termux}" "$1"
+  cpuhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpudpu() {
-  cpuhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpuhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpudpd() {
-  cpuhp "${PROOT_DEBIAN:-debian}" "$1"
+  cpuhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpudpub() {
-  cpuhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpuhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpudpdb() {
-  cpuhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpuhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpuspt() {
-  cpubp "${PROOT_TERMUX:-termux}" "$1"
+  cpubp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpuspu() {
-  cpubp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpubp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpuspd() {
-  cpubp "${PROOT_DEBIAN:-debian}" "$1"
+  cpubp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpuspub() {
-  cpubp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpubp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpuspdb() {
-  cpubp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpubp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprypt() {
-  cprycp "${PROOT_TERMUX:-termux}" "$1"
+  cprycp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprypu() {
-  cprycp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprycp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprypd() {
-  cprycp "${PROOT_DEBIAN:-debian}" "$1"
+  cprycp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprypub() {
-  cprycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprypdb() {
-  cprycp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprycp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprydpt() {
-  cpryhp "${PROOT_TERMUX:-termux}" "$1"
+  cpryhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprydpu() {
-  cpryhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpryhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprydpd() {
-  cpryhp "${PROOT_DEBIAN:-debian}" "$1"
+  cpryhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprydpub() {
-  cpryhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpryhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprydpdb() {
-  cpryhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpryhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpryspt() {
-  cprybp "${PROOT_TERMUX:-termux}" "$1"
+  cprybp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpryspu() {
-  cprybp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprybp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpryspd() {
-  cprybp "${PROOT_DEBIAN:-debian}" "$1"
+  cprybp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpryspub() {
-  cprybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpryspdb() {
-  cprybp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprybp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprupt() {
-  cprucp "${PROOT_TERMUX:-termux}" "$1"
+  cprucp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprupu() {
-  cprucp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprucp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprupd() {
-  cprucp "${PROOT_DEBIAN:-debian}" "$1"
+  cprucp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprupub() {
-  cprucp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprucp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprupdb() {
-  cprucp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprucp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cprudpt() {
-  cpruhp "${PROOT_TERMUX:-termux}" "$1"
+  cpruhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cprudpu() {
-  cpruhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpruhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cprudpd() {
-  cpruhp "${PROOT_DEBIAN:-debian}" "$1"
+  cpruhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cprudpub() {
-  cpruhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpruhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cprudpdb() {
-  cpruhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpruhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpruspt() {
-  cprubp "${PROOT_TERMUX:-termux}" "$1"
+  cprubp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpruspu() {
-  cprubp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cprubp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpruspd() {
-  cprubp "${PROOT_DEBIAN:-debian}" "$1"
+  cprubp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpruspub() {
-  cprubp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cprubp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpruspdb() {
-  cprubp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cprubp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvyapt() {
-  mvyacp "${PROOT_TERMUX:-termux}" "$1"
+  mvyacp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvyapu() {
-  mvyacp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvyacp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvyapd() {
-  mvyacp "${PROOT_DEBIAN:-debian}" "$1"
+  mvyacp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvyapub() {
-  mvyacp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvyacp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvyapdb() {
-  mvyacp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvyacp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvyadpt() {
-  mvyahp "${PROOT_TERMUX:-termux}" "$1"
+  mvyahp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvyadpu() {
-  mvyahp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvyahp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvyadpd() {
-  mvyahp "${PROOT_DEBIAN:-debian}" "$1"
+  mvyahp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvyadpub() {
-  mvyahp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvyahp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvyadpdb() {
-  mvyahp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvyahp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvyaspt() {
-  mvyabp "${PROOT_TERMUX:-termux}" "$1"
+  mvyabp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvyaspu() {
-  mvyabp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvyabp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvyaspd() {
-  mvyabp "${PROOT_DEBIAN:-debian}" "$1"
+  mvyabp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvyaspub() {
-  mvyabp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvyabp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvyaspdb() {
-  mvyabp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvyabp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpyapt() {
-  cpyacp "${PROOT_TERMUX:-termux}" "$1"
+  cpyacp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpyapu() {
-  cpyacp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpyacp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpyapd() {
-  cpyacp "${PROOT_DEBIAN:-debian}" "$1"
+  cpyacp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpyapub() {
-  cpyacp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpyacp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpyapdb() {
-  cpyacp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpyacp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpyadpt() {
-  cpyahp "${PROOT_TERMUX:-termux}" "$1"
+  cpyahp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpyadpu() {
-  cpyahp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpyahp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpyadpd() {
-  cpyahp "${PROOT_DEBIAN:-debian}" "$1"
+  cpyahp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpyadpub() {
-  cpyahp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpyahp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpyadpdb() {
-  cpyahp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpyahp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpyaspt() {
-  cpyabp "${PROOT_TERMUX:-termux}" "$1"
+  cpyabp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpyaspu() {
-  cpyabp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpyabp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpyaspd() {
-  cpyabp "${PROOT_DEBIAN:-debian}" "$1"
+  cpyabp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpyaspub() {
-  cpyabp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpyabp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpyaspdb() {
-  cpyabp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpyabp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvaypt() {
-  mvaycp "${PROOT_TERMUX:-termux}" "$1"
+  mvaycp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvaypu() {
-  mvaycp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvaycp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvaypd() {
-  mvaycp "${PROOT_DEBIAN:-debian}" "$1"
+  mvaycp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvaypub() {
-  mvaycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvaycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvaypdb() {
-  mvaycp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvaycp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvaydpt() {
-  mvayhp "${PROOT_TERMUX:-termux}" "$1"
+  mvayhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvaydpu() {
-  mvayhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvayhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvaydpd() {
-  mvayhp "${PROOT_DEBIAN:-debian}" "$1"
+  mvayhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvaydpub() {
-  mvayhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvayhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvaydpdb() {
-  mvayhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvayhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 mvayspt() {
-  mvaybp "${PROOT_TERMUX:-termux}" "$1"
+  mvaybp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 mvayspu() {
-  mvaybp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  mvaybp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 mvayspd() {
-  mvaybp "${PROOT_DEBIAN:-debian}" "$1"
+  mvaybp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 mvayspub() {
-  mvaybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  mvaybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 mvayspdb() {
-  mvaybp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  mvaybp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpaypt() {
-  cpaycp "${PROOT_TERMUX:-termux}" "$1"
+  cpaycp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpaypu() {
-  cpaycp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpaycp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpaypd() {
-  cpaycp "${PROOT_DEBIAN:-debian}" "$1"
+  cpaycp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpaypub() {
-  cpaycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpaycp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpaypdb() {
-  cpaycp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpaycp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpaydpt() {
-  cpayhp "${PROOT_TERMUX:-termux}" "$1"
+  cpayhp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpaydpu() {
-  cpayhp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpayhp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpaydpd() {
-  cpayhp "${PROOT_DEBIAN:-debian}" "$1"
+  cpayhp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpaydpub() {
-  cpayhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpayhp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpaydpdb() {
-  cpayhp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpayhp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 cpayspt() {
-  cpaybp "${PROOT_TERMUX:-termux}" "$1"
+  cpaybp "${PROOT_TERMUX:-termux}" "$@"
 }
 
 cpayspu() {
-  cpaybp "${PROOT_UBUNTU:-ubuntu}" "$1"
+  cpaybp "${PROOT_UBUNTU:-ubuntu}" "$@"
 }
 
 cpayspd() {
-  cpaybp "${PROOT_DEBIAN:-debian}" "$1"
+  cpaybp "${PROOT_DEBIAN:-debian}" "$@"
 }
 
 cpayspub() {
-  cpaybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$1"
+  cpaybp "${PROOT_UBUNTUBOX:-ubuntubox}" "$@"
 }
 
 cpayspdb() {
-  cpaybp "${PROOT_DEBIANBOX:-debianbox}" "$1"
+  cpaybp "${PROOT_DEBIANBOX:-debianbox}" "$@"
 }
 
 pdct() {
