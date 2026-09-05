@@ -41,22 +41,26 @@ mvob() {
 
 mvir() {
   for f in "${@:2}"; do
-    mv -- "$DOW"/"$f" "$1""/
+    mv -- "$DOW"/"$f" "$1"/
   done
 }
 
 mvor() {
-  mv -- "$1"/"$2" "$DOW"/
+  for f in "${@:2}"; do
+    mv -- "$1"/"$2" "$DOW"/
+  done
 }
 
 mvip() {
   for f in "${@:2}"; do
-    mv -- "$DOW"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    mv -- "$DOW"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 mvop() {
-  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+  for f in "${@:2}"; do
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+  done
 }
 
 mvidc() {
@@ -97,22 +101,26 @@ mvodb() {
 
 mvidr() {
   for f in "${@:2}"; do
-    mv -- "$DOC"/"$f" "$1""/
+    mv -- "$DOC"/"$f" "$1"/
   done
 }
 
 mvodr() {
-  mv -- "$1"/"$2" "$DOC"/
+  for f in "${@:2}"; do
+    mv -- "$1"/"$2" "$DOC"/
+  done
 }
 
 mvidp() {
   for f in "${@:2}"; do
-    mv -- "$DOC"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    mv -- "$DOC"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 mvodp() {
-  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+  for f in "${@:2}"; do
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+  done
 }
 
 mvisc() {
@@ -153,22 +161,26 @@ mvosb() {
 
 mvisr() {
   for f in "${@:2}"; do
-    mv -- "$SCR"/"$f" "$1""/
+    mv -- "$SCR"/"$f" "$1"/
   done
 }
 
 mvosr() {
-  mv -- "$1"/"$2" "$SCR"/
+  for f in "${@:2}"; do
+    mv -- "$1"/"$2" "$SCR"/
+  done
 }
 
 mvisp() {
   for f in "${@:2}"; do
-    mv -- "$SCR"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    mv -- "$SCR"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 mvosp() {
-  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+  for f in "${@:2}"; do
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+  done
 }
 
 mviec() {
@@ -209,22 +221,26 @@ mvoeb() {
 
 mvier() {
   for f in "${@:2}"; do
-    mv -- "$EMU"/"$f" "$1""/
+    mv -- "$EMU"/"$f" "$1"/
   done
 }
 
 mvoer() {
-  mv -- "$1"/"$2" "$EMU"/
+  for f in "${@:2}"; do
+    mv -- "$1"/"$2" "$EMU"/
+  done
 }
 
 mviep() {
   for f in "${@:2}"; do
-    mv -- "$EMU"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    mv -- "$EMU"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 mvoep() {
-  mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+  for f in "${@:2}"; do
+    mv -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+  done
 }
 
 cpic() {
@@ -265,22 +281,26 @@ cpob() {
 
 cpir() {
   for f in "${@:2}"; do
-    cp -- "$DOW"/"$f" "$1""/
+    cp -- "$DOW"/"$f" "$1"/
   done
 }
 
 cpor() {
-  cp -- "$1"/"$2" "$DOW"/
+  for f in "${@:2}"; do
+    cp -- "$1"/"$2" "$DOW"/
+  done
 }
 
 cpip() {
   for f in "${@:2}"; do
-    cp -- "$DOW"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -- "$DOW"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cpop() {
-  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+  for f in "${@:2}"; do
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+  done
 }
 
 cpidc() {
@@ -321,22 +341,26 @@ cpodb() {
 
 cpidr() {
   for f in "${@:2}"; do
-    cp -- "$DOC"/"$f" "$1""/
+    cp -- "$DOC"/"$f" "$1"/
   done
 }
 
 cpodr() {
-  cp -- "$1"/"$2" "$DOC"/
+  for f in "${@:2}"; do
+    cp -- "$1"/"$2" "$DOC"/
+  done
 }
 
 cpidp() {
   for f in "${@:2}"; do
-    cp -- "$DOC"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -- "$DOC"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cpodp() {
-  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+  for f in "${@:2}"; do
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+  done
 }
 
 cpisc() {
@@ -377,22 +401,26 @@ cposb() {
 
 cpisr() {
   for f in "${@:2}"; do
-    cp -- "$SCR"/"$f" "$1""/
+    cp -- "$SCR"/"$f" "$1"/
   done
 }
 
 cposr() {
-  cp -- "$1"/"$2" "$SCR"/
+  for f in "${@:2}"; do
+    cp -- "$1"/"$2" "$SCR"/
+  done
 }
 
 cpisp() {
   for f in "${@:2}"; do
-    cp -- "$SCR"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -- "$SCR"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cposp() {
-  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+  for f in "${@:2}"; do
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+  done
 }
 
 cpiec() {
@@ -433,22 +461,26 @@ cpoeb() {
 
 cpier() {
   for f in "${@:2}"; do
-    cp -- "$EMU"/"$f" "$1""/
+    cp -- "$EMU"/"$f" "$1"/
   done
 }
 
 cpoer() {
-  cp -- "$1"/"$2" "$EMU"/
+  for f in "${@:2}"; do
+    cp -- "$1"/"$2" "$EMU"/
+  done
 }
 
 cpiep() {
   for f in "${@:2}"; do
-    cp -- "$EMU"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -- "$EMU"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cpoep() {
-  cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+  for f in "${@:2}"; do
+    cp -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+  done
 }
 
 cpric() {
@@ -489,22 +521,26 @@ cprob() {
 
 cprir() {
   for f in "${@:2}"; do
-    cp -r -- "$DOW"/"$f" "$1""/
+    cp -r -- "$DOW"/"$f" "$1"/
   done
 }
 
 cpror() {
-  cp -r -- "$1"/"$2" "$DOW"/
+  for f in "${@:2}"; do
+    cp -r -- "$1"/"$2" "$DOW"/
+  done
 }
 
 cprip() {
   for f in "${@:2}"; do
-    cp -r -- "$DOW"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -r -- "$DOW"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cprop() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+  for f in "${@:2}"; do
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOW"/
+  done
 }
 
 cpridc() {
@@ -545,22 +581,26 @@ cprodb() {
 
 cpridr() {
   for f in "${@:2}"; do
-    cp -r -- "$DOC"/"$f" "$1""/
+    cp -r -- "$DOC"/"$f" "$1"/
   done
 }
 
 cprodr() {
-  cp -r -- "$1"/"$2" "$DOC"/
+  for f in "${@:2}"; do
+    cp -r -- "$1"/"$2" "$DOC"/
+  done
 }
 
 cpridp() {
   for f in "${@:2}"; do
-    cp -r -- "$DOC"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -r -- "$DOC"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cprodp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+  for f in "${@:2}"; do
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$DOC"/
+  done
 }
 
 cprisc() {
@@ -601,22 +641,26 @@ cprosb() {
 
 cprisr() {
   for f in "${@:2}"; do
-    cp -r -- "$SCR"/"$f" "$1""/
+    cp -r -- "$SCR"/"$f" "$1"/
   done
 }
 
 cprosr() {
-  cp -r -- "$1"/"$2" "$SCR"/
+  for f in "${@:2}"; do
+    cp -r -- "$1"/"$2" "$SCR"/
+  done
 }
 
 cprisp() {
   for f in "${@:2}"; do
-    cp -r -- "$SCR"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -r -- "$SCR"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cprosp() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+  for f in "${@:2}"; do
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$SCR"/
+  done
 }
 
 cpriec() {
@@ -657,22 +701,26 @@ cproeb() {
 
 cprier() {
   for f in "${@:2}"; do
-    cp -r -- "$EMU"/"$f" "$1""/
+    cp -r -- "$EMU"/"$f" "$1"/
   done
 }
 
 cproer() {
-  cp -r -- "$1"/"$2" "$EMU"/
+  for f in "${@:2}"; do
+    cp -r -- "$1"/"$2" "$EMU"/
+  done
 }
 
 cpriep() {
   for f in "${@:2}"; do
-    cp -r -- "$EMU"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root""/
+    cp -r -- "$EMU"/"$f" "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/
   done
 }
 
 cproep() {
-  cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+  for f in "${@:2}"; do
+    cp -r -- "$PREFIX/var/lib/proot-distro/containers/$1/rootfs/root"/"$2" "$EMU"/
+  done
 }
 
 mviac() {

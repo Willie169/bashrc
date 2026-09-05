@@ -94,19 +94,19 @@ with open(p, "w", encoding="utf-8") as file:
                     remote[j] +
                     "\"/\"$f\" " +
                     tlocal[k] +
-                    "\"/\n  done\n}\n\n")
+                    "/\n  done\n}\n\n")
                 file.write(
                     opStr[i] +
                     "o" +
                     remoteStr[j] +
                     tlocalStr[k] +
-                    "() {\n  " +
+                    "() {\n  for f in \"${@:2}\"; do\n    " +
                     op[i] +
                     " -- " +
                     tlocal[k] +
                     "/\"$2\" \"" +
                     remote[j] +
-                    "\"/\n}\n\n")
+                    "\"/\n  done\n}\n\n")
 
     for i in lr(aop):
         for j in lr(remote):
