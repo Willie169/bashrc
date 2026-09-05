@@ -2643,6 +2643,18 @@ grbir() {
   git rebase -i --root "$@"
 }
 
+grbih() {
+  git rebase -i HEAD~"$1" "${@:2}"
+}
+
+grbimn() {
+  git rebase -i main~"$1" "${@:2}"
+}
+
+grbimr() {
+  git rebase -i master~"$1" "${@:2}"
+}
+
 grbc() {
   (
     cgrr && git add . && git rebase --continue "$@"
