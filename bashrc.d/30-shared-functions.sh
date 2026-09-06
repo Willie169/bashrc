@@ -1066,15 +1066,19 @@ If BYTES is not provided, $SPLIT_SIZE is used if set and 4000M is used otherwise
 }
 
 bz2_single() {
-  compress_single --tar --pad '.tar.bz2' 'bzip2 -9' "$@"
+  compress_single --tar --pad '.tar.bz2' 'bzip2 -9 -c' "$@"
 }
 
 gz_single() {
-  compress_single --tar --pad '.tar.gz' 'gzip -9' "$@"
+  compress_single --tar --pad '.tar.gz' 'gzip -9 -c' "$@"
 }
 
 xz_single() {
-  compress_single --tar --pad '.tar.xz' 'xz -9' "$@"
+  compress_single --tar --pad '.tar.xz' 'xz -9 -c' "$@"
+}
+
+zst_single() {
+  compress_single --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$@"
 }
 
 tar_single() {
@@ -1086,23 +1090,27 @@ zip_single() {
 }
 
 7z_single() {
-  compress_single --no-tar --pad '.7z' '7z a -so -mx=9' "$@"
+  compress_single --no-tar --pad '.7z' '7z a -mx=9 -so' "$@"
 }
 
 7z_non_solid_single() {
-  compress_single --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$@"
+  compress_single --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$@"
 }
 
 bz2_split() {
-  compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$@"
+  compress_split --tar --pad '.tar.bz2' 'bzip2 -9 -c' "$@"
 }
 
 gz_split() {
-  compress_split --tar --pad '.tar.gz' 'gzip -9' "$@"
+  compress_split --tar --pad '.tar.gz' 'gzip -9 -c' "$@"
 }
 
 xz_split() {
-  compress_split --tar --pad '.tar.xz' 'xz -9' "$@"
+  compress_split --tar --pad '.tar.xz' 'xz -9 -c' "$@"
+}
+
+zst_split() {
+  compress_split --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$@"
 }
 
 tar_split() {
@@ -1114,18 +1122,18 @@ zip_split() {
 }
 
 7z_split() {
-  compress_split --no-tar --pad '.7z' '7z a -so -mx=9' "$@"
+  compress_split --no-tar --pad '.7z' '7z a -mx=9 -so' "$@"
 }
 
 7z_non_solid_split() {
-  compress_split --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$@"
+  compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$@"
 }
 
 bz2_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --tar --pad '.tar.bz2' 'bzip2 -9' "$f" "$@" && rm -- "$f"
+      compress_single --tar --pad '.tar.bz2' 'bzip2 -9 -c' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1134,7 +1142,7 @@ gz_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --tar --pad '.tar.gz' 'gzip -9' "$f" "$@" && rm -- "$f"
+      compress_single --tar --pad '.tar.gz' 'gzip -9 -c' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1143,7 +1151,16 @@ xz_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --tar --pad '.tar.xz' 'xz -9' "$f" "$@" && rm -- "$f"
+      compress_single --tar --pad '.tar.xz' 'xz -9 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+zst_single_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_single --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1170,7 +1187,7 @@ zip_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --no-tar --pad '.7z' '7z a -so -mx=9' "$f" "$@" && rm -- "$f"
+      compress_single --no-tar --pad '.7z' '7z a -mx=9 -so' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1179,7 +1196,7 @@ zip_single_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_single --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$f" "$@" && rm -- "$f"
+      compress_single --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1211,6 +1228,15 @@ xz_split_all() {
   )
 }
 
+zst_split_all() {
+  (
+    shopt -s nullglob
+    for f in *; do
+      compress_split --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
 tar_split_all() {
   (
     shopt -s nullglob
@@ -1233,7 +1259,7 @@ zip_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --no-tar --pad '.7z' '7z a -so -mx=9' "$f" "$@" && rm -- "$f"
+      compress_split --no-tar --pad '.7z' '7z a -mx=9 -so' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1242,7 +1268,7 @@ zip_split_all() {
   (
     shopt -s nullglob
     for f in *; do
-      compress_split --no-tar --pad '.7z' '7z a -so -mx=9 -ms=off' "$f" "$@" && rm -- "$f"
+      compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$f" "$@" && rm -- "$f"
     done
   )
 }
@@ -1260,6 +1286,9 @@ extract_all_and() {
   local etarxz=0
   local etxz=0
   local exz=0
+  local etarzst=0
+  local etzst=0
+  local ezst=0
   while [ "$#" -gt 0 ]; do
     case "$1" in
       --erar | --exclude-rar)
@@ -1308,6 +1337,18 @@ extract_all_and() {
         ;;
       --exz | --exclude-xz)
         exz=1
+        shift
+        ;;
+      --etarzst | --exclude-tarzst)
+        etarzst=1
+        shift
+        ;;
+      --etzst | --exclude-tzst)
+        etzst=1
+        shift
+        ;;
+      --ezst | --exclude-zst)
+        ezst=1
         shift
         ;;
       --)
@@ -1389,6 +1430,21 @@ extract_all_and() {
           [ "$exz" -eq 1 ] && continue
           un=${file%.xz}
           cmd=(xz -d)
+          ;;
+        *.tar.zst)
+          [ "$etarzst" -eq 1 ] && continue
+          un=${file%.tar.zst}
+          cmd=(tar -xf --zstd)
+          ;;
+        *.tzst)
+          [ "$etzst" -eq 1 ] && continue
+          un=${file%.tzst}
+          cmd=(tar -xf --zstd)
+          ;;
+        *.zst)
+          [ "$ezst" -eq 1 ] && continue
+          un=${file%.zst}
+          cmd=(zst -d)
           ;;
         *)
           continue
@@ -1476,6 +1532,29 @@ extract_all_and_xz() {
     esac
   done
   extract_all_and "$@" xz_single "${args[@]}"
+}
+
+extract_all_and_zst() {
+  local -a args=()
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -p | --pad)
+        if [ "$#" -lt 2 ]; then
+          return 1
+        fi
+        args+=("$1" "$2")
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+  extract_all_and "$@" zst_single "${args[@]}"
 }
 
 extract_all_and_tar() {
