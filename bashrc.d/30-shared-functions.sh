@@ -3264,7 +3264,7 @@ luafmc() {
 
 pyfm() {
   for f in "$@"; do
-    test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
+    test -f "$f" && black "$f"
   done
 }
 
@@ -3272,7 +3272,7 @@ pyfmc() {
   (
     shopt -s globstar nullglob
     for f in **/*.py; do
-      test -f "$f" && autopep8 --in-place --aggressive --aggressive "$f"
+      test -f "$f" && black "$f"
     done
   )
 }
