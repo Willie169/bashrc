@@ -2815,7 +2815,7 @@ grbc() {
   )
 }
 
-grbb() {
+grba() {
   git rebase --abort "$@"
 }
 
