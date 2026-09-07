@@ -815,9 +815,7 @@ grbih() {
   if [ $# -eq 0 ]; then
     git rebase -i HEAD~1
   else
-    local first="$1"
-    shift
-    git rebase -i HEAD~"$first" "$@"
+    git rebase -i HEAD~"$1" "${@:2}"
   fi
 }
 
@@ -825,9 +823,7 @@ grbimn() {
   if [ $# -eq 0 ]; then
     git rebase -i main~1
   else
-    local first="$1"
-    shift
-    git rebase -i main~"$first" "$@"
+    git rebase -i main~"$1" "${@:2}"
   fi
 }
 
@@ -835,9 +831,7 @@ grbimr() {
   if [ $# -eq 0 ]; then
     git rebase -i master~1
   else
-    local first="$1"
-    shift
-    git rebase -i master~"$first" "$@"
+    git rebase -i master~"$1" "${@:2}"
   fi
 }
 
