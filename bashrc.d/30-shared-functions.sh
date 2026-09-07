@@ -775,9 +775,7 @@ gchh() {
   if [ $# -eq 0 ]; then
     git checkout HEAD~1
   else
-    local first="$1"
-    shift
-    git checkout HEAD~"$first" "$@"
+    git checkout HEAD~"$1" "${@:2}"
   fi
 }
 
@@ -785,9 +783,7 @@ gchmn() {
   if [ $# -eq 0 ]; then
     git checkout main
   else
-    local first="$1"
-    shift
-    git checkout main~"$first" "$@"
+    git checkout main~"$1" "${@:2}"
   fi
 }
 
@@ -795,9 +791,7 @@ gchmr() {
   if [ $# -eq 0 ]; then
     git checkout master
   else
-    local first="$1"
-    shift
-    git checkout master~"$first" "$@"
+    git checkout master~"$1" "${@:2}"
   fi
 }
 
@@ -805,9 +799,7 @@ gchgp() {
   if [ $# -eq 0 ]; then
     git checkout gh-pages
   else
-    local first="$1"
-    shift
-    git checkout gh-pages~"$first" "$@"
+    git checkout gh-pages~"$1" "${@:2}"
   fi
 }
 
@@ -839,9 +831,7 @@ grbigp() {
   if [ $# -eq 0 ]; then
     git rebase -i gh-pages~1
   else
-    local first="$1"
-    shift
-    git rebase -i gh-pages~"$first" "$@"
+    git rebase -i gh-pages~"$1" "${@:2}"
   fi
 }
 
@@ -2880,6 +2870,10 @@ grbimn() {
 
 grbimr() {
   git rebase -i master~"$1" "${@:2}"
+}
+
+grbigp() {
+  git rebase -i gh-pages~"$1" "${@:2}"
 }
 
 grbc() {
