@@ -1846,7 +1846,13 @@ ffmpeg_av1_opus() {
     return
   fi
   local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
-  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 -b:a "$3" "$new"; then
+  local ba=()
+  if [ "$3" -ne 0 ]; then
+    ba=("-b:a" "${3}k")
+  else
+    ba=("-an")
+  fi
+  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 "${ba[@]}" "$new"; then
     rm -f -- "$new"
     return 1
   fi
@@ -1868,7 +1874,12 @@ ffmpeg_opus() {
     return
   fi
   local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
-  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "$1" "$new"; then
+  if [ "$1" -ne 0 ]; then
+    ba=("-b:a" "${1}k")
+  else
+    ba=("-an")
+  fi
+  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 "${ba[@]}" "$new"; then
     rm -f -- "$new"
     return 1
   fi
@@ -2035,21 +2046,21 @@ multimedia_convert() {
         *.3gp | *.mov | *.vob | *.wmv)
           (
             cd "$dir" &&
-              ffmpeg_av1_opus 4 40 24k "./$file" &&
+              ffmpeg_av1_opus 4 40 24 "./$file" &&
               rm -- "$file"
           )
           ;;
         *.avi | *.mkv | *.mp4 | *.mts | *.webm)
           (
             cd "$dir" &&
-              ffmpeg_av1_opus 4 32 72k "./$file" &&
+              ffmpeg_av1_opus 4 32 72 "./$file" &&
               rm -- "$file"
           )
           ;;
         *.aac | *.mp3 | *.m4a | *.ogg)
           (
             cd "$dir" &&
-              ffmpeg_opus 96k "./$file" &&
+              ffmpeg_opus 96 "./$file" &&
               rm -- "$file"
           )
           ;;
