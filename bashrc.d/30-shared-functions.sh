@@ -1845,7 +1845,7 @@ ffmpeg_av1_opus() {
   if [ "$#" -lt 4 ]; then
     return
   fi
-  local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_$3.mkv"}"
+  local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_${3}k.mkv"}"
   local ba=()
   if [ "$3" -ne 0 ]; then
     ba=("-b:a" "${3}k")
@@ -1873,13 +1873,8 @@ ffmpeg_opus() {
   if [ "$#" -lt 2 ]; then
     return
   fi
-  local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_$1.opus"}"
-  if [ "$1" -ne 0 ]; then
-    ba=("-b:a" "${1}k")
-  else
-    ba=("-an")
-  fi
-  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 "${ba[@]}" "$new"; then
+  local new="${3:-"$(echo "$2" | remove_extension)_ffmpeg_opus_${1}k.opus"}"
+  if ! ffmpeg -n -i "$2" -c:a libopus -vbr:a 1 -b:a "${1}k" "$new"; then
     rm -f -- "$new"
     return 1
   fi
