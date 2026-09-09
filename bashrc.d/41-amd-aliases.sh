@@ -32,7 +32,3 @@ else
   alias luanti='flatpak run org.luanti.luanti'
   alias steam='flatpak run com.valvesoftware.Steam'
 fi
-
-# ~/Applications
-alias altersend='AlterSend.AppImage'
-alias kiwix='kiwix-desktop_x86_64.appimage'
