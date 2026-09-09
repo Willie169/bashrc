@@ -39,7 +39,6 @@ update_tools() {
   (
     cd ~ || exit
     ARCH=$(uname -m)
-    pip3 install pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy
     if [ -f ~/.local/bin/yt-dlp ]; then
       rm -f /.local/bin/yt-dlp
       gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp

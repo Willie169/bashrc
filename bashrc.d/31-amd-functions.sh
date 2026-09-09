@@ -45,7 +45,6 @@ update_config() {
 update_tools() {
   (
     cd ~ || exit
-    cargo install stylua
     gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
     chmod +x yt-dlp
     mv yt-dlp ~/.local/bin/
