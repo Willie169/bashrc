@@ -1848,11 +1848,11 @@ ffmpeg_av1_opus() {
   local new="${5:-"$(echo "$4" | remove_extension)_ffmpeg_av1_$1_$2_opus_${3}k.mkv"}"
   local ba=()
   if [ "$3" -ne 0 ]; then
-    ba=("-b:a" "${3}k")
+    ba=("-c:a" "libopus" "-vbr:a" "1" "-b:a" "${3}k")
   else
     ba=("-an")
   fi
-  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -c:a libopus -vbr:a 1 "${ba[@]}" "$new"; then
+  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" "${ba[@]}" "$new"; then
     rm -f -- "$new"
     return 1
   fi
