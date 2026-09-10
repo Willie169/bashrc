@@ -1113,7 +1113,7 @@ zip_split() {
   compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$@"
 }
 
-bz2_single_all() {
+bz2_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1122,7 +1122,7 @@ bz2_single_all() {
   )
 }
 
-gz_single_all() {
+gz_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1131,7 +1131,7 @@ gz_single_all() {
   )
 }
 
-xz_single_all() {
+xz_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1140,7 +1140,7 @@ xz_single_all() {
   )
 }
 
-zst_single_all() {
+zst_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1149,7 +1149,7 @@ zst_single_all() {
   )
 }
 
-tar_single_all() {
+tar_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1158,7 +1158,7 @@ tar_single_all() {
   )
 }
 
-zip_single_all() {
+zip_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1167,7 +1167,7 @@ zip_single_all() {
   )
 }
 
-7z_single_all() {
+7z_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1176,7 +1176,7 @@ zip_single_all() {
   )
 }
 
-7z_non_solid_single_all() {
+7z_non_solid_single_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1185,7 +1185,7 @@ zip_single_all() {
   )
 }
 
-bz2_split_all() {
+bz2_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1194,7 +1194,7 @@ bz2_split_all() {
   )
 }
 
-gz_split_all() {
+gz_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1203,7 +1203,7 @@ gz_split_all() {
   )
 }
 
-xz_split_all() {
+xz_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1212,7 +1212,7 @@ xz_split_all() {
   )
 }
 
-zst_split_all() {
+zst_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1221,7 +1221,7 @@ zst_split_all() {
   )
 }
 
-tar_split_all() {
+tar_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1230,7 +1230,7 @@ tar_split_all() {
   )
 }
 
-zip_split_all() {
+zip_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1239,7 +1239,7 @@ zip_split_all() {
   )
 }
 
-7z_split_all() {
+7z_split_here() {
   (
     shopt -s nullglob
     for f in *; do
@@ -1248,10 +1248,170 @@ zip_split_all() {
   )
 }
 
-7z_non_solid_split_all() {
+7z_non_solid_split_here() {
   (
     shopt -s nullglob
     for f in *; do
+      compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+bz2_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --tar --pad '.tar.bz2' 'bzip2 -9 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+gz_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --tar --pad '.tar.gz' 'gzip -9 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+xz_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --tar --pad '.tar.xz' 'xz -9 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+zst_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+tar_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --no-tar --pad '.tar' 'tar -cf -' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+zip_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --no-tar --pad '.7z' '7z a -mx=9 -so' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_non_solid_single_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_single --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+bz2_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --tar --pad '.tar.bz2' 'bzip2 -9' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+gz_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --tar --pad '.tar.gz' 'gzip -9' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+xz_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --tar --pad '.tar.xz' 'xz -9' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+zst_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+tar_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --no-tar --pad '.tar' 'tar -cf -' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+zip_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
+      compress_split --no-tar --pad '.7z' '7z a -mx=9 -so' "$f" "$@" && rm -- "$f"
+    done
+  )
+}
+
+7z_non_solid_split_files() {
+  (
+    shopt -s globstar nullglob
+    for f in **/*; do
+      test -f "$f" || continue
       compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$f" "$@" && rm -- "$f"
     done
   )
