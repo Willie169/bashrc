@@ -45,6 +45,24 @@ update_config() {
 update_tools() {
   (
     cd ~ || exit
+    source /etc/os-release
+    # shellcheck disable=2155
+    export UBUNTU_VERSION_ID=$(
+      if grep -q '^NAME="Linux Mint"' /etc/os-release; then
+        inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
+      else
+        . /etc/os-release
+        echo "$VERSION_ID"
+      fi
+    )
+    wget --tries=100 --retry-connrefused --waitretry=5 -O linux.html https://www.bleachbit.org/download/linux
+    url=$(cat linux.html | grep "_all_ubuntu${UBUNTU_VERSION_ID/./}\.deb" | sed 's/^.*href="//' | sed "s/_all_ubuntu${UBUNTU_VERSION_ID/./}\.deb.*$/_all_ubuntu${UBUNTU_VERSION_ID/./}\.deb/")
+    rm linux.html*
+    wget --tries=100 --retry-connrefused --waitretry=5 "$url"
+    # shellcheck disable=2001
+    deb=$(echo "$url" | sed 's|https://download.bleachbit.org/get/||')
+    sudo DEBIAN_FRONTEND=noninteractive apt install "./$deb" -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+    rm "$deb"*
     gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
     chmod +x yt-dlp
     mv yt-dlp ~/.local/bin/
