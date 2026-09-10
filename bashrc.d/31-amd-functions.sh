@@ -61,7 +61,7 @@ clean_disk() {
     "zsh.history"
   )
   for c in "${cleaners[@]}"; do
-    bleachbit -c "$c"
+    sudo bleachbit -c "$c"
   done
 }
 
