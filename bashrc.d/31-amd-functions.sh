@@ -36,7 +36,6 @@ clean_disk() {
     "kde.cache"
     "kde.recent_documents"
     "kde.tmp"
-    "libreoffice.history"
     "octave.history"
     "python.history"
     "sqlite3.history"
@@ -60,8 +59,8 @@ clean_disk() {
     "zsh.history"
   )
   for c in "${cleaners[@]}"; do
-    bleachbit -c "$c"
-    sudo bleachbit -c "$c"
+    bleachbit -c "$c" || true
+    sudo bleachbit -c "$c" || true
   done
 }
 

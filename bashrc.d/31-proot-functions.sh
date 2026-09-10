@@ -32,13 +32,11 @@ clean_disk() {
     "kde.cache"
     "kde.recent_documents"
     "kde.tmp"
-    "libreoffice.history"
     "octave.history"
     "python.history"
     "sqlite3.history"
     "system.cache"
     "system.localizations"
-    "system.memory"
     "system.recent_documents"
     "system.rotated_logs"
     "thumbnails.cache"
@@ -57,7 +55,7 @@ clean_disk() {
     "zsh.history"
   )
   for c in "${cleaners[@]}"; do
-    bleachbit -c "$c"
+    bleachbit -c "$c" || true
   done
 }
 
