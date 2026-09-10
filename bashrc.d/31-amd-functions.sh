@@ -15,6 +15,54 @@ clean_disk() {
   echo y | brew autoremove
   brew cleanup
   docker system prune -a -f --volumes
+  local cleaners=(
+    "android_studio.gradle_cache"
+    "android_studio.ide_cache"
+    "android_studio.logs"
+    "audacious.cache"
+    "audacious.log"
+    "audacious.mru"
+    "bash.history"
+    "bash.tmp"
+    "brave.cache"
+    "brave.crash_reports"
+    "firefox.cache"
+    "firefox.crash_reports"
+    "gimp.tmp"
+    "gnome.run"
+    "gnome.search_history"
+    "gwenview.recent_documents"
+    "java.cache"
+    "kde.cache"
+    "kde.recent_documents"
+    "kde.tmp"
+    "libreoffice.history"
+    "octave.history"
+    "python.history"
+    "sqlite3.history"
+    "system.cache"
+    "system.localizations"
+    "system.memory"
+    "system.recent_documents"
+    "system.rotated_logs"
+    "thumbnails.cache"
+    "thunderbird.cache"
+    "transmission.history"
+    "transmission.torrents"
+    "vim.history"
+    "vlc.memory_dump"
+    "vlc.mru"
+    "vscode.backup"
+    "vscode.cache"
+    "vscode.logs"
+    "wine.tmp"
+    "winetricks.temporary_files"
+    "x11.debug_logs"
+    "zsh.history"
+  )
+  for c in "${cleaners[@]}"; do
+    bleachbit -c "$c"
+  done
 }
 
 update_texlive() {
