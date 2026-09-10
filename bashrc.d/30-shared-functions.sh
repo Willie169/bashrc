@@ -1841,6 +1841,29 @@ ls_extension() {
   find . -type f | sed -n 's/.*\(\.[^.\/]*\)$/\1/p' | sort -u
 }
 
+ffmpeg_av1() {
+  if [ "$#" -lt 3 ]; then
+    return
+  fi
+  local new=""
+  new="${4:-"$(echo "$3" | remove_extension)_ffmpeg_av1_$1_$2.mkv"}"
+  if ! ffmpeg -n -i "$4" -c:v libsvtav1 -preset "$1" -crf "$2" -an "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
+}
+
+ffmpeg_av1_lossless() {
+  if [ "$#" -eq 0 ]; then
+    return
+  fi
+  local new="${2:-"$(echo "$1" | remove_extension)_ffmpeg_av1_lossless.mkv"}"
+  if ! ffmpeg -n -i "$1" -c:v libsvtav1 -svtav1-params lossless=1 -preset -2 -an "$new"; then
+    rm -f -- "$new"
+    return 1
+  fi
+}
+
 ffmpeg_av1_opus() {
   if [ "$#" -lt 4 ]; then
     return
