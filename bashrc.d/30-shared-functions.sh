@@ -1113,6 +1113,70 @@ zip_split() {
   compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$@"
 }
 
+bz2_single_delete() {
+  compress_single --tar --pad '.tar.bz2' 'bzip2 -9 -c' "$@" && rm -rf "$1"
+}
+
+gz_single_delete() {
+  compress_single --tar --pad '.tar.gz' 'gzip -9 -c' "$@" && rm -rf "$1"
+}
+
+xz_single_delete() {
+  compress_single --tar --pad '.tar.xz' 'xz -9 -c' "$@" && rm -rf "$1"
+}
+
+zst_single_delete() {
+  compress_single --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$@" && rm -rf "$1"
+}
+
+tar_single_delete() {
+  compress_single --no-tar --pad '.tar' 'tar -cf -' "$@" && rm -rf "$1"
+}
+
+zip_single_delete() {
+  compress_single --no-tar --pad '.zip' 'zip -r -9 -' "$@" && rm -rf "$1"
+}
+
+7z_single_delete() {
+  compress_single --no-tar --pad '.7z' '7z a -mx=9 -so' "$@" && rm -rf "$1"
+}
+
+7z_non_solid_single_delete() {
+  compress_single --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$@" && rm -rf "$1"
+}
+
+bz2_split_delete() {
+  compress_split --tar --pad '.tar.bz2' 'bzip2 -9 -c' "$@" && rm -rf "$1"
+}
+
+gz_split_delete() {
+  compress_split --tar --pad '.tar.gz' 'gzip -9 -c' "$@" && rm -rf "$1"
+}
+
+xz_split_delete() {
+  compress_split --tar --pad '.tar.xz' 'xz -9 -c' "$@" && rm -rf "$1"
+}
+
+zst_split_delete() {
+  compress_split --tar --pad '.tar.zst' 'zstd --ultra -22 -c' "$@" && rm -rf "$1"
+}
+
+tar_split_delete() {
+  compress_split --no-tar --pad '.tar' 'tar -cf -' "$@" && rm -rf "$1"
+}
+
+zip_split_delete() {
+  compress_split --no-tar --pad '.zip' 'zip -r -9 -' "$@" && rm -rf "$1"
+}
+
+7z_split_delete() {
+  compress_split --no-tar --pad '.7z' '7z a -mx=9 -so' "$@" && rm -rf "$1"
+}
+
+7z_non_solid_split_delete() {
+  compress_split --no-tar --pad '.7z' '7z a -mx=9 -ms=off -so' "$@" && rm -rf "$1"
+}
+
 bz2_single_here() {
   (
     shopt -s nullglob
