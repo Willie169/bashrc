@@ -266,3 +266,7 @@ slns() {
 fff() {
   sudo systemctl restart firefox-apparmor
 }
+
+lpor() {
+  lp -o outputorder=reverse "$@"
+}
