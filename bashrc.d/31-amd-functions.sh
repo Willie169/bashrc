@@ -267,6 +267,10 @@ fff() {
   sudo systemctl restart firefox-apparmor
 }
 
+sptm() {
+  sudo partitionmanager "$@"
+}
+
 lpor() {
   lp -o outputorder=reverse "$@"
 }
