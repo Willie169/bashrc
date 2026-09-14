@@ -3641,7 +3641,8 @@ nhr() {
 }
 
 yt-rss() {
-  sed 's|https://www\.youtube\.com/channel/|https://www.youtube.com/feeds/videos.xml?channel_id=|' <("$@")
+  # shellcheck disable=2001
+  echo "$@" | sed 's|https://www\.youtube\.com/channel/|https://www.youtube.com/feeds/videos.xml?channel_id=|'
 }
 
 nsl() {
