@@ -3640,6 +3640,10 @@ nhr() {
   HOME=/dev/null XDG_CONFIG_HOME=/dev/null "$@"
 }
 
+yt-rss() {
+  sed 's|https://www\.youtube\.com/channel/|https://www.youtube.com/feeds/videos.xml?channel_id=|' <("$@")
+}
+
 nsl() {
   if [ "$#" -eq 0 ]; then
     systemd-inhibit --what=idle:sleep sleep infinity
