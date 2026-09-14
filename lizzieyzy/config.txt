@@ -171,7 +171,7 @@
     "replay-branch-interval-seconds": 0.9,
     "new-game-handicap": 0,
     "weighted-blunder-bar-height": false,
-    "first-load-katago": true,
+    "first-load-katago": false,
     "limit-my-time": false,
     "genmove-game-notime": false,
     "show-winrate-graph": true,
