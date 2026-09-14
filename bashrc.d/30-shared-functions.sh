@@ -3639,3 +3639,11 @@ rvs() {
 nhr() {
   HOME=/dev/null XDG_CONFIG_HOME=/dev/null "$@"
 }
+
+nsl() {
+  if [ "$#" -eq 0 ]; then
+    systemd-inhibit --what=idle:sleep sleep infinity
+  else
+    systemd-inhibit --what=idle:sleep "$@"
+  fi
+}
