@@ -3625,7 +3625,7 @@ phice() {
 }
 
 update_combinedfox() {
-  ./prefsCleaner.sh -s && ./updater.sh -su
+  ./updater.sh -su && ./prefsCleaner.sh -s
 }
 
 rvs() {
