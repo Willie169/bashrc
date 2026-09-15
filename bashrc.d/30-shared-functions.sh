@@ -606,7 +606,6 @@ gh_file() {
   fi
 }
 
-# shellcheck disable=2120
 cgrr() {
   if [ -n "${GRR:-}" ]; then
     cd "$GRR" || return
@@ -2053,12 +2052,16 @@ extract_all_and_7z_non_solid_split() {
   extract_all_and "$@" 7z_non_solid_split "${args[@]}"
 }
 
+remove_trailing() {
+  sed 's/[ \t]*$//' "$@"
+}
+
 remove_extension() {
-  sed -E 's/^(.+)\.[^.]+$/\1/'
+  sed -E 's/^(.+)\.[^.]+$/\1/' "$@"
 }
 
 get_extension() {
-  sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/'
+  sed -E '/^\.?[^.]+$/d; s/^.+\.([^.]*)$/\1/' "$@"
 }
 
 ls_extension() {
