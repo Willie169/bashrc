@@ -45,8 +45,6 @@ clean_disk() {
     "system.rotated_logs"
     "thumbnails.cache"
     "thunderbird.cache"
-    "transmission.history"
-    "transmission.torrents"
     "vim.history"
     "vlc.memory_dump"
     "vlc.mru"
