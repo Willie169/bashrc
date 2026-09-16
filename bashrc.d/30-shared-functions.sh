@@ -3630,3 +3630,7 @@ nsl() {
     systemd-inhibit --what=idle:sleep "$@"
   fi
 }
+
+oct() {
+  octave -G "$@"
+}
