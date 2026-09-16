@@ -2321,7 +2321,7 @@ latexmkc() {
   if command -v latexmk >/dev/null 2>&1; then
     latexmk -c
   else
-    rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.fdb_latexmk *.fls *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.tmp *.toc *.top *.tui *.vrb
+    rm -f -- *.acn *.acr *.alg *.aux *.bbl *.blg *.fdb_latexmk *.fls *.glg *.glo *.gls *.idx *.ilg *.ind *.ist *.lof *.log *.lot *.maf *.mp *.mtc *.mtc1 *.nav *.nlo *.out *.pdfsync *.snm *.tmp *.toc *.top *.tui *.vrb *.xdv
   fi
 }
 
