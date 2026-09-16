@@ -758,16 +758,23 @@ grm() {
 }
 
 gdifh() {
-  if [ $# -eq 0 ]; then
-    git diff HEAD~1 HEAD
-  elif [ $# -eq 1 ]; then
-    git diff HEAD~"$1" HEAD
+  if [ $# -le 1 ]; then
+    git diff HEAD~"${1:-1}" HEAD
   else
-    local first="$1"
-    local second="$2"
-    shift 2
-    git diff HEAD~"$first" HEAD~"$second" "$@"
+    git diff HEAD~"$1" HEAD~"$2" "${@:3}"
   fi
+}
+
+grsh() {
+  git restore --source=HEAD~"${1:-1}" . "${@:2}"
+}
+
+grsmn() {
+  git restore --source=main~"${1:-1}" . "${@:2}"
+}
+
+grsmr() {
+  git restore --source=master~"${1:-1}" . "${@:2}"
 }
 
 gchh() {
@@ -794,44 +801,16 @@ gchmr() {
   fi
 }
 
-gchgp() {
-  if [ $# -eq 0 ]; then
-    git checkout gh-pages
-  else
-    git checkout gh-pages~"$1" "${@:2}"
-  fi
-}
-
 grbih() {
-  if [ $# -eq 0 ]; then
-    git rebase -i HEAD~1
-  else
-    git rebase -i HEAD~"$1" "${@:2}"
-  fi
+  git rebase -i HEAD~"${1:-1}" "${@:2}"
 }
 
 grbimn() {
-  if [ $# -eq 0 ]; then
-    git rebase -i main~1
-  else
-    git rebase -i main~"$1" "${@:2}"
-  fi
+  git rebase -i main~"${1:-1}" "${@:2}"
 }
 
 grbimr() {
-  if [ $# -eq 0 ]; then
-    git rebase -i master~1
-  else
-    git rebase -i master~"$1" "${@:2}"
-  fi
-}
-
-grbigp() {
-  if [ $# -eq 0 ]; then
-    git rebase -i gh-pages~1
-  else
-    git rebase -i gh-pages~"$1" "${@:2}"
-  fi
+  git rebase -i master~"${1:-1}" "${@:2}"
 }
 
 gtr() {
@@ -3120,19 +3099,15 @@ grbir() {
 }
 
 grbih() {
-  git rebase -i HEAD~"$1" "${@:2}"
+  git rebase -i HEAD~"${1:-2}" "${@:2}"
 }
 
 grbimn() {
-  git rebase -i main~"$1" "${@:2}"
+  git rebase -i main~"${1:-2}" "${@:2}"
 }
 
 grbimr() {
-  git rebase -i master~"$1" "${@:2}"
-}
-
-grbigp() {
-  git rebase -i gh-pages~"$1" "${@:2}"
+  git rebase -i master~"${1:-2}" "${@:2}"
 }
 
 grbc() {
