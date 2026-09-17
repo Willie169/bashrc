@@ -3634,3 +3634,8 @@ nsl() {
 oct() {
   octave -G "$@"
 }
+
+cpybind() {
+  # shellcheck disable=2046
+  c++ -O3 -Wall -shared -fPIC $(python3 -m pybind11 --includes) "$1" -o "$2"$(python3 -m pybind11 --extension-suffix) "$@"
+}
