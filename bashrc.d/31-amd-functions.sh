@@ -14,7 +14,7 @@ clean_disk() {
   flatpak uninstall --unused -y || true
   echo y | brew autoremove
   brew cleanup
-  conda clean --index-cache
+  conda clean --index-cache -y
   docker system prune -a -f --volumes
   local cleaners=(
     "android_studio.gradle_cache"
