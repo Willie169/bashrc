@@ -31,6 +31,7 @@ with open(p, "w", encoding="utf-8") as file:
     npop = ["rm", "rmr", "rmrf", "mkdir", "mkdirp"]
     proot = ["termux", "ubuntu", "debian", "ubuntubox", "debianbox"]
     prootStr = ["t", "u", "d", "ub", "db"]
+    pdl = ["pdc", "pdl", "pdls", "pdr"]
 
     for i in lr(op):
         for j in lr(remote):
@@ -269,16 +270,19 @@ mkdirpp() {
                     + '}" "$@"\n}\n\n'
                 )
 
-    for k in lr(proot):
-        file.write(
-            "pdc"
-            + prootStr[k]
-            + '() {\n  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_'
-            + proot[k].upper()
-            + ":-"
-            + proot[k]
-            + '}/rootfs/root" || return\n}\n\n'
-        )
+    for j in lr(pdl):
+        for k in lr(proot):
+            file.write(
+                pdl[j]
+                + prootStr[k]
+                + "() {\n  "
+                + pdl[j]
+                + "${"
+                + proot[k].upper()
+                + ":-"
+                + proot[k]
+                + '}"\n}\n\n'
+            )
 
     gacp = """mvaAgB() {
   mvaAic "$1"

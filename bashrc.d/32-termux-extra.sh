@@ -3320,23 +3320,83 @@ cpayspdb() {
 }
 
 pdct() {
-  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_TERMUX:-termux}/rootfs/root" || return
+  pdc${TERMUX:-termux}"
 }
 
 pdcu() {
-  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_UBUNTU:-ubuntu}/rootfs/root" || return
+  pdc${UBUNTU:-ubuntu}"
 }
 
 pdcd() {
-  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_DEBIAN:-debian}/rootfs/root" || return
+  pdc${DEBIAN:-debian}"
 }
 
 pdcub() {
-  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_UBUNTUBOX:-ubuntubox}/rootfs/root" || return
+  pdc${UBUNTUBOX:-ubuntubox}"
 }
 
 pdcdb() {
-  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/${PROOT_DEBIANBOX:-debianbox}/rootfs/root" || return
+  pdc${DEBIANBOX:-debianbox}"
+}
+
+pdlt() {
+  pdl${TERMUX:-termux}"
+}
+
+pdlu() {
+  pdl${UBUNTU:-ubuntu}"
+}
+
+pdld() {
+  pdl${DEBIAN:-debian}"
+}
+
+pdlub() {
+  pdl${UBUNTUBOX:-ubuntubox}"
+}
+
+pdldb() {
+  pdl${DEBIANBOX:-debianbox}"
+}
+
+pdlst() {
+  pdls${TERMUX:-termux}"
+}
+
+pdlsu() {
+  pdls${UBUNTU:-ubuntu}"
+}
+
+pdlsd() {
+  pdls${DEBIAN:-debian}"
+}
+
+pdlsub() {
+  pdls${UBUNTUBOX:-ubuntubox}"
+}
+
+pdlsdb() {
+  pdls${DEBIANBOX:-debianbox}"
+}
+
+pdrt() {
+  pdr${TERMUX:-termux}"
+}
+
+pdru() {
+  pdr${UBUNTU:-ubuntu}"
+}
+
+pdrd() {
+  pdr${DEBIAN:-debian}"
+}
+
+pdrub() {
+  pdr${UBUNTUBOX:-ubuntubox}"
+}
+
+pdrdb() {
+  pdr${DEBIANBOX:-debianbox}"
 }
 
 mvagc() {
