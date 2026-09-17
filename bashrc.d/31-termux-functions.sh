@@ -155,6 +155,15 @@ pdl() {
   "${cmd[@]}"
 }
 
+pdls() {
+  # shellcheck disable=2155
+  local cwd=$(realpath -- "$PWD")
+  if [[ "$cwd" == "$HOME"/shared/* ]]; then
+    local sd="${cwd#"$HOME"/shared/}"
+    pdl "$1" -w "/root/shared/$sd" "${@:2}"
+  fi
+}
+
 pdr() {
   cmd=(proot-distro run "$1" --redirect-ports --isolated --shared-tmp)
   shift
