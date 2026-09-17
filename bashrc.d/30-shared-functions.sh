@@ -316,7 +316,7 @@ gh_release codeberg.org/Codeberg/pages-server '"'"'codeberg-pages-server-*-debia
     case "$1" in
       -h | --help)
         echo "$msg"
-        shift
+        return 0
         ;;
       -g | --glob)
         regex=0
