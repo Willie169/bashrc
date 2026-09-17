@@ -277,7 +277,7 @@ mkdirpp() {
                 + prootStr[k]
                 + "() {\n  "
                 + pdl[j]
-                + "${"
+                + " ${"
                 + proot[k].upper()
                 + ":-"
                 + proot[k]
