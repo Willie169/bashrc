@@ -11,6 +11,7 @@ clean_disk() {
   apt autoclean
   echo y | brew autoremove
   brew cleanup
+  conda clean --index-cache
   local cleaners=(
     "bash.history"
     "bash.tmp"
