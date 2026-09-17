@@ -164,6 +164,8 @@ pdls() {
   if [[ "$cwd" == "$HOME"/shared/* ]]; then
     local sd="${cwd#"$HOME"/shared/}"
     pdl "$1" -w "/root/shared/$sd" "${@:2}"
+  else
+    pdl "$1" -w "/root/shared" "${@:2}"
   fi
 }
 
