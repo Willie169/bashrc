@@ -277,11 +277,11 @@ mkdirpp() {
                 + prootStr[k]
                 + "() {\n  "
                 + pdl[j]
-                + " ${"
+                + ' "${'
                 + proot[k].upper()
                 + ":-"
                 + proot[k]
-                + '}"\n}\n\n'
+                + '}""\n}\n\n'
             )
 
     gacp = """mvaAgB() {
