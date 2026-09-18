@@ -367,8 +367,8 @@ cpiaAgB() {
     E = ["n", "a"]
     F = [" --no-audio", ""]
     eG = ["", " --new-display"]
-    G = [[""], ["n", "sa"]]
-    H = [[""], ["", " --start-app"]]
+    G = [[""], ["n", "s", "l"]]
+    H = [[""], ["", " --start-app", " --start-app app.lawnchair"]]
 
     for eg in lr(eG):
         for a in lr(A):
