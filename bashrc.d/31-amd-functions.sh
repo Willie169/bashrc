@@ -144,7 +144,7 @@ update_tools() {
     rm rustdesk-*-x86_64.deb*
     rm -f ~/.local/bin/adb
     rm -f ~/.local/bin/scrcpy
-    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Genymobile/scrcpy 'scrcpy-linux-x86_64-*.tar.gz'
+    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/scrcpy-6007-workaround 'scrcpy-linux-x86_64-*.tar.gz'
     tar -xzf scrcpy-linux-x86_64-*.tar.gz
     mv scrcpy-linux-x86_64-*/adb ~/.local/bin/
     mv scrcpy-linux-x86_64-*/scrcpy ~/.local/bin/
