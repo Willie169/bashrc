@@ -39,6 +39,11 @@ update_tools() {
   (
     cd ~ || exit
     ARCH=$(uname -m)
+    if apt-mark showhold | grep -Fxq scrcpy; then
+      gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/scrcpy-6007-workaround-termux 'scrcpy_*.deb'
+      DEBIAN_FRONTEND=noninteractive apt install --reinstall ./scrcpy_*.deb -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+      rm scrcpy_*.deb*
+    fi
     if [ -f ~/.local/bin/yt-dlp ]; then
       rm -f /.local/bin/yt-dlp
       gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
