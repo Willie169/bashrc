@@ -146,33 +146,20 @@ nxfce() {
   unset DBUS_SESSION_BUS_ADDRESS
   unset SESSION_MANAGER
   export GALLIUM_DRIVER=zink
-  export MESA_GL_VERSION_OVERRIDE=4.3
+  export MESA_GL_VERSION_OVERRIDE=4.3COMPAT
+  export MESA_GLES_VERSION_OVERRIDE=3.2
   dbus-launch --exit-with-session xfce4-session
 }
 
 dxfce() {
-  unset DBUS_SESSION_BUS_ADDRESS
-  unset SESSION_MANAGER
   export DISPLAY="$1"
-  export GALLIUM_DRIVER=zink
-  export MESA_GL_VERSION_OVERRIDE=4.3
-  dbus-launch --exit-with-session xfce4-session
+  nxfce
 }
 
 zxfce() {
-  unset DBUS_SESSION_BUS_ADDRESS
-  unset SESSION_MANAGER
-  export DISPLAY=:0
-  export GALLIUM_DRIVER=zink
-  export MESA_GL_VERSION_OVERRIDE=4.3
-  dbus-launch --exit-with-session xfce4-session
+  dxfce :0
 }
 
 fxfce() {
-  unset DBUS_SESSION_BUS_ADDRESS
-  unset SESSION_MANAGER
-  export DISPLAY=:1
-  export GALLIUM_DRIVER=zink
-  export MESA_GL_VERSION_OVERRIDE=4.3
-  dbus-launch --exit-with-session xfce4-session
+  dxfce :1
 }
