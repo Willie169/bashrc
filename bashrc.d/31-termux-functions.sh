@@ -241,5 +241,5 @@ xxfce() {
   export GALLIUM_DRIVER=virpipe
   export MESA_GL_VERSION_OVERRIDE=4.0
   export DISPLAY="${1:-0}"
-  termux-x11 "${1:-0}" -xstartup "dbus-launch --exit-with-session xfce4-session" >/dev/null 2>&1
+  termux-x11 "${1:-0}" -xstartup "dbus-launch --exit-with-session xfce4-session"
 }
