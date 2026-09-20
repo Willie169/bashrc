@@ -142,9 +142,36 @@ update_all() {
   update_tools
 }
 
-xfce() {
+nxfce() {
   unset DBUS_SESSION_BUS_ADDRESS
   unset SESSION_MANAGER
+  export GALLIUM_DRIVER=zink
+  export MESA_GL_VERSION_OVERRIDE=4.3
+  dbus-launch --exit-with-session xfce4-session
+}
+
+dxfce() {
+  unset DBUS_SESSION_BUS_ADDRESS
+  unset SESSION_MANAGER
+  export DISPLAY="$1"
+  export GALLIUM_DRIVER=zink
+  export MESA_GL_VERSION_OVERRIDE=4.3
+  dbus-launch --exit-with-session xfce4-session
+}
+
+zxfce() {
+  unset DBUS_SESSION_BUS_ADDRESS
+  unset SESSION_MANAGER
+  export DISPLAY=:0
+  export GALLIUM_DRIVER=zink
+  export MESA_GL_VERSION_OVERRIDE=4.3
+  dbus-launch --exit-with-session xfce4-session
+}
+
+fxfce() {
+  unset DBUS_SESSION_BUS_ADDRESS
+  unset SESSION_MANAGER
+  export DISPLAY=:1
   export GALLIUM_DRIVER=zink
   export MESA_GL_VERSION_OVERRIDE=4.3
   dbus-launch --exit-with-session xfce4-session
