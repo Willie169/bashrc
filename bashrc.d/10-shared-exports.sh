@@ -40,8 +40,6 @@ if [ "$IS_TERMUX" -eq 0 ]; then
 fi
 if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
   export IS_CONTAINER=1
-  export GALLIUM_DRIVER=virpipe
-  export MESA_GL_VERSION_OVERRIDE=4.0
 else
   export IS_CONTAINER=0
 fi
@@ -50,6 +48,8 @@ if [ "$IS_TERMUX" -eq 0 ] && [ "$IS_CONTAINER" -eq 1 ]; then
   export LC_CTYPE=en_US.UTF-8
   export LC_ALL=en_US.UTF-8
   export PULSE_SERVER=127.0.0.1
+  export GALLIUM_DRIVER=virpipe
+  export MESA_GL_VERSION_OVERRIDE=4.0
 fi
 export VISUAL=nvim
 export EDITOR="$VISUAL"
