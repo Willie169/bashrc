@@ -218,14 +218,31 @@ tx11() {
   termux-x11 "$@"
 }
 
-xfce() {
+nxfce() {
+  export GALLIUM_DRIVER=virpipe
+  export MESA_GL_VERSION_OVERRIDE=4.0
   dbus-launch --exit-with-session xfce4-session >/dev/null 2>&1
 }
 
+dxfce() {
+  export DISPLAY="$1"
+  nxfce
+}
+
+zxfce() {
+  dxfce :0
+}
+
+fxfce() {
+  dxfce :1
+}
+
 xxfce() {
+  export GALLIUM_DRIVER=virpipe
+  export MESA_GL_VERSION_OVERRIDE=4.0
   if [ $# -ne 0 ]; then
-    termux-x11 "$1" -xstartup "dbus-launch --exit-with-session xfce4-session"
+    termux-x11 "$1" -xstartup nxfce
   else
-    termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"
+    termux-x11 :0 -xstartup nxfce
   fi
 }

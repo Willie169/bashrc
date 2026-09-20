@@ -40,8 +40,8 @@ if [ "$IS_TERMUX" -eq 0 ]; then
 fi
 if [[ "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/1/mountinfo)" != "$(awk '$5=="/" {print $1}' 2>/dev/null </proc/$$/mountinfo)" ]]; then
   export IS_CONTAINER=1
-  export GALLIUM_DRIVER=zink
-  export MESA_GL_VERSION_OVERRIDE=4.3
+  export GALLIUM_DRIVER=virpipe
+  export MESA_GL_VERSION_OVERRIDE=4.0
 else
   export IS_CONTAINER=0
 fi
