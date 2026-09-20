@@ -3547,8 +3547,6 @@ dfsftp() {
 }
 
 csd() {
-  local -
-  set -o noglob
   cd ~/shared || return
   # shellcheck disable=2086,2164
   [ -n "$1" ] && cd $1
