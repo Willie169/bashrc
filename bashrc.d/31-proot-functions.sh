@@ -151,7 +151,7 @@ nxfce() {
 }
 
 dxfce() {
-  export DISPLAY="$1"
+  export DISPLAY="${1:-0}"
   nxfce
 }
 
