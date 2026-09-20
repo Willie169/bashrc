@@ -4,7 +4,7 @@
 
 ### Supported Environments
 
-- Ubuntu derivatives AMD64: designed for Ubuntu derivatives for my [**ubuntu-setup-with-vnc-and-gpu**](https://github.com/Willie169/ubuntu-setup-with-vnc-and-gpu) repo.
+- Ubuntu derivatives AMD64: designed for Ubuntu derivatives for my [**ubuntu-setup**](https://github.com/Willie169/ubuntu-setup) repo.
 - Ubuntu or Debian ARM proot-distro: designed for Ubuntu and Debian proot-distro in Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 - Termux: designed for Termux for my [**termux-sh**](https://github.com/Willie169/termux-sh) repo.
 
