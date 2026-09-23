@@ -15,7 +15,6 @@ clean_disk() {
   echo y | brew autoremove
   brew cleanup
   conda clean --index-cache -y
-  docker system prune -a -f --volumes
   local cleaners=(
     "android_studio.gradle_cache"
     "android_studio.ide_cache"
@@ -61,6 +60,10 @@ clean_disk() {
     bleachbit -c "$c" || true
     sudo bleachbit -c "$c" || true
   done
+}
+
+dsp() {
+  docker system prune -a -f "$@"
 }
 
 update_texlive() {
