@@ -273,6 +273,14 @@ sptm() {
   sudo partitionmanager "$@"
 }
 
+i2pt() {
+  sudo systemctl start i2p
+}
+
+i2pp() {
+  sudo systemctl stop i2p
+}
+
 lpor() {
   lp -o outputorder=reverse "$@"
 }
