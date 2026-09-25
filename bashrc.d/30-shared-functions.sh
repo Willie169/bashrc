@@ -3552,6 +3552,18 @@ csd() {
   [ -n "$1" ] && cd $1
 }
 
+cst() {
+  cd ~/shared/tmp || return
+  # shellcheck disable=2086,2164
+  [ -n "$1" ] && cd $1
+}
+
+csp() {
+  cd ~/shared/ptmp || return
+  # shellcheck disable=2086,2164
+  [ -n "$1" ] && cd $1
+}
+
 dicepass() {
   local n="$1"
   local sep="${2:--}"

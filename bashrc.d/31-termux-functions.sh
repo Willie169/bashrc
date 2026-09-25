@@ -175,6 +175,28 @@ pdls() {
   fi
 }
 
+pdlt() {
+  # shellcheck disable=2155
+  local cwd=$(realpath -- "$PWD")
+  if [[ "$cwd" == "$HOME"/shared/tmp/* ]]; then
+    local sd="${cwd#"$HOME"/shared/tmp/}"
+    pdl "$1" -w "/root/shared/tmp/$sd" "${@:2}"
+  else
+    pdl "$1" -w "/root/shared/tmp" "${@:2}"
+  fi
+}
+
+pdlp() {
+  # shellcheck disable=2155
+  local cwd=$(realpath -- "$PWD")
+  if [[ "$cwd" == "$HOME"/shared/ptmp/* ]]; then
+    local sd="${cwd#"$HOME"/shared/ptmp/}"
+    pdl "$1" -w "/root/shared/ptmp/$sd" "${@:2}"
+  else
+    pdl "$1" -w "/root/shared/ptmp" "${@:2}"
+  fi
+}
+
 pdr() {
   cmd=(proot-distro run "$1" --redirect-ports --isolated --shared-tmp)
   shift
