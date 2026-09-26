@@ -3359,24 +3359,64 @@ pdldb() {
   pdl "${DEBIANBOX:-debianbox}"
 }
 
-pdlst() {
-  pdls "${TERMUX:-termux}"
+pdst() {
+  pds "${TERMUX:-termux}"
 }
 
-pdlsu() {
-  pdls "${UBUNTU:-ubuntu}"
+pdsu() {
+  pds "${UBUNTU:-ubuntu}"
 }
 
-pdlsd() {
-  pdls "${DEBIAN:-debian}"
+pdsd() {
+  pds "${DEBIAN:-debian}"
 }
 
-pdlsub() {
-  pdls "${UBUNTUBOX:-ubuntubox}"
+pdsub() {
+  pds "${UBUNTUBOX:-ubuntubox}"
 }
 
-pdlsdb() {
-  pdls "${DEBIANBOX:-debianbox}"
+pdsdb() {
+  pds "${DEBIANBOX:-debianbox}"
+}
+
+pdtt() {
+  pdt "${TERMUX:-termux}"
+}
+
+pdtu() {
+  pdt "${UBUNTU:-ubuntu}"
+}
+
+pdtd() {
+  pdt "${DEBIAN:-debian}"
+}
+
+pdtub() {
+  pdt "${UBUNTUBOX:-ubuntubox}"
+}
+
+pdtdb() {
+  pdt "${DEBIANBOX:-debianbox}"
+}
+
+pdpt() {
+  pdp "${TERMUX:-termux}"
+}
+
+pdpu() {
+  pdp "${UBUNTU:-ubuntu}"
+}
+
+pdpd() {
+  pdp "${DEBIAN:-debian}"
+}
+
+pdpub() {
+  pdp "${UBUNTUBOX:-ubuntubox}"
+}
+
+pdpdb() {
+  pdp "${DEBIANBOX:-debianbox}"
 }
 
 pdrt() {

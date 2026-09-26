@@ -164,7 +164,7 @@ pdl() {
   "${cmd[@]}"
 }
 
-pdls() {
+pds() {
   # shellcheck disable=2155
   local cwd=$(realpath -- "$PWD")
   if [[ "$cwd" == "$HOME"/shared/* ]]; then
@@ -175,7 +175,7 @@ pdls() {
   fi
 }
 
-pdlt() {
+pdt() {
   # shellcheck disable=2155
   local cwd=$(realpath -- "$PWD")
   if [[ "$cwd" == "$HOME"/shared/tmp/* ]]; then
@@ -186,7 +186,7 @@ pdlt() {
   fi
 }
 
-pdlp() {
+pdp() {
   # shellcheck disable=2155
   local cwd=$(realpath -- "$PWD")
   if [[ "$cwd" == "$HOME"/shared/ptmp/* ]]; then
