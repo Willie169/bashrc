@@ -123,7 +123,12 @@ update_all() {
 }
 
 pdc() {
-  cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/$1/rootfs/root" || return
+  # shellcheck disable=2164
+  if [ "$#" -eq 0 ]; then
+    cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers"
+  else
+    cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/$1/rootfs/root" >/dev/null || cd "/data/data/com.termux/files/usr/var/lib/proot-distro/containers/$1"
+  fi
 }
 
 pdl() {
