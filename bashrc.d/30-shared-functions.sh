@@ -757,6 +757,10 @@ grm() {
   git rm -rf -- "${1:-*}"
 }
 
+gdif() {
+  git diff "$@"
+}
+
 gdifh() {
   if [ $# -le 1 ]; then
     git diff HEAD~"${1:-1}" HEAD
@@ -775,6 +779,10 @@ grsmn() {
 
 grsmr() {
   git restore --source=master~"${1:-1}" . "${@:2}"
+}
+
+gch() {
+  git checkout "$@"
 }
 
 gchh() {
@@ -3118,10 +3126,6 @@ grbc() {
 
 grba() {
   git rebase --abort "$@"
-}
-
-gdif() {
-  git diff "$@"
 }
 
 exbs() {
