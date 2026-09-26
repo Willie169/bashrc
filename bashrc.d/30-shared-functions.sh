@@ -3586,7 +3586,7 @@ dicepass() {
   ((${#passphrase} > 0)) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
 }
 
-mkgwf() {
+mgwf() {
   mkdir -p .github/workflows
 }
 
