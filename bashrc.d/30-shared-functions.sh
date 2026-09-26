@@ -24,6 +24,8 @@ __git_repo_reminder() {
       echo "Entered Git repository: consider running 'git pull'"
       __LAST_GRR="$GRR"
     fi
+    # shellcheck disable=2034
+    GWF="$GRR/.github/workflows"
   else
     if [ -n "${__LAST_GRR:-}" ]; then
       echo "Leaving Git repository: consider running 'git push'"
@@ -607,10 +609,43 @@ gh_file() {
 }
 
 cgrr() {
+  # shellcheck disable=2164
   if [ -n "${GRR:-}" ]; then
-    cd "$GRR" || return
-    # shellcheck disable=2086,2164
+    cd "$GRR"
+    # shellcheck disable=2086
     [ -n "$1" ] && cd $1
+  fi
+}
+
+egrr() {
+  if [ -n "${GRR:-}" ]; then
+    echo "$GRR"
+  fi
+}
+
+mgwf() {
+  if [ -n "${GWF:-}" ]; then
+    mkdir -p "$GWF"
+  else
+    mkdir -p .github/workflows
+  fi
+}
+
+cgwf() {
+  # shellcheck disable=2164
+  if [ -n "$GWF" ]; then
+    cd "$GWF"
+  else
+    cd .github/workflows
+  fi
+}
+
+nvgwf() {
+  # shellcheck disable=2086
+  if [ -n "$GRR" ]; then
+    nvim "$GRR"/.github/workflows/${1:-*}
+  else
+    nvim .github/workflows/${1:-*}
   fi
 }
 
@@ -3586,27 +3621,6 @@ dicepass() {
   ((${#passphrase} > 0)) && printf '%s\n' "$passphrase" || printf 'ERROR: length too short\n'
 }
 
-mgwf() {
-  mkdir -p .github/workflows
-}
-
-cgwf() {
-  if [ -n "$GRR" ]; then
-    cd "$GRR"/.github/workflows || return
-  else
-    cd .github/workflows || return
-  fi
-}
-
-nvgwf() {
-  # shellcheck disable=2086
-  if [ -n "$GRR" ]; then
-    nvim "$GRR"/.github/workflows/${1:-*}
-  else
-    nvim .github/workflows/${1:-*}
-  fi
-}
-
 gwv() {
   gwenview "$@"
 }
@@ -3680,4 +3694,3 @@ update_latex() {
     git pull --rebase
   )
 }
-
