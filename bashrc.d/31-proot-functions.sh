@@ -33,19 +33,6 @@ clean_disk() {
   done
 }
 
-update_latex() {
-  (
-    cd /usr/share/LaTeX-ToolKit || exit
-    git reset --hard
-    git clean -d --force
-    git pull --rebase
-    cd ~/texmf/tex/latex/physics-patch || exit
-    git reset --hard
-    git clean -d --force
-    git pull --rebase
-  )
-}
-
 update_config() {
   update_vim_config
   update_nvim_config

@@ -3665,3 +3665,19 @@ cdl() {
   cd "$1"
   ls "${@:2}"
 }
+
+update_latex() {
+  (
+    cd ~/texmf/tex/latex/LaTeX-ToolKit || exit
+    git reset --hard
+    git clean -d --force
+    git pull --rebase
+  )
+  (
+    cd ~/texmf/tex/latex/physics-patch || exit
+    git reset --hard
+    git clean -d --force
+    git pull --rebase
+  )
+}
+

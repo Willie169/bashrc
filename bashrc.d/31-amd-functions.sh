@@ -66,19 +66,6 @@ dsp() {
   docker system prune -a -f "$@"
 }
 
-update_latex() {
-  (
-    cd /usr/share/LaTeX-ToolKit || exit
-    sudo git reset --hard
-    sudo git clean -d --force
-    sudo git pull --rebase
-    cd ~/texmf/tex/latex/physics-patch || exit
-    git reset --hard
-    git clean -d --force
-    git pull --rebase
-  )
-}
-
 update_config() {
   update_vim_config
   update_nvim_config
