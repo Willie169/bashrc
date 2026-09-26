@@ -33,10 +33,6 @@ clean_disk() {
   done
 }
 
-update_texlive() {
-  /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
-}
-
 update_latex() {
   (
     cd /usr/share/LaTeX-ToolKit || exit
@@ -138,7 +134,6 @@ update_all() {
   update_bashrc
   source ~/.bashrc
   update_pm
-  update_texlive
   update_latex
   update_tools
 }

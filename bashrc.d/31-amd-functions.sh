@@ -66,10 +66,6 @@ dsp() {
   docker system prune -a -f "$@"
 }
 
-update_texlive() {
-  sudo /usr/local/texlive/2026/bin/x86_64-linux/tlmgr update --all --self --reinstall-forcibly-removed
-}
-
 update_latex() {
   (
     cd /usr/share/LaTeX-ToolKit || exit
@@ -211,7 +207,6 @@ update_all() {
   source ~/.bashrc
   update_drivers
   update_pm
-  update_texlive
   update_latex
   update_tools
   update_pied
