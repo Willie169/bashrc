@@ -112,6 +112,7 @@ update_pm() {
   apt autoclean
   uv tool upgrade --all
   npm update -g
+  cpan -u
 }
 
 update_all() {
