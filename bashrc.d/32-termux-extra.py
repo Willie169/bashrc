@@ -33,6 +33,17 @@ with open(p, "w", encoding="utf-8") as file:
     prootStr = ["t", "u", "d", "ub", "db"]
     pdl = ["pdc", "pdl", "pds", "pdt", "pdp", "pdr"]
 
+    for j in lr(remote):
+        file.write(
+            "scd"
+            + remoteStr[j]
+            + '() {\n  # shellcheck disable=2164\n  [ -n "'
+            + remote[j]
+            + '" ] && cd "'
+            + remote[j]
+            + '/${1:-}"\n}\n\n'
+        )
+
     for i in lr(op):
         for j in lr(remote):
             for k in lr(local):

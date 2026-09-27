@@ -3,6 +3,26 @@
 
 [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]] && return
 
+scd() {
+  # shellcheck disable=2164
+  [ -n "$DOW" ] && cd "$DOW/${1:-}"
+}
+
+scdd() {
+  # shellcheck disable=2164
+  [ -n "$DOC" ] && cd "$DOC/${1:-}"
+}
+
+scds() {
+  # shellcheck disable=2164
+  [ -n "$SCR" ] && cd "$SCR/${1:-}"
+}
+
+scde() {
+  # shellcheck disable=2164
+  [ -n "$EMU" ] && cd "$EMU/${1:-}"
+}
+
 mvic() {
   for f in "$@"; do
     mv -- "$DOW"/"$f" ./
