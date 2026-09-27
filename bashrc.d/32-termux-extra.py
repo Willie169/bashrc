@@ -20,7 +20,12 @@ with open(p, "w", encoding="utf-8") as file:
     aopStr = ["mv", "cp"]
     iop = ["mv", "cpr"]
     iopStr = ["mv", "cp"]
-    remote = ["$DOW", "$DOC", "$SCR", "$EMU"]
+    remote = [
+        "${DOW:-${EMU:-/storage/emulated/0}/Download}",
+        "${DOC:-${EMU:-/storage/emulated/0}/Documents}",
+        "$SCR:-${EMU:-/storage/emulated/0}/Scripts}",
+        "${EMU:-/storage/emulated/0}",
+    ]
     remoteStr = ["", "d", "s", "e"]
     local = [".", "~", ".."]
     localStr = ["c", "h", "b"]
@@ -37,11 +42,9 @@ with open(p, "w", encoding="utf-8") as file:
         file.write(
             "scd"
             + remoteStr[j]
-            + '() {\n  # shellcheck disable=2164\n  [ -n "'
+            + '() {\n  if cd "'
             + remote[j]
-            + '" ] && cd "'
-            + remote[j]
-            + '/${1:-}"\n}\n\n'
+            + '"; then\n    # shellcheck disable=2164\n    [ -n "${1:-}" ] && cd "${1:-}"\n  fi\n}\n\n'
         )
 
     for i in lr(op):
