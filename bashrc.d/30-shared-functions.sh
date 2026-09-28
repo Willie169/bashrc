@@ -3671,7 +3671,8 @@ cpybind() {
 }
 
 okl() {
-  okular "$@"
+  # shellcheck disable=2086
+  okular ${1:-*.pdf} "${@:2}"
 }
 
 cdl() {
