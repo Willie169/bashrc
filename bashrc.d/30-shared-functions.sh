@@ -3694,3 +3694,7 @@ update_latex() {
     git pull --rebase
   )
 }
+
+qc() {
+  qalc "$@"
+}
