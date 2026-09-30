@@ -72,6 +72,14 @@ egrep() {
   command grep -EI "$color" "$@"
 }
 
+fgp() {
+  command grep -FI "$color" "$@"
+}
+
+egp() {
+  command grep -EI "$color" "$@"
+}
+
 gp() {
   command grep -I "$color" "$@"
 }
@@ -102,6 +110,70 @@ gpni() {
 
 gprni() {
   command grep -rniI "$color" "$@"
+}
+
+fgp() {
+  command grep -FI "$color" "$@"
+}
+
+fgpr() {
+  command grep -FrI "$color" "$@"
+}
+
+fgpn() {
+  command grep -FnI "$color" "$@"
+}
+
+fgpi() {
+  command grep -Fi "$color" "$@"
+}
+
+fgprn() {
+  command grep -FrnI "$color" "$@"
+}
+
+fgpri() {
+  command grep -FriI "$color" "$@"
+}
+
+fgpni() {
+  command grep -FniI "$color" "$@"
+}
+
+fgprni() {
+  command grep -FrniI "$color" "$@"
+}
+
+egp() {
+  command grep -EI "$color" "$@"
+}
+
+egpr() {
+  command grep -ErI "$color" "$@"
+}
+
+egpn() {
+  command grep -EnI "$color" "$@"
+}
+
+egpi() {
+  command grep -Ei "$color" "$@"
+}
+
+egprn() {
+  command grep -ErnI "$color" "$@"
+}
+
+egpri() {
+  command grep -EriI "$color" "$@"
+}
+
+egpni() {
+  command grep -EniI "$color" "$@"
+}
+
+egprni() {
+  command grep -ErniI "$color" "$@"
 }
 
 if [[ "$HOME" != '/data/data/com.termux/files/home' ]] && [[ "${PREFIX:-}" != '/data/data/com.termux/files/usr' ]]; then
