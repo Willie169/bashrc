@@ -20,6 +20,8 @@ alias onionshare='flatpak run org.onionshare.OnionShare'
 alias pied='flatpak run com.mikeasoft.pied'
 alias puzzles='flatpak run uk.org.greenend.chiark.sgtatham.puzzles'
 alias pysolfc='flatpak run io.sourceforge.pysolfc.PySolFC'
+alias reversi='flatpak run org.gnome.Reversi'
+alias unciv='flatpak run io.github.yairm210.unciv'
 alias vlc='flatpak run org.videolan.VLC'
 alias voyager='flatpak run app.vger.voyager'
 if command -v nvidia-smi >/dev/null 2>&1; then
