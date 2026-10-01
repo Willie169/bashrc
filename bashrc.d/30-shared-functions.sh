@@ -3700,18 +3700,22 @@ qc() {
   qalc "$@"
 }
 
-et() {
-  exit
-}
-
 ntex() {
   nvim ./*.tex "$@"
 }
 
 nmd() {
-  nvim ./*.tex "$@"
+  nvim ./*.md "$@"
+}
+
+nre() {
+  nvim README.md "$@"
 }
 
 rgr() {
   ranger "$@"
+}
+
+et() {
+  exit
 }
