@@ -3699,3 +3699,19 @@ update_latex() {
 qc() {
   qalc "$@"
 }
+
+et() {
+  exit
+}
+
+ntex() {
+  nvim ./*.tex "$@"
+}
+
+nmd() {
+  nvim ./*.tex "$@"
+}
+
+rgr() {
+  ranger "$@"
+}
