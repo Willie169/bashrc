@@ -367,6 +367,10 @@ cpiaAgB() {
         file.write(gacp.replace("A", i).replace("B", "cp"))
         file.write(gacdp.replace("A", i).replace("B", "cd"))
         file.write(gacdp.replace("A", i).replace("B", "cdp"))
+        file.write(gacp.replace("A", "h" + i).replace("B", "hc"))
+        file.write(gacp.replace("A", "h" + i).replace("B", "hcp"))
+        file.write(gacdp.replace("A", "h" + i).replace("B", "hcd"))
+        file.write(gacdp.replace("A", "h" + i).replace("B", "hcdp"))
 
     A = ["n", "d", "z", "f"]
     B = [

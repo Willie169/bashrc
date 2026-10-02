@@ -3587,6 +3587,126 @@ cpiagcdp() {
   gacdp
 }
 
+mvahghc() {
+  mvahic "$1"
+  gahc "$2"
+}
+
+cpahghc() {
+  cpahic "$1"
+  gahc "$2"
+}
+
+mvihghc() {
+  mvihc "$1"
+  gahc "$2"
+}
+
+cpihghc() {
+  cprihc "$1"
+  gahc "$2"
+}
+
+mviahghc() {
+  mviahc
+  gahc "$1"
+}
+
+cpiahghc() {
+  cpiahc "*"
+  gahc "$1"
+}
+
+mvahghcp() {
+  mvahic "$1"
+  gahcp "$2"
+}
+
+cpahghcp() {
+  cpahic "$1"
+  gahcp "$2"
+}
+
+mvihghcp() {
+  mvihc "$1"
+  gahcp "$2"
+}
+
+cpihghcp() {
+  cprihc "$1"
+  gahcp "$2"
+}
+
+mviahghcp() {
+  mviahc
+  gahcp "$1"
+}
+
+cpiahghcp() {
+  cpiahc "*"
+  gahcp "$1"
+}
+
+mvahghcd() {
+  mvahic "$1"
+  gahcd
+}
+
+cpahghcd() {
+  cpahic "$1"
+  gahcd
+}
+
+mvihghcd() {
+  mvihc "$1"
+  gahcd
+}
+
+cpihghcd() {
+  cprihc "$1"
+  gahcd
+}
+
+mviahghcd() {
+  mviahc
+  gahcd
+}
+
+cpiahghcd() {
+  cpiahc "*"
+  gahcd
+}
+
+mvahghcdp() {
+  mvahic "$1"
+  gahcdp
+}
+
+cpahghcdp() {
+  cpahic "$1"
+  gahcdp
+}
+
+mvihghcdp() {
+  mvihc "$1"
+  gahcdp
+}
+
+cpihghcdp() {
+  cprihc "$1"
+  gahcdp
+}
+
+mviahghcdp() {
+  mviahc
+  gahcdp
+}
+
+cpiahghcdp() {
+  cpiahc "*"
+  gahcdp
+}
+
 mvadgc() {
   mvadic "$1"
   gac "$2"
@@ -3705,6 +3825,126 @@ mviadgcdp() {
 cpiadgcdp() {
   cpiadc "*"
   gacdp
+}
+
+mvahdghc() {
+  mvahdic "$1"
+  gahc "$2"
+}
+
+cpahdghc() {
+  cpahdic "$1"
+  gahc "$2"
+}
+
+mvihdghc() {
+  mvihdc "$1"
+  gahc "$2"
+}
+
+cpihdghc() {
+  cprihdc "$1"
+  gahc "$2"
+}
+
+mviahdghc() {
+  mviahdc
+  gahc "$1"
+}
+
+cpiahdghc() {
+  cpiahdc "*"
+  gahc "$1"
+}
+
+mvahdghcp() {
+  mvahdic "$1"
+  gahcp "$2"
+}
+
+cpahdghcp() {
+  cpahdic "$1"
+  gahcp "$2"
+}
+
+mvihdghcp() {
+  mvihdc "$1"
+  gahcp "$2"
+}
+
+cpihdghcp() {
+  cprihdc "$1"
+  gahcp "$2"
+}
+
+mviahdghcp() {
+  mviahdc
+  gahcp "$1"
+}
+
+cpiahdghcp() {
+  cpiahdc "*"
+  gahcp "$1"
+}
+
+mvahdghcd() {
+  mvahdic "$1"
+  gahcd
+}
+
+cpahdghcd() {
+  cpahdic "$1"
+  gahcd
+}
+
+mvihdghcd() {
+  mvihdc "$1"
+  gahcd
+}
+
+cpihdghcd() {
+  cprihdc "$1"
+  gahcd
+}
+
+mviahdghcd() {
+  mviahdc
+  gahcd
+}
+
+cpiahdghcd() {
+  cpiahdc "*"
+  gahcd
+}
+
+mvahdghcdp() {
+  mvahdic "$1"
+  gahcdp
+}
+
+cpahdghcdp() {
+  cpahdic "$1"
+  gahcdp
+}
+
+mvihdghcdp() {
+  mvihdc "$1"
+  gahcdp
+}
+
+cpihdghcdp() {
+  cprihdc "$1"
+  gahcdp
+}
+
+mviahdghcdp() {
+  mviahdc
+  gahcdp
+}
+
+cpiahdghcdp() {
+  cpiahdc "*"
+  gahcdp
 }
 
 mvasgc() {
@@ -3827,6 +4067,126 @@ cpiasgcdp() {
   gacdp
 }
 
+mvahsghc() {
+  mvahsic "$1"
+  gahc "$2"
+}
+
+cpahsghc() {
+  cpahsic "$1"
+  gahc "$2"
+}
+
+mvihsghc() {
+  mvihsc "$1"
+  gahc "$2"
+}
+
+cpihsghc() {
+  cprihsc "$1"
+  gahc "$2"
+}
+
+mviahsghc() {
+  mviahsc
+  gahc "$1"
+}
+
+cpiahsghc() {
+  cpiahsc "*"
+  gahc "$1"
+}
+
+mvahsghcp() {
+  mvahsic "$1"
+  gahcp "$2"
+}
+
+cpahsghcp() {
+  cpahsic "$1"
+  gahcp "$2"
+}
+
+mvihsghcp() {
+  mvihsc "$1"
+  gahcp "$2"
+}
+
+cpihsghcp() {
+  cprihsc "$1"
+  gahcp "$2"
+}
+
+mviahsghcp() {
+  mviahsc
+  gahcp "$1"
+}
+
+cpiahsghcp() {
+  cpiahsc "*"
+  gahcp "$1"
+}
+
+mvahsghcd() {
+  mvahsic "$1"
+  gahcd
+}
+
+cpahsghcd() {
+  cpahsic "$1"
+  gahcd
+}
+
+mvihsghcd() {
+  mvihsc "$1"
+  gahcd
+}
+
+cpihsghcd() {
+  cprihsc "$1"
+  gahcd
+}
+
+mviahsghcd() {
+  mviahsc
+  gahcd
+}
+
+cpiahsghcd() {
+  cpiahsc "*"
+  gahcd
+}
+
+mvahsghcdp() {
+  mvahsic "$1"
+  gahcdp
+}
+
+cpahsghcdp() {
+  cpahsic "$1"
+  gahcdp
+}
+
+mvihsghcdp() {
+  mvihsc "$1"
+  gahcdp
+}
+
+cpihsghcdp() {
+  cprihsc "$1"
+  gahcdp
+}
+
+mviahsghcdp() {
+  mviahsc
+  gahcdp
+}
+
+cpiahsghcdp() {
+  cpiahsc "*"
+  gahcdp
+}
+
 mvaegc() {
   mvaeic "$1"
   gac "$2"
@@ -3945,6 +4305,126 @@ mviaegcdp() {
 cpiaegcdp() {
   cpiaec "*"
   gacdp
+}
+
+mvaheghc() {
+  mvaheic "$1"
+  gahc "$2"
+}
+
+cpaheghc() {
+  cpaheic "$1"
+  gahc "$2"
+}
+
+mviheghc() {
+  mvihec "$1"
+  gahc "$2"
+}
+
+cpiheghc() {
+  cprihec "$1"
+  gahc "$2"
+}
+
+mviaheghc() {
+  mviahec
+  gahc "$1"
+}
+
+cpiaheghc() {
+  cpiahec "*"
+  gahc "$1"
+}
+
+mvaheghcp() {
+  mvaheic "$1"
+  gahcp "$2"
+}
+
+cpaheghcp() {
+  cpaheic "$1"
+  gahcp "$2"
+}
+
+mviheghcp() {
+  mvihec "$1"
+  gahcp "$2"
+}
+
+cpiheghcp() {
+  cprihec "$1"
+  gahcp "$2"
+}
+
+mviaheghcp() {
+  mviahec
+  gahcp "$1"
+}
+
+cpiaheghcp() {
+  cpiahec "*"
+  gahcp "$1"
+}
+
+mvaheghcd() {
+  mvaheic "$1"
+  gahcd
+}
+
+cpaheghcd() {
+  cpaheic "$1"
+  gahcd
+}
+
+mviheghcd() {
+  mvihec "$1"
+  gahcd
+}
+
+cpiheghcd() {
+  cprihec "$1"
+  gahcd
+}
+
+mviaheghcd() {
+  mviahec
+  gahcd
+}
+
+cpiaheghcd() {
+  cpiahec "*"
+  gahcd
+}
+
+mvaheghcdp() {
+  mvaheic "$1"
+  gahcdp
+}
+
+cpaheghcdp() {
+  cpaheic "$1"
+  gahcdp
+}
+
+mviheghcdp() {
+  mvihec "$1"
+  gahcdp
+}
+
+cpiheghcdp() {
+  cprihec "$1"
+  gahcdp
+}
+
+mviaheghcdp() {
+  mviahec
+  gahcdp
+}
+
+cpiaheghcdp() {
+  cpiahec "*"
+  gahcdp
 }
 
 scnnn() {

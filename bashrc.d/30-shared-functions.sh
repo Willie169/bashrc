@@ -762,6 +762,10 @@ gad() {
   )
 }
 
+gah() {
+  git add .
+}
+
 gcmd() {
   git commit -m "$(date -uIs)"
 }
@@ -784,6 +788,28 @@ gacp() {
 
 gacdp() {
   gad
+  gcmd
+  git push
+}
+
+gahc() {
+  gah
+  git commit -m "$1"
+}
+
+gahcd() {
+  gah
+  gcmd
+}
+
+gahcp() {
+  gah
+  git commit -m "$1"
+  git push
+}
+
+gahcdp() {
+  gah
   gcmd
   git push
 }
