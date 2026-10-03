@@ -174,7 +174,6 @@ update_pm() {
   conda update -n base -c conda-forge conda -y
   npm i -g npm
   npm update -g
-  cpan -u
 }
 
 update_drivers() {
