@@ -3742,6 +3742,11 @@ rgr() {
   ranger "$@"
 }
 
+cndcra() {
+  conda create -n "$1" -y
+  conda activate "$1" -y
+}
+
 et() {
   exit
 }
