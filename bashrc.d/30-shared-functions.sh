@@ -3755,6 +3755,10 @@ cndd() {
   conda deactivate
 }
 
+ppip() {
+  python -m pip "$@"
+}
+
 et() {
   exit
 }
