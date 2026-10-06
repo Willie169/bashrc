@@ -2812,7 +2812,7 @@ nv() {
 }
 
 py() {
-  python3 "$@"
+  python "$@"
 }
 
 httpp() {
