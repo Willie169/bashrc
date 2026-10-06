@@ -3744,7 +3744,15 @@ rgr() {
 
 cndcra() {
   conda create -n "$1" -y
-  conda activate "$1" -y
+  conda activate "$1"
+}
+
+cnda() {
+  conda activate "$1"
+}
+
+cndd() {
+  conda deactivate
 }
 
 et() {
