@@ -2815,6 +2815,10 @@ py() {
   python "$@"
 }
 
+pdplain() {
+  pandoc -t plain "$1" -o "${2:-$(echo "$1" | remove_extension).txt}"
+}
+
 httpp() {
   http-server -p "$@"
 }
