@@ -125,9 +125,9 @@ update_tools() {
     unzip bnkextr-linux-glibc-x86_64.zip
     rm bnkextr-linux-glibc-x86_64.zip*
     mv bnkextr ~/.local/bin/
-    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-*-x86_64.deb'
-    sudo apt install ./rustdesk-*-x86_64.deb -y
-    rm rustdesk-*-x86_64.deb*
+    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' rustdesk/rustdesk 'rustdesk-unattended-wayland-*-x86_64.deb'
+    sudo DEBIAN_FRONTEND=noninteractive apt install ./rustdesk-unattended-wayland-*-x86_64.deb -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+    rm rustdesk-unattended-wayland-*-x86_64.deb*
     rm -f ~/.local/bin/adb
     rm -f ~/.local/bin/scrcpy
     gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/scrcpy-6007-workaround 'scrcpy-linux-x86_64-*.tar.gz'
@@ -136,7 +136,7 @@ update_tools() {
     mv scrcpy-linux-x86_64-*/scrcpy ~/.local/bin/
     rm -r scrcpy-linux-x86_64-*
     gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' TheAssassin/AppImageLauncher 'appimagelauncher_*-*.*_amd64.deb'
-    sudo apt install ./appimagelauncher_*-*.*_amd64.deb -y
+    sudo DEBIAN_FRONTEND=noninteractive apt install ./appimagelauncher_*-*.*_amd64.deb -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
     rm appimagelauncher_*-*.*_amd64.deb*
     kiwix-zim-updater -d ~/kiwix-zims
     rm download.log
