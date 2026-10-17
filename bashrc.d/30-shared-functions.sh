@@ -3763,6 +3763,42 @@ ppip() {
   python -m pip "$@"
 }
 
+pdftxt() {
+  pdftotext "$@"
+}
+
+pdfpng() {
+  local args=("$1" "$(echo "$1" | remove_extension)")
+  if [ "$#" -ge 3 ]; then
+    args+=(-f "$2" -l "$3")
+  fi
+  pdftoppm -png "${args[@]}"
+}
+
+pdfjpg() {
+  local args=("$1" "$(echo "$1" | remove_extension)")
+  if [ "$#" -ge 3 ]; then
+    args+=(-f "$2" -l "$3")
+  fi
+  pdftoppm -jpeg "${args[@]}"
+}
+
+pdfsep() {
+  local args=("$1" "$(echo "$1" | remove_extension)_%d.pdf")
+  if [ "$#" -ge 3 ]; then
+    args+=(-f "$2" -l "$3")
+  fi
+  pdfseparate "${args[@]}"
+}
+
+pdfsub() {
+  pdftk "$1" cat "$2-$3" output "$(echo "$1" | remove_extension)_$2-$3.pdf"
+}
+
+pdfunt() {
+  pdfunite "$@" "$(echo "$1" | sed -E 's/_[0-9]+\.pdf$/.pdf/')"
+}
+
 et() {
   exit
 }
