@@ -3742,6 +3742,10 @@ nre() {
   nvim README.md "$@"
 }
 
+npy() {
+  nvim ./*.py "$@"
+}
+
 rgr() {
   ranger "$@"
 }
