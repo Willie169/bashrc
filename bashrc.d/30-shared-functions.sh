@@ -3807,6 +3807,14 @@ wgetm() {
   wget -e robots=off -mkEpnp "$@"
 }
 
+mgk() {
+  magick "$@"
+}
+
+mgkthre() {
+  magick "$1" -colorspace Gray -normalize -threshold "$2" -compress Group4 "${3:-$(echo "$1" | remove_extension)_threshold$2.pdf}"
+}
+
 et() {
   exit
 }
