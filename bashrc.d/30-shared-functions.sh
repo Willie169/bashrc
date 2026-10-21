@@ -3803,6 +3803,10 @@ pdfunt() {
   pdfunite "$@" "$(echo "$1" | sed -E 's/_[0-9]+\.pdf$/.pdf/')"
 }
 
+wgetm() {
+  wget -e robots=off -mkEpnp "$@"
+}
+
 et() {
   exit
 }
