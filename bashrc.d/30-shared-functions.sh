@@ -2382,7 +2382,7 @@ clean_file() {
     files=(*)
   fi
   for f in "${files[@]}"; do
-    test -f "$f" && perl -i -pe 's/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]//g' -- "$f"
+    test -f "$f" && perl -i -pe 's/\x{2009}/ /g; s/\x{2010}/-/g; s/\x{2212}/-/g; s/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B-\x1F\x7F]//g' -- "$f"
   done
 }
 
