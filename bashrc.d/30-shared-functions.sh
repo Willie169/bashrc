@@ -2375,11 +2375,16 @@ multimedia_convert() {
   )
 }
 
-clean_file() {
+normalize_text() {
   if [ $# -ne 0 ]; then
     files=("$@")
   else
-    files=(*)
+    while IFS= read -r -d '' f; do
+      mime=$(file --brief --mime-type -- "$f") || continue
+      [[ $mime == text/* || $mime == application/xml ||
+        $mime == application/json || $mime == application/javascript ]] &&
+        files+=("$f")
+    done < <(find . -type f -print0)
   fi
   for f in "${files[@]}"; do
     test -f "$f" && perl -i -pe 's/\x{2009}/ /g; s/\x{2010}/-/g; s/\x{2012}/\x{2013}/g; s/\x{2015}/\x{2014}/g; s/\x{2212}/-/g; s/\x{FEFF}//g; s/\x{200B}//g; s/[\x00-\x08\x0B-\x1F\x7F]//g' -- "$f"
