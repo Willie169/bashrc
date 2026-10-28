@@ -3751,6 +3751,22 @@ npy() {
   nvim ./*.py "$@"
 }
 
+nlog() {
+  nvim ./*.log "$@"
+}
+
+ncpp() {
+  nvim ./*.cpp "$@"
+}
+
+nhpp() {
+  nvim ./*.hpp "$@"
+}
+
+nhtml() {
+  nvim ./*.html "$@"
+}
+
 rgr() {
   ranger "$@"
 }
