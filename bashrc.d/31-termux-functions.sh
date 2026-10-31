@@ -103,7 +103,7 @@ update_tools() {
   )
 }
 
-update_pm() {
+update_apt() {
   pkg update
   DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
@@ -111,8 +111,16 @@ update_pm() {
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   apt clean
   apt autoclean
+}
+
+_update_pm() {
   uv tool upgrade --all
   npm update -g
+}
+
+update_pm() {
+  update_apt
+  _update_pm
 }
 
 update_all() {

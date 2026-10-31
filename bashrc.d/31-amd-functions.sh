@@ -154,14 +154,29 @@ update_pied() {
   )
 }
 
-update_pm() {
+_apt_pre() {
   sudo apt update
+}
+
+_apt_upgrade() {
   sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+}
+
+_apt_post() {
   sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   sudo apt clean
   sudo apt autoclean
+}
+
+update_apt() {
+  _apt_pre
+  _apt_upgrade
+  _apt_post
+}
+
+_update_pm() {
   flatpak update -y || true
   flatpak uninstall --unused -y || true
   sudo snap refresh || true
@@ -176,24 +191,34 @@ update_pm() {
   npm update -g
 }
 
+update_pm() {
+  update_apt
+  _update_pm
+}
+
+_update_drivers() {
+  echo y | sudo ubuntu-drivers install && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
+  echo y | sudo ubuntu-drivers install && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
+  echo y | sudo ubuntu-drivers install && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
+  echo y | sudo ubuntu-drivers autoinstall && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
+  echo y | sudo ubuntu-drivers autoinstall && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
+  echo y | sudo ubuntu-drivers autoinstall && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
+}
+
 update_drivers() {
-  sudo apt update
-  echo y | sudo ubuntu-drivers install && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
-  echo y | sudo ubuntu-drivers install && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
-  echo y | sudo ubuntu-drivers install && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
-  echo y | sudo ubuntu-drivers autoinstall && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
-  echo y | sudo ubuntu-drivers autoinstall && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
-  echo y | sudo ubuntu-drivers autoinstall && sudo apt install -f -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite" || true
-  sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-  sudo apt clean
-  sudo apt autoclean
+  _apt_pre
+  _update_drivers
+  _apt_post
 }
 
 update_all() {
   update_bashrc
   source ~/.bashrc
-  update_drivers
-  update_pm
+  _apt_pre
+  _update_drivers
+  _apt_upgrade
+  _apt_post
+  _update_pm
   update_latex
   update_tools
   update_pied

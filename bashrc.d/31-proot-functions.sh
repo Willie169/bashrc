@@ -98,7 +98,7 @@ update_tools() {
   )
 }
 
-update_pm() {
+update_apt() {
   apt update
   DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
@@ -106,6 +106,9 @@ update_pm() {
   DEBIAN_FRONTEND=noninteractive apt autoremove -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   apt clean
   apt autoclean
+}
+
+_update_pm() {
   locale-gen en_US.UTF-8
   brew update
   echo y | brew upgrade
@@ -116,6 +119,11 @@ update_pm() {
   conda update -n base -c conda-forge conda -y
   npm i -g npm
   npm update -g
+}
+
+update_pm() {
+  update_apt
+  _update_pm
 }
 
 update_all() {
