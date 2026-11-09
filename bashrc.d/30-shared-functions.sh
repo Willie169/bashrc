@@ -2389,6 +2389,14 @@ multimedia_convert() {
   )
 }
 
+ffmpeg_ss() {
+  ffmpeg -ss "$1" -i "$2" -frames:v 1 "$3"
+}
+
+ffmpeg_sseof() {
+  ffmpeg -sseof "$1" -i "$2" -update 1 -frames:v 1 "$3"
+}
+
 normalize_text() {
   if [ $# -ne 0 ]; then
     files=("$@")
