@@ -640,7 +640,7 @@ cgwf() {
   fi
 }
 
-nvgwf() {
+ngwf() {
   # shellcheck disable=2086
   if [ -n "$GRR" ]; then
     nvim "$GRR"/.github/workflows/${1:-*}
