@@ -3862,6 +3862,18 @@ mgkthre() {
   magick "$1" -colorspace Gray -normalize -threshold "$2" -compress Group4 "${3:-$(echo "$1" | remove_extension)_threshold$2.pdf}"
 }
 
+softo() {
+  soffice --convert-to "$@"
+}
+
+softocsv() {
+  soffice --convert-to csv:"Text - txt - csv (StarCalc)":44,34,76,1,,,,,,,,-1 "$@"
+}
+
+sofcat() {
+  soffice --cat "$@"
+}
+
 et() {
   exit
 }
