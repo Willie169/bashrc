@@ -3757,6 +3757,10 @@ qc() {
   qalc "$@"
 }
 
+nsh() {
+  nvim ./*.sh "$@"
+}
+
 ntex() {
   nvim ./*.tex "$@"
 }
