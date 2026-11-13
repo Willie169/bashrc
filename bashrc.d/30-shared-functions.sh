@@ -3394,7 +3394,7 @@ cfm() {
 cfmc() {
   (
     shopt -s globstar nullglob
-    for f in **/*.c **/*.h; do
+    for f in **/*.c **/*.h **/*.cpp **/*.hpp; do
       test -f "$f" && clang-format -style=llvm -i "$f"
     done
   )
@@ -3404,15 +3404,6 @@ cppfm() {
   for f in "$@"; do
     test -f "$f" && clang-format -style=llvm -i "$f"
   done
-}
-
-cppfmc() {
-  (
-    shopt -s globstar nullglob
-    for f in **/*.cpp **/*.hpp; do
-      test -f "$f" && clang-format -style=llvm -i "$f"
-    done
-  )
 }
 
 javafm() {
@@ -3779,6 +3770,14 @@ npy() {
 
 nlog() {
   nvim ./*.log "$@"
+}
+
+nvc() {
+  nvim ./*.c "$@"
+}
+
+nvh() {
+  nvim ./*.h "$@"
 }
 
 ncpp() {
