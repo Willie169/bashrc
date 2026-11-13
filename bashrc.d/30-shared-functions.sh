@@ -3862,6 +3862,10 @@ mgkthre() {
   magick "$1" -colorspace Gray -normalize -threshold "$2" -compress Group4 "${3:-$(echo "$1" | remove_extension)_threshold$2.pdf}"
 }
 
+sof() {
+  soffice "$@"
+}
+
 softo() {
   soffice --convert-to "$@"
 }
