@@ -36,7 +36,7 @@ with open(p, "w", encoding="utf-8") as file:
     npop = ["rm", "rmr", "rmrf", "mkdir", "mkdirp"]
     proot = ["termux", "ubuntu", "debian", "ubuntubox", "debianbox"]
     prootStr = ["t", "u", "d", "ub", "db"]
-    pdl = ["pdc", "pdl", "pds", "pdt", "pdp", "pdr"]
+    pdl = ["pdc", "pdi", "pdl", "pds", "pdt", "pdp", "pdr"]
 
     for j in lr(remote):
         file.write(

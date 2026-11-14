@@ -3367,6 +3367,26 @@ pdcdb() {
   pdc "${DEBIANBOX:-debianbox}"
 }
 
+pdit() {
+  pdi "${TERMUX:-termux}"
+}
+
+pdiu() {
+  pdi "${UBUNTU:-ubuntu}"
+}
+
+pdid() {
+  pdi "${DEBIAN:-debian}"
+}
+
+pdiub() {
+  pdi "${UBUNTUBOX:-ubuntubox}"
+}
+
+pdidb() {
+  pdi "${DEBIANBOX:-debianbox}"
+}
+
 pdlt() {
   pdl "${TERMUX:-termux}"
 }

@@ -139,6 +139,44 @@ pdc() {
   fi
 }
 
+pdi() {
+  cmd=(proot-distro login "$1" --redirect-ports --isolated --shared-tmp)
+  shift
+  args=("$@")
+  bind=(
+    "/apex"
+    "/data/app"
+    "/data/dalvik-cache"
+    "/data/misc/apexdata/com.android.art/dalvik-cache"
+    "/linkerconfig/com.android.art/ld.config.txt"
+    "/linkerconfig/ld.config.txt"
+    "/odm"
+    "/plat_property_contexts"
+    "/product"
+    "/property_contexts"
+    "/system"
+    "/system_ext"
+    "/vendor"
+    "/data/data/com.termux/files/usr/bin"
+    "/data/data/com.termux/files/usr/libexec"
+    "/data/data/com.termux/files/usr/lib"
+  )
+  for item in "${bind[@]}"; do
+    # shellcheck disable=2086
+    set -- $item
+    first=$1
+    second=$2
+    [[ -e "$first" ]] || continue
+    if [[ $# -ge 2 ]]; then
+      cmd+=(--bind "$first:$second")
+    else
+      cmd+=(--bind "$first")
+    fi
+  done
+  cmd+=("${args[@]}")
+  "${cmd[@]}"
+}
+
 pdl() {
   cmd=(proot-distro login "$1" --redirect-ports --isolated --shared-tmp)
   shift
