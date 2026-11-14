@@ -2611,6 +2611,14 @@ lualatexci() {
   latexci lualatex "$@"
 }
 
+xlc() {
+  xelatexci "$@"
+}
+
+lulc() {
+  lualatexci "$@"
+}
+
 match_round() {
   awk '{ n = gsub(/\(/, "("); m = gsub(/\)/, ")"); balance += n - m; printf "%2d %5d %s\n", balance, NR, $0
 }' "$1"
