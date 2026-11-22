@@ -30,7 +30,6 @@ alias musescore="$nvidia_vars"'flatpak run org.musescore.MuseScore'
 alias newsflash='flatpak run io.gitlab.news_flash.NewsFlash'
 alias onionshare='flatpak run org.onionshare.OnionShare'
 alias pied='flatpak run com.mikeasoft.pied'
-
 alias pysolfc="$nvidia_vars"'flatpak run io.sourceforge.pysolfc.PySolFC'
 alias reversi="$nvidia_vars"'flatpak run org.gnome.Reversi'
 alias steam="$nvidia_vars"'flatpak run com.valvesoftware.Steam'
